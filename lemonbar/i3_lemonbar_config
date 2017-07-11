@@ -1,0 +1,64 @@
+#!\bin\bash
+# i3 panel config. Powerline style.
+
+panel_fifo="/tmp/i3_lemonbar_${USER}"
+geometry="x18+0+0"
+font="DejaVuSansMonoforPowerline-8"
+#iconfont="-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1"
+iconfont="-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1"
+res_w=$(xrandr | grep "current" | awk '{print $8a}')
+snd_cha=$(amixer get Master | grep "Playback channels:" | awk '{if ($4 == "") {printf "%s: Playback", $3} else {printf "%s %s: Playback", $3, $4}}')
+
+# Alarm settings
+cpu_alert=75                        # % cpu use
+net_alert=3000                         # K net use
+
+# update setting, in seconds (conky update in i3_lemonbar_conky
+upd_vol=3                           # Volume update
+upd_mail=600                        # Mail check update
+upd_mpd=5                           # MPD song update
+#upd_bat=30
+
+# color definitions 
+color_back="#70DFE2e5"              # Default background
+color_fore="#FF565e65"              # Default foreground
+color_head="#FFae95c7"              # Background for first element
+color_sec_b1="#FF95aec7"            # Background for section 1
+color_sec_b2="#FFc795ae"            # Background for section 2
+color_sec_b3="#FFaec795"            # Background for section 3
+color_icon="#FF565e65"              # For icons
+color_mail="#FFc7ae95"              # Background color for mail alert
+color_chat="#FFCC6666"              # Background color for chat alert
+color_cpu="#FFc7ae95"               # Background color for cpu alert
+color_net="#FFc7ae95"               # Background color for net alert
+color_disable="#FF1D1F21"           # Foreground for disable elements
+color_wsp="#FF95c7ae"               # Background for selected workspace
+
+#default space between sections
+if [ ${res_w} -gt 1024 ]; then
+  stab='  '
+else
+  stab=' '
+fi
+
+# Char glyps for powerline fonts
+sep_left=""                        # Powerline separator left
+sep_right=""                       # Powerline separator right
+sep_l_left=""                      # Powerline light separator left
+sep_l_right=""                     # Powerline light sepatator right
+
+# Icon glyphs from Terminusicons2
+icon_clock=""                      # Clock icon
+icon_cpu=""                        # CPU icon
+icon_mem=""                        # MEM icon
+icon_dl=""                         # Download icon
+icon_ul=""                         # Upload icon
+icon_vol=""                        # Volume icon
+icon_hd=""                         # HD / icon
+icon_home=""                       # HD /home icon
+icon_mail=""                       # Mail icon
+icon_chat=""                       # IRC/Chat icon
+icon_music=""                      # Music icon
+icon_prog=""                       # Window icon
+icon_contact=""                    # Contact icon
+icon_wsp=""                        # Workspace icon

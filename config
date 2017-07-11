@@ -1,0 +1,217 @@
+set $mod mod4
+
+font pango:Terminus 8
+
+#ashes colors
+set $background #303030
+set $foreground #ffffff
+set $gray       #d0d0d0
+set $primary    #fb9fb1
+set $secondary  #e1a3ee
+set $tertiary   #6fc2ef
+set $additional	#acc267
+set $warning    #303030
+
+set $ws1  "1: 1"
+set $ws2  "2: 2"
+set $ws3  "3: 3"
+set $ws4  "4: 4"
+set $ws5  "5: 5"
+set $ws6  "6: 6"
+set $ws7  "7: 7"
+set $ws8  "8: 8"
+set $ws9  "9: 9"
+set $ws10 "10: 10"
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+#autostart
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id xfsettingsd
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id compton -b
+
+# set wallpaper
+exec --no-startup-id feh --bg-fill ~/.config/i3/yosemite.png
+
+# start a terminal
+bindsym $mod+Return exec termite
+
+# start a web browser
+bindsym $mod+w exec firefox
+
+#file manager
+bindsym $mod+f exec thunar
+
+# kill focused window
+bindsym $mod+Escape kill
+
+#change volume
+#bindsym XF86AudioLowerVolume exec amixer sset Master 2-
+#bindsym XF86AudioRaiseVolume exec amixer sset Master 2+
+#bindsym XF86AudioMute exec amixer sset Master toggle
+bindsym XF86AudioRaiseVolume exec amixer -D pulse sset Master '5%+'
+bindsym XF86AudioLowerVolume exec amixer -D pulse sset Master '5%-'
+bindsym XF86AudioNext exec mpc next
+bindsym XF86AudioPrev exec mpc prev
+bindsym XF86AudioPlay exec mpc play
+bindsym XF86AudioPause exec mpc pause
+bindsym XF86AudioStop exec mpc stop
+
+# program launcher
+# bindsym $mod+r exec rofi -show run -terminal termite -lines 3 -eh 2 -width 100 -padding 620 -opacity 90 -bw 0 -bc "#2f343f" -bg "#2f343f" -hlbg "#2f343f" -hlfg "#c79595" -fg "#95c7ae" -font "Terminus 12"
+bindsym $mod+Shift+Return exec rofi -show run -fullscreen True -lines 3 -line-margin 6 -padding 300 -bw 0 -opacity "95" -font "Roboto 10" -scrollbar-width 0 -separator-style "none"
+bindsym $mod+d exec rofi -show run -fullscreen True -lines 3 -line-margin 6 -padding 300 -bw 0 -opacity "95" -font "Roboto 10" -scrollbar-width 0 -separator-style "none"
+# change focus
+#bindsym $mod+n focus left
+#bindsym $mod+e focus down
+#bindsym $mod+u focus up
+#bindsym $mod+i focus right
+
+#left hand lazy focus
+#bindsym mod1+Shift+a focus left
+#bindsym mod1+Shift+r focus down
+#bindsym mod1+Shift+w focus up
+#bindsym mod1+Shift+s focus right
+
+# alternatively, you can use the cursor keys:
+#bindsym $mod+Left focus left
+#bindsym $mod+Down focus down
+#bindsym $mod+Up focus up
+#bindsym $mod+Right focus right
+
+# move focused window
+#bindsym $mod+Shift+n move left
+#bindsym $mod+Shift+e move down
+#bindsym $mod+Shift+u move up
+#bindsym $mod+Shift+i move right
+
+# alternatively, you can use the cursor keys:
+#bindsym $mod+Shift+Left move left
+#bindsym $mod+Shift+Down move down
+#bindsym $mod+Shift+Up move up
+#bindsym $mod+Shift+Right move right
+
+# my own move
+bindsym $mod+Left move left
+bindsym $mod+Down move down
+bindsym $mod+Up move up
+bindsym $mod+Right move right
+
+# split in horizontal orientation
+bindsym $mod+b split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+t fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+#bindsym $mod+d layout stacking
+#bindsym $mod+z layout tabbed
+#bindsym $mod+x layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+space floating toggle
+
+# change focus between tiling / floating windows
+#bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+#bindsym $mod+c focus parent
+ 
+# focus the child container
+#bindsym $mod+Shift+c focus child
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# reload the configuration file
+bindsym $mod+Shift+BackSpace reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+#bindsym $mod+Shift+p restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+Delete exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym n resize shrink width 10 px or 10 ppt
+        bindsym u resize grow height 10 px or 10 ppt
+        bindsym e resize shrink height 10 px or 10 ppt
+        bindsym i resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym Tab mode "default"
+}
+
+mode "gaps" {
+        bindsym Down gaps inner all minus 2
+        bindsym Left gaps outer all minus 2
+        bindsym Up gaps inner all plus 2
+        bindsym Right gaps outer all plus 2
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym Tab    mode "default"
+}
+
+bindsym $mod+r mode "resize"
+bindsym $mod+g mode "gaps"
+
+# colors                BORDER      BACKGROUND TEXT        INDICATOR
+client.focused          $primary    $primary   $background $primary
+client.focused_inactive $secondary  $secondary $foreground $secondary
+client.unfocused        $tertiary   $tertiary  $background $tertiary
+client.urgent           $gray       $gray      $foreground $gray  
+
+# Start i3bar to display a workspace bar (plus the system information i3status)
+
+    bar {
+        i3bar_command ~/.config/i3/lemonbar/i3_lemonbar.sh
+		}	
+
+#removes window titles
+for_window [class=".*"] border pixel 8
+gaps inner 20
+gaps outer 10
+
+# start mpd
+exec --no-startup-id mpd
