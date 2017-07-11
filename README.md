@@ -58,6 +58,11 @@ Q : I can't get my workspaces appeared on the lemonbar
 A : Ohh, me too. I have spent days to figure out why the heck my workspaces won't be appeared, but still no result >_<
 <br />
 <br />
+Q : My distro doesn't have AUR, What I supposed to do? :(
+<br />
+A : Maybe it is a right time to migrate to Arch based distro :)
+<br />
+<br />
 Q : My usual keybind doesn't work here
 <br />
 A : I have a weird keybinds to make everything work more efficient for me, You should read the config file. Not only copy and paste. And don't forget to comment out every startup lines that You don't need.
