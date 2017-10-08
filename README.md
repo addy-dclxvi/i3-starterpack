@@ -17,7 +17,7 @@ If You have a previous i3 config, move it to a safe-place. literally :D
 mkdir ~/.config/safe-place
 ```
 ```
-mv -r ~/.config/i3 ~/.config/safe-place
+mv ~/.config/i3 ~/.config/safe-place
 ```
 Then clone this setup
 ```
@@ -25,7 +25,7 @@ git clone https://github.com/addy-dclxvi/i3-yosemite
 ```
 Move my config to ~/.config folder 
 ```
-mv -r i3-yosemite ~/.config
+mv i3-yosemite ~/.config
 ```
 Rename the directory
 ```
