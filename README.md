@@ -12,6 +12,18 @@ I'm using Debian, with i3 stock metapackages (i3wm, i3bar, i3status, i3lock, i3-
 Hence I name this repo *i3-starterpack*.
 So, the installation guide here will use Debian command & package name. <br />
 
+## Preview
+![clean](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview-clean.jpg) <br />
+**Clean**, without any opened app. Only i3bar is visible. <br />
+![rofi](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview-rofi.jpg) <br />
+**Rofi**, my favourite dmenu alternative for launching apps. <br />
+![fullscreen](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview-fullscreen.jpg) <br />
+**Fullscreen**, when I write this guide using Vim inside URxvt. Vanilla i3, so has no gaps. <br />
+![splitscreen](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview-splitscreen.jpg) <br />
+**Splitscreen**, I open ncmpcpp music player on the right. <br />
+![floating](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview-floaing.jpg) <br />
+**Floating**, for show-off. <br />
+
 ## Disclaimer
 I'm not a Pro. I just started learning Linux one year ago. And I'm not an IT guy. So, probably this guide will have some mistakes. 
 I hope You would correct me instead of insult me :cry: <br />
@@ -20,8 +32,10 @@ I hope You would correct me instead of insult me :cry: <br />
 I've got frequently questioned, "How to make my desktop looks like yours?". 
 I don't know why they ask it to me, my desktop doesn't even look nice. 
 So, I only answer "What DE do You use? Have You tried window manager? You can use Google to find some guide". <br />
+
 And the frequent reply..
 - "I have been following the guide I found, but my desktop still doesn't like yours". <br />
+
 Different level of reply..
 - "I don't know what is my DE. It's default on my Parrot Security."
 - "DE? What is DE? Btw, I use Kali Linux. Have You watched Mr.Robot?" <br />
@@ -124,7 +138,8 @@ My keybind is pretty weird, I more focus on easy to memorize <br />
 
 ## Now What??
 Do some mess with the configuration file of course. 
-Maybe change some keybind, autostart apps, window rules, and more You can find on [i3 official documentations](https://i3wm.org/docs/userguide.html).
+Maybe change some keybind, autostart apps, window rules, and more You can find on 
+[i3 official documentations](https://i3wm.org/docs/userguide.html).
 And remember, my configuration is probably not suitable for You. So, I recommend You to change it. 
 Also, make yourself getting used with keybinds. It will activate your Ultra Instict. :joy:  <br />
 ```
