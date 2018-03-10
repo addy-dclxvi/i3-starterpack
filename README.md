@@ -89,7 +89,7 @@ If i3-wm, dunst, i3lock, i3status, and suckless-tools are not installed automati
 - Xsel is a program to access X clipboard. We need it to make copy-paste in URxvt available. Hit Alt+C to copy, and Alt+V to paste. 
 - Rofi is a program launcher, similar with dmenu but with more options.
 - Noto Sans and M+ are my favourite fonts used in my configuration.
-- Xsettingsd is a simple settings daemon to load fontfonfig and some other options. Without this, fonts would look rasterized in some applications.
+- Xsettingsd is a simple settings daemon to load fontconfig and some other options. Without this, fonts would look rasterized in some applications.
 - LXAppearance is used for changing GTK theme icons, fonts, and some other preferences.
 - Scrot is for taking screenshoot. I use it in my configuration for Print Screen button.
 I set my Print Screen button to take screenshoot using scrot, then automatically open it using Viewnior image viewer. <br />
