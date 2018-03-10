@@ -79,7 +79,7 @@ It will give You i3-wm, dunst, i3lock, i3status, and suckless-tools.
 If i3-wm, dunst, i3lock, i3status, and suckless-tools are not installed automatically, just install them manually. <br />
 `sudo apt-get install i3-wm dunst i3lock i3status suckless-tools` <br />
 - **Then install some essential packages to make your desktop enjoyable** <br />
-`sudo apt-get install compton hsetroot rxvt-unicode xsel rofi fonts-noto fonts-mplus xsettingsd lxappearance scrot viewnior` <br />
+`sudo apt-get install compton hsetroot rxvt-unicode xsel rofi fonts-noto fonts-mplus xsettingsd lxappearance scrot viewnior`
 - Compton is a compositor to provide some desktop effects like shadow, transparency, fade, and transiton. 
 - Hsetroot is a wallpaper handler. i3 has no wallpaper handler by default.
 - URxvt is a lightweight terminal emulator, part of *i3-sensible-terminal*.
