@@ -15,13 +15,17 @@ So, the installation guide here will use Debian command & package name. <br />
 ## Preview
 ![clean](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview-clean.jpg) <br />
 **Clean**, without any opened app. Only i3bar is visible. <br />
+
 ![rofi](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview-rofi.jpg) <br />
 **Rofi**, my favourite dmenu alternative for launching apps. <br />
+
 ![fullscreen](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview-fullscreen.jpg) <br />
 **Fullscreen**, when I write this guide using Vim inside URxvt. Vanilla i3, so has no gaps. <br />
+
 ![splitscreen](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview-splitscreen.jpg) <br />
 **Splitscreen**, I open ncmpcpp music player on the right. <br />
-![floating](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview-floaing.jpg) <br />
+
+![floating](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview-floating.jpg) <br />
 **Floating**, for show-off. <br />
 
 ## Disclaimer
