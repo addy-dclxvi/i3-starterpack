@@ -1,0 +1,112 @@
+! ------------------------------------------------------------------------------
+! Colour Configuration
+! ------------------------------------------------------------------------------
+
+! special
+*.foreground:   #d8dee8
+*.background:   #2f343f
+*.cursorColor:  #b48ead
+
+! black
+*.color0  : #4b5262
+*.color8  : #434a5a
+
+! red
+*.color1  : #bf616a
+*.color9  : #b3555e
+
+! green
+*.color2  : #a3be8c
+*.color10 : #93ae7c
+
+! yellow
+*.color3  : #ebcb8b
+*.color11 : #dbbb7b
+
+! blue
+*.color4  : #81a1c1
+*.color12 : #7191b1
+
+! magenta
+*.color5  : #b48ead
+*.color13 : #a6809f
+
+! cyan
+*.color6  : #89d0bA
+*.color14 : #7dbba8
+
+! white
+*.color7  : #e5e9f0
+*.color15 : #d1d5dc
+
+! ------------------------------------------------------------------------------
+! Font configuration
+! ------------------------------------------------------------------------------
+
+URxvt*font:				xft:M+ 1mn:regular:size=8
+URxvt*boldFont:			xft:M+ 1mn:bold:size=8
+URxvt*italicFont:		xft:M+ 1mn:italic:size=8
+URxvt*boldItalicFont:	xft:M+ 1mn:bold italic:size=8
+
+! ------------------------------------------------------------------------------
+! Xft Font Configuration
+! ------------------------------------------------------------------------------
+
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintslight
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+
+! ------------------------------------------------------------------------------
+! URxvt configs
+! ------------------------------------------------------------------------------
+
+URxvt.geometry: 		82x16
+URxvt*letterSpace: 	    -1
+URxvt.lineSpace: 		0
+URxvt*internalBorder:   24
+URxvt*externalBorder:   0
+URxvt*depth:            32
+URxvt*saveline:         2000
+URxvt*termName:         rxvt-256color
+URxvt*iso14755:         false
+URxvt*scrollBar:        false
+URxvt*scrollBar_right:  false
+URxvt.perl-ext-common:  default,clipboard,url-select,keyboard-select
+URxvt.copyCommand:      xclip -i -selection clipboard
+URxvt.pasteCommand:     xclip -o -selection clipboard
+URxvt.keysym.M-c:       perl:clipboard:copy
+URxvt.keysym.M-v:       perl:clipboard:paste
+URxvt.keysym.M-C-v:     perl:clipboard:paste_escaped
+URxvt.keysym.M-Escape:  perl:keyboard-select:activate
+URxvt.keysym.Shift-Up:	command:\033]720;1\007
+URxvt.keysym.Shift-Down:command:\033]721;1\007
+URxvt.keysym.M-s:       perl:keyboard-select:search
+URxvt.keysym.M-u:       perl:url-select:select_next
+URxvt.urlLauncher:      firefox
+URxvt.underlineURLs:    true
+URxvt.urlButton:        1
+URxvt*buffered:         false          
+URxvt.urgentOnBell: 	True
+
+! ------------------------------------------------------------------------------
+! Rofi configs
+! ------------------------------------------------------------------------------
+
+rofi.color-enabled: true
+rofi.color-window: #2e3440, #2e3440, #2e3440
+rofi.color-normal: #2e3440, #d8dee9, #2e3440, #2e3440, #bf616a
+rofi.color-active: #2e3440, #b48ead, #2e3440, #2e3440, #93e5cc
+rofi.color-urgent: #2e3440, #ebcb8b, #2e3440, #2e3440, #ebcb8b  
+
+! ------------------------------------------------------------------------------
+! Dmenu configs
+! ------------------------------------------------------------------------------
+
+dmenu.selforeground:	    #d8dee9
+dmenu.background:	        #2e3440
+dmenu.selbackground:	    #bf616a
+dmenu.foreground:	        #d8dee9
+                                                           

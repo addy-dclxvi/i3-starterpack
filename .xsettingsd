@@ -1,0 +1,8 @@
+# This config will be executed by xsettingsd
+# Make sure you have installed it
+# Add don't forget to add it to your startup
+
+Xft/Hinting 1
+Xft/RGBA "rgb"
+Xft/HintStyle "hintslight"
+Xft/Antialias 1
