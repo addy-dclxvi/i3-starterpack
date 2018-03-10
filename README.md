@@ -78,6 +78,7 @@ I recommend You to listen [Scenes from a Memory](https://www.youtube.com/playlis
 It will give You i3-wm, dunst, i3lock, i3status, and suckless-tools.
 If i3-wm, dunst, i3lock, i3status, and suckless-tools are not installed automatically, just install them manually. <br />
 `sudo apt-get install i3-wm dunst i3lock i3status suckless-tools` <br />
+
 - **Then install some additional packages to make your desktop enjoyable** <br />
 `sudo apt-get install compton hsetroot rxvt-unicode xsel rofi fonts-noto fonts-mplus xsettingsd lxappearance scrot viewnior`
 
@@ -95,25 +96,40 @@ I set my Print Screen button to take screenshoot using scrot, then automatically
 
 ## Copying Congifurations
 `git clone https://github.com/addy-dclxvi/i3-starterpack.git` <br />
+
 Or if You don't have git package installed, and have no willing to install it. 
-Just use download as zip button on the top-right of this page, then extract it. <br />
-Open *i3-starterpack* folder. Then copy the configurations to your home.
+Just use download as zip button on the top-right of this page, then extract it.
+After that, Open *i3-starterpack* folder. Then copy the configurations to your home.
 I mean if it's on *i3-starterpack/.config/i3/config*, copy it to *~/.config/i3/*.
 If the folder doesn't exist on your home, just make it.
 Do the same with all of the files inside *i3-starterpack* folder.
-My dotfiles contains font, so refresh your fontconfig cache `fc-cache -fv`. <br />
+My dotfiles contains font, so refresh your fontconfig cache `fc-cache -fv` after You copy the font. <br />
 
 ## Inspect and Edit The Configurations Files
 - **~/.config/i3/config** <br />
 This is the main configuration file of i3 window manager. Contains keybinding, autostart, colors, and window rules.
 I suggest You to leave it default for now. I will explain it later. <br />
 - **~/.config/i3status/config** <br />
+ ![i3bar](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview-i3bar.jpg) <br />
 This is the statusline configuration for i3bar, bottom left part of i3bar. I set it to load many module by default.
 It looks like christmast tree. So, I suggest You to disable some module You don't need. <br />
+```
+order += "load"
+order += "cpu_temperature 0"
+#order += "disk /"
+#order += "disk /home"
+#order += "ethernet enp1s0"
+order += "wireless wlp2s0"
+order += "volume master"
+#order += "battery 1"
+order += "tztime local"
+```
 You can comment out the module You want to disable. For example I disable the disk, ethernet, and battery. <br />
 Then now You have to configure the variable. Don't forget to change both in *order* list and in function list. <br />
+
+## i3status Variables
 - My wireless interface is *wlp2s0* and my ethernet adapter is *enp1s0*, You can find yours by `/sbin/iwconfig` or `iwconfig` command.
-- My battery id is *BAT1*, You can find yours by `/sys/class/power_supply/` command.
+- My battery id is *BAT1*, You can find yours by `ls /sys/class/power_supply/` command.
 - My volume mixer is Alsa, probably also work for You. If not, You can see the manual page to configure PulseAudio.
 - To use CPU temperature, You need your CPU temperature path. 
 If `/sys/class/thermal/thermal_zone0/temp` doesn't work try `/sys/devices/platform/coretemp.0/temp1_input`. Still doesn't work? Ask Google :yum:
@@ -123,7 +139,7 @@ If `/sys/class/thermal/thermal_zone0/temp` doesn't work try `/sys/devices/platfo
 Logout your current session. Then login again with i3 session. <br />
 
 ## Some Cheatsheet
-My keybind is pretty weird, I more focus on easy to memorize <br />
+My keybind is pretty weird, I'm more focus on easy to memorize <br />
 - **Super + Shift + D** Launch dmenu
 - **Super + D** Launch dmenu alternative called Rofi
 - **Super + Enter** Launch i3-sensible-terminal, URxvt in this case
@@ -208,6 +224,7 @@ That's my window rules. I use it to group apps on several workspace.
 - Workspace 4 for Office
 - Workspace 5 for Multimedia
 - Workspace 6 for Settings <br />
+
 And I set some apps to launch in floating mode. You can make your own rules of course.
 Maybe my window rules isn't efficient for You. My workspaces are only six, and it's more than enough for me. <br />
 ```
@@ -244,7 +261,7 @@ That's my settings of window border colour.
 I set the focused window border to white, and unfocused window border to black.
 On focused window, the red border means splitting direction. 
 If the red border is on the right, that means if You launch a new window on that workspace, it will be launched on the right of current focused window.
-You can change the splitting direction to bottomusing Super + V. If You want to split to right again, hit Super + H.
+You can change the splitting direction to bottom using **Super + V**. If You want to split to right again, hit **Super + H**.
 If You unsatisfied with it, just modify it :wink: <br />
 
 ## That's For Now
