@@ -195,7 +195,7 @@ bindsym XF86AudioStop exec mpc stop
 ```
 I use Mpd for music daemon, control it using Mpc, and use ncmpcpp music player as frontend.
 If You are not using it, I recommend You to remove it. 
-Because it has a chance to intercept your music player global keybind hotkeys. <br />
+Because it has a chance to intercept your music player global keybind hotkeys.
 Or maybe You can try `playerctl`. It's the common way to control media, and supported by a lot of popular media player. <br />
 ```
 #autostart
