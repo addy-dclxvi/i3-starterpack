@@ -57,7 +57,7 @@ i3 is my first tiling window manager by the way :relaxed: <br />
 
 ## Why Not i3-gaps?
 As I previously said, I prefer to use packages those are available on main repository.
-As far as I know i3-gaps package is only available on Arch, Void, and Alpine repository.
+As far as I know i3-gaps package is only available on Arch, Void, Solus, and Alpine repository.
 And do You know? Airblader the i3-gaps developer himself doesn't use gaps!
 My whole life is a lie :confounded: <br />
 
@@ -67,7 +67,7 @@ Why? Just to make sure already have some essential packages like Xorg, Display M
 - My recommendation is start from Xfce. It's quite minimal for a Desktop Environtment. And We can use some of its useful components later.
 Like file manager, text editor, power manager, clipman, task manager, or maybe its settings daemon.
 - Willing to learn, patience, and ability to use Google for fixing problems.
-- Not give up easily. 100 times error, 100 times revert, 100 times retry per day until three years in a row can break your limiter :laughing:
+- Not give up easily. 100 times error, 100 times revert, 100 times retry every single day until three years in a row can break your limiter :laughing:
 - Some great musics for companion. 
 I recommend You to listen [Scenes from a Memory](https://www.youtube.com/playlist?list=PL0tX8IvlqTFtpB-H5g_xDK2SXuDkixjva) album by Dream Theater.
 - :coffee: <br />
@@ -104,6 +104,10 @@ I mean if it's on *i3-starterpack/.config/i3/config*, copy it to *~/.config/i3/*
 If the folder doesn't exist on your home, just make it.
 Do the same with all of the files inside *i3-starterpack* folder.
 My dotfiles contains font, so refresh your fontconfig cache `fc-cache -fv` after You copy the font. <br />
+
+Note : You can deploy this repository recursively using 
+`git clone https://github.com/addy-dclxvi/i3-starterpack.git && cp -a i3-starterpack/. ~`
+but I recommend You to copy the configuration files one by one to make yourself have more control.
 
 ## Inspect and Edit The Configurations Files
 - **~/.config/i3/config** <br />
@@ -180,7 +184,8 @@ bindsym $super+Shift+w exec firefox
 bindsym $super+Shift+f exec thunar;workspace 3;focus
 bindsym $super+Shift+g exec geany
 ```
-I set keybind to launch my frequently used apps, you can remove what You don't need. And add what do You need. <br />
+I set keybind to launch my frequently used apps, you can remove what You don't need. 
+And add what do You need. Note : i3lock need png image <br />
 ```
 # music control
 bindsym XF86AudioNext exec mpc next
@@ -191,6 +196,7 @@ bindsym XF86AudioStop exec mpc stop
 I use Mpd for music daemon, control it using Mpc, and use ncmpcpp music player as frontend.
 If You are not using it, I recommend You to remove it. 
 Because it has a chance to intercept your music player global keybind hotkeys. <br />
+Or maybe You can try `playerctl`. It's the common way to control media, and supported by a lot of popular media player. <br />
 ```
 #autostart
 exec --no-startup-id hsetroot -center ~/.wallpaper.png
