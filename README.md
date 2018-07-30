@@ -130,7 +130,8 @@ order += "tztime local"
 ```
 You can comment out the module You want to disable. For example I disable the disk, ethernet, and battery. <br />
 Then now You have to configure the variable. Don't forget to change both in *order* list and in function list. <br />
-And remember, i3status supports Pango Markup. Not many customization options, but still interesting.
+
+**Update 31 July 2018** : And remember, i3status supports Pango Markup. Not many customization options, but still interesting.
 Here is my current i3status customization (I remove the lines I don't use instead comment them out). <br />
 
 ```
