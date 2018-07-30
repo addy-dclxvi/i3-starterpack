@@ -130,9 +130,8 @@ order += "tztime local"
 ```
 You can comment out the module You want to disable. For example I disable the disk, ethernet, and battery. <br />
 Then now You have to configure the variable. Don't forget to change both in *order* list and in function list. <br />
-
 And remember, i3status supports Pango Markup. Not many customization options, but still interesting.
-Here is my current i3status customization. <br />
+Here is my current i3status customization (I remove the lines I don't use instead comment them out). <br />
 
 ```
 general {
@@ -182,7 +181,7 @@ tztime local {
 ```
 
 The result looks like this <br />
-![i3bar](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview-i3bar.jpg) <br />
+![i3bar](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview-i3bar-style.jpg) <br />
 
 ## i3status Variables
 - My wireless interface is *wlp2s0* and my ethernet adapter is *enp1s0*, You can find yours by `/sbin/iwconfig` or `iwconfig` command.
@@ -223,8 +222,8 @@ And remember, my configuration is probably not suitable for You. So, I recommend
 Also, make yourself getting used with keybinds. It will activate your Ultra Instict. :joy:  <br />
 ```
 #change volume
-bindsym XF86AudioRaiseVolume exec amixer -c 0 set PCM 2dB+
-bindsym XF86AudioLowerVolume exec amixer -c 0 set PCM 2dB-
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
+bindsym XF86AudioLowerVolume exec amixer -q set Master 5%+
 bindsym XF86AudioMute exec amixer set Master toggle
 ```
 I use Amixer to change my volume. If it doesn't work for You, change it with Pactl, Pamixer, or anything else.
