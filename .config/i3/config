@@ -28,8 +28,8 @@ bindsym $super+Shift+f exec thunar;workspace 3;focus
 bindsym $super+Shift+g exec geany
 
 #change volume
-bindsym XF86AudioRaiseVolume exec amixer -c 0 set PCM 2dB+
-bindsym XF86AudioLowerVolume exec amixer -c 0 set PCM 2dB-
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
+bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
 bindsym XF86AudioMute exec amixer set Master toggle
 
 # music control

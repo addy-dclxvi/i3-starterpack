@@ -114,7 +114,7 @@ but I recommend You to copy the configuration files one by one to make yourself 
 This is the main configuration file of i3 window manager. Contains keybinding, autostart, colors, and window rules.
 I suggest You to leave it default for now. I will explain it later. <br />
 - **~/.config/i3status/config** <br />
- ![i3bar](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview-i3bar.jpg) <br />
+![i3bar](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview-i3bar.jpg) <br />
 This is the statusline configuration for i3bar, bottom right part of i3bar. I set it to load many module by default.
 It looks like christmast tree. So, I suggest You to disable some module You don't need. <br />
 ```
@@ -130,6 +130,59 @@ order += "tztime local"
 ```
 You can comment out the module You want to disable. For example I disable the disk, ethernet, and battery. <br />
 Then now You have to configure the variable. Don't forget to change both in *order* list and in function list. <br />
+
+And remember, i3status supports Pango Markup. Not many customization options, but still interesting.
+Here is my current i3status customization. <br />
+
+```
+general {
+        output_format = "i3bar"
+        colors = false
+        markup = pango
+        interval = 1
+}
+
+order += "cpu_temperature 0"
+order += "load"
+order += "disk /"
+order += "wireless wlp2s0"
+order += "volume master"
+order += "tztime local"
+
+cpu_temperature 0 {
+        format = "<span background='#ff5555'>  </span><span background='#e5e9f0'> %degrees °C </span>"
+        path = "/sys/class/thermal/thermal_zone0/temp"
+}
+
+load {
+        format = "<span background='#50fa7b'>  </span><span background='#e5e9f0'> %5min Load </span>"
+}
+
+disk "/" {
+        format = "<span background='#f1fa8c'>  </span><span background='#e5e9f0'> %free Free </span>"
+}
+
+wireless wlp2s0 {
+        format_up = "<span background='#bd93f9'>  </span><span background='#e5e9f0'> %essid </span>"
+        format_down = "<span background='#bd93f9'>  </span><span background='#e5e9f0'> Disconnected </span>"
+}
+
+volume master {
+        format = "<span background='#ff79c6'>  </span><span background='#e5e9f0'> %volume </span>"
+        format_muted = "<span background='#ff79c6'>  </span><span background='#e5e9f0'> Muted </span>"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
+}
+
+tztime local {
+		format = "<span background='#8be9fd'>  </span><span background='#e5e9f0'> %time </span>"
+		format_time = "%a %-d %b %H:%M"
+}
+```
+
+The result looks like this <br />
+![i3bar](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview-i3bar.jpg) <br />
 
 ## i3status Variables
 - My wireless interface is *wlp2s0* and my ethernet adapter is *enp1s0*, You can find yours by `/sbin/iwconfig` or `iwconfig` command.
