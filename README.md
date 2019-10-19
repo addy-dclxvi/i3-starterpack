@@ -1,12 +1,12 @@
 ## Introduction
-A simple guide (and example of configuration) to install i3 and its and essentials packages and make them look eye candy, 
+A simple guide (and example of configuration) to install i3 and its and essentials packages and make them look eye candy,
 or at least make them not ugly :grin:
 
 Example configuration in this repo is pretty simple, minimal, and easy to be understood, without reducing the usability.
 Only contains about 140 lines of i3 configuration, pretty stock without any custom script, custom packages, and custom patch.
-This is my daily i3 configuration by the way. 
+This is my daily i3 configuration by the way.
 And this configuration only use packages that available on most Distros main repository.
-So You don't need AUR, PPA, xbps-src, or sudo make install. 
+So You don't need AUR, PPA, xbps-src, or sudo make install.
 
 I'm using Debian, with i3 stock metapackages (i3wm, i3bar, i3status, i3lock, i3-sensible-terminal, and i3-dmenu-desktop), so does this guide.
 Hence I name this repo *i3-starterpack*.
@@ -29,12 +29,12 @@ So, the installation guide here will use Debian command & package name. <br />
 **Floating**, for show-off. <br />
 
 ## Disclaimer
-I'm not a Pro. I just started learning Linux one year ago. And I'm not an IT guy. So, probably this guide will have some mistakes. 
+I'm not a Pro. I just started learning Linux one year ago. And I'm not an IT guy. So, probably this guide will have some mistakes.
 I hope You would correct me instead of insult me :cry: <br />
 
 ## Reason
-I've got frequently questioned, "How to make my desktop looks like yours?". 
-I don't know why they ask it to me, my desktop doesn't even look nice. 
+I've got frequently questioned, "How to make my desktop looks like yours?".
+I don't know why they ask it to me, my desktop doesn't even look nice.
 So, I only answer "What DE do You use? Have You tried window manager? You can use Google to find some guide". <br />
 
 And the frequent reply..
@@ -44,15 +44,15 @@ Different level of reply..
 - "I don't know what is my DE. It's default on my Parrot Security."
 - "DE? What is DE? Btw, I use Kali Linux. Have You watched Mr.Robot?" <br />
 
-And my other reason writing this guide is, most of i3 guides I found on internet are just to install i3 and make it usable only. 
+And my other reason writing this guide is, most of i3 guides I found on internet are just to install i3 and make it usable only.
 Not how to de-uglify it :stuck_out_tongue: <br />
 
 ## Why i3?
-i3 is (arguably) the most easiest tiling window manager to learn and configure. 
+i3 is (arguably) the most easiest tiling window manager to learn and configure.
 And i3 has a really good documentation, including example command and troubleshooting.
 The community is also quite large. You will easily get more customization examples.
 So, I really recommend You to start from i3 if You want learn Linux customization.
-After You can handle i3, You can try more advanced window managers. 
+After You can handle i3, You can try more advanced window managers.
 i3 is my first tiling window manager by the way :relaxed: <br />
 
 ## Why Not i3-gaps?
@@ -68,7 +68,7 @@ Why? Just to make sure already have some essential packages like Xorg, Display M
 Like file manager, text editor, power manager, clipman, task manager, or maybe its settings daemon.
 - Willing to learn, patience, and ability to use Google for fixing problems.
 - Not give up easily. 100 times error, 100 times revert, 100 times retry every single day until three years in a row can break your limiter :laughing:
-- Some great musics for companion. 
+- Some great musics for companion.
 I recommend You to listen [Scenes from a Memory](https://www.youtube.com/playlist?list=PL0tX8IvlqTFtpB-H5g_xDK2SXuDkixjva) album by Dream Theater.
 - :coffee: <br />
 
@@ -80,13 +80,13 @@ If i3-wm, dunst, i3lock, i3status, and suckless-tools are not installed automati
 `sudo apt-get install i3-wm dunst i3lock i3status suckless-tools` <br />
 
 - **Then install some additional packages to make your desktop enjoyable** <br />
-`sudo apt-get install compton hsetroot rxvt-unicode xsel rofi fonts-noto fonts-mplus xsettingsd lxappearance scrot viewnior`
+`sudo apt-get install compton hsetroot rxvt-unicode xsel rofi fonts-noto fonts-font-awesome fonts-mplus xsettingsd lxappearance scrot viewnior`
 
 ## Explanations of Additional Packages
-- Compton is a compositor to provide some desktop effects like shadow, transparency, fade, and transiton. 
+- Compton is a compositor to provide some desktop effects like shadow, transparency, fade, and transiton.
 - Hsetroot is a wallpaper handler. i3 has no wallpaper handler by default.
 - URxvt is a lightweight terminal emulator, part of *i3-sensible-terminal*.
-- Xsel is a program to access X clipboard. We need it to make copy-paste in URxvt available. Hit Alt+C to copy, and Alt+V to paste. 
+- Xsel is a program to access X clipboard. We need it to make copy-paste in URxvt available. Hit Alt+C to copy, and Alt+V to paste.
 - Rofi is a program launcher, similar with dmenu but with more options.
 - Noto Sans and M+ are my favourite fonts used in my configuration.
 - Xsettingsd is a simple settings daemon to load fontconfig and some other options. Without this, fonts would look rasterized in some applications.
@@ -97,7 +97,7 @@ I set my Print Screen button to take screenshoot using scrot, then automatically
 ## Copying Congifurations
 `git clone https://github.com/addy-dclxvi/i3-starterpack.git` <br />
 
-Or if You don't have git package installed, and have no willing to install it. 
+Or if You don't have git package installed, and have no willing to install it.
 Just use download as zip button on the top-right of this page, then extract it.
 After that, Open *i3-starterpack* folder. Then copy the configurations to your home.
 I mean if it's on *i3-starterpack/.config/i3/config*, copy it to *~/.config/i3/*.
@@ -105,7 +105,7 @@ If the folder doesn't exist on your home, just make it.
 Do the same with all of the files inside *i3-starterpack* folder.
 My dotfiles contains font, so refresh your fontconfig cache `fc-cache -fv` after You copy the font. <br />
 
-**Note :** You can deploy this repository recursively using 
+**Note :** You can deploy this repository recursively using
 `git clone https://github.com/addy-dclxvi/i3-starterpack.git && cp -a i3-starterpack/. ~`
 but I recommend You to copy the configuration files one by one to make yourself have more control.
 
@@ -188,7 +188,7 @@ The result looks like this <br />
 - My wireless interface is *wlp2s0* and my ethernet adapter is *enp1s0*, You can find yours by `/sbin/iwconfig` or `iwconfig` command.
 - My battery id is *BAT1*, You can find yours by `ls /sys/class/power_supply/` command.
 - My volume mixer is Alsa, probably also work for You. If not, You can see the manual page to configure PulseAudio.
-- To use CPU temperature, You need your CPU temperature path. 
+- To use CPU temperature, You need your CPU temperature path.
 If `/sys/class/thermal/thermal_zone0/temp` doesn't work try `/sys/devices/platform/coretemp.0/temp1_input`. Still doesn't work? Ask Google :yum:
 - You can add more module, just read the manual page `man i3status`. <br />
 
@@ -206,7 +206,7 @@ My keybind is pretty weird, I'm more focus on easy to memorize <br />
 - **Super + S** Change split direction, if You already have splitted windows
 - **Super + Space** Float the window, hit it again to back to tiling mode
 - **Super + 1-6** Switch to workspace 1-6
-- **Super + Shift + 1-6** Send the focused window to workspace 1-6 
+- **Super + Shift + 1-6** Send the focused window to workspace 1-6
 - **Control + Alt + Left/Right** Switch to previous or next workspace. Only works if You have 2 workspace opened
 - **Super + R** Resize mode. In resize mode, hit Arrow keys to do resizing. Hit Enter to back to normal mode
 - **Super + C** or **Alt + F4** Close window
@@ -216,10 +216,10 @@ My keybind is pretty weird, I'm more focus on easy to memorize <br />
 - More keybind look on the configuration file.
 
 ## Now What??
-Do some mess with the configuration file of course. 
-Maybe change some keybind, autostart apps, window rules, and more You can find on 
+Do some mess with the configuration file of course.
+Maybe change some keybind, autostart apps, window rules, and more You can find on
 [i3 official documentations](https://i3wm.org/docs/userguide.html).
-And remember, my configuration is probably not suitable for You. So, I recommend You to change it. 
+And remember, my configuration is probably not suitable for You. So, I recommend You to change it.
 Also, make yourself getting used with keybinds. It will activate your Ultra Instict. :joy:  <br />
 ```
 #change volume
@@ -237,7 +237,7 @@ bindsym $super+Shift+w exec firefox
 bindsym $super+Shift+f exec thunar;workspace 3;focus
 bindsym $super+Shift+g exec geany
 ```
-I set keybind to launch my frequently used apps, you can remove what You don't need. 
+I set keybind to launch my frequently used apps, you can remove what You don't need.
 And add what do You need. Note : i3lock need png image <br />
 ```
 # music control
@@ -247,7 +247,7 @@ bindsym XF86AudioPlay exec mpc toggle
 bindsym XF86AudioStop exec mpc stop
 ```
 I use Mpd for music daemon, control it using Mpc, and use ncmpcpp music player as frontend.
-If You are not using it, I recommend You to remove it. 
+If You are not using it, I recommend You to remove it.
 Because it has a chance to intercept your music player global keybind hotkeys.
 Or maybe You can try `playerctl`. It's the common way to control media, and supported by a lot of popular media player. <br />
 ```
@@ -301,7 +301,7 @@ bar {
     urgent_workspace    #2f343f #ebcb8b #2f343f
     }
     status_command i3status
-}   
+}
 ```
 That's my panel colour. I set it has a black background, with white color for workspace name.
 Active workspace is highlighted by red colour, and urgent workspace will be highlighted with yellow colour.
@@ -316,9 +316,9 @@ client.urgent           #2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.placeholder      #2f343f #2f343f #d8dee8 #2f343f #2f343f
 client.background       #2f343f
 ```
-That's my settings of window border colour. 
+That's my settings of window border colour.
 I set the focused window border to white, and unfocused window border to black.
-On focused window, the red border means splitting direction. 
+On focused window, the red border means splitting direction.
 If the red border is on the right, that means if You launch a new window on that workspace, it will be launched on the right of current focused window.
 You can change the splitting direction to bottom using **Super + V**. If You want to split to right again, hit **Super + H**.
 If You unsatisfied with it, just modify it :wink: <br />
