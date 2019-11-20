@@ -94,7 +94,7 @@ If i3-wm, dunst, i3lock, i3status, and suckless-tools are not installed automati
 - Scrot is for taking screenshoot. I use it in my configuration for Print Screen button.
 I set my Print Screen button to take screenshoot using scrot, then automatically open it using Viewnior image viewer. <br />
 
-## Copying Congifurations
+## Copying Configurations
 `git clone https://github.com/addy-dclxvi/i3-starterpack.git` <br />
 
 Or if You don't have git package installed, and have no willing to install it. 
