@@ -224,7 +224,7 @@ Also, make yourself getting used with keybinds. It will activate your Ultra Inst
 ```
 #change volume
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
-bindsym XF86AudioLowerVolume exec amixer -q set Master 5%+
+bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
 bindsym XF86AudioMute exec amixer set Master toggle
 ```
 I use Amixer to change my volume. If it doesn't work for You, change it with Pactl, Pamixer, or anything else.
