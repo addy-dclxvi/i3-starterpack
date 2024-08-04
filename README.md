@@ -29,23 +29,8 @@ So, the installation guide here will use Debian command & package name. <br />
 **Floating**, for show-off. <br />
 
 ## Disclaimer
-I'm not a Pro. I just started learning Linux one year ago. And I'm not an IT guy. So, probably this guide will have some mistakes. 
+I'm not a Pro. I just started learning Linux a couple yesars ago. And I'm not an IT guy. So, probably this guide will have some mistakes. 
 I hope You would correct me instead of insult me :cry: <br />
-
-## Reason
-I've got frequently questioned, "How to make my desktop looks like yours?". 
-I don't know why they ask it to me, my desktop doesn't even look nice. 
-So, I only answer "What DE do You use? Have You tried window manager? You can use Google to find some guide". <br />
-
-And the frequent reply..
-- "I have been following the guide I found, but my desktop still doesn't like yours". <br />
-
-Different level of reply..
-- "I don't know what is my DE. It's default on my Parrot Security."
-- "DE? What is DE? Btw, I use Kali Linux. Have You watched Mr.Robot?" <br />
-
-And my other reason writing this guide is, most of i3 guides I found on internet are just to install i3 and make it usable only. 
-Not how to de-uglify it :stuck_out_tongue: <br />
 
 ## Why i3?
 i3 is (arguably) the most easiest tiling window manager to learn and configure. 
@@ -61,6 +46,8 @@ As far as I know i3-gaps package is only available on Arch, Void, Solus, and Alp
 And do You know? Airblader the i3-gaps developer himself doesn't use gaps!
 My whole life is a lie :confounded: <br />
 
+**Update 2024 August** Good news! Now normal i3 supports gaps and some other i3-gaps enhanchement too.
+
 ## Requirements
 - At least a working Desktop Environtment or Window Manager (I'm sure You already have it).
 Why? Just to make sure already have some essential packages like Xorg, Display Manager, Sound Mixer, Network Manager, etc.
@@ -69,7 +56,6 @@ Like file manager, text editor, power manager, clipman, task manager, or maybe i
 - Willing to learn, patience, and ability to use Google for fixing problems.
 - Not give up easily. 100 times error, 100 times revert, 100 times retry every single day until three years in a row can break your limiter :laughing:
 - Some great musics for companion. 
-I recommend You to listen [Scenes from a Memory](https://www.youtube.com/playlist?list=PL0tX8IvlqTFtpB-H5g_xDK2SXuDkixjva) album by Dream Theater.
 - :coffee: <br />
 
 ## Installation
@@ -326,3 +312,45 @@ If You unsatisfied with it, just modify it :wink: <br />
 ## That's For Now
 I think, this is quite enough for a starter. You can improve it by yourself. <br />
 Thanks for reading! :blush:
+
+## Update August 2024
+
+I put some changes to my i3 setup.
+
+- I change the colorscheme
+- I change the statusbar
+- I cleanup the window rules
+- I change some keybinds
+- I change the fonts (included in the repo)
+- I change the default apps
+- And others. Please read the config before use.
+
+I put them in [update-24.08](https://github.com/addy-dclxvi/i3-starterpack/tree/update-24.08) branch.
+
+## Update August 2024 Preview
+![clean](https://github.com/addy-dclxvi/i3-starterpack/blob/update-24.08/screenshots/clean.png) </br>
+**Clean** Without any window opened
+
+![floating](https://github.com/addy-dclxvi/i3-starterpack/blob/update-24.08/screenshots/floating.png) </br>
+**Floating** Opening Vim, Cmus, and Ranger in floating mode for show off. The bottom line is i3-dmenu-desktop.
+
+![tiling-two](https://github.com/addy-dclxvi/i3-starterpack/blob/update-24.08/screenshots/tiling-two.png) </br>
+**Tiling** With two windows opened
+
+![tiling-three](https://github.com/addy-dclxvi/i3-starterpack/blob/update-24.08/screenshots/tiling-three.png) </br>
+**Tiling** With three windows opened
+
+![gimp](https://github.com/addy-dclxvi/i3-starterpack/blob/update-24.08/screenshots/gimp.png) </br>
+![monocle](https://github.com/addy-dclxvi/i3-starterpack/blob/update-24.08/screenshots/monocle.png) </br>
+**Monocle** One windows opened, the gaps and borders are automatically disappeared, so no space wasted
+
+![fullscreen](https://github.com/addy-dclxvi/i3-starterpack/blob/update-24.08/screenshots/fullscreen.png) </br>
+**Fullscreen** Using *CTRL + F*. The gaps, borders, and statusbar disappeared for maximum reading experience
+
+![dunst](https://github.com/addy-dclxvi/i3-starterpack/blob/update-24.08/screenshots/dunst.png) </br>
+Dunst notification daemon, slightly misplaced to the right.
+I tried to change the coordinate from the config file but it's no longer working.
+They said it's depreciated.
+
+![lockscreen](https://github.com/addy-dclxvi/i3-starterpack/blob/update-24.08/screenshots/lockscreen.png) </br>
+**Lockscreen** using i3lock
