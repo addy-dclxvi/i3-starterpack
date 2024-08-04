@@ -332,7 +332,7 @@ I put them in [update-24.08](https://github.com/addy-dclxvi/i3-starterpack/tree/
 **Clean** Without any window opened
 
 ![floating](https://github.com/addy-dclxvi/i3-starterpack/blob/update-24.08/screenshots/floating.png) </br>
-**Floating** Opening Vim, Cmus, and Ranger in floating mode for show off. The bottom line is i3-dmenu-desktop.
+**Floating** Opening *Vim, Cmus, and Ranger* in floating mode for show off. The bottom line is *i3-dmenu-desktop*.
 
 ![tiling-two](https://github.com/addy-dclxvi/i3-starterpack/blob/update-24.08/screenshots/tiling-two.png) </br>
 **Tiling** With two windows opened
@@ -345,7 +345,7 @@ I put them in [update-24.08](https://github.com/addy-dclxvi/i3-starterpack/tree/
 **Monocle** One windows opened, the gaps and borders are automatically disappeared, so no space wasted
 
 ![fullscreen](https://github.com/addy-dclxvi/i3-starterpack/blob/update-24.08/screenshots/fullscreen.png) </br>
-**Fullscreen** Using *CTRL + F*. The gaps, borders, and statusbar disappeared for maximum reading experience
+**Fullscreen** Using *Super + F*. The gaps, borders, and statusbar disappeared for maximum reading experience
 
 ![dunst](https://github.com/addy-dclxvi/i3-starterpack/blob/update-24.08/screenshots/dunst.png) </br>
 Dunst notification daemon, slightly misplaced to the right.
