@@ -1,0 +1,23 @@
+# GIMP action-history
+
+(history-item "file-export" 1)
+(history-item "plug-in-align-layers" 0)
+(history-item "file-export-as" 0)
+(history-item "file-open" 1)
+(history-item "layers-new" 0)
+(history-item "select-all" 0)
+(history-item "select-none" 0)
+(history-item "file-save-as" 1)
+(history-item "tools-opacity-increase" 0)
+(history-item "edit-clear" 0)
+(history-item "edit-paste" 0)
+(history-item "file-save" 0)
+(history-item "dialogs-preferences" 1)
+(history-item "image-crop-to-content" 0)
+(history-item "edit-copy" 0)
+(history-item "layers-delete" 0)
+(history-item "file-quit" 0)
+(history-item "file-open-as-layers" 0)
+(history-item "tools-move" 1)
+
+# end of action-history

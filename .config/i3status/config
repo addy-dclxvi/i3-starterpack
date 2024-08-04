@@ -3,70 +3,51 @@ general {
         colors = false
         markup = pango
         interval = 5
-        color_good = '#2f343f'
-		color_degraded = '#ebcb8b'
-		color_bad = '#ba5e57'
 }
 
 order += "load"
 order += "cpu_temperature 0"
-order += "disk /"
-order += "disk /home"
-order += "ethernet enp1s0"
-order += "wireless wlp2s0"
+order += "wireless wlp3s0"
 order += "volume master"
-order += "battery 1"
-order += "tztime local"
+order += "battery 0"
+order += "time"
 
 load {
-        format = "<span background='#f59335'>  %5min Load </span>"
+        format = "<span background='#d8af60'>    </span><span background='#dbd9da'>  %5min Load  </span>"
 }
 
 cpu_temperature 0 {
-        format = "<span background='#bf616a'>  %degrees °C </span>"
+        format = "<span background='#e46c6d'>    </span><span background='#dbd9da'>  %degrees °C  </span>"
         path = "/sys/class/thermal/thermal_zone0/temp"
 }
 
-disk "/" {
-        format = "<span background='#fec7cd'>  %free Free </span>"
-}
-
-disk "/home" {
-        format = "<span background='#a1d569'>  %free Free </span>"
-}
-
-ethernet enp1s0 {
-        format_up = "<span background='#88c0d0'>  %ip </span>"
-        format_down = "<span background='#88c0d0'>  Disconnected </span>"
-}
-
-wireless wlp2s0 {
-        format_up = "<span background='#b48ead'>  %essid </span>"
-        format_down = "<span background='#b48ead'>  Disconnected </span>"
+wireless wlp3s0 {
+        format_up = "<span background='#68c7c1'>    </span><span background='#dbd9da'>  %essid  </span>"
+        format_down = "<span background='#68c7c1'>    </span><span background='#dbd9da'>  Disconnected  </span>"
 }
 
 volume master {
-        format = "<span background='#ebcb8b'>  %volume </span>"
-        format_muted = "<span background='#ebcb8b'>  Muted </span>"
+        format = "<span background='#b899a8'>    </span><span background='#dbd9da'>  %volume  </span>"
+        format_muted = "<span background='#b899a8'>    </span><span background='#dbd9da'>  Muted  </span>"
         device = "default"
         mixer = "Master"
         mixer_idx = 0
 }
 
-battery 1 {
+battery 0 {
 	last_full_capacity = true
-        format = "<span background='#a3be8c'>  %status %percentage </span>"
+        format = "<span background='#a3be8c'>  %status  </span><span background='#dbd9da'>  %percentage  </span>"
         format_down = "No Battery"
-        status_chr = "Charging"
-        status_bat = "Battery"
+        status_chr = ""
+        status_bat = ""
         status_unk = "Unknown"
-        status_full = "Charged"
+        status_full = ""
         path = "/sys/class/power_supply/BAT%d/uevent"
         low_threshold = 10
+        integer_battery_capacity = true
 }
 
-tztime local {
-		format = "<span background='#81a1c1'> %time </span>"
-		format_time = " %a %-d %b %H:%M"
+time {
+	format = "<span background='#81a1c1'>    </span><span background='#dbd9da'>  %b %d at %H:%M  </span>"
 }
 

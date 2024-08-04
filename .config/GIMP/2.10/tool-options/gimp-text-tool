@@ -1,0 +1,7 @@
+# GIMP gimp-text-tool options
+
+(foreground (color-rgb 0.083944886993246801 0.093457943925233655 0.03637960233331243))
+(palette "Color History")
+(font "Poppins Medium")
+
+# end of gimp-text-tool options
