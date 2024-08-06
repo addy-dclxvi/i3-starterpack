@@ -1,0 +1,222 @@
+set aaa_mode=all
+set altformat_current= %F 
+set altformat_playlist= %f%= %d 
+set altformat_title=%f
+set altformat_trackwin= %f%= %d 
+set auto_expand_albums_follow=true
+set auto_expand_albums_search=true
+set auto_expand_albums_selcur=true
+set auto_hide_playlists_panel=false
+set auto_reshuffle=true
+set block_key_paste=true
+set buffer_seconds=10
+set color_cmdline_attr=default
+set color_cmdline_bg=default
+set color_cmdline_fg=default
+set color_cur_sel_attr=default
+set color_error=lightred
+set color_info=lightyellow
+set color_separator=black
+set color_statusline_attr=default
+set color_statusline_bg=default
+set color_statusline_fg=default
+set color_titleline_attr=default
+set color_titleline_bg=default
+set color_titleline_fg=blue
+set color_trackwin_album_attr=bold
+set color_trackwin_album_bg=default
+set color_trackwin_album_fg=default
+set color_win_attr=default
+set color_win_bg=default
+set color_win_cur=magenta
+set color_win_cur_attr=default
+set color_win_cur_sel_attr=default
+set color_win_cur_sel_bg=black
+set color_win_cur_sel_fg=default
+set color_win_dir=blue
+set color_win_fg=default
+set color_win_inactive_cur_sel_attr=default
+set color_win_inactive_cur_sel_bg=default
+set color_win_inactive_cur_sel_fg=default
+set color_win_inactive_sel_attr=default
+set color_win_inactive_sel_bg=default
+set color_win_inactive_sel_fg=default
+set color_win_sel_attr=default
+set color_win_sel_bg=black
+set color_win_sel_fg=default
+set color_win_title_attr=default
+set color_win_title_bg=default
+set color_win_title_fg=white
+set confirm_run=true
+set continue=true
+set continue_album=true
+set device=/dev/cdrom
+set display_artist_sort_name=false
+set dsp.alsa.device=
+set dsp.ao.buffer_size=16384
+set dsp.ao.device_interface=
+set dsp.ao.driver=
+set dsp.ao.wav_counter=1
+set dsp.ao.wav_dir=/home/addy
+set follow=false
+set format_clipped_text=…
+set format_current= %{?a?%a - }%t
+set format_playlist= %a - %t %= %d 
+set format_playlist_va= %-21%A %3n. %t (%a)%= %y %d %{?X!=0?%3X ?    }
+set format_statusline= %{status} %{?show_playback_position?%{position} %{?duration?• %{duration} }?%{?duration?%{duration} }}• %{?volume>=0?vol %{?lvolume!=rvolume?%{lvolume},%{rvolume} ?%{volume} }}%{?stream?• buf %{buffer} }%{?show_current_bitrate & bitrate>=0?• %{bitrate} kbps }%=%{?repeat_current?repeat current?%{?play_library?%{playlist_mode} from %{?play_sorted?sorted }library?playlist}} • %1{continue}%1{follow}%1{repeat}%1{shuffle} 
+set format_title=%{?a?%a - }%t
+set format_trackwin= • %t %= %d 
+set format_trackwin_album= %l %{?y?(%y)}
+set format_trackwin_va= • %t %= %d 
+set format_treewin=• %l
+set format_treewin_artist=%a
+set icecast_default_charset=ISO-8859-1
+set id3_default_charset=ISO-8859-1
+set ignore_duplicates=false
+set input.aac.priority=50
+set input.cue.priority=50
+set input.ffmpeg.priority=30
+set input.flac.priority=50
+set input.mad.priority=55
+set input.modplug.priority=50
+set input.mpc.priority=50
+set input.opus.priority=50
+set input.vorbis.priority=50
+set input.wav.priority=50
+set input.wavpack.priority=50
+set lib_add_filter=
+set lib_sort=albumartist date album discnumber tracknumber title filename play_count
+set mixer.alsa.channel=
+set mixer.alsa.device=
+set mixer.pulse.restore_volume=1
+set mouse=false
+set mpris=true
+set output_plugin=pulse
+set passwd=
+set pause_on_output_change=false
+set pl_env_vars=
+set pl_sort=
+set play_library=true
+set play_sorted=false
+set repeat=false
+set repeat_current=false
+set replaygain=disabled
+set replaygain_limit=true
+set replaygain_preamp=0.000000
+set resume=true
+set rewind_offset=5
+set scroll_offset=2
+set set_term_title=true
+set show_all_tracks=true
+set show_current_bitrate=false
+set show_hidden=false
+set show_playback_position=true
+set show_remaining_time=false
+set shuffle=tracks
+set skip_track_info=false
+set smart_artist_sort=true
+set softvol=false
+set softvol_state=0 0
+set sort_albums_by_name=false
+set start_view=tree
+set status_display_program=
+set stop_after_queue=false
+set time_show_leading_zero=true
+set tree_width_max=0
+set tree_width_percent=33
+set wrap_search=true
+bind browser backspace browser-up
+bind browser i toggle show_hidden
+bind browser space win-activate
+bind browser u win-update
+bind common ! push shell 
+bind common + vol +10%
+bind common , seek -1m
+bind common - vol -10%
+bind common . seek +1m
+bind common / search-start
+bind common 1 view tree
+bind common 2 view sorted
+bind common 3 view playlist
+bind common 4 view queue
+bind common 5 view browser
+bind common 6 view filters
+bind common 7 view settings
+bind common = vol +10%
+bind common ? search-b-start
+bind common C toggle continue
+bind common D win-remove
+bind common E win-add-Q
+bind common F push filter 
+bind common G win-bottom
+bind common I echo {}
+bind common L push live-filter 
+bind common M toggle play_library
+bind common N search-prev
+bind common P win-mv-before
+bind common U win-update-cache
+bind common [ vol +1% +0
+bind common ] vol +0 +1%
+bind common ^B win-page-up
+bind common ^C echo Type :quit<enter> to exit cmus.
+bind common ^D win-half-page-down
+bind common ^E win-scroll-down
+bind common ^F win-page-down
+bind common ^L refresh
+bind common ^R toggle repeat_current
+bind common ^U win-half-page-up
+bind common ^Y win-scroll-up
+bind common a win-add-l
+bind common b player-next
+bind common c player-pause
+bind common delete win-remove
+bind common down win-down
+bind common e win-add-q
+bind common end win-bottom
+bind common enter win-activate
+bind common f toggle follow
+bind common g win-top
+bind common h seek -5
+bind common home win-top
+bind common i win-sel-cur
+bind common j win-down
+bind common k win-up
+bind common l seek +5
+bind common left seek -5
+bind common m toggle aaa_mode
+bind common mlb_click_bar player-pause
+bind common mlb_click_selected win-activate
+bind common mouse_scroll_down win-down
+bind common mouse_scroll_down_bar seek -5
+bind common mouse_scroll_down_title right-view
+bind common mouse_scroll_up win-up
+bind common mouse_scroll_up_bar seek +5
+bind common mouse_scroll_up_title left-view
+bind common n search-next
+bind common o toggle play_sorted
+bind common p win-mv-after
+bind common page_down win-page-down
+bind common page_up win-page-up
+bind common q quit -i
+bind common r toggle repeat
+bind common right seek +5
+bind common s toggle shuffle
+bind common space win-toggle
+bind common t toggle show_remaining_time
+bind common tab win-next
+bind common u update-cache
+bind common up win-up
+bind common v player-stop
+bind common x player-play
+bind common y win-add-p
+bind common z player-prev
+bind common { vol -1% -0
+bind common } vol -0 -1%
+fset 90s=date>=1990&date<2000
+fset classical=genre="Classical"
+fset missing-tag=!stream&(artist=""|album=""|title=""|tracknumber=-1|date=-1)
+fset mp3=filename="*.mp3"
+fset ogg=filename="*.ogg"
+fset ogg-or-mp3=ogg|mp3
+fset unheard=play_count=0
+factivate

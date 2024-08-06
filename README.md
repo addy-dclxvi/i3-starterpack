@@ -13,21 +13,23 @@ Hence I name this repo *i3-starterpack*.
 So, the installation guide here will use Debian command & package name. <br />
 
 ## Preview
-![clean](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview-clean.jpg) <br />
+![clean](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview/clean.png) <br />
 **Clean**, without any opened app. Only i3bar is visible. <br />
 
-![rofi](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview-rofi.jpg) <br />
-**Rofi**, my favourite dmenu alternative for launching apps. <br />
+![rofi](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview/launcher.png) <br />
+**dmenu**, for launching app. The i3-dmenu-desktop version only shows desktop apps. <br />
 
-![fullscreen](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview-fullscreen.jpg) <br />
-**Fullscreen**, when I write this guide using Vim inside URxvt. Vanilla i3, so has no gaps. <br />
+![fullscreen](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview/monocle.png) <br />
+**Fullscreen**, when I write this guide using Vim inside URxvt. <br />
 
-![splitscreen](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview-splitscreen.jpg) <br />
-**Splitscreen**, I open ncmpcpp music player on the right. <br />
+![splitscreen](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview/splitscreen.png) <br />
+**Splitscreen**, I open cmus music player on the right. <br />
 
-![floating](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview-floating.jpg) <br />
+![floating](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview/floating.png) <br />
 **Floating**, for show-off. <br />
 
+![floating](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview/lockscreen.png) <br />
+**Lockscreen**. using i3lock
 ## Disclaimer
 I'm not a Pro. I just started learning Linux a couple yesars ago. And I'm not an IT guy. So, probably this guide will have some mistakes. 
 I hope You would correct me instead of insult me :cry: <br />
@@ -39,14 +41,6 @@ The community is also quite large. You will easily get more customization exampl
 So, I really recommend You to start from i3 if You want learn Linux customization.
 After You can handle i3, You can try more advanced window managers. 
 i3 is my first tiling window manager by the way :relaxed: <br />
-
-## Why Not i3-gaps?
-As I previously said, I prefer to use packages those are available on main repository.
-As far as I know i3-gaps package is only available on Arch, Void, Solus, and Alpine repository.
-And do You know? Airblader the i3-gaps developer himself doesn't use gaps!
-My whole life is a lie :confounded: <br />
-
-**Update 2024 August** Good news! Now normal i3 supports gaps and some other i3-gaps enhanchement too.
 
 ## Requirements
 - At least a working Desktop Environtment or Window Manager (I'm sure You already have it).
@@ -66,19 +60,15 @@ If i3-wm, dunst, i3lock, i3status, and suckless-tools are not installed automati
 `sudo apt-get install i3-wm dunst i3lock i3status suckless-tools` <br />
 
 - **Then install some additional packages to make your desktop enjoyable** <br />
-`sudo apt-get install compton hsetroot rxvt-unicode xsel rofi fonts-noto fonts-mplus xsettingsd lxappearance scrot viewnior`
+`sudo apt-get install hsetroot rxvt-unicode xsel lxappearance scrot`
 
 ## Explanations of Additional Packages
-- Compton is a compositor to provide some desktop effects like shadow, transparency, fade, and transiton. 
 - Hsetroot is a wallpaper handler. i3 has no wallpaper handler by default.
 - URxvt is a lightweight terminal emulator, part of *i3-sensible-terminal*.
 - Xsel is a program to access X clipboard. We need it to make copy-paste in URxvt available. Hit Alt+C to copy, and Alt+V to paste. 
-- Rofi is a program launcher, similar with dmenu but with more options.
-- Noto Sans and M+ are my favourite fonts used in my configuration.
-- Xsettingsd is a simple settings daemon to load fontconfig and some other options. Without this, fonts would look rasterized in some applications.
 - LXAppearance is used for changing GTK theme icons, fonts, and some other preferences.
 - Scrot is for taking screenshoot. I use it in my configuration for Print Screen button.
-I set my Print Screen button to take screenshoot using scrot, then automatically open it using Viewnior image viewer. <br />
+I set my Print Screen button to take screenshoot using scrot, then automatically open it any installed image viewer. <br />
 
 ## Copying Configurations
 `git clone https://github.com/addy-dclxvi/i3-starterpack.git` <br />
@@ -95,12 +85,14 @@ My dotfiles contains font, so refresh your fontconfig cache `fc-cache -fv` after
 `git clone https://github.com/addy-dclxvi/i3-starterpack.git && cp -a i3-starterpack/. ~`
 but I recommend You to copy the configuration files one by one to make yourself have more control.
 
+**Note Update 2024 August** My config mostly no longer like the explanation below. They are already changed. I will update the explanation later.
+
 ## Inspect and Edit The Configurations Files
 - **~/.config/i3/config** <br />
 This is the main configuration file of i3 window manager. Contains keybinding, autostart, colors, and window rules.
 I suggest You to leave it default for now. I will explain it later. <br />
 - **~/.config/i3status/config** <br />
-![i3bar](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview-i3bar.jpg) <br />
+![i3bar](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview-i3bar.png) <br />
 This is the statusline configuration for i3bar, bottom right part of i3bar. I set it to load many module by default.
 It looks like christmast tree. So, I suggest You to disable some module You don't need. <br />
 ```
@@ -168,7 +160,7 @@ tztime local {
 ```
 
 The result looks like this <br />
-![i3bar](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview-i3bar-style.jpg) <br />
+![i3bar](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview-i3bar-style.png) <br />
 
 ## i3status Variables
 - My wireless interface is *wlp2s0* and my ethernet adapter is *enp1s0*, You can find yours by `/sbin/iwconfig` or `iwconfig` command.
@@ -184,7 +176,7 @@ Logout your current session. Then login again with i3 session. <br />
 ## Some Cheatsheet
 My keybind is pretty weird, I'm more focus on easy to memorize <br />
 - **Super + Shift + D** Launch dmenu
-- **Super + D** Launch dmenu alternative called Rofi
+- **Super + D** Launch dmenu program launcher
 - **Super + Enter** Launch i3-sensible-terminal, URxvt in this case
 - **Super + Arrow** Change focused window, if You have two or more windows in the workspace
 - **Super + Shift + Arrow** Send focused window to another edge of the screen, if You have two or more windows in the workspace
@@ -193,12 +185,12 @@ My keybind is pretty weird, I'm more focus on easy to memorize <br />
 - **Super + Space** Float the window, hit it again to back to tiling mode
 - **Super + 1-6** Switch to workspace 1-6
 - **Super + Shift + 1-6** Send the focused window to workspace 1-6 
-- **Control + Alt + Left/Right** Switch to previous or next workspace. Only works if You have 2 workspace opened
+- **Super + Control + Left/Right** Switch to previous or next workspace. Only works if You have 2 workspace opened
 - **Super + R** Resize mode. In resize mode, hit Arrow keys to do resizing. Hit Enter to back to normal mode
 - **Super + C** or **Alt + F4** Close window
 - **Super + Q** Quit i3wm
 - **Super + L** Lockscreen. To unlock, type your user password then hit Enter
-- **Super + Shift + R** Fully reload the configuration file. Hit this after do some modifications in the config file
+- **Super + Backspace** Fully reload the configuration file. Hit this after do some modifications in the config file
 - More keybind look on the configuration file.
 
 ## Now What??
@@ -225,17 +217,6 @@ bindsym $super+Shift+g exec geany
 ```
 I set keybind to launch my frequently used apps, you can remove what You don't need. 
 And add what do You need. Note : i3lock need png image <br />
-```
-# music control
-bindsym XF86AudioNext exec mpc next
-bindsym XF86AudioPrev exec mpc prev
-bindsym XF86AudioPlay exec mpc toggle
-bindsym XF86AudioStop exec mpc stop
-```
-I use Mpd for music daemon, control it using Mpc, and use ncmpcpp music player as frontend.
-If You are not using it, I recommend You to remove it. 
-Because it has a chance to intercept your music player global keybind hotkeys.
-Or maybe You can try `playerctl`. It's the common way to control media, and supported by a lot of popular media player. <br />
 ```
 #autostart
 exec --no-startup-id hsetroot -center ~/.wallpaper.png

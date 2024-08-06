@@ -1,129 +1,78 @@
-! ------------------------------------------------------------------------------
-! Colour Configuration
-! ------------------------------------------------------------------------------
+!! Colorscheme
 
 ! special
-*.foreground:   #d8dee8
-*.background:   #2f343f
-*.cursorColor:  #b48ead
+*.foreground: #93a1a1
+*.background: #141c21
+*.cursorColor: #afbfbf
 
 ! black
-*.color0  : #4b5262
-*.color8  : #434a5a
+*.color0: #263640
+*.color8: #4a697d
 
 ! red
-*.color1  : #bf616a
-*.color9  : #b3555e
+*.color1: #d12f2c
+*.color9: #fa3935
 
 ! green
-*.color2  : #a3be8c
-*.color10 : #93ae7c
+*.color2: #819400
+*.color10: #a4bd00
 
 ! yellow
-*.color3  : #ebcb8b
-*.color11 : #dbbb7b
+*.color3: #b08500
+*.color11: #d9a400
 
 ! blue
-*.color4  : #81a1c1
-*.color12 : #7191b1
+*.color4: #2587cc
+*.color12: #2ca2f5
 
 ! magenta
-*.color5  : #b48ead
-*.color13 : #a6809f
+*.color5: #696ebf
+*.color13: #8086e8
 
 ! cyan
-*.color6  : #89d0bA
-*.color14 : #7dbba8
+*.color6: #289c93
+*.color14: #33c5ba
 
 ! white
-*.color7  : #e5e9f0
-*.color15 : #d1d5dc
+*.color7: #bfbaac
+*.color15: #fdf6e3
 
-! ------------------------------------------------------------------------------
-! Font configuration
-! ------------------------------------------------------------------------------
+!! URxvt Appearance
+URxvt.font: xft:SpaceMono:style=Regular:size=9
+URxvt.boldFont: xft:SpaceMono:style=Bold:size=9
+URxvt.italicFont:  xft:SpaceMono:style=Italic:size=9
+URxvt.boldItalicfont: xft:SpaceMono:style=Bold Italic:size=9
+URxvt.letterSpace: -1
+URxvt.lineSpace: 0
+URxvt.geometry: 92x24
+URxvt.internalBorder: 24
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: false
+URxvt.saveline: 2048
+URxvt.scrollBar: false
+URxvt.scrollBar_right: false
+URxvt.urgentOnBell: true
+URxvt.depth: 24
+URxvt.iso14755: false
 
-URxvt*font:				xft:M+ 1mn:regular:size=8
-URxvt*boldFont:			xft:M+ 1mn:bold:size=8
-URxvt*italicFont:		xft:M+ 1mn:italic:size=8
-URxvt*boldItalicFont:	xft:M+ 1mn:bold italic:size=8
+!! Common Keybinds for Navigations
+URxvt.keysym.Shift-Up: command:\033]720;1\007
+URxvt.keysym.Shift-Down: command:\033]721;1\007
+URxvt.keysym.Control-Up: \033[1;5A
+URxvt.keysym.Control-Down: \033[1;5B
+URxvt.keysym.Control-Right: \033[1;5C
+URxvt.keysym.Control-Left: \033[1;5D
 
-! ------------------------------------------------------------------------------
-! Xft Font Configuration
-! ------------------------------------------------------------------------------
-
-Xft.autohint: 0
-Xft.lcdfilter: lcddefault
-Xft.hintstyle: hintslight
-Xft.hinting: 1
-Xft.antialias: 1
-Xft.rgba: rgb
-
-! ------------------------------------------------------------------------------
-! URxvt configs
-! ------------------------------------------------------------------------------
-
-! font spacing
-URxvt*letterSpace:		0
-URxvt.lineSpace:		0
-
-! general settings
-URxvt*saveline:			15000
-URxvt*termName:			rxvt-256color
-URxvt*iso14755:			false
-URxvt*urgentOnBell:		true
-
-! appearance
-URxvt*depth:			24
-URxvt*scrollBar:		false
-URxvt*scrollBar_right:	false
-URxvt*internalBorder:	24
-URxvt*externalBorder:	0
-URxvt.geometry:			84x22
-
-! perl extensions
-URxvt.perl-ext-common:	default,clipboard,url-select,keyboard-select
-
-! macros for clipboard and selection
-URxvt.copyCommand:		xclip -i -selection clipboard
-URxvt.pasteCommand:		xclip -o -selection clipboard
-URxvt.keysym.M-c:		perl:clipboard:copy
-URxvt.keysym.M-v:		perl:clipboard:paste
-URxvt.keysym.M-C-v:		perl:clipboard:paste_escaped
-URxvt.keysym.M-Escape:	perl:keyboard-select:activate
-URxvt.keysym.M-s:		perl:keyboard-select:search
-URxvt.keysym.M-u:		perl:url-select:select_next
-URxvt.urlLauncher:		firefox
-URxvt.underlineURLs:	true
-URxvt.urlButton:		1     
-
-! scroll one line
-URxvt.keysym.Shift-Up:		command:\033]720;1\007
-URxvt.keysym.Shift-Down:	command:\033]721;1\007
-
-! control arrow
-URxvt.keysym.Control-Up:	\033[1;5A
-URxvt.keysym.Control-Down:	\033[1;5B
-URxvt.keysym.Control-Right:	\033[1;5C
-URxvt.keysym.Control-Left:	\033[1;5D
-
-! ------------------------------------------------------------------------------
-! Rofi configs
-! ------------------------------------------------------------------------------
-
-rofi.color-enabled: true
-rofi.color-window: #2e3440, #2e3440, #2e3440
-rofi.color-normal: #2e3440, #d8dee9, #2e3440, #2e3440, #bf616a
-rofi.color-active: #2e3440, #b48ead, #2e3440, #2e3440, #93e5cc
-rofi.color-urgent: #2e3440, #ebcb8b, #2e3440, #2e3440, #ebcb8b
-rofi.modi: run,drun,window
-
-! ------------------------------------------------------------------------------
-! Dmenu configs
-! ------------------------------------------------------------------------------
-
-dmenu.selforeground:	    #d8dee9
-dmenu.background:	        #2e3440
-dmenu.selbackground:	    #bf616a
-dmenu.foreground:	        #d8dee9
-                                                           
+!! Copy Paste & Other Extensions
+URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select
+URxvt.copyCommand: xclip -i -selection clipboard
+URxvt.pasteCommand: xclip -o -selection clipboard
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.urlLauncher: firefox
+URxvt.underlineURLs: true
+URxvt.urlButton: 1
