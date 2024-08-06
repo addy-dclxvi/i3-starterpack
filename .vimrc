@@ -77,7 +77,7 @@ inoremap <C-Space> <C-N>
 inoremap <C-@> <C-Space>
 command NoPaste :set nopaste
 command ShredComment :g/^\(#\|$\)/d
-command RealTab :%s/	/\t/g
+command RealTab :%s/    /\t/g
 command SpellEnglish :set spell spelllang=en_us
 command SpellIndonesian :set spell spelllang=id
 command SpellOff :set nospell
