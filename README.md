@@ -22,7 +22,7 @@ So, the installation guide here will use Debian command & package name. <br />
 ![fullscreen](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview/monocle.png) <br />
 **Fullscreen**, when I write this guide using Vim inside URxvt. <br />
 
-![splitscreen](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview/splitscreen.png) <br />
+![splitscreen](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview/split.png) <br />
 **Splitscreen**, I open cmus music player on the right. <br />
 
 ![floating](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview/floating.png) <br />
