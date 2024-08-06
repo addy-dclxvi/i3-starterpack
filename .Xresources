@@ -1,7 +1,7 @@
 !! Colorscheme
 
 ! special
-URxvt.backgroundPixmap: /home/liveuser/.pixmap.png;style=tiled
+URxvt.backgroundPixmap: /home/addy/.pixmap.png;style=tiled
 *.foreground: #947e7b
 *.background: #f9faf4
 *.cursorColor: #de8043

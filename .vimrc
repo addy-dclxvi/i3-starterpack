@@ -1,14 +1,18 @@
 noh
 syntax on
 set t_Co=16
+set noexpandtab
+set copyindent
+set preserveindent
+set softtabstop=0
+set shiftwidth=4
+set tabstop=4
 set background=dark
 set nocompatible
 set showmode
 set showcmd
 set ruler
 set number
-set cursorline
-set expandtab
 set noshiftround
 set lazyredraw
 set magic
@@ -19,14 +23,12 @@ set smartcase
 set encoding=utf-8
 set modelines=0
 set formatoptions=tqn1
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
 set cmdheight=1
 set laststatus=2
 set backspace=indent,eol,start
 set list
-set listchars=tab:\│\ 
+set listchars=tab:——
+set listchars+=trail:•
 set matchpairs+=<:>
 set statusline=%1*\ file\ %3*\ %f\ %4*\ 
 set statusline+=%=\ 
@@ -50,7 +52,7 @@ nmap <F3> :set invnumber<CR>
 nmap <F4> :q<CR>
 nmap <F5> :%s/    /\t/g<CR>
 nmap <F6> :%s/  / /g<CR>
-imap <C-S> <Esc>:w<CR>
+imap <C-S> <Esc>:w<CR>a
 imap <C-_> <Esc>:noh<CR>a
 imap <S-Left> <Esc>lv<Left>
 imap <S-Right> <Esc>lv<Right>
@@ -67,7 +69,7 @@ imap <A-Right> <Esc>:tabnext<CR>a
 imap <A-Left> <Esc>:tabprevious<CR>a
 imap <F3> <Esc>:set invnumber<CR>a
 imap <F4> <Esc>:q<CR>
-imap <F5> <Esc>:%s//\t/g<CR>a
+imap <F5> <Esc>:%s/    /\t/g<CR>a
 imap <F6> :%s/  / /g<CR>a
 vmap <C-Up> 8k
 vmap <C-Down> 8j
@@ -75,14 +77,12 @@ inoremap <C-Space> <C-N>
 inoremap <C-@> <C-Space>
 command NoPaste :set nopaste
 command ShredComment :g/^\(#\|$\)/d
-command RealTab :%s/    /\t/g
+command RealTab :%s/	/\t/g
 command SpellEnglish :set spell spelllang=en_us
 command SpellIndonesian :set spell spelllang=id
 command SpellOff :set nospell
 command ReduceSpace :%s/  / /g
 hi linenr ctermfg=0
-hi cursorline cterm=NONE
-hi cursorlinenr ctermfg=8
 hi comment ctermfg=8
 hi pmenu ctermbg=0 ctermfg=NONE
 hi pmenusel ctermbg=4 ctermfg=0
@@ -97,5 +97,27 @@ hi user2 ctermbg=4 ctermfg=0
 hi user3 ctermbg=0 ctermfg=NONE
 hi user4 ctermbg=NONE ctermfg=NONE
 hi group1 ctermbg=NONE ctermfg=0
-autocmd colorscheme * hi clear cursorline
-match group1 /\t/
+hi group2 ctermbg=NONE ctermfg=0
+match group1 /\s\+$/
+match group2 /\t/
+
+inoremap <expr> <Tab> TabComplete()
+fun! TabComplete()
+if getline('.')[col('.') - 2] =~ '\K' || pumvisible()
+return "\<C-P>"
+else
+return "\<Tab>"
+endif
+endfun
+set completeopt=menu,menuone,noinsert
+inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
+autocmd InsertCharPre * call AutoComplete()
+fun! AutoComplete()
+if v:char =~ '\K'
+\ && getline('.')[col('.') - 4] !~ '\K'
+\ && getline('.')[col('.') - 3] =~ '\K'
+\ && getline('.')[col('.') - 2] =~ '\K'
+\ && getline('.')[col('.') - 1] !~ '\K'
+call feedkeys("\<C-P>", 'n')
+end
+endfun

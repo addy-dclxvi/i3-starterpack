@@ -18,18 +18,20 @@ bindsym $super+Return exec i3-sensible-terminal
 # start dmenu (a program launcher)
 bindsym $super+d exec i3-dmenu-desktop --dmenu="dmenu -i -b \
 -fn 'Poppins:size=9' -nb '#f9faf4' -nf '#3b4d4f' \
--sb '#68c7c1' -sf '#3b4d4f'" 
+-sb '#68c7c1' -sf '#3b4d4f'"
 
 # common apps keybinds
-bindsym Print exec scrot 'Cheese_%a-%d%b%y_%H.%M.png' -e 'eog ~/$f'
+bindsym Print exec scrot 'Cheese_%a-%d%b%y_%H.%M.png' -e 'xdg-open ~/$f'
 bindsym $super+l exec i3lock -i ~/.lock.png
 bindsym $super+w exec firefox
 bindsym $super+e exec nautilus
 
-#change volume
+# change volume and brightness
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
 bindsym XF86AudioMute exec amixer set Master toggle
+bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 
 # kill focused window
 bindsym $super+c kill
@@ -47,11 +49,12 @@ bindsym $super+Shift+Down move down
 bindsym $super+Shift+Up move up
 bindsym $super+Shift+Right move right
 
-# split in horizontal orientation
+# split in horizontal or vertical orientation
 bindsym $super+h split h
-
-# split in vertical orientation
 bindsym $super+v split v
+
+# change split direction for already opened windows
+bindsym $super+s layout toggle split
 
 # enter fullscreen mode for the focused container
 bindsym $super+f fullscreen toggle
@@ -89,47 +92,47 @@ bindsym $super+q exec "i3-nagbar -t warning -m 'Really, exit?' \
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        bindsym Left resize shrink width 5 px or 5 ppt
-        bindsym Down resize grow height 5 px or 5 ppt
-        bindsym Up resize shrink height 5 px or 5 ppt
-        bindsym Right resize grow width 5 px or 5 ppt
-        bindsym Return mode "default"
-        }
+	bindsym Left resize shrink width 5 px or 5 ppt
+	bindsym Down resize grow height 5 px or 5 ppt
+	bindsym Up resize shrink height 5 px or 5 ppt
+	bindsym Right resize grow width 5 px or 5 ppt
+	bindsym Return mode "default"
+	}
 bindsym $super+r mode "resize"
 
 # panel
 bar {
-        status_command i3status
-        position top
-        workspace_min_width 24
-        padding 2px 8px 2px 8px
-        strip_workspace_numbers yes
+	status_command i3status
+	position top
+	workspace_min_width 24
+	padding 2px 8px 2px 8px
+	strip_workspace_numbers yes
 
-        colors {
-        background #f9faf4
-        statusline #3b4d4f
-        separator #f9faf4
+	colors {
+	background #f9faf4
+	statusline #3b4d4f
+	separator #f9faf4
 
-        # colour of border, background, and text
-        focused_workspace       #f9faf4 #68c7c1 #3b4d4f
-        active_workspace        #f9faf4 #f9faf4 #3b4d4f
-        inactive_workspace      #f9faf4 #f9faf4 #3b4d4f
-        urgent_workspace        #f9faf4 #e46c6d #3b4d4f
-        }
+	# colour of border, background, and text
+	focused_workspace #f9faf4 #68c7c1 #3b4d4f
+	active_workspace #f9faf4 #f9faf4 #3b4d4f
+	inactive_workspace #f9faf4 #f9faf4 #3b4d4f
+	urgent_workspace #f9faf4 #e46c6d #3b4d4f
+	}
 }
 
+# colour of border, background, text, indicator, and child_border
+client.focused #e46c6d #dbd9da #3b4d4f #b899a8 #819fc1
+client.focused_inactive #dbd9da #d8af60 #3b4d4f #dbd9da #dbd9da
+client.unfocused #dbd9da #d8af60 #3b4d4f #dbd9da #dbd9da
+client.urgent #dbd9da #d8af60 #3b4d4f #dbd9da #dbd9da
+client.placeholder #dbd9da #d8af60 #3b4d4f #dbd9da #dbd9da
+client.background #dbd9da
+
 # window rules, you can find the window class using xprop
+for_window [class=Eog|Sxiv|feh|mpv|Vlc|File-roller|Xarchiver] floating enable
+for_window [class=Eog|Sxiv|feh|mpv|Vlc|File-roller|Xarchiver] focus
 for_window [class=".*"] border pixel 8
-for_window [class=eog|mpv|File-roller] floating enable
-for_window [class=URxvt|Firefox|Evince|Soffice|libreoffice*|mpv|Gimp*|Inkscape] focus
-smart_gaps on
 hide_edge_borders smart
 gaps inner 12
-
-# colour of border, background, text, indicator, and child_border
-client.focused              #e46c6d #dbd9da #3b4d4f #b899a8 #819fc1
-client.focused_inactive     #dbd9da #d8af60 #3b4d4f #dbd9da #dbd9da
-client.unfocused            #dbd9da #d8af60 #3b4d4f #dbd9da #dbd9da
-client.urgent               #dbd9da #d8af60 #3b4d4f #dbd9da #dbd9da
-client.placeholder          #dbd9da #d8af60 #3b4d4f #dbd9da #dbd9da
-client.background           #dbd9da
+smart_gaps on
