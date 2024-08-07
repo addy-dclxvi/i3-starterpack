@@ -17,13 +17,13 @@ So, the installation guide here will use Debian command & package name. <br />
 **Clean**, without any opened app. Only i3bar is visible. <br />
 
 ![rofi](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview/launcher.png) <br />
-**dmenu**, for launching app. The i3-dmenu-desktop version only shows desktop apps. <br />
+**dmenu**, for launching app. The i3-dmenu-desktop version only shows desktop apps. A minimal start menu replacement. <br />
 
 ![fullscreen](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview/monocle.png) <br />
-**Fullscreen**, when I write this guide using Vim inside URxvt. <br />
+**Fullscreen**, when I write this guide using Vim inside URxvt. When only one window opened, the gaps and borders automatically disappear. <br />
 
 ![splitscreen](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview/split.png) <br />
-**Splitscreen**, I open cmus music player on the right. <br />
+**Splitscreen**, I open cmus music player on the right. When two windows opened, they will be separated by gaps and borders. <br />
 
 ![floating](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview/floating.png) <br />
 **Floating**, for show-off. <br />
@@ -196,7 +196,9 @@ Do some mess with the configuration file of course.
 Maybe change some keybind, autostart apps, window rules, and more You can find on 
 [i3 official documentations](https://i3wm.org/docs/userguide.html).
 And remember, my configuration is probably not suitable for You. So, I recommend You to change it. 
-Also, make yourself getting used with keybinds. It will activate your Ultra Instict. :joy:  <br />
+Also, make yourself getting used with keybinds. It will activate your Ultra Instict. :joy:.
+If you want to change the keybind but don't know the button name,
+you can use [xev](https://linux.die.net/man/1/xev). <br />
 ```
 # change volume and brightness
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
@@ -225,12 +227,13 @@ Maybe You want to add some programs to your autostart, like network manager appl
 Probably your network manager applet is nm-applet. So, if want to use it, add `exec --no-startup-id nm-applet`.
 It will be loaded on next login. I don't put it on my autostart, because usually I only launch it from terminal when I want to switch SSID.
 And if You come from Xfce maybe You want use its setting daemon.
-Replace `exec --no-startup-id xsettingsd &` with `exec --no-startup-id xfsettingsd &`.
+Add `exec --no-startup-id xfsettingsd &`. `exec --no-startup-id` means the program will be executed without changing the mouse cursor to circle loading.
 You will have some Xfce advantage, like mouse settings, appearance settings (LXAppearance will be overiden by this),
 font settings, and some other advantage. But it will cost a thing, slightly reduce the performance.
 And if the window rendering looks broken, maybe you'll also need to install a compositor like
 [compton](https://manpages.debian.org/bookworm/compton/compton.1.en.html) or [picom](https://manpages.debian.org/unstable/picom/picom.1.en.html)
 then add it to autostart. With compositor you'll get more advantage like transparancy and window animation. <br />
+
 ```
 # window rules, you can find the window class using xprop
 for_window [class=".*"] border pixel 4
