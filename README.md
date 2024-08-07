@@ -66,7 +66,7 @@ If i3-wm, dunst, i3lock, i3status, and suckless-tools are not installed automati
 - Hsetroot is a wallpaper handler. i3 has no wallpaper handler by default.
 - URxvt is a lightweight terminal emulator, part of *i3-sensible-terminal*.
 - Xsel is a program to access X clipboard. We need it to make copy-paste in URxvt available. Hit Alt+C to copy, and Alt+V to paste. 
-- LXAppearance is used for changing GTK theme icons, fonts, and some other preferences.
+- LXAppearance is used for changing GTK theme icons, fonts, and some other preferences (Unnecessary if you already have Xfce Settings).
 - Scrot is for taking screenshoot. I use it in my configuration for Print Screen button.
 I set my Print Screen button to take screenshoot using scrot, then automatically open it any installed image viewer. <br />
 
@@ -85,8 +85,6 @@ My dotfiles contains font, so refresh your fontconfig cache `fc-cache -fv` after
 `git clone https://github.com/addy-dclxvi/i3-starterpack.git && cp -a i3-starterpack/. ~`
 but I recommend You to copy the configuration files one by one to make yourself have more control.
 
-**Note Update 2024 August** My config mostly no longer like the explanation below. They are already changed. I will update the explanation later.
-
 ## Inspect and Edit The Configurations Files
 - **~/.config/i3/config** <br />
 This is the main configuration file of i3 window manager. Contains keybinding, autostart, colors, and window rules.
@@ -97,71 +95,76 @@ It looks like christmast tree. So, I suggest You to disable some module You don'
 ```
 order += "load"
 order += "cpu_temperature 0"
-#order += "disk /"
-#order += "disk /home"
-#order += "ethernet enp1s0"
 order += "wireless wlp2s0"
 order += "volume master"
-#order += "battery 1"
-order += "tztime local"
+order += "battery 0"
+order += "time"
 ```
-You can comment out the module You want to disable. For example I disable the disk, ethernet, and battery. <br />
+You can remove or comment out the module You want to disable. <br />
 Then now You have to configure the variable. Don't forget to change both in *order* list and in function list. <br />
 
-**Update 31 July 2018** : And remember, i3status supports Pango Markup. Not many customization options, but still interesting.
+**Update 2018 July** : And remember, i3status supports Pango Markup. Not many customization options, but still interesting.
 Here is my current i3status customization (I remove the lines I don't use instead comment them out). <br />
 
 ```
 general {
-        output_format = "i3bar"
-        colors = false
-        markup = pango
-        interval = 1
+	output_format = "i3bar"
+	colors = false
+	markup = pango
+	interval = 5
 }
 
-order += "cpu_temperature 0"
 order += "load"
-order += "disk /"
+order += "cpu_temperature 0"
 order += "wireless wlp2s0"
 order += "volume master"
-order += "tztime local"
-
-cpu_temperature 0 {
-        format = "<span background='#ff5555'>  </span><span background='#e5e9f0'> %degrees °C </span>"
-        path = "/sys/class/thermal/thermal_zone0/temp"
-}
+order += "battery 0"
+order += "time"
 
 load {
-        format = "<span background='#50fa7b'>  </span><span background='#e5e9f0'> %5min Load </span>"
+	format = "<span background='#b08500'>    </span><span background='#bfbaac'>  %5min Load  </span>"
 }
 
-disk "/" {
-        format = "<span background='#f1fa8c'>  </span><span background='#e5e9f0'> %free Free </span>"
+cpu_temperature 0 {
+	format = "<span background='#d12f2c'>    </span><span background='#bfbaac'>  %degrees °C  </span>"
+	path = "/sys/class/thermal/thermal_zone0/temp"
 }
 
 wireless wlp2s0 {
-        format_up = "<span background='#bd93f9'>  </span><span background='#e5e9f0'> %essid </span>"
-        format_down = "<span background='#bd93f9'>  </span><span background='#e5e9f0'> Disconnected </span>"
+	format_up = "<span background='#819400'>    </span><span background='#bfbaac'>  %essid  </span>"
+	format_down = "<span background='#819400'>    </span><span background='#bfbaac'>  Disconnected  </span>"
 }
 
 volume master {
-        format = "<span background='#ff79c6'>  </span><span background='#e5e9f0'> %volume </span>"
-        format_muted = "<span background='#ff79c6'>  </span><span background='#e5e9f0'> Muted </span>"
-        device = "default"
-        mixer = "Master"
-        mixer_idx = 0
+	format = "<span background='#696ebf'>    </span><span background='#bfbaac'>  %volume  </span>"
+	format_muted = "<span background='#696ebf'>    </span><span background='#bfbaac'>  Muted  </span>"
+	device = "default"
+	mixer = "Master"
+	mixer_idx = 0
 }
 
-tztime local {
-		format = "<span background='#8be9fd'>  </span><span background='#e5e9f0'> %time </span>"
-		format_time = "%a %-d %b %H:%M"
+battery 0 {
+	last_full_capacity = true
+	format = "<span background='#819400'>  %status  </span><span background='#bfbaac'>  %percentage  </span>"
+	format_down = "No Battery"
+	status_chr = ""
+	status_bat = ""
+	status_unk = ""
+	status_full = ""
+	path = "/sys/class/power_supply/BAT%d/uevent"
+	low_threshold = 10
+	integer_battery_capacity = true
+}
+
+time {
+	format = "<span background='#2587cc'>    </span><span background='#bfbaac'>  %b %d at %H:%M  </span>"
 }
 ```
 
 ## i3status Variables
-- My wireless interface is *wlp2s0* and my ethernet adapter is *enp1s0*, You can find yours by `/sbin/iwconfig` or `iwconfig` command.
-- My battery id is *BAT1*, You can find yours by `ls /sys/class/power_supply/` command.
-- My volume mixer is Alsa, probably also work for You. If not, You can see the manual page to configure PulseAudio.
+- My wireless interface is *wlp2s0*, You can find yours by `/sbin/iwconfig` or `iwconfig` or `ip a` command.
+- My battery id is *BAT0*, You can find yours by `ls /sys/class/power_supply/` command.
+- My volume mixer is Alsa, probably also work for You. If not, You can see the [manual page](https://i3wm.org/docs/i3status.html#_volume) to configure PulseAudio.
 - To use CPU temperature, You need your CPU temperature path. 
 If `/sys/class/thermal/thermal_zone0/temp` doesn't work try `/sys/devices/platform/coretemp.0/temp1_input`. Still doesn't work? Ask Google :yum:
 - You can add more module, just read the manual page `man i3status`. <br />
@@ -171,8 +174,7 @@ Logout your current session. Then login again with i3 session. <br />
 
 ## Some Cheatsheet
 My keybind is pretty weird, I'm more focus on easy to memorize <br />
-- **Super + Shift + D** Launch dmenu
-- **Super + D** Launch dmenu program launcher
+- **Super + D** Launch dmenu program launcher (replacement of start menu)
 - **Super + Enter** Launch i3-sensible-terminal, URxvt in this case
 - **Super + Arrow** Change focused window, if You have two or more windows in the workspace
 - **Super + Shift + Arrow** Send focused window to another edge of the screen, if You have two or more windows in the workspace
@@ -196,28 +198,28 @@ Maybe change some keybind, autostart apps, window rules, and more You can find o
 And remember, my configuration is probably not suitable for You. So, I recommend You to change it. 
 Also, make yourself getting used with keybinds. It will activate your Ultra Instict. :joy:  <br />
 ```
-#change volume
+# change volume and brightness
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
 bindsym XF86AudioMute exec amixer set Master toggle
+bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 ```
 I use Amixer to change my volume. If it doesn't work for You, change it with Pactl, Pamixer, or anything else.
 Just ask Google how to control volume via command line. <br />
 ```
 # common apps keybinds
-bindsym Print exec scrot 'Cheese_%a-%d%b%y_%H.%M.png' -e 'viewnior ~/$f'
-bindsym $super+l exec i3lock -i ~/.wallpaper.png
-bindsym $super+Shift+w exec firefox
-bindsym $super+Shift+f exec thunar;workspace 3;focus
-bindsym $super+Shift+g exec geany
+# common apps keybinds
+bindsym Print exec scrot 'Cheese_%a-%d%b%y_%H.%M.png' -e 'xdg-open ~/$f'
+bindsym $super+l exec i3lock -i ~/.lock.png
+bindsym $super+w exec firefox
+bindsym $super+e exec thunar
 ```
 I set keybind to launch my frequently used apps, you can remove what You don't need. 
 And add what do You need. Note : i3lock need png image <br />
 ```
 #autostart
 exec --no-startup-id hsetroot -center ~/.wallpaper.png
-exec --no-startup-id xsettingsd &
-exec --no-startup-id compton -b
 ```
 Maybe You want to add some programs to your autostart, like network manager applet, clipboard manager, power manager, conky, and some goodies.
 Probably your network manager applet is nm-applet. So, if want to use it, add `exec --no-startup-id nm-applet`.
@@ -225,7 +227,10 @@ It will be loaded on next login. I don't put it on my autostart, because usually
 And if You come from Xfce maybe You want use its setting daemon.
 Replace `exec --no-startup-id xsettingsd &` with `exec --no-startup-id xfsettingsd &`.
 You will have some Xfce advantage, like mouse settings, appearance settings (LXAppearance will be overiden by this),
-font settings, and some other advantage. But it will cost a thing, slightly reduce the performance. <br />
+font settings, and some other advantage. But it will cost a thing, slightly reduce the performance.
+And if the window rendering looks broken, maybe you'll also need to install a compositor like
+[compton](https://manpages.debian.org/bookworm/compton/compton.1.en.html) or [picom](https://manpages.debian.org/unstable/picom/picom.1.en.html)
+then add it to autostart. With compositor you'll get more advantage like transparancy and window animation. <br />
 ```
 # window rules, you can find the window class using xprop
 for_window [class=".*"] border pixel 4
@@ -249,22 +254,36 @@ That's my window rules. I use it to group apps on several workspace.
 
 And I set some apps to launch in floating mode. You can make your own rules of course.
 Maybe my window rules isn't efficient for You. My workspaces are only six, and it's more than enough for me. <br />
+
+**Update 2024 August** Now I no longer use window rules to assign workspace for certains programs.
+Now my configuration looks like this.
+```
+for_window [class=Eog|Sxiv|feh|mpv|Vlc|File-roller|Xarchiver] floating enable
+for_window [class=Eog|Sxiv|feh|mpv|Vlc|File-roller|Xarchiver] focus
+```
+
+Now let's see the panel coloring
 ```
 # panel
 bar {
-    colors {
-    background #2f343f
-    statusline #2f343f
-    separator #4b5262
+	status_command i3status
+	position top
+	workspace_min_width 24
+	padding 2px 8px 2px 8px
+	strip_workspace_numbers yes
 
-    # colour of border, background, and text
-    focused_workspace   #2f343f #bf616a #d8dee8
-    active_workspace    #2f343f #2f343f #d8dee8
-    inactive_workspace  #2f343f #2f343f #d8dee8
-    urgent_workspace    #2f343f #ebcb8b #2f343f
-    }
-    status_command i3status
-}   
+	colors {
+	background #141c21
+	statusline #141c21
+	separator #141c21
+
+	# colour of border, background, and text
+	focused_workspace #141c21 #d12f2c #93a1a1
+	active_workspace #141c21 #141c21 #93a1a1
+	inactive_workspace #141c21 #141c21 #93a1a1
+	urgent_workspace #141c21 #b08500 #93a1a1
+	}
+}  
 ```
 That's my panel colour. I set it has a black background, with white color for workspace name.
 Active workspace is highlighted by red colour, and urgent workspace will be highlighted with yellow colour.
@@ -272,17 +291,17 @@ If one of your workspaces is highlighted with yellow colour, it means that works
 You can modify it by yourself of course. <br />
 ```
 # colour of border, background, text, indicator, and child_border
-client.focused          #bf616a #2f343f #d8dee8 #bf616a #d8dee8
-client.focused_inactive #2f343f #2f343f #d8dee8 #2f343f #2f343f
-client.unfocused        #2f343f #2f343f #d8dee8 #2f343f #2f343f
-client.urgent           #2f343f #2f343f #d8dee8 #2f343f #2f343f
-client.placeholder      #2f343f #2f343f #d8dee8 #2f343f #2f343f
-client.background       #2f343f
+client.focused #d12f2c #263640 #93a1a1 #696ebf #2587cc1
+client.focused_inactive #263640 #b08500 #93a1a1 #263640 #263640
+client.unfocused #263640 #b08500 #93a1a1 #263640 #263640
+client.urgent #263640 #b08500 #93a1a1 #263640 #263640
+client.placeholder #263640 #b08500 #93a1a1 #263640 #263640
+client.background #263640
 ```
 That's my settings of window border colour. 
-I set the focused window border to white, and unfocused window border to black.
-On focused window, the red border means splitting direction. 
-If the red border is on the right, that means if You launch a new window on that workspace, it will be launched on the right of current focused window.
+I set the focused window border to blue, and unfocused window border to black.
+On focused window, the purple border means splitting direction. 
+If the purple border is on the right, that means if You launch a new window on that workspace, it will be launched on the right of current focused window.
 You can change the splitting direction to bottom using **Super + V**. If You want to split to right again, hit **Super + H**.
 If You unsatisfied with it, just modify it :wink: <br />
 
@@ -290,7 +309,7 @@ If You unsatisfied with it, just modify it :wink: <br />
 I think, this is quite enough for a starter. You can improve it by yourself. <br />
 Thanks for reading! :blush:
 
-## Update August 2024
+## Update August 2024 Part II
 
 I put some changes to my i3 setup.
 
