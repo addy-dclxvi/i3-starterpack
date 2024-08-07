@@ -22,8 +22,8 @@ cpu_temperature 0 {
 }
 
 wireless wlp2s0 {
-	format_up = "<span background='#819400'>    </span><span background='#bfbaac'>  %essid  </span>"
-	format_down = "<span background='#819400'>    </span><span background='#bfbaac'>  Disconnected  </span>"
+	format_up = "<span background='#289c93'>    </span><span background='#bfbaac'>  %essid  </span>"
+	format_down = "<span background='#289c93'>    </span><span background='#bfbaac'>  Disconnected  </span>"
 }
 
 volume master {
