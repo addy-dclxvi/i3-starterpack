@@ -1,5 +1,5 @@
 ## Introduction
-A simple guide (and example of configuration) to install i3 and its and essentials packages and make them look eye candy, 
+A simple guide (and example of configuration) to install i3 and its and essential packages and make them look eye candy, 
 or at least make them not ugly :grin:
 
 Example configuration in this repo is pretty simple, minimal, and easy to be understood, without reducing the usability.
@@ -48,7 +48,7 @@ Why? Just to make sure already have some essential packages like Xorg, Display M
 - My recommendation is start from Xfce. It's quite minimal for a Desktop Environtment. And We can use some of its useful components later.
 Like file manager, text editor, power manager, clipman, task manager, or maybe its settings daemon.
 - Willing to learn, patience, and ability to use Google for fixing problems.
-- Not give up easily. 100 times error, 100 times revert, 100 times retry every single day until three years in a row can break your limiter :laughing:
+- Not give up easily.
 - Some great musics for companion. 
 - :coffee: <br />
 
@@ -196,7 +196,7 @@ Do some mess with the configuration file of course.
 Maybe change some keybind, autostart apps, window rules, and more You can find on 
 [i3 official documentations](https://i3wm.org/docs/userguide.html).
 And remember, my configuration is probably not suitable for You. So, I recommend You to change it. 
-Also, make yourself getting used with keybinds. It will activate your Ultra Instict. :joy:.
+Also, make yourself getting used with keybinds. It will activate your Ultra Instict :joy:.
 If you want to change the keybind but don't know the button name,
 you can use [xev](https://linux.die.net/man/1/xev). <br />
 ```
