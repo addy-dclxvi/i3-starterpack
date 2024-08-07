@@ -90,7 +90,7 @@ but I recommend You to copy the configuration files one by one to make yourself 
 This is the main configuration file of i3 window manager. Contains keybinding, autostart, colors, and window rules.
 I suggest You to leave it default for now. I will explain it later. <br />
 - **~/.config/i3status/config** <br />
-This is the statusline configuration for i3bar, bottom right part of i3bar. I set it to load many module by default.
+This is the statusline configuration for i3bar, top right part of i3bar. I set it to load many module by default.
 It looks like christmast tree. So, I suggest You to disable some module You don't need. <br />
 ```
 order += "load"
