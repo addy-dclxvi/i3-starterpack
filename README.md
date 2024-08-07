@@ -218,7 +218,7 @@ bindsym $super+w exec firefox
 bindsym $super+e exec thunar
 ```
 I set keybind to launch my frequently used apps, you can remove what You don't need. 
-And add what do You need. Note : i3lock need png image <br />
+And add what do You need. **Note:** i3lock need png image <br />
 ```
 #autostart
 exec --no-startup-id hsetroot -center ~/.wallpaper.png
