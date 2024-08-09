@@ -8,7 +8,7 @@ font pango:Ionicons 9, Poppins Regular 9
 # Use Mouse+$super to drag floating windows to their wanted position
 floating_modifier $super
 
-#autostart
+# autostart
 exec --no-startup-id hsetroot -center ~/.wallpaper.png
 
 # start a terminal
