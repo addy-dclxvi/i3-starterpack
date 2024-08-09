@@ -5,12 +5,11 @@ set $alt Mod1
 # set font
 font pango:feathericons 9, Poppins Regular 9
 
-# Use Mouse+$super to drag floating windows to their wanted position
+# Use mouse+$super to drag floating windows to their wanted position
 floating_modifier $super
 
-#autostart
+# autostart
 exec --no-startup-id hsetroot -center ~/.wallpaper.png
-exec --no-startup-id xsettingsd &
 
 # start a terminal
 bindsym $super+Return exec i3-sensible-terminal
