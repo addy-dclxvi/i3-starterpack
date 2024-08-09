@@ -5,7 +5,7 @@ set $alt Mod1
 # set font
 font pango:Ionicons 9, Poppins Regular 9
 
-# Use Mouse+$super to drag floating windows to their wanted position
+# use mouse+$super to drag floating windows to their wanted position
 floating_modifier $super
 
 # autostart
