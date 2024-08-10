@@ -223,10 +223,10 @@ And add what do You need. **Note:** i3lock need png image <br />
 exec --no-startup-id hsetroot -center ~/.wallpaper.png
 ```
 Maybe You want to add some programs to your autostart, like network manager applet, clipboard manager, power manager, conky, and some goodies.
-Probably your network manager applet is nm-applet. So, if want to use it, add `exec --no-startup-id nm-applet`.
+Probably your network manager applet is nm-applet. So, if want to use it, add `exec --no-startup-id nm-applet` (`exec --no-startup-id` means the program will be executed without changing the mouse cursor to circle shape/loading).
 It will be loaded on next login. I don't put it on my autostart, because usually I only launch it from terminal when I want to switch SSID.
 And if You come from Xfce maybe You want use its setting daemon.
-Add `exec --no-startup-id xfsettingsd &`. `exec --no-startup-id` means the program will be executed without changing the mouse cursor to circle loading.
+Add `exec --no-startup-id xfsettingsd &`.
 You will have some Xfce advantage, like mouse settings, appearance settings (LXAppearance will be overiden by this),
 font settings, and some other advantage. But it will cost a thing, slightly reduce the performance.
 And if the window rendering looks broken, maybe you'll also need to install a compositor like
