@@ -331,7 +331,7 @@ I put some changes to my i3 setup.
 - I change the default apps
 - And others. Please read the config before use.
 
-I also made a light the put them in [this](https://github.com/addy-dclxvi/i3-starterpack/tree/update-24.08) branch.
+I also made a light theme and put it in [this](https://github.com/addy-dclxvi/i3-starterpack/tree/update-24.08) branch.
 
 ## Light Theme Preview
 ![clean](https://github.com/addy-dclxvi/i3-starterpack/blob/update-24.08/screenshots/clean.png) </br>
