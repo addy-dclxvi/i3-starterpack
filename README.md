@@ -59,10 +59,10 @@ It will give You i3-wm, dunst, i3lock, i3status, and suckless-tools.
 If i3-wm, dunst, i3lock, i3status, and suckless-tools are not installed automatically, just install them manually. <br />
 `sudo apt-get install i3-wm dunst i3lock i3status suckless-tools` <br />
 
-- **Then install some additional packages to make your desktop enjoyable** <br />
+- Then install some additional packages to make your desktop enjoyable <br />
 `sudo apt-get install hsetroot rxvt-unicode xsel lxappearance scrot`
 
-- **I use CMUS Music Player, Ranger File Manager, and Vim Text Editor. If you're interested, also install them. I also put my configurations of those apps in this repo.** <br />
+- I use CMUS Music Player, Ranger File Manager, and Vim Text Editor. If you're interested, also install them (optional). I also put my configurations of those apps in this repo. <br />
 `sudo apt-get install cmus ranger vim`
 
 ## Explanations of Additional Packages
