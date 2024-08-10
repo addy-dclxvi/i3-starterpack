@@ -196,7 +196,7 @@ Do some mess with the configuration file of course.
 Maybe change some keybind, autostart apps, window rules, and more You can find on 
 [i3 official documentations](https://i3wm.org/docs/userguide.html).
 And remember, my configuration is probably not suitable for You. So, I recommend You to change it. 
-Also, make yourself getting used with keybinds. It will activate your Ultra Instict :joy:.
+Also, make yourself getting used with keybinds. It is faster than using mouse.
 If you want to change the keybind but don't know the button name,
 you can use [xev](https://linux.die.net/man/1/xev). <br />
 ```
@@ -219,11 +219,11 @@ bindsym $super+e exec thunar
 I set keybind to launch my frequently used apps, you can remove what You don't need. 
 And add what do You need. **Note:** i3lock need png image <br />
 ```
-#autostart
+# autostart
 exec --no-startup-id hsetroot -center ~/.wallpaper.png
 ```
 Maybe You want to add some programs to your autostart, like network manager applet, clipboard manager, power manager, conky, and some goodies.
-Probably your network manager applet is nm-applet. So, if want to use it, add `exec --no-startup-id nm-applet` (`exec --no-startup-id` means the program will be executed without changing the mouse cursor to circle shape/loading).
+Probably your network manager applet is nm-applet. So, if want to use it, add `exec --no-startup-id nm-applet &` (exec --no-startup-id means the program will be executed without changing the mouse cursor to circle shape or loading, ampersand means run the command in the background then execute next command without waiting the current command finished).
 It will be loaded on next login. I don't put it on my autostart, because usually I only launch it from terminal when I want to switch SSID.
 And if You come from Xfce maybe You want use its setting daemon.
 Add `exec --no-startup-id xfsettingsd &`.
@@ -232,7 +232,15 @@ font settings, and some other advantage. But it will cost a thing, slightly redu
 And if the window rendering looks broken, maybe you'll also need to install a compositor like
 [compton](https://manpages.debian.org/bookworm/compton/compton.1.en.html) or [picom](https://manpages.debian.org/unstable/picom/picom.1.en.html)
 then add it to autostart. With compositor you'll get more advantage like transparancy and window animation. <br />
+```
+# autostart
+exec --no-startup-id hsetroot -center ~/.wallpaper.png
+exec --no-startup-id nm-applet &
+exec --no-startup-id xfsettingsd &
+exec --no-startup-id compton &
 
+```
+Next is window rules. i3 has abilities to assign workspace for certain programs, make the window floating by default, make the launched window steals the focus, etc.
 ```
 # window rules, you can find the window class using xprop
 for_window [class=".*"] border pixel 4
@@ -311,7 +319,7 @@ If You unsatisfied with it, just modify it :wink: <br />
 I think, this is quite enough for a starter. You can improve it by yourself. <br />
 Thanks for reading! :blush:
 
-## Update August 2024 Part II
+## Update August 2024
 
 I put some changes to my i3 setup.
 
@@ -323,9 +331,9 @@ I put some changes to my i3 setup.
 - I change the default apps
 - And others. Please read the config before use.
 
-I put them in [update-24.08](https://github.com/addy-dclxvi/i3-starterpack/tree/update-24.08) branch.
+I also made a light the put them in [this](https://github.com/addy-dclxvi/i3-starterpack/tree/update-24.08) branch.
 
-## Update August 2024 Preview
+## Light Theme Preview
 ![clean](https://github.com/addy-dclxvi/i3-starterpack/blob/update-24.08/screenshots/clean.png) </br>
 **Clean** Without any window opened
 
