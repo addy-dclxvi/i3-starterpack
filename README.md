@@ -211,7 +211,6 @@ I use Amixer to change my volume. If it doesn't work for You, change it with Pac
 Just ask Google how to control volume via command line. <br />
 ```
 # common apps keybinds
-# common apps keybinds
 bindsym Print exec scrot 'Cheese_%a-%d%b%y_%H.%M.png' -e 'xdg-open ~/$f'
 bindsym $super+l exec i3lock -i ~/.lock.png
 bindsym $super+w exec firefox
