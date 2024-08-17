@@ -81,8 +81,8 @@ imap <C-V> <Esc>pa
 imap <C-T> <Esc>:tabnew 
 imap <A-Right> <Esc>:tabnext<CR>a
 imap <A-Left> <Esc>:tabprevious<CR>a
-imap <A-Up> :bnext<CR>a
-imap <A-Down> :bprevious<CR>a
+imap <A-Up> <Esc>:bnext<CR>a
+imap <A-Down> <Esc>:bprevious<CR>a
 imap <F4> <Esc>:q<CR>
 
 "shortcut in visual mode"
