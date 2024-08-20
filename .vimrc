@@ -13,7 +13,6 @@ set fillchars+=vert:\
 set matchpairs+=<:>
 set nowrap
 set cursorline
-set noshowmode
 set modelines=0
 set showcmd
 set cmdheight=1
@@ -204,3 +203,4 @@ set statusline+=%3*\ %f\ %4*\
 set statusline+=%=\ 
 set statusline+=%3*\ %l\ of\ %L\ %2*\ 
 set statusline+=%2*%{&filetype}\ 
+set noshowmode
