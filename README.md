@@ -62,8 +62,10 @@ If i3-wm, dunst, i3lock, i3status, and suckless-tools are not installed automati
 - Then install some additional packages to make your desktop enjoyable <br />
 `sudo apt-get install hsetroot rxvt-unicode xsel lxappearance scrot`
 
-- I use CMUS Music Player, Ranger File Manager, and Vim Text Editor. If you're interested, also install them (optional). I also put my configurations of those apps in this repo. <br />
-`sudo apt-get install cmus ranger vim`
+- I use CMUS Music Player, Ranger File Manager, Vim Text Editor, and Fish Interactive Shell. If you're interested, also install them (optional). I also put my configurations of those apps in this repo. <br />
+`sudo apt-get install cmus ranger vim fish` <br />
+To activate Fish interative shell `sudo chsh -s /usr/bin/fish addy` (replace addy with your own username). Fish will be available after next login.
+I have written an article about Fish interactive shell [here](https://addy-dclxvi.github.io/post/fish-shell/).
 
 ## Explanations of Additional Packages
 - Hsetroot is a wallpaper handler. i3 has no wallpaper handler by default.
@@ -363,3 +365,7 @@ They said it's depreciated.
 
 ![lockscreen](https://github.com/addy-dclxvi/i3-starterpack/blob/update-24.08/screenshots/lockscreen.png) </br>
 **Lockscreen** using i3lock
+
+**Note** I make my terminal background has lines by using [~/.pixmap.png](https://github.com/addy-dclxvi/i3-starterpack/blob/update-24.08/.pixmap.png)
+as tiled terminal background image. Declared in [~/.Xresources](https://github.com/addy-dclxvi/i3-starterpack/blob/4463f9b38a965c6f240ad970fb464b5815e822f7/.Xresources#L4).
+If your want to use it, replace addy in line number four with your own username.
