@@ -324,7 +324,7 @@ If You unsatisfied with it, just modify it :wink: <br />
 I think, this is quite enough for a starter. You can improve it by yourself. <br />
 Thanks for reading! :blush:
 
-## Update August 2024
+## Update 1 August 2024
 
 I put some changes to my i3 setup.
 
@@ -336,7 +336,7 @@ I put some changes to my i3 setup.
 - I change the default apps
 - And others. Please read the config before use.
 
-I also made a light theme and put it in [this](https://github.com/addy-dclxvi/i3-starterpack/tree/update-24.08) branch.
+I also made a light theme and put it in [this](https://github.com/addy-dclxvi/i3-starterpack/tree/leaf) branch.
 
 ## Light Theme Preview
 ![clean](https://github.com/addy-dclxvi/i3-starterpack/blob/update-24.08/screenshots/clean.png) </br>
