@@ -10,25 +10,25 @@ order += "cpu_temperature 0"
 order += "wireless wlp2s0"
 order += "volume master"
 order += "battery 0"
-order += "time"
+order += "tztime local"
 
 load {
-	format = "<span background='#b08500'>    </span><span background='#bfbaac'>  %5min Load  </span>"
+	format = "<span foreground='#d8af60'>    </span><span foreground='#947e7b'>  %5min Load  </span>"
 }
 
 cpu_temperature 0 {
-	format = "<span background='#d12f2c'>    </span><span background='#bfbaac'>  %degrees °C  </span>"
-	path = "/sys/class/thermal/thermal_zone0/temp"
+	format = "<span foreground='#e46c6d'>    </span><span foreground='#947e7b'>  %degrees °C  </span>"
+	path = "/sys/class/thermal/thermal_zone1/temp"
 }
 
 wireless wlp2s0 {
-	format_up = "<span background='#289c93'>    </span><span background='#bfbaac'>  %essid  </span>"
-	format_down = "<span background='#289c93'>    </span><span background='#bfbaac'>  Disconnected  </span>"
+	format_up = "<span foreground='#68c7c1'>    </span><span foreground='#947e7b'>  %essid  </span>"
+	format_down = "<span foreground='#68c7c1'>    </span><span foreground='#947e7b'>  Disconnected  </span>"
 }
 
 volume master {
-	format = "<span background='#696ebf'>    </span><span background='#bfbaac'>  %volume  </span>"
-	format_muted = "<span background='#696ebf'>    </span><span background='#bfbaac'>  Muted  </span>"
+	format = "<span foreground='#b899a8'>    </span><span foreground='#947e7b'>  %volume  </span>"
+	format_muted = "<span foreground='#b899a8'>    </span><span foreground='#947e7b'>  Muted  </span>"
 	device = "default"
 	mixer = "Master"
 	mixer_idx = 0
@@ -36,18 +36,19 @@ volume master {
 
 battery 0 {
 	last_full_capacity = true
-	format = "<span background='#819400'>  %status  </span><span background='#bfbaac'>  %percentage  </span>"
+	format = "<span foreground='#a3be8c'>  %status  </span><span foreground='#947e7b'>  %percentage  </span>"
 	format_down = "No Battery"
-	status_chr = ""
-	status_bat = ""
-	status_unk = ""
-	status_full = ""
+	status_chr = ""
+	status_bat = ""
+	status_unk = "Unknown"
+	status_full = ""
 	path = "/sys/class/power_supply/BAT%d/uevent"
 	low_threshold = 10
 	integer_battery_capacity = true
 }
 
-time {
-	format = "<span background='#2587cc'>    </span><span background='#bfbaac'>  %b %d at %H:%M  </span>"
+tztime local {
+	format = "<span foreground='#81a1c1'>    </span><span foreground='#947e7b'>  %time  </span>"
+	format_time = "%b %d at %H:%M"
 }
 

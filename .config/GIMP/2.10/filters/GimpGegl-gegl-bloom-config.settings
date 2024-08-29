@@ -1,0 +1,11 @@
+# settings
+
+(GimpGegl-gegl-bloom-config "2024-08-28 20:15:19"
+    (time 1724850919)
+    (threshold 50)
+    (softness 25)
+    (radius 10)
+    (strength 50)
+    (limit-exposure no))
+
+# end of settings

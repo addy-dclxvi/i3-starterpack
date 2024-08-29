@@ -1,41 +1,42 @@
 !! Colorscheme
 
 ! special
-*.foreground: #93a1a1
-*.background: #141c21
-*.cursorColor: #afbfbf
+URxvt.backgroundPixmap: /home/addy/.pixmap.png;style=tiled
+*.foreground: #947e7b
+*.background: #f9faf4
+*.cursorColor: #de8043
 
 ! black
-*.color0: #263640
-*.color8: #4a697d
+*.color0: #dbd9da
+*.color8: #cdb7aa
 
 ! red
-*.color1: #d12f2c
-*.color9: #fa3935
+*.color1: #e46c6d
+*.color9: #d65455
 
 ! green
-*.color2: #819400
-*.color10: #a4bd00
+*.color2: #aecdad
+*.color10: #8cb88b
 
 ! yellow
-*.color3: #b08500
-*.color11: #d9a400
+*.color3: #d8af60
+*.color11: #c49b4a
 
 ! blue
-*.color4: #2587cc
-*.color12: #2ca2f5
+*.color4: #819fc1
+*.color12: #6688ad
 
 ! magenta
-*.color5: #696ebf
-*.color13: #8086e8
+*.color5: #b899a8
+*.color13: #a38895
 
 ! cyan
-*.color6: #289c93
-*.color14: #33c5ba
+*.color6: #68c7c1
+*.color14: #4eb3ac
 
 ! white
-*.color7: #bfbaac
-*.color15: #fdf6e3
+*.color7: #526b6e
+*.color15: #3b4d4f
 
 !! URxvt Appearance
 URxvt.font: xft:SpaceMono:style=Regular:size=9
