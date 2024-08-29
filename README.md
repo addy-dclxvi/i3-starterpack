@@ -33,6 +33,7 @@ Of course it's also work on other distros. The only differences are
 - Shortcut of common apps in i3 config, I utilize apps that come with KDE. Like **Super+E** now open Dolphin.
 - Autostart in i3 config too, I utilize apps that come with KDE. Like KDE keyring and KDE Polkit. I don't autostart KDE power manager because I cannot wake my laptop after entering sleep mode.
 
+
 ![ufetch](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/aeroplane/preview/ufetch.png)
 
 ![ranger](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/aeroplane/preview/ranger.png)
@@ -42,3 +43,5 @@ Of course it's also work on other distros. The only differences are
 ![vim](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/aeroplane/preview/vim.png)
 
 ![cmus](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/aeroplane/preview/cmus.png)
+
+![lock](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/aeroplane/preview/lock.png)
