@@ -18,6 +18,12 @@ Now, I use openSUSE default install (KDE) then install some packages I need.
 
 ```
 sudo zypper install i3 rxvt-unicode xsel ranger cmus hsetroot caca-utils git highlight fish brightnessctl
+sudo zypper install opi && sudo opi codecs
+sudo chsh -s /usr/bin/fish addy
+git clone https://github.com/addy-dclxvi/i3-starterpack
+cd i3-starterpack
+git checkout aeroplane
+cp -a . ~
 ```
 
 ### Preview
