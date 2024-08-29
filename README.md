@@ -386,7 +386,7 @@ order += "tztime local"
 In the function zone :
 ```
 tztime local {
-	format = "<span background='#2587cc'>    </span><span background='#bfbaac'>  %time  </span>"
+	format = "<span background='#289c93'>    </span><span background='#bfbaac'>  %time  </span>"
 	format_time = "%b %d at %H:%M"
 }
 ```
