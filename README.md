@@ -435,6 +435,4 @@ Of course it's also work on other distros. The only differences are
 
 ![cmus](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/aeroplane/preview/cmus.png)
 
-![cmus](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/aeroplane/preview/cmus.png)
-
 ![lock](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/aeroplane/preview/lock.png)
