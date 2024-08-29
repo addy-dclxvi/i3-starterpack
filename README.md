@@ -390,7 +390,6 @@ tztime local {
 	format_time = "%b %d at %H:%M"
 }
 ```
-
 ## Update 29 August 2024
 Doing minimal install is getting harder, I have problems with Network Manager on Debian Bookworm.
 On previouses Debian versions, I only need to install proprietary Atheros driver
@@ -411,10 +410,16 @@ Now, I use openSUSE default install (KDE) then install some packages I need.
 
 ```
 sudo zypper install i3 rxvt-unicode xsel ranger cmus hsetroot caca-utils git highlight fish brightnessctl
+sudo zypper install opi && sudo opi codecs
+sudo chsh -s /usr/bin/fish addy
+git clone https://github.com/addy-dclxvi/i3-starterpack
+cd i3-starterpack
+git checkout aeroplane
+cp -a . ~
 ```
 
 ### Preview
-My current openSUSE setup. I put it in [aeroplane](https://github.com/addy-dclxvi/i3-starterpack/tree/aeroplane) branch.
+My current openSUSE setup. I put it in this branch.
 Of course it's also work on other distros. The only differences are
 - Aliases in the fish config, replacing commands related with APT with Zypper
 - Shortcut of common apps in i3 config, I utilize apps that come with KDE. Like **Super+E** now open Dolphin.
@@ -427,6 +432,9 @@ Of course it's also work on other distros. The only differences are
 ![gimp](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/aeroplane/preview/gimp.png)
 
 ![vim](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/aeroplane/preview/vim.png)
+
+![cmus](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/aeroplane/preview/cmus.png)
+
 
 ![cmus](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/aeroplane/preview/cmus.png)
 
