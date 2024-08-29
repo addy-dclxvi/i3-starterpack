@@ -1,6 +1,6 @@
 ## Introduction
 A simple guide (and example of configuration) to install i3 and its and essential packages and make them look eye candy, 
-or at least make them not ugly :grin:
+or at least make them not ugly.
 
 Example configuration in this repo is pretty simple, minimal, and easy to be understood, without reducing the usability.
 Only contains about 140 lines of i3 configuration, pretty stock without any custom script, custom packages, and custom patch.
@@ -31,8 +31,7 @@ So, the installation guide here will use Debian command & package name. <br />
 ![floating](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview/lockscreen.png) <br />
 **Lockscreen**. using i3lock
 ## Disclaimer
-I'm not a Pro. I just started learning Linux a couple yesars ago. And I'm not an IT guy. So, probably this guide will have some mistakes. 
-I hope You would correct me instead of insult me :cry: <br />
+I'm not a Pro. I just started learning Linux a couple yesars ago. And I'm not an IT guy. So, probably this guide will have some mistakes.
 
 ## Why i3?
 i3 is (arguably) the most easiest tiling window manager to learn and configure. 
@@ -171,14 +170,16 @@ time {
 - My battery id is *BAT0*, You can find yours by `ls /sys/class/power_supply/` command.
 - My volume mixer is Alsa, probably also work for You. If not, You can see the [manual page](https://i3wm.org/docs/i3status.html#_volume) to configure PulseAudio.
 - To use CPU temperature, You need your CPU temperature path. 
-If `/sys/class/thermal/thermal_zone0/temp` doesn't work try `/sys/devices/platform/coretemp.0/temp1_input`. Still doesn't work? Ask Google :yum:
+If `/sys/class/thermal/thermal_zone0/temp` doesn't work try `/sys/devices/platform/coretemp.0/temp1_input`. Still doesn't work? Try `/sys/class/thermal/thermal_zone1/temp`.
 - You can add more module, just read the manual page `man i3status`. <br />
 
 ## Launching i3
 Logout your current session. Then login again with i3 session. <br />
 
 ## Some Cheatsheet
-My keybind is pretty weird, I'm more focus on easy to memorize <br />
+My keybind is pretty weird, I'm more focus on easy to memorize,
+and essential operations can be handled using left hand only.
+So it's easier to use softwares that need mouse like image editor, office suite, and web browser. <br />
 - **Super + D** Launch dmenu program launcher (replacement of start menu)
 - **Super + Enter** Launch i3-sensible-terminal, URxvt in this case
 - **Super + Arrow** Change focused window, if You have two or more windows in the workspace
@@ -196,11 +197,10 @@ My keybind is pretty weird, I'm more focus on easy to memorize <br />
 - **Super + Backspace** Fully reload the configuration file. Hit this after do some modifications in the config file
 - More keybind look on the configuration file.
 
-## Now What??
-Do some mess with the configuration file of course. 
+## Now What?
+Edit the configuration to make it suitable for you, of course. 
 Maybe change some keybind, autostart apps, window rules, and more You can find on 
 [i3 official documentations](https://i3wm.org/docs/userguide.html).
-And remember, my configuration is probably not suitable for You. So, I recommend You to change it. 
 Also, make yourself getting used with keybinds. It is faster than using mouse.
 If you want to change the keybind but don't know the button name,
 you can use [xev](https://linux.die.net/man/1/xev). <br />
@@ -369,3 +369,24 @@ They said it's depreciated.
 **Note** I make my terminal background has lines by using [~/.pixmap.png](https://github.com/addy-dclxvi/i3-starterpack/blob/update-24.08/.pixmap.png)
 as tiled terminal background image. Declared in [~/.Xresources](https://github.com/addy-dclxvi/i3-starterpack/blob/4463f9b38a965c6f240ad970fb464b5815e822f7/.Xresources#L4).
 If your want to use it, replace addy in line number four with your own username.
+
+## Update 22 August 2024
+I try my config in openSUSE (VM) and the statusline looks broken.
+The markup of time is not processed. The solution is to use **tztime** format instead of **time**
+
+<video src="https://github.com/user-attachments/assets/ee55d4ff-74ca-4f2e-9429-be7aee706562"></video>
+
+(In the video I also disable battery, temperature, and wifi since it's a VM).
+
+In the **order** zone :
+```
+order += "tztime local"
+```
+
+In the function zone :
+```
+tztime local {
+	format = "<span background='#2587cc'>    </span><span background='#bfbaac'>  %time  </span>"
+	format_time = "%b %d at %H:%M"
+}
+```
