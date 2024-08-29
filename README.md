@@ -419,7 +419,7 @@ cp -a . ~
 ```
 
 ### Preview
-My current openSUSE setup. I put it in this branch.
+My current openSUSE setup. I put it in [aeroplane](https://github.com/addy-dclxvi/i3-starterpack/tree/aeroplane) branch.
 Of course it's also work on other distros. The only differences are
 - Aliases in the fish config, replacing commands related with APT with Zypper
 - Shortcut of common apps in i3 config, I utilize apps that come with KDE. Like **Super+E** now open Dolphin.
@@ -434,7 +434,6 @@ Of course it's also work on other distros. The only differences are
 ![vim](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/aeroplane/preview/vim.png)
 
 ![cmus](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/aeroplane/preview/cmus.png)
-
 
 ![cmus](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/aeroplane/preview/cmus.png)
 
