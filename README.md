@@ -336,7 +336,7 @@ I put some changes to my i3 setup.
 - I change the default apps
 - And others. Please read the config before use.
 
-I also made a light theme and put it in [this](https://github.com/addy-dclxvi/i3-starterpack/tree/leaf) branch.
+I also made a light theme and put it in [leaf](https://github.com/addy-dclxvi/i3-starterpack/tree/leaf) branch.
 
 ### Preview
 ![clean](https://github.com/addy-dclxvi/i3-starterpack/blob/leaf/screenshots/clean.png) </br>
@@ -436,3 +436,16 @@ Of course it's also work on other distros. The only differences are
 ![cmus](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/aeroplane/preview/cmus.png)
 
 ![lock](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/aeroplane/preview/lock.png)
+
+## Update 30 August 2024
+Some new themes
+
+[canyon](https://github.com/addy-dclxvi/i3-starterpack/tree/canyon) branch
+
+![dmenu](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/canyon/preview/dmenu.png)
+
+![cmus](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/canyon/preview/cmus.png)
+
+![split](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/canyon/preview/split.png)
+
+![lock](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/canyon//.lock.png)
