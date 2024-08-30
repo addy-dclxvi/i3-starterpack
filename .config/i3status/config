@@ -5,30 +5,30 @@ general {
 	interval = 5
 }
 
-order += "load"
-order += "cpu_temperature 0"
+#order += "load"
+#order += "cpu_temperature 0"
 order += "wireless wlp2s0"
 order += "volume master"
 order += "battery 0"
 order += "tztime local"
 
 load {
-	format = "<span background='#b08500'>    %5min Load  </span>"
+	format = "    %5min Load  "
 }
 
 cpu_temperature 0 {
-	format = "<span background='#d12f2c'>    %degrees °C  </span>"
+	format = "    %degrees °C  "
 	path = "/sys/class/thermal/thermal_zone1/temp"
 }
 
 wireless wlp2s0 {
-	format_up = "<span background='#289c93'>    %essid  </span>"
-	format_down = "<span background='#289c93'>    Disconnected  </span>"
+	format_up = "    %essid  "
+	format_down = "    Disconnected  "
 }
 
 volume master {
-	format = "<span background='#696ebf'>    %volume  </span>"
-	format_muted = "<span background='#696ebf'>    </span>  Muted  "
+	format = "    %volume  "
+	format_muted = "    Muted  "
 	device = "default"
 	mixer = "Master"
 	mixer_idx = 0
@@ -36,18 +36,18 @@ volume master {
 
 battery 0 {
 	last_full_capacity = true
-	format = "<span background='#819400'>  %status  %percentage  </span>"
+	format = "  %status  %percentage  "
 	format_down = "No Battery"
-	status_chr = ""
-	status_bat = ""
-	status_unk = ""
-	status_full = ""
+	status_chr = ""
+	status_bat = ""
+	status_unk = ""
+	status_full = ""
 	path = "/sys/class/power_supply/BAT%d/uevent"
 	low_threshold = 10
 	integer_battery_capacity = true
 }
 
 tztime local {
-	format = "<span background='#2587cc'>    %time  </span>"
+	format = "<span background='#d12f2c'><span foreground='#141c21'>    %time  </span></span>"
 	format_time = "%b %d at %H:%M"
 }
