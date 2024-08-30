@@ -457,3 +457,11 @@ Some new themes
 ![ranger](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/wall/preview/ranger.png)
 
 ![lock](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/wall/.lock.png)
+
+[pistachio](https://github.com/addy-dclxvi/i3-starterpack/tree/pistachio) branch
+
+![dmenu](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/pistachio/preview/dmenu.png)
+
+![floating](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/pistachio/preview/floating.png)
+
+![lock](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/pistachio/.lock.png)
