@@ -3,7 +3,7 @@ set $super Mod4
 set $alt Mod1
 
 # set font
-font pango:Line-Awesome 9, Poppins Regular 9
+font pango:Material-Icons 9, Poppins Regular 9
 
 # Use mouse+$super to drag floating windows to their wanted position
 floating_modifier $super
@@ -16,9 +16,9 @@ exec --no-startup-id xsettingsd &
 exec --no-startup-id hsetroot -center ~/.wallpaper.png
 
 # start dmenu (a program launcher)
-bindsym $super+d exec i3-dmenu-desktop --dmenu="dmenu -i -b \
+bindsym $super+d exec i3-dmenu-desktop --dmenu="dmenu -i \
 -fn 'Poppins:size=9' -nb '#141c21' -nf '#93a1a1' \
--sb '#d12f2c' -sf '#bfbaac'"
+-sb '#819400' -sf '#141c21'"
 
 # common apps keybinds
 bindsym $super+Return exec i3-sensible-terminal
@@ -105,7 +105,7 @@ bindsym $super+r mode "resize"
 # panel
 bar {
 	status_command i3status
-	position top
+	position bottom
 	workspace_min_width 24
 	padding 0px 2px 0px 2px
 	strip_workspace_numbers yes
@@ -116,7 +116,7 @@ bar {
 	separator #141c21
 
 	# colour of border, background, and text
-	focused_workspace #141c21 #d12f2c #141c21
+	focused_workspace #141c21 #819400 #141c21
 	active_workspace #141c21 #141c21 #bfbaac
 	inactive_workspace #141c21 #141c21 #bfbaac
 	urgent_workspace #141c21 #b08500 #bfbaac
@@ -124,7 +124,7 @@ bar {
 }
 
 # colour of border, background, text, indicator, and child_border
-client.focused #d12f2c #263640 #93a1a1 #696ebf #d12f2c
+client.focused #819400 #263640 #93a1a1 #696ebf #819400
 client.focused_inactive #263640 #b08500 #93a1a1 #263640 #263640
 client.unfocused #263640 #b08500 #93a1a1 #263640 #263640
 client.urgent #263640 #b08500 #93a1a1 #263640 #263640

@@ -13,22 +13,22 @@ order += "battery 0"
 order += "tztime local"
 
 load {
-	format = "    %5min Load  "
+	format = "    %5min Load  "
 }
 
 cpu_temperature 0 {
-	format = "    %degrees °C  "
+	format = "    %degrees °C  "
 	path = "/sys/class/thermal/thermal_zone1/temp"
 }
 
 wireless wlp2s0 {
-	format_up = "    %essid  "
-	format_down = "    Disconnected  "
+	format_up = "    %essid  "
+	format_down = "    Disconnected  "
 }
 
 volume master {
-	format = "    %volume  "
-	format_muted = "    Muted  "
+	format = "    %volume  "
+	format_muted = "    Muted  "
 	device = "default"
 	mixer = "Master"
 	mixer_idx = 0
@@ -38,16 +38,16 @@ battery 0 {
 	last_full_capacity = true
 	format = "  %status  %percentage  "
 	format_down = "No Battery"
-	status_chr = ""
-	status_bat = ""
-	status_unk = ""
-	status_full = ""
+	status_chr = ""
+	status_bat = ""
+	status_unk = ""
+	status_full = ""
 	path = "/sys/class/power_supply/BAT%d/uevent"
 	low_threshold = 10
 	integer_battery_capacity = true
 }
 
 tztime local {
-	format = "<span background='#d12f2c'><span foreground='#141c21'>    %time  </span></span>"
+	format = "<span background='#819400'><span foreground='#141c21'>    %time  </span></span>"
 	format_time = "%b %d at %H:%M"
 }
