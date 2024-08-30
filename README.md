@@ -449,3 +449,11 @@ Some new themes
 ![split](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/canyon/preview/split.png)
 
 ![lock](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/canyon/.lock.png)
+
+[wall](https://github.com/addy-dclxvi/i3-starterpack/tree/wall) branch
+
+![cmus](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/wall/preview/cmus.png)
+
+![ranger](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/wall/preview/ranger.png)
+
+![lock](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/wall/.lock.png)
