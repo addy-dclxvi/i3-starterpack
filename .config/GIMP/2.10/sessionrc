@@ -43,15 +43,15 @@
     (size 782 626))
 (session-info "toplevel"
     (factory-entry "gimp-toolbox-color-dialog")
-    (position 735 216))
+    (position 711 192))
 (session-info "toplevel"
     (factory-entry "gimp-file-open-dialog")
-    (position 175 8)
-    (size 948 720))
+    (position 127 0)
+    (size 948 645))
 (session-info "toplevel"
     (factory-entry "gimp-file-export-dialog")
-    (position 16 16)
-    (size 879 707))
+    (position 0 0)
+    (size 948 645))
 (session-info "toplevel"
     (factory-entry "gimp-scale-tool-dialog")
     (position 494 401))
@@ -69,8 +69,8 @@
     (position 182 213))
 (session-info "toplevel"
     (factory-entry "gimp-file-save-dialog")
-    (position 180 41)
-    (size 879 707))
+    (position 172 33)
+    (size 948 645))
 (session-info "toplevel"
     (factory-entry "gimp-rotate-tool-dialog")
     (position 451 324))
@@ -82,7 +82,7 @@
     (position 147 48))
 (session-info "toplevel"
     (factory-entry "gimp-operation-tool-dialog")
-    (position 748 228))
+    (position 709 149))
 
 (hide-docks no)
 (single-window-mode yes)

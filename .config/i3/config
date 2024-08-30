@@ -3,27 +3,30 @@ set $super Mod4
 set $alt Mod1
 
 # set font
-font pango:Ionicons 9, Poppins Regular 9
+font pango:Linearicons-Free 9, Poppins Regular 9
 
-# use mouse+$super to drag floating windows to their wanted position
+# Use mouse+$super to drag floating windows to their wanted position
 floating_modifier $super
 
 # autostart
+exec --no-startup-id /usr/libexec/polkit-kde-authentication-agent-1 &
+exec --no-startup-id /usr/libexec/pam_kwallet_init &
+exec --no-startup-id kwalletd6 &
+exec --no-startup-id xsettingsd &
 exec --no-startup-id hsetroot -center ~/.wallpaper.png
-
-# start a terminal
-bindsym $super+Return exec i3-sensible-terminal
 
 # start dmenu (a program launcher)
 bindsym $super+d exec i3-dmenu-desktop --dmenu="dmenu -i -b \
 -fn 'Poppins:size=9' -nb '#141c21' -nf '#93a1a1' \
--sb '#289c93' -sf '#141c21'"
+-sb '#d12f2c' -sf '#bfbaac'"
 
 # common apps keybinds
-bindsym Print exec scrot 'Cheese_%a-%d%b%y_%H.%M.png' -e 'xdg-open ~/$f'
+bindsym $super+Return exec i3-sensible-terminal
 bindsym $super+l exec i3lock -i ~/.lock.png
 bindsym $super+w exec firefox
-bindsym $super+e exec thunar
+bindsym $super+shift+w exec firefox -private-window
+bindsym $super+e exec dolphin
+bindsym Print exec spectacle
 
 # change volume and brightness
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
@@ -67,20 +70,20 @@ bindsym $super+Shift+space focus mode_toggle
 # switch to workspace
 bindsym $super+Control+Right workspace next
 bindsym $super+Control+Left workspace prev
-bindsym $super+1 workspace 1:I
-bindsym $super+2 workspace 2:II
-bindsym $super+3 workspace 3:III
-bindsym $super+4 workspace 4:IV
-bindsym $super+5 workspace 5:V
-bindsym $super+6 workspace 6:VI
+bindsym $super+1 workspace 1:One
+bindsym $super+2 workspace 2:Two
+bindsym $super+3 workspace 3:Three
+bindsym $super+4 workspace 4:Four
+bindsym $super+5 workspace 5:Five
+bindsym $super+6 workspace 6:Six
 
 # move focused container to workspace
-bindsym $super+Shift+1 move container to workspace 1:I
-bindsym $super+Shift+2 move container to workspace 2:II
-bindsym $super+Shift+3 move container to workspace 3:III
-bindsym $super+Shift+4 move container to workspace 4:IV
-bindsym $super+Shift+5 move container to workspace 5:V
-bindsym $super+Shift+6 move container to workspace 6:VI
+bindsym $super+Shift+1 move container to workspace 1:One
+bindsym $super+Shift+2 move container to workspace 2:Two
+bindsym $super+Shift+3 move container to workspace 3:Three
+bindsym $super+Shift+4 move container to workspace 4:Four
+bindsym $super+Shift+5 move container to workspace 5:Five
+bindsym $super+Shift+6 move container to workspace 6:Six
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $super+BackSpace exec "i3-msg restart"
@@ -113,10 +116,10 @@ bar {
 	separator #141c21
 
 	# colour of border, background, and text
-	focused_workspace #141c21 #d12f2c #93a1a1
-	active_workspace #141c21 #141c21 #93a1a1
-	inactive_workspace #141c21 #141c21 #93a1a1
-	urgent_workspace #141c21 #b08500 #93a1a1
+	focused_workspace #141c21 #d12f2c #bfbaac
+	active_workspace #141c21 #141c21 #bfbaac
+	inactive_workspace #141c21 #141c21 #bfbaac
+	urgent_workspace #141c21 #b08500 #bfbaac
 	}
 }
 
@@ -129,8 +132,8 @@ client.placeholder #263640 #b08500 #93a1a1 #263640 #263640
 client.background #263640
 
 # window rules, you can find the window class using xprop
-for_window [class=Eog|Sxiv|feh|mpv|Vlc|File-roller|Xarchiver] floating enable
-for_window [class=Eog|Sxiv|feh|mpv|Vlc|File-roller|Xarchiver] focus
+for_window [class=gwenview|Eog|Sxiv|feh|spectacle|mpv|vlc|ark|File-roller|Xarchiver] floating enable
+for_window [class=gwenview|Eog|Sxiv|feh|spectacle|mpv|vlc|ark|File-roller|Xarchiver] focus
 for_window [class=".*"] border pixel 8
 hide_edge_borders smart
 gaps inner 12

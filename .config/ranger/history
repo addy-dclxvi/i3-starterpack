@@ -1,11 +1,3 @@
-find .co
-mkdir rofi
-find ro
-touch config
-shell 
-find .sc
-open_with 
-find syst
 delete 
 cd /media/
 cd /media
@@ -23,7 +15,6 @@ shell gitpush
 scout -ftsea com
 cd /home/addy/.dotfiles/
 open_with 2
-scout -ftsea i3
 scout -ftsea bl
 scout -ftsea doc
 open_with vim
@@ -43,8 +34,17 @@ rename preview-openbox.jpg
 rename preview-fluxbox.jpg
 rename fluxbox.jpg
 rename openbox.jpg
-
 scout -ftsea hu
 scout -ftsea 78
 delete
-open_with 0
+scout -ftsea vim
+scout -ftsea vimr
+tab_new 
+rename ufetch
+scout -ftsea i3
+scout -ftsea ra
+open_with 
+scout -ftsea xs
+search se7en
+scout -ftsea god
+

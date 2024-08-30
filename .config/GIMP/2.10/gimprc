@@ -7,12 +7,13 @@
 # Preferences dialog.
 
 (import-raw-plug-in "${gimp_plug_in_dir}/plug-ins/file-raw-placeholder/file-raw-placeholder")
-(monitor-xresolution 125)
-(monitor-yresolution 125)
+(monitor-xresolution 112)
+(monitor-yresolution 113)
 (toolbox-groups no)
 (theme "Light")
 (icon-theme "Symbolic-Inverted")
 (icon-size small)
+(layer-new-name "blackening")
 (fill-options
     (style solid)
     (antialias yes)

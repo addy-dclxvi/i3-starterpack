@@ -50,25 +50,21 @@ set fish_pager_color_prefix cyan
 set fish_pager_color_progress cyan
 
 ## Aliases
-alias ls "ls --group-directories-first"
-alias lsl "ls --group-directories-first -lh"
+alias ls "ls --group-directories-first --color -ailh"
 alias version "apt-cache show"
-alias font-refresh "fc-cache -fv"
+alias fonts "fc-cache -fvr"
 alias clone "git clone --depth 1"
 alias merge "xrdb ~/.Xresources"
-alias search "apt-cache search"
-alias install "sudo apt-get install --no-install-recommends"
-alias upgrade "sudo apt-get upgrade"
-alias update "sudo apt-get update"
-alias remove "sudo apt-get remove"
-alias purge "sudo apt-get remove --purge"
-alias clean "sudo apt-get clean"
-alias autoclean "sudo apt-get autoclean"
-alias autoremove "sudo apt-get autoremove"
-alias reconfigure "sudo dpkg-reconfigure"
-alias pkguser "apt-mark showmanual | sed 's#/.*##' | tr '\n' ' '"
-alias pkglist "dpkg --get-selections | grep -v deinstall |\
-sed s/\tinstall//g | sed s/\t//g | sed s/:amd64//g | tr '\n' ' '"
+alias search "zypper search"
+alias install "sudo zypper install"
+alias refresh "sudo zypper refresh"
+alias update "sudo zypper update"
+alias upgrade "sudo zypper dup"
+alias remove "sudo zypper remove --clean-deps"
+alias poweroff "systemctl poweroff"
+alias reboot "systemctl reboot"
 
 ## Keybinding
 set fish_key_bindings fish_default_key_bindings
+
+clear
