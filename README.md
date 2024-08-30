@@ -448,4 +448,4 @@ Some new themes
 
 ![split](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/canyon/preview/split.png)
 
-![lock](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/canyon//.lock.png)
+![lock](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/canyon/.lock.png)
