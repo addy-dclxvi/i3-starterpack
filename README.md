@@ -31,7 +31,7 @@ So, the installation guide here will use Debian command & package name. <br />
 ![floating](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/master/preview/lockscreen.png) <br />
 **Lockscreen**. using i3lock
 ## Disclaimer
-I'm not a Pro. I just started learning Linux a couple yesars ago. And I'm not an IT guy. So, probably this guide will have some mistakes.
+I'm not a Pro. I just started learning Linux a couple years ago. And I'm not an IT guy. So, probably this guide will have some mistakes.
 
 ## Why i3?
 i3 is (arguably) the most easiest tiling window manager to learn and configure. 
