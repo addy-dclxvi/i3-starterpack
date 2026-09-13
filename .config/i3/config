@@ -29,7 +29,7 @@ bindsym $super+d exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i \
 ### common apps keybinds
 #bindsym Print exec --no-startup-id scrot 'Cheese_%a-%d%b%y_%H.%M.png' -e 'xdg-open ~/$f'
 bindsym Print exec --no-startup-id mate-screenshot
-bindsym $super+l exec --no-startup-id i3lock -c '#d0c0d0'
+bindsym $super+l exec --no-startup-id i3lock -c '#bcc0cc'
 bindsym $super+w exec --no-startup-id xdg-open about:home
 bindsym $super+e exec --no-startup-id xdg-open ~
 
