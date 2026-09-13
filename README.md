@@ -1,27 +1,14 @@
 ## Preview
-![clean](https://github.com/addy-dclxvi/i3-starterpack/blob/leaf/screenshots/clean.png) </br>
-**Clean** Without any window opened
+![floating](https://github.com/addy-dclxvi/i3-starterpack/blob/earlgrey/screenshots/floating.png) </br>
+**Floating**
 
-![floating](https://github.com/addy-dclxvi/i3-starterpack/blob/leaf/screenshots/floating.png) </br>
-**Floating** Opening *Vim, Cmus, and Ranger* in floating mode for show off. The bottom line is *i3-dmenu-desktop*.
+![tiling](https://github.com/addy-dclxvi/i3-starterpack/blob/earlgrey/screenshots/tiling.png) </br>
+**Tiling**
 
-![tiling-two](https://github.com/addy-dclxvi/i3-starterpack/blob/leaf/screenshots/tiling-two.png) </br>
-**Tiling** With two windows opened
-
-![tiling-three](https://github.com/addy-dclxvi/i3-starterpack/blob/leaf/screenshots/tiling-three.png) </br>
-**Tiling** With three windows opened
-
-![gimp](https://github.com/addy-dclxvi/i3-starterpack/blob/leaf/screenshots/gimp.png) </br>
-![monocle](https://github.com/addy-dclxvi/i3-starterpack/blob/leaf/screenshots/monocle.png) </br>
-**Monocle** One windows opened, the gaps and borders are automatically disappeared, so no space wasted
-
-![fullscreen](https://github.com/addy-dclxvi/i3-starterpack/blob/leaf/screenshots/fullscreen.png) </br>
-**Fullscreen** Using *Super + F*. The gaps, borders, and statusbar disappeared for maximum reading experience
-
-![dunst](https://github.com/addy-dclxvi/i3-starterpack/blob/leaf/screenshots/dunst.png) </br>
-Dunst notification daemon, slightly misplaced to the right.
-I tried to change the coordinate from the config file but it's no longer working.
-They said it's depreciated.
-
-![lockscreen](https://github.com/addy-dclxvi/i3-starterpack/blob/leaf/screenshots/lockscreen.png) </br>
-**Lockscreen** using i3lock
+Now I install i3wm on top of Mate and trying to use available Mate components like
+Mate Terminal, Mate Settings Daemon, Mate Polkit, and many others.
+Mate stores apps setting in dconf that can be restored using
+`dconf load / < dconf.ini` command.
+I also change the GTK Fonts from Poppins to Space Grotesk,
+because Space Grotesk is designed to work with Space Mono, the font I use in the Terminal.
+The colorscheme is Earl Grey by June Kelly.

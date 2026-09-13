@@ -1,70 +1,79 @@
-# set modifier
+### set modifier
 set $super Mod4
 set $alt Mod1
 
-# set font
-font pango:feathericons 9, Poppins Regular 9
+### set font
+font pango: Space Grotesk Regular 8
 
-# Use mouse+$super to drag floating windows to their wanted position
+### Use mouse+$super to drag floating windows to their wanted position
 floating_modifier $super
 
-# autostart
-exec --no-startup-id hsetroot -center ~/.wallpaper.png
+### autostart
+exec --no-startup-id xsetroot -solid '#c0a9bb'
+exec --no-startup-id /usr/libexec/polkit-mate-authentication-agent-1 &
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=pkcs11 &
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets &
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh &
+exec --no-startup-id sleep 2 && mate-settings-daemon &
+exec --no-startup-id sleep 2 && mate-power-manager &
+exec --no-startup-id sleep 4 && synclient TapButton1=1 TapButton2=3 TapButton3=2 &
 
-# start a terminal
-bindsym $super+Return exec i3-sensible-terminal
+### start a terminal
+bindsym $super+Return exec --no-startup-id i3-sensible-terminal
 
-# start dmenu (a program launcher)
-bindsym $super+d exec i3-dmenu-desktop --dmenu="dmenu -i -b \
--fn 'Poppins:size=9' -nb '#f9faf4' -nf '#3b4d4f' \
--sb '#68c7c1' -sf '#3b4d4f'"
+### start dmenu (a program launcher)
+bindsym $super+d exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i \
+-fn 'Space Grotesk:size=9' -nb '#fcfbf9' -nf '#605a52' \
+-sb '#477a7b' -sf '#fcfbf9'"
 
-# common apps keybinds
-bindsym Print exec scrot 'Cheese_%a-%d%b%y_%H.%M.png' -e 'xdg-open ~/$f'
-bindsym $super+l exec i3lock -i ~/.lock.png
-bindsym $super+w exec firefox
-bindsym $super+e exec nautilus --new-window
+### common apps keybinds
+#bindsym Print exec --no-startup-id scrot 'Cheese_%a-%d%b%y_%H.%M.png' -e 'xdg-open ~/$f'
+bindsym Print exec --no-startup-id mate-screenshot
+bindsym $super+l exec --no-startup-id i3lock -c '#d0c0d0'
+bindsym $super+w exec --no-startup-id xdg-open about:home
+bindsym $super+e exec --no-startup-id xdg-open ~
 
-# change volume and brightness
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
-bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
-bindsym XF86AudioMute exec amixer set Master toggle
-bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
-bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+### change volume and brightness
+### commented out because i use mate-settings-daemon
+#bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 5%+
+#bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q set Master 5%-
+#bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
+#bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 5%+
+#bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
-# kill focused window
+### kill focused window
 bindsym $super+c kill
 bindsym $alt+F4 kill
 
-# change focus
+### change focus
 bindsym $super+Left focus left
 bindsym $super+Down focus down
 bindsym $super+Up focus up
 bindsym $super+Right focus right
 
-# move focused window
+### move focused window
 bindsym $super+Shift+Left move left
 bindsym $super+Shift+Down move down
 bindsym $super+Shift+Up move up
 bindsym $super+Shift+Right move right
 
-# split in horizontal or vertical orientation
+### split in horizontal or vertical orientation
 bindsym $super+h split h
 bindsym $super+v split v
 
-# change split direction for already opened windows
+### change split direction for already opened windows
 bindsym $super+s layout toggle split
 
-# enter fullscreen mode for the focused container
+### enter fullscreen mode for the focused container
 bindsym $super+f fullscreen toggle
 
-# toggle tiling / floating
+### toggle tiling / floating
 bindsym $super+space floating toggle
 
-# change focus between tiling / floating windows
+### change focus between tiling / floating windows
 bindsym $super+Shift+space focus mode_toggle
 
-# switch to workspace
+### switch to workspace
 bindsym $super+Control+Right workspace next
 bindsym $super+Control+Left workspace prev
 bindsym $super+1 workspace 1:I
@@ -74,7 +83,7 @@ bindsym $super+4 workspace 4:IV
 bindsym $super+5 workspace 5:V
 bindsym $super+6 workspace 6:VI
 
-# move focused container to workspace
+### move focused container to workspace
 bindsym $super+Shift+1 move container to workspace 1:I
 bindsym $super+Shift+2 move container to workspace 2:II
 bindsym $super+Shift+3 move container to workspace 3:III
@@ -82,56 +91,70 @@ bindsym $super+Shift+4 move container to workspace 4:IV
 bindsym $super+Shift+5 move container to workspace 5:V
 bindsym $super+Shift+6 move container to workspace 6:VI
 
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $super+BackSpace exec "i3-msg restart"
+### restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $super+BackSpace exec --no-startup-id "i3-msg restart"
 
-# exit i3
-bindsym $super+q exec "i3-nagbar -t warning -m 'Really, exit?' \
+### exit i3
+bindsym $super+q exec --no-startup-id "i3-nagbar -t warning -m 'Really, exit?' \
 -b 'Yes' 'i3-msg exit'"
 
-# resize window (you can also use the mouse for that)
-mode "resize" {
+### resize window (you can also use the mouse for that)
+mode "Resize" {
 	bindsym Left resize shrink width 5 px or 5 ppt
 	bindsym Down resize grow height 5 px or 5 ppt
 	bindsym Up resize shrink height 5 px or 5 ppt
 	bindsym Right resize grow width 5 px or 5 ppt
 	bindsym Return mode "default"
+	bindsym Escape mode "default"
 	}
-bindsym $super+r mode "resize"
+bindsym $super+r mode "Resize"
 
-# panel
+### move floating windows with keys
+mode "Move" {
+	bindsym Left move left
+	bindsym Down move down
+	bindsym Up move up
+	bindsym Right move right
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+bindsym $super+m mode "Move"
+
+### panel
 bar {
 	status_command i3status
-	position top
+	position bottom
 	workspace_min_width 24
 	padding 2px 8px 2px 8px
 	strip_workspace_numbers yes
 
 	colors {
-	background #f9faf4
-	statusline #3b4d4f
-	separator #f9faf4
+	background #fcfbf9
+	statusline #fcfbf9
+	separator #fcfbf9
 
-	# colour of border, background, and text
-	focused_workspace #f9faf4 #68c7c1 #3b4d4f
-	active_workspace #f9faf4 #f9faf4 #3b4d4f
-	inactive_workspace #f9faf4 #f9faf4 #3b4d4f
-	urgent_workspace #f9faf4 #e46c6d #3b4d4f
+	### colour of border, background, and text
+	focused_workspace #fcfbf9 #477a7b #fcfbf9
+	active_workspace #fcfbf9 #fcfbf9 #605a52
+	inactive_workspace #fcfbf9 #fcfbf9 #605a52
+	urgent_workspace #fcfbf9 #8f5652 #fcfbf9
 	}
 }
 
-# colour of border, background, text, indicator, and child_border
-client.focused #e46c6d #dbd9da #3b4d4f #b899a8 #819fc1
-client.focused_inactive #dbd9da #d8af60 #3b4d4f #dbd9da #dbd9da
-client.unfocused #dbd9da #d8af60 #3b4d4f #dbd9da #dbd9da
-client.urgent #dbd9da #d8af60 #3b4d4f #dbd9da #dbd9da
-client.placeholder #dbd9da #d8af60 #3b4d4f #dbd9da #dbd9da
-client.background #dbd9da
+### colour of border, background, text, indicator, and child_border
+client.focused #8f5652 #9e9a95 #605a52 #83577d #556995
+client.focused_inactive #9e9a95 #d8af60 #605a52 #9e9a95 #9e9a95
+client.unfocused #9e9a95 #d8af60 #605a52 #9e9a95 #9e9a95
+client.urgent #9e9a95 #d8af60 #605a52 #9e9a95 #9e9a95
+client.placeholder #9e9a95 #d8af60 #605a52 #9e9a95 #9e9a95
+client.background #9e9a95
 
-# window rules, you can find the window class using xprop
-for_window [class=Eog|Sxiv|feh|mpv|Vlc|File-roller|Xarchiver] floating enable
-for_window [class=Eog|Sxiv|feh|mpv|Vlc|File-roller|Xarchiver] focus
+### window rules, you can find the window class using xprop
+for_window [class=Eog|eog|Eom|eom|Sxiv|sxiv|Nsxiv|nsxiv|Feh|feh|\
+Mpv|mpv|Vlc|vlc|File-roller|Xarchiver|Engrampa] floating enable
+for_window [class=Eog|eog|Eom|eom|Sxiv|sxiv|Nsxiv|nsxiv|Feh|feh|\
+Mpv|mpv|Vlc|vlc|File-roller|Xarchiver|Engrampa] focus
 for_window [class=".*"] border pixel 8
 hide_edge_borders smart
-gaps inner 12
+gaps inner 8
 smart_gaps on
