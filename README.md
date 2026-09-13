@@ -467,7 +467,7 @@ Some new themes
 ![lock](https://raw.githubusercontent.com/addy-dclxvi/i3-starterpack/pistachio/.lock.png)
 
 ## Update 13 September 2026
-A new theme
+Some new themes
 
 [earlgrey](https://github.com/addy-dclxvi/i3-starterpack/tree/earlgrey) branch
 
@@ -487,3 +487,13 @@ I also change the GTK Fonts from Poppins to Space Grotesk,
 because Space Grotesk is a font designed to work with Space Mono, the font I use in the Terminal.
 
 The colorscheme is Earl Grey by June Kelly.
+
+[latte](https://github.com/addy-dclxvi/i3-starterpack/tree/latte) branch
+
+![floating](https://github.com/addy-dclxvi/i3-starterpack/blob/latte/screenshots/floating.png) </br>
+**Floating**
+
+![tiling](https://github.com/addy-dclxvi/i3-starterpack/blob/latte/screenshots/tiling.png) </br>
+**Tiling**
+
+The colorscheme is Catpuccin Latte by [Catpuccin Team](https://github.com/catppuccin).
