@@ -13,22 +13,22 @@ order += "battery 0"
 order += "time"
 
 load {
-	format = "<span background='#886a44'>  Load  </span><span background='#dddbd8'> <span foreground='#605a52'> %5min  </span></span>"
+	format = "<span background='#df8e1d'>  Load  </span><span background='#ccd0da'> <span foreground='#4c4f69'> %5min  </span></span>"
 }
 
 cpu_temperature 0 {
-	format = "<span background='#8f5652'>  Temp  </span><span background='#dddbd8'> <span foreground='#605a52'> %degrees °C  </span></span>"
+	format = "<span background='#d20f39'>  Temp  </span><span background='#ccd0da'> <span foreground='#4c4f69'> %degrees °C  </span></span>"
 	path = "/sys/class/thermal/thermal_zone0/temp"
 }
 
 wireless _first_ {
-	format_up = "<span background='#477a7b'>  Wifi  </span><span background='#dddbd8'> <span foreground='#605a52'> %essid  </span></span>"
-	format_down = "<span background='#477a7b'>  Wifi  </span><span background='#dddbd8'> <span foreground='#605a52'> Off  </span></span>"
+	format_up = "<span background='#179299'>  Wifi  </span><span background='#ccd0da'> <span foreground='#4c4f69'> %essid  </span></span>"
+	format_down = "<span background='#179299'>  Wifi  </span><span background='#ccd0da'> <span foreground='#4c4f69'> Off  </span></span>"
 }
 
 volume master {
-	format = "<span background='#83577d'>  Vol  </span><span background='#dddbd8'> <span foreground='#605a52'> %volume  </span></span>"
-	format_muted = "<span background='#83577d'>  Muted  </span><span background='#dddbd8'> <span foreground='#605a52'> %volume  </span></span>"
+	format = "<span background='#ea76cb'>  Vol  </span><span background='#ccd0da'> <span foreground='#4c4f69'> %volume  </span></span>"
+	format_muted = "<span background='#ea76cb'>  Muted  </span><span background='#ccd0da'> <span foreground='#4c4f69'> %volume  </span></span>"
 	device = "default"
 	mixer = "Master"
 	mixer_idx = 0
@@ -36,7 +36,7 @@ volume master {
 
 battery 0 {
 	last_full_capacity = true
-	format = "<span background='#747b4d'>  %status  </span><span background='#dddbd8'> <span foreground='#605a52'> %percentage  </span></span>"
+	format = "<span background='#40a02b'>  %status  </span><span background='#ccd0da'> <span foreground='#4c4f69'> %percentage  </span></span>"
 	format_down = "No Battery"
 	status_chr = "Charging"
 	status_bat = "Battery"
@@ -48,6 +48,6 @@ battery 0 {
 }
 
 time {
-	format = "<span background='#556995'>  %a %e %b  </span><span background='#dddbd8'> <span foreground='#605a52'> at %H:%M  </span></span>"
+	format = "<span background='#1e66f5'>  %a %e %b  </span><span background='#ccd0da'> <span foreground='#4c4f69'> at %H:%M  </span></span>"
 }
 

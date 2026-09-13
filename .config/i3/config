@@ -9,7 +9,7 @@ font pango: Space Grotesk Regular 8
 floating_modifier $super
 
 ### autostart
-exec --no-startup-id xsetroot -solid '#c0a9bb'
+exec --no-startup-id xsetroot -solid '#bcc0cc'
 exec --no-startup-id /usr/libexec/polkit-mate-authentication-agent-1 &
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=pkcs11 &
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets &
@@ -23,8 +23,8 @@ bindsym $super+Return exec --no-startup-id i3-sensible-terminal
 
 ### start dmenu (a program launcher)
 bindsym $super+d exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i \
--fn 'Space Grotesk:size=9' -nb '#fcfbf9' -nf '#605a52' \
--sb '#477a7b' -sf '#fcfbf9'"
+-fn 'Space Grotesk:size=9' -nb '#eff1f5' -nf '#4c4f69' \
+-sb '#179299' -sf '#eff1f5'"
 
 ### common apps keybinds
 #bindsym Print exec --no-startup-id scrot 'Cheese_%a-%d%b%y_%H.%M.png' -e 'xdg-open ~/$f'
@@ -91,7 +91,7 @@ bindsym $super+Shift+4 move container to workspace 4:IV
 bindsym $super+Shift+5 move container to workspace 5:V
 bindsym $super+Shift+6 move container to workspace 6:VI
 
-### restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+### restart i3 inplace (preserves your layout, can be used to upgrade i3)
 bindsym $super+BackSpace exec --no-startup-id "i3-msg restart"
 
 ### exit i3
@@ -129,25 +129,25 @@ bar {
 	strip_workspace_numbers yes
 
 	colors {
-	background #fcfbf9
-	statusline #fcfbf9
-	separator #fcfbf9
+	background #eff1f5
+	statusline #eff1f5
+	separator #eff1f5
 
 	### colour of border, background, and text
-	focused_workspace #fcfbf9 #477a7b #fcfbf9
-	active_workspace #fcfbf9 #fcfbf9 #605a52
-	inactive_workspace #fcfbf9 #fcfbf9 #605a52
-	urgent_workspace #fcfbf9 #8f5652 #fcfbf9
+	focused_workspace #eff1f5 #179299 #eff1f5
+	active_workspace #eff1f5 #eff1f5 #4c4f69
+	inactive_workspace #eff1f5 #eff1f5 #4c4f69
+	urgent_workspace #eff1f5 #d20f39 #eff1f5
 	}
 }
 
 ### colour of border, background, text, indicator, and child_border
-client.focused #8f5652 #9e9a95 #605a52 #83577d #556995
-client.focused_inactive #9e9a95 #d8af60 #605a52 #9e9a95 #9e9a95
-client.unfocused #9e9a95 #d8af60 #605a52 #9e9a95 #9e9a95
-client.urgent #9e9a95 #d8af60 #605a52 #9e9a95 #9e9a95
-client.placeholder #9e9a95 #d8af60 #605a52 #9e9a95 #9e9a95
-client.background #9e9a95
+client.focused #d20f39 #ccd0da #4c4f69 #ea76cb #1e66f5
+client.focused_inactive #ccd0da #df8e1d #4c4f69 #ccd0da #ccd0da
+client.unfocused #ccd0da #df8e1d #4c4f69 #ccd0da #ccd0da
+client.urgent #ccd0da #df8e1d #4c4f69 #ccd0da #ccd0da
+client.placeholder #ccd0da #df8e1d #4c4f69 #ccd0da #ccd0da
+client.background #ccd0da
 
 ### window rules, you can find the window class using xprop
 for_window [class=Eog|eog|Eom|eom|Sxiv|sxiv|Nsxiv|nsxiv|Feh|feh|\
@@ -158,3 +158,4 @@ for_window [class=".*"] border pixel 8
 hide_edge_borders smart
 gaps inner 8
 smart_gaps on
+
