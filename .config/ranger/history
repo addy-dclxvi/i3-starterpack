@@ -1,23 +1,9 @@
-scout -ftsea i3
-scout -ftsea bl
-scout -ftsea doc
-shell git pull
-mkdir fonts
-mkdir conf.d
-touch README.md
-gitpush
-open_with geany f
-rename keylimepie-12.bdf
-scout -ftsea sc
-scout -ftsea mis
-rename cinnamonroll-12.bdf
 shell gitpush
 open_with 1 f
 rename preview-openbox.jpg
 rename preview-fluxbox.jpg
 rename fluxbox.jpg
 rename openbox.jpg
-
 scout -ftsea hu
 scout -ftsea 78
 rename i3
@@ -39,12 +25,26 @@ open_with vim
 search i3sta
 search .loca
 open_with mpv
-search ran
 search -
 scout -ftsea rea
 search ear
 search dco
-delete
-search conf
-search i3
 search down
+search vim
+search conf
+open_with pluma
+
+search i3
+search 3
+rename ranger_
+rename scope.sh
+open_with 
+bulkrename 
+search ran
+find 
+search rif
+rename rifle.conf__
+rename rifle.conf
+search ra
+delete
+search pix
