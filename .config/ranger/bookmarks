@@ -1,8 +1,7 @@
-c:/home/addy/.config
-o:/home/addy/.config/openbox
-a:/media/addy/Media/anime
-m:/media/addy/Media/movie
-t:/media/addy/Media/tv-series
-s:/media/addy/Media/musik
-i:/home/addy/.fonts
-':/
+':/run/media/user
+c:/home/user/.config
+i:/home/user/.config/i3
+a:/run/media/user/Toshiba/anime
+m:/run/media/user/Toshiba/movie
+t:/run/media/user/Toshiba/tv-series
+s:/run/media/user/Toshiba/music
