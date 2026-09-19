@@ -155,13 +155,12 @@ client.background $background
 
 ### window rules, you can find the window class using xprop
 for_window [class=Eog|eog|Eom|eom|Sxiv|sxiv|Nsxiv|nsxiv|Feh|feh|\
-Mpv|mpv|Vlc|vlc|File-roller|Xarchiver|Engrampa] floating enable
+Mpv|mpv|Vlc|vlc|File-roller|Xarchiver|Engrampa] floating enable\
+[floating] border normal 0
 for_window [class=Eog|eog|Eom|eom|Sxiv|sxiv|Nsxiv|nsxiv|Feh|feh|\
 Mpv|mpv|Vlc|vlc|File-roller|Xarchiver|Engrampa] focus
-#for_window [class=".*"] border pixel 8
 default_border pixel 8
 default_floating_border normal 0
 hide_edge_borders smart
 gaps inner 8
 smart_gaps on
-
