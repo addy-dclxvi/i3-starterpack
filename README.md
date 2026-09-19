@@ -1,3 +1,5 @@
+## Initital Commit 10 March 2018
+
 ## Introduction
 A simple guide (and example of configuration) to install i3 and its and essential packages and make them look eye candy, 
 or at least make them not ugly.
@@ -107,7 +109,8 @@ order += "time"
 You can remove or comment out the module You want to disable. <br />
 Then now You have to configure the variable. Don't forget to change both in *order* list and in function list. <br />
 
-**Update 2018 July** : And remember, i3status supports Pango Markup. Not many customization options, but still interesting.
+## Update 31 July 2018
+And remember, i3status supports Pango Markup. Not many customization options, but still interesting.
 Here is my current i3status customization (I remove the lines I don't use instead comment them out). <br />
 
 ```
@@ -497,3 +500,32 @@ The colorscheme is Earl Grey by June Kelly.
 **Tiling**
 
 The colorscheme is Catpuccin Latte by [Catpuccin Team](https://github.com/catppuccin).
+
+## Update 19 September 2026
+[vibrant](https://github.com/addy-dclxvi/i3-starterpack/tree/vibrant) branch
+
+![floating](https://github.com/addy-dclxvi/i3-starterpack/blob/vibrant/screenshots/floating.png) </br>
+**Floating** Now I add titlebar when the window is floating,
+it will  automatically disappear on tiling and fullscreen mode.
+
+![gimp](https://github.com/addy-dclxvi/i3-starterpack/blob/vibrant/screenshots/gimp.png) </br>
+**Full Screen** GIMP editing photo of my last travel at Tretes Wonosalam Waterfall
+
+![tiling](https://github.com/addy-dclxvi/i3-starterpack/blob/vibrant/screenshots/tiling.png) </br>
+**Tiling**
+
+![mpv](https://github.com/addy-dclxvi/i3-starterpack/blob/vibrant/screenshots/mpv.png) </br>
+**Full Screen & Floating**
+
+![dmenu](https://github.com/addy-dclxvi/i3-starterpack/blob/vibrant/screenshots/dmenu.png) </br>
+**dmenu** Start Menu
+
+Mate app settings (including mate-terminal) can be restored using
+`dconf load / < dconf.ini` command.
+
+A lot of things changed. Back to my own colorscheme and make it more readable,
+Add some scripts written in `fish` to make my life easier
+(like *screen_record, convert mkv_to_mp4, music downloader, colorscheme testing, modified ufetch,* etc.),
+changing ranger 'open-with' options, making colors in i3wm configurations more tidy
+(previously it's very messy'), hiding terminal apps from start menu,
+and many other things.
