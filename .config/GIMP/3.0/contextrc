@@ -1,0 +1,18 @@
+# GIMP user context
+
+(tool "gimp-gegl-tool")
+(paint-info "gimp-paintbrush")
+(foreground
+    (color "R'G'B'A double" 32 "\0\0\0\140\2\376\355\77\0\0\0\0\77\76\356\77\0\0\0\100\277\276\356\77\0\0\0\0\0\0\360\77" 0))
+(background
+    (color "R'G'B'A double" 32 "\0\0\0\100\336\334\354\77\0\0\0\200B\75\355\77\0\0\0\140\2\376\355\77\0\0\0\0\0\0\360\77" 0))
+(brush "2. Hardness 050")
+(dynamics "Pressure Size")
+(mybrush "Standard")
+(pattern "Pine")
+(gradient "FG to BG (RGB)")
+(palette "Color History")
+(font "Monospace")
+(tool-preset "Virtual core pointer")
+
+# end of user context

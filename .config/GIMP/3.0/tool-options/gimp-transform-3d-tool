@@ -1,0 +1,6 @@
+# GIMP gimp-transform-3d-tool options
+
+(background
+    (color "R'G'B'A double" 32 "\0\0\0\100\336\334\354\77\0\0\0\200B\75\355\77\0\0\0\140\2\376\355\77\0\0\0\0\0\0\360\77" 0))
+
+# end of gimp-transform-3d-tool options

@@ -2,7 +2,7 @@ general {
 	output_format = "i3bar"
 	colors = false
 	markup = pango
-	interval = 5
+	interval = 2
 }
 
 order += "load"
@@ -13,22 +13,22 @@ order += "battery 0"
 order += "time"
 
 load {
-	format = "<span background='#886a44'>  Load  </span><span background='#dddbd8'> <span foreground='#605a52'> %5min  </span></span>"
+	format = "<span foreground='#1a1a1a' background='#b08500'>  Load  </span><span background='#3d3d3d'>  %5min  </span>"
 }
 
 cpu_temperature 0 {
-	format = "<span background='#8f5652'>  Temp  </span><span background='#dddbd8'> <span foreground='#605a52'> %degrees °C  </span></span>"
+	format = "<span foreground='#1a1a1a' background='#d12f2c'>  Temp  </span><span background='#3d3d3d'>  %degrees °C  </span>"
 	path = "/sys/class/thermal/thermal_zone0/temp"
 }
 
 wireless _first_ {
-	format_up = "<span background='#477a7b'>  Wifi  </span><span background='#dddbd8'> <span foreground='#605a52'> %essid  </span></span>"
-	format_down = "<span background='#477a7b'>  Wifi  </span><span background='#dddbd8'> <span foreground='#605a52'> Off  </span></span>"
+	format_up = "<span foreground='#1a1a1a' background='#289c93'>  Wifi  </span><span background='#3d3d3d'>  %essid  </span>"
+	format_down = "<span foreground='#1a1a1a' background='#289c93'>  Wifi  </span><span background='#3d3d3d'>  Off  </span>"
 }
 
 volume master {
-	format = "<span background='#83577d'>  Vol  </span><span background='#dddbd8'> <span foreground='#605a52'> %volume  </span></span>"
-	format_muted = "<span background='#83577d'>  Muted  </span><span background='#dddbd8'> <span foreground='#605a52'> %volume  </span></span>"
+	format = "<span foreground='#1a1a1a' background='#696ebf'>  Vol  </span><span background='#3d3d3d'>  %volume  </span>"
+	format_muted = "<span foreground='#1a1a1a' background='#696ebf'>  Muted  </span><span background='#3d3d3d'>  %volume  </span>"
 	device = "default"
 	mixer = "Master"
 	mixer_idx = 0
@@ -36,7 +36,7 @@ volume master {
 
 battery 0 {
 	last_full_capacity = true
-	format = "<span background='#747b4d'>  %status  </span><span background='#dddbd8'> <span foreground='#605a52'> %percentage  </span></span>"
+	format = "<span foreground='#1a1a1a' background='#819400'>  %status  </span><span background='#3d3d3d'>  %percentage  </span>"
 	format_down = "No Battery"
 	status_chr = "Charging"
 	status_bat = "Battery"
@@ -45,9 +45,10 @@ battery 0 {
 	path = "/sys/class/power_supply/BAT%d/uevent"
 	low_threshold = 10
 	integer_battery_capacity = true
+	last_full_capacity = true
 }
 
 time {
-	format = "<span background='#556995'>  %a %e %b  </span><span background='#dddbd8'> <span foreground='#605a52'> at %H:%M  </span></span>"
+	format = "<span foreground='#1a1a1a' background='#2587cc'>  %a %e %b  </span><span background='#3d3d3d'>  at %H:%M  </span>"
 }
 

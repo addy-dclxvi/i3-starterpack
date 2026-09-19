@@ -1,50 +1,50 @@
-shell gitpush
-open_with 1 f
-rename preview-openbox.jpg
-rename preview-fluxbox.jpg
-rename fluxbox.jpg
-rename openbox.jpg
-scout -ftsea hu
-scout -ftsea 78
-rename i3
-rename i3status-rust
-rename config.toml
-rename 
-rename i3status
-rename config
-scout -ftsea b
-search .vim
-search .Xres
-open_with feh
-search stat
-search usr
-scout -ftsea sh
-scout -ftsea ap
-scout -ftsea xd
-open_with vim
-search i3sta
-search .loca
-open_with mpv
-search -
-scout -ftsea rea
-search ear
-search dco
-search down
-search vim
-search conf
-open_with pluma
-
-search i3
-search 3
-rename ranger_
-rename scope.sh
-open_with 
-bulkrename 
-search ran
-find 
 search rif
 rename rifle.conf__
 rename rifle.conf
-search ra
-delete
 search pix
+search gt
+search usr
+search share
+search app
+search vi
+search vim
+
+search 
+search doc
+search ru
+search me
+search vimr
+cd /
+search sy
+search pow
+rename color_bar.fish
+rename color_blocks.fish
+rename color_panes.fish
+rename font_test.fish
+rename lower_case.fish
+rename screen_record.fish
+search fish
+rename git_push_file_to_all.fish
+touch git_push_folder_to_all.fish
+open_with vim
+search i3
+search vimrc
+search ra
+search ri
+search xprofile
+rename .profile
+rename .xprofile
+search .vimrc
+search .co
+search fis
+touch git_commit
+rename git_commit.fish
+search lo
+rename vim.desktop
+rename fish.desktop
+touch README.md
+rename nvim.desktop
+rename urxvt.desktop
+delete
+rename uxterm.desktop
+search rc

@@ -46,6 +46,7 @@ set ignorecase
 set smartcase
 
 "shortcut in normal mode"
+let mapleader = " "
 nmap <C-S> :w<CR>
 nmap <C-_> :noh<CR>
 nmap <S-Left> v<Left>
@@ -88,10 +89,6 @@ imap <F4> <Esc>:q<CR>
 vmap <C-Up> 8k
 vmap <C-Down> 8j
 
-"force shortcut in insert mode"
-inoremap <C-Space> <C-N>
-inoremap <C-@> <C-Space>
-
 "autopair without autopair plugin"
 inoremap ( ()<Left>
 inoremap { {}<Left>
@@ -100,29 +97,127 @@ inoremap " ""<Left>
 inoremap ' ''<Left>
 
 "some useful command in command mode"
-command Shredcomment :g/^\(#\|$\)/d
-command Realtab :%s/    /\t/g
-command Reducespace :%s/  / /g
+command DeleteAllComment :g/^\(#\|$\)/d
+command ReplaceWithTab :%s/    /\t/g
+command ReduceSpace :%s/  / /g
+command LowerCaseColorHex :%s/#\x\{6\}/\L&/g
+command UpperCaseColorHex :%s/#\x\{6\}/\U&/g
+command WhiteSpaceCleanUp :%s/\s\+$//
+command StripTags :%s/<[^>]\+>//g
+command DeleteEmptyLines :g/^\s*$/d
+command AllLowerCase :%s/.*/\L&/g
+command NumberOn :set number
+command NumberOff :set nonumber
+command Reload :source $MYVIMRC
 
 "colorscheme without colorscheme plugin"
-hi linenr ctermfg=0
+
+"warning"
+"color 0 8 7 15 (black, lightgray, darkgray, white)
+"in the terminal colorscheme have to be different
+
+"main editor elements
+hi linenr ctermbg=NONE ctermfg=0 cterm=NONE
 hi cursorline ctermbg=NONE ctermfg=NONE cterm=NONE
 hi cursorlinenr ctermbg=NONE ctermfg=NONE cterm=NONE
-hi comment ctermfg=8
-hi pmenu ctermbg=0 ctermfg=NONE
-hi pmenusel ctermbg=4 ctermfg=0
-hi pmenusbar ctermbg=0
-hi pmenuthumb ctermbg=7
-hi matchparen ctermbg=0 ctermfg=NONE
-hi search ctermbg=0 ctermfg=NONE
-hi vertsplit ctermbg=0 ctermfg=0 cterm=NONE
+hi comment ctermbg=NONE ctermfg=8 cterm=NONE
+hi pmenu ctermbg=0 ctermfg=NONE cterm=NONE
+hi pmenusel ctermbg=4 ctermfg=0 cterm=NONE
+hi pmenusbar ctermbg=0 ctermfg=NONE cterm=NONE
+hi pmenuthumb ctermbg=7 ctermfg=NONE cterm=NONE
+hi matchparen ctermbg=0 ctermfg=NONE cterm=NONE
+hi search ctermbg=0 ctermfg=NONE cterm=NONE
+hi vertsplit ctermbg=0 ctermfg=NONE cterm=NONE
+hi vertsplitnc ctermbg=0 ctermfg=8 cterm=NONE
 hi tablinefill ctermbg=NONE ctermfg=NONE cterm=NONE
-hi tabline ctermbg=NONE ctermfg=0
-hi tablinesel ctermbg=6 ctermfg=7
-hi group1 ctermbg=NONE ctermfg=0
-hi group2 ctermbg=NONE ctermfg=0
+hi tabline ctermbg=0 ctermfg=7 cterm=NONE
+hi tablinesel ctermbg=2 ctermfg=7 cterm=NONE
+hi group1 ctermbg=NONE ctermfg=0 cterm=NONE
+hi group2 ctermbg=NONE ctermfg=0 cterm=NONE
 match group1 /\s\+$/
 match group2 /\t/
+
+"other editor elements
+hi nontext ctermbg=NONE ctermfg=0 cterm=NONE
+hi ignore ctermbg=NONE ctermfg=NONE cterm=NONE
+hi underlined ctermbg=NONE ctermfg=NONE cterm=underline
+hi bold ctermbg=NONE ctermfg=NONE cterm=bold
+hi italic ctermbg=NONE ctermfg=NONE cterm=italic
+hi title ctermbg=NONE ctermfg=4 cterm=bold
+hi cursor ctermbg=15 ctermfg=0 cterm=NONE
+hi cursorcolumn ctermbg=0 ctermfg=NONE cterm=NONE
+hi helpleadblank ctermbg=NONE ctermfg=NONE cterm=NONE
+hi helpnormal ctermbg=NONE ctermfg=NONE cterm=NONE
+hi visual ctermbg=8 ctermfg=15 cterm=bold
+hi visualnos ctermbg=8 ctermfg=15 cterm=bold
+hi foldcolumn ctermbg=NONE ctermfg=7 cterm=NONE
+hi folded ctermbg=NONE ctermfg=12 cterm=NONE
+hi wildmenu ctermbg=0 ctermfg=15 cterm=NONE
+hi specialkey ctermbg=NONE ctermfg=8 cterm=NONE
+hi incsearch ctermbg=1 ctermfg=0 cterm=NONE
+hi cursearch ctermbg=3 ctermfg=0 cterm=NONE
+hi directory ctermbg=NONE ctermfg=4 cterm=NONE
+hi spellbad ctermbg=NONE ctermfg=NONE cterm=undercurl
+hi spellcap ctermbg=NONE ctermfg=NONE cterm=undercurl
+hi spelllocal ctermbg=NONE ctermfg=NONE cterm=undercurl
+hi spellrare ctermbg=NONE ctermfg=NONE cterm=undercurl
+hi colorcolumn ctermbg=0 ctermfg=NONE cterm=NONE
+hi signcolumn ctermbg=NONE ctermfg=7 cterm=NONE
+hi modemsg ctermbg=15 ctermfg=0 cterm=bold
+hi moremsg ctermbg=NONE ctermfg=4 cterm=NONE
+hi question ctermbg=NONE ctermfg=4 cterm=NONE
+hi quickfixline ctermbg=0 ctermfg=14 cterm=NONE
+hi conceal ctermbg=0 ctermfg=8 cterm=NONE
+hi toolbarline ctermbg=0 ctermfg=15 cterm=NONE
+hi toolbarbutton ctermbg=8 ctermfg=15 cterm=NONE
+hi debugpc ctermbg=NONE ctermfg=7 cterm=NONE
+hi debugbreakpoint ctermbg=NONE ctermfg=8 cterm=NONE
+hi errormsg ctermbg=NONE ctermfg=7 cterm=bold,italic
+hi warningmsg ctermbg=NONE ctermfg=11 cterm=NONE
+hi diffadd ctermbg=10 ctermfg=0 cterm=NONE
+hi diffchange ctermbg=12 ctermfg=0 cterm=NONE
+hi diffdelete ctermbg=9 ctermfg=0 cterm=NONE
+hi difftext ctermbg=14 ctermfg=0 cterm=NONE
+hi diffadded ctermbg=NONE ctermfg=10 cterm=NONE
+hi diffremoved ctermbg=NONE ctermfg=9 cterm=NONE
+hi diffchanged ctermbg=NONE ctermfg=12 cterm=NONE
+hi diffoldfile ctermbg=NONE ctermfg=11 cterm=NONE
+hi diffnewfile ctermbg=NONE ctermfg=13 cterm=NONE
+hi difffile ctermbg=NONE ctermfg=12 cterm=NONE
+hi diffline ctermbg=NONE ctermfg=7 cterm=NONE
+hi diffindexline ctermbg=NONE ctermfg=14 cterm=NONE
+hi healtherror ctermbg=NONE ctermfg=1 cterm=NONE
+hi healthsuccess ctermbg=NONE ctermfg=2 cterm=NONE
+hi healthwarning ctermbg=NONE ctermfg=3 cterm=NONE
+
+"syntax
+hi constant ctermbg=NONE ctermfg=3 cterm=NONE
+hi error ctermbg=NONE ctermfg=1 cterm=NONE
+hi identifier ctermbg=NONE ctermfg=9 cterm=NONE
+hi function ctermbg=NONE ctermfg=4 cterm=NONE
+hi special ctermbg=NONE ctermfg=13 cterm=NONE
+hi statement ctermbg=NONE ctermfg=5 cterm=NONE
+hi string ctermbg=NONE ctermfg=2 cterm=NONE
+hi operator ctermbg=NONE ctermfg=6 cterm=NONE
+hi boolean ctermbg=NONE ctermfg=3 cterm=NONE
+hi label ctermbg=NONE ctermfg=14 cterm=NONE
+hi keyword ctermbg=NONE ctermfg=5 cterm=NONE
+hi exception ctermbg=NONE ctermfg=5 cterm=NONE
+hi conditional ctermbg=NONE ctermfg=5 cterm=NONE
+hi preproc ctermbg=NONE ctermfg=13 cterm=NONE
+hi include ctermbg=NONE ctermfg=5 cterm=NONE
+hi macro ctermbg=NONE ctermfg=5 cterm=NONE
+hi storageclass ctermbg=NONE ctermfg=11 cterm=NONE
+hi structure ctermbg=NONE ctermfg=11 cterm=NONE
+hi todo ctermbg=9 ctermfg=7 cterm=bold
+hi type ctermbg=NONE ctermfg=11 cterm=NONE
+
+"change to relative numbering when on visual mode
+augroup VisualRelNumber
+  autocmd!
+  autocmd ModeChanged *:[vV\x16]* setlocal relativenumber
+  autocmd ModeChanged [vV\x16]*:* setlocal norelativenumber
+augroup END
 
 "tab autocomplete without autocomplete plugin"
 inoremap <expr> <Tab> TabComplete()
@@ -179,7 +274,7 @@ hi user2 ctermbg=4 ctermfg=0
 hi user3 ctermbg=0 ctermfg=NONE
 hi user4 ctermbg=NONE ctermfg=NONE
 hi statusline ctermbg=0 ctermfg=NONE
-hi statuslinenc ctermbg=0 ctermfg=0
+hi statuslinenc ctermbg=0 ctermfg=8
 
 function! Changestatuslinecolor()
 if (mode() =~# '\v(n|no)')

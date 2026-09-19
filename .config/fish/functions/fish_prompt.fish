@@ -13,6 +13,17 @@ function fish_prompt
 	echo -n ' '
 	echo -n (prompt_pwd)
 	echo -n ' '
+	# Check if the is Git project in current directory
+	if git rev-parse --is-inside-work-tree >/dev/null 2>&1
+		set -l branch (git branch --show-current 2>/dev/null)
+		if test -n "$branch"
+			set_color --background=black
+			set_color white
+			echo -n ' '
+			echo -n "$branch"
+			echo -n ' '
+		end
+	end
 	set_color normal
 	echo -n ' '
 end
@@ -52,7 +63,6 @@ set fish_pager_color_progress cyan
 ## Aliases
 alias ls "ls --group-directories-first"
 alias lsl "ls --group-directories-first -lh"
-alias font-refresh "fc-cache -fv"
 alias clone "git clone --depth 1"
 alias merge "xrdb ~/.Xresources"
 alias search "zypper search"
@@ -64,7 +74,8 @@ alias upgrade "sudo zypper dup"
 alias remove "sudo zypper remove --clean-deps"
 alias poweroff "systemctl poweroff"
 alias reboot "systemctl reboot"
-alias localtime "sudo timedatectl set-local-rtc 1"
+alias local_time "sudo timedatectl set-local-rtc 1"
+alias font_refresh "fc-cache -fv"
 
 ## Keybinding
 set fish_key_bindings fish_default_key_bindings

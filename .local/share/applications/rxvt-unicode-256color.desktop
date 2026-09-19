@@ -1,0 +1,4 @@
+[Desktop Entry]
+Name=rxvt-unicode-256colors
+Exec=urxvt-256color
+NoDisplay=true

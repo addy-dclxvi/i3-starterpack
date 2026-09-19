@@ -1,0 +1,4 @@
+[Desktop Entry]
+Name=rxvt-unicode
+Exec=urxvt
+NoDisplay=true

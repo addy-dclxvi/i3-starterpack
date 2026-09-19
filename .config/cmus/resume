@@ -1,4 +1,7 @@
-status stopped
-view filters
-browser-dir /home/user/Music
+status playing
+file /run/media/user/Toshiba/music/Four Get Me A Nots/FOUR GET ME A NOTS - Dear Black.flac
+position 106
+lib_file /run/media/user/Toshiba/music/Four Get Me A Nots/FOUR GET ME A NOTS - Dear Black.flac
+view tree
+browser-dir /home/user
 marked-pl default

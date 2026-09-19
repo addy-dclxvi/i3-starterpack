@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=XTerm
+Exec=xterm
+NoDisplay=true
+
