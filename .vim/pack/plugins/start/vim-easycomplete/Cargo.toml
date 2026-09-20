@@ -1,0 +1,19 @@
+[package]
+name = "easycomplete_rust_speed"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+path = "lua/easycomplete/lib/speed.rs"
+crate-type = ["cdylib"]
+
+[dependencies]
+mlua = { version = "0.10.2", features = ["module", "luajit", "serialize"] }
+base64 = "0.22"
+unicode-segmentation = "1.10"
+sublime_fuzzy = "0.7.0"
+chrono = "0.4"
+serde = { version = "1.0", features = ["derive"] } # JSON 转换用
+serde_json = "1.0" # JSON 转换用
+
+

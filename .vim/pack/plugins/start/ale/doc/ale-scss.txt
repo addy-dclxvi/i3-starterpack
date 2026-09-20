@@ -1,0 +1,86 @@
+===============================================================================
+ALE SCSS Integration                                         *ale-scss-options*
+
+
+===============================================================================
+dprint                                                        *ale-scss-dprint*
+
+See |ale-dprint-options| and https://dprint.dev/plugins/malva/.
+
+
+===============================================================================
+prettier                                                    *ale-scss-prettier*
+
+See |ale-javascript-prettier| for information about the available options.
+
+
+===============================================================================
+sasslint                                                    *ale-scss-sasslint*
+
+                                         *ale-options.scss_sasslint_executable*
+                                               *g:ale_scss_sasslint_executable*
+                                               *b:ale_scss_sasslint_executable*
+scss_sasslint_executable
+g:ale_scss_sasslint_executable
+  Type: |String|
+  Default: `'sass-lint'`
+
+  See |ale-integrations-local-executables|
+
+                                            *ale-options.scss_sasslint_options*
+                                                  *g:ale_scss_sasslint_options*
+                                                  *b:ale_scss_sasslint_options*
+scss_sasslint_options
+g:ale_scss_sasslint_options
+  Type: |String|
+  Default: `''`
+
+  This variable can be set to pass additional options to sass-lint.
+
+                                         *ale-options.scss_sasslint_use_global*
+                                               *g:ale_scss_sasslint_use_global*
+                                               *b:ale_scss_sasslint_use_global*
+scss_sasslint_use_global
+g:ale_scss_sasslint_use_global
+  Type: |Number|
+  Default: `get(g:, 'ale_use_global_executables', 0)`
+
+  See |ale-integrations-local-executables|
+
+
+===============================================================================
+stylelint                                                  *ale-scss-stylelint*
+
+                                        *ale-options.scss_stylelint_executable*
+                                              *g:ale_scss_stylelint_executable*
+                                              *b:ale_scss_stylelint_executable*
+scss_stylelint_executable
+g:ale_scss_stylelint_executable
+  Type: |String|
+  Default: `'stylelint'`
+
+  See |ale-integrations-local-executables|
+
+                                           *ale-options.scss_stylelint_options*
+                                                 *g:ale_scss_stylelint_options*
+                                                 *b:ale_scss_stylelint_options*
+scss_stylelint_options
+g:ale_scss_stylelint_options
+  Type: |String|
+  Default: `''`
+
+  This variable can be set to pass additional options to stylelint.
+
+                                        *ale-options.scss_stylelint_use_global*
+                                              *g:ale_scss_stylelint_use_global*
+                                              *b:ale_scss_stylelint_use_global*
+scss_stylelint_use_global
+g:ale_scss_stylelint_use_global
+  Type: |String|
+  Default: `get(g:, 'ale_use_global_executables', 0)`
+
+  See |ale-integrations-local-executables|
+
+
+===============================================================================
+  vim:tw=78:ts=2:sts=2:sw=2:ft=help:norl:

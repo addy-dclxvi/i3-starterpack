@@ -1,0 +1,450 @@
+===============================================================================
+ALE Markdown Integration                                 *ale-markdown-options*
+
+
+===============================================================================
+cspell                                                    *ale-markdown-cspell*
+
+See |ale-cspell-options|
+
+
+===============================================================================
+dprint                                                    *ale-markdown-dprint*
+
+See |ale-dprint-options| and https://dprint.dev/plugins/markdown/.
+
+
+===============================================================================
+harper                                                    *ale-markdown-harper*
+
+                                           *ale-options.markdown_harper_config*
+                                                  *g:ale_markdown_harper_config*
+                                                  *b:ale_markdown_harper_config*
+markdown_harper_config
+g:ale_markdown_harper_config
+  Type: |Dictionary|
+  Default: `{'harper-ls': {'diagnosticSeverity': 'hint', 'dialect': 'American', ...}}`
+
+  Dictionary passed to harper-ls as LSP workspace configuration. The default
+  enables spell check, sentence capitalization, repeated words, long
+  sentences, a/an errors, and spacing rules, and disables spelled-out numbers
+  and wrong-quote checks.
+
+  Example: >
+    let g:ale_markdown_harper_config = {
+    \   'harper-ls': {
+    \       'diagnosticSeverity': 'warning',
+    \       'linters': {
+    \           'SpellCheck': v:true,
+    \           'LongSentences': v:false,
+    \       },
+    \   },
+    \}
+<
+
+
+===============================================================================
+markdownlint-cli                                *ale-markdown-markdownlint-cli*
+                                                    *ale-markdown-markdownlint*
+
+  https://github.com/igorshubovych/markdownlint-cli
+
+  The linter name is `markdownlint_cli`. `markdownlint` and
+  `markdownlint-cli` are aliases. The fixer name is `markdownlint-cli`;
+  `markdownlint` is an alias.
+
+                                 *ale-options.markdown_markdownlint_executable*
+                                       *g:ale_markdown_markdownlint_executable*
+                                       *b:ale_markdown_markdownlint_executable*
+markdown_markdownlint_executable
+g:ale_markdown_markdownlint_executable
+  Type: |String|
+  Default: `'markdownlint'`
+
+  Override the `markdownlint-cli` executable used by the linter.
+
+                                    *ale-options.markdown_markdownlint_options*
+                                          *g:ale_markdown_markdownlint_options*
+                                          *b:ale_markdown_markdownlint_options*
+markdown_markdownlint_options
+g:ale_markdown_markdownlint_options
+  Type: |String|
+  Default: `''`
+
+  This variable can be set to pass additional linter options to
+  `markdownlint-cli`.
+
+                                          *ale-options.markdownlint_executable*
+                                                *g:ale_markdownlint_executable*
+                                                *b:ale_markdownlint_executable*
+markdownlint_executable
+g:ale_markdownlint_executable
+  Type: |String|
+  Default: `'markdownlint'`
+
+  Override the `markdownlint-cli` executable used by the fixer.
+
+                                             *ale-options.markdownlint_options*
+                                                   *g:ale_markdownlint_options*
+                                                   *b:ale_markdownlint_options*
+markdownlint_options
+g:ale_markdownlint_options
+  Type: |String|
+  Default: `''`
+
+  This variable can be set to pass additional fixer options to
+  `markdownlint-cli`. ALE always adds the required `--fix` option.
+
+
+===============================================================================
+markdownlint-cli2                              *ale-markdown-markdownlint-cli2*
+
+  https://github.com/DavidAnson/markdownlint-cli2
+
+  The linter name is `markdownlint_cli2`, with `markdownlint-cli2` as an
+  alias. The fixer name is `markdownlint-cli2`.
+
+                            *ale-options.markdown_markdownlint_cli2_executable*
+                                  *g:ale_markdown_markdownlint_cli2_executable*
+                                  *b:ale_markdown_markdownlint_cli2_executable*
+markdown_markdownlint_cli2_executable
+g:ale_markdown_markdownlint_cli2_executable
+  Type: |String|
+  Default: `'markdownlint-cli2'`
+
+  Override the `markdownlint-cli2` executable used by the linter.
+
+                               *ale-options.markdown_markdownlint_cli2_options*
+                                     *g:ale_markdown_markdownlint_cli2_options*
+                                     *b:ale_markdown_markdownlint_cli2_options*
+markdown_markdownlint_cli2_options
+g:ale_markdown_markdownlint_cli2_options
+  Type: |String|
+  Default: `''`
+
+  This variable can be set to pass additional linter options to
+  `markdownlint-cli2`.
+
+                                     *ale-options.markdownlint_cli2_executable*
+                                           *g:ale_markdownlint_cli2_executable*
+                                           *b:ale_markdownlint_cli2_executable*
+markdownlint_cli2_executable
+g:ale_markdownlint_cli2_executable
+  Type: |String|
+  Default: `'markdownlint-cli2'`
+
+  Override the `markdownlint-cli2` executable used by the fixer.
+
+                                        *ale-options.markdownlint_cli2_options*
+                                              *g:ale_markdownlint_cli2_options*
+                                              *b:ale_markdownlint_cli2_options*
+markdownlint_cli2_options
+g:ale_markdownlint_cli2_options
+  Type: |String|
+  Default: `''`
+
+  This variable can be set to pass additional fixer options to
+  `markdownlint-cli2`. ALE always adds the required `--fix` option.
+
+
+===============================================================================
+marksman                                                *ale-markdown-marksman*
+
+                                     *ale-options.markdown_marksman_executable*
+                                           *g:ale_markdown_marksman_executable*
+                                           *b:ale_markdown_marksman_executable*
+markdown_marksman_executable
+g:ale_markdown_marksman_executable
+  Type: |String|
+  Default: `'marksman'`
+
+  Override the invoked `marksman` binary.
+
+
+===============================================================================
+mdformat                                                *ale-markdown-mdformat*
+
+                                      *ale-options.markdown_mdformat_executable*
+                                            *g:ale_markdown_mdformat_executable*
+                                            *b:ale_markdown_mdformat_executable*
+markdown_mdformat_executable
+g:ale_markdown_mdformat_executable
+  Type: |String|
+  Default: `'mdformat'`
+
+  See |ale-integrations-local-executables|
+
+  Set this to `'pipenv'` to invoke `pipenv run mdformat`.
+  Set this to `'poetry'` to invoke `poetry run mdformat`.
+  Set this to `'uv'` to invoke `uv run mdformat`.
+
+                                         *ale-options.markdown_mdformat_options*
+                                               *g:ale_markdown_mdformat_options*
+                                               *b:ale_markdown_mdformat_options*
+markdown_mdformat_options
+g:ale_markdown_mdformat_options
+  Type: |String|
+  Default: `''`
+
+  This variable can be changed to add command-line arguments to mdformat.
+
+                                      *ale-options.markdown_mdformat_use_global*
+                                            *g:ale_markdown_mdformat_use_global*
+                                            *b:ale_markdown_mdformat_use_global*
+markdown_mdformat_use_global
+g:ale_markdown_mdformat_use_global
+  Type: |Number|
+  Default: `get(g:, 'ale_use_global_executables', 0)`
+
+  See |ale-integrations-local-executables|
+
+                                     *ale-options.markdown_mdformat_auto_pipenv*
+                                           *g:ale_markdown_mdformat_auto_pipenv*
+                                           *b:ale_markdown_mdformat_auto_pipenv*
+markdown_mdformat_auto_pipenv
+g:ale_markdown_mdformat_auto_pipenv
+  Type: |Number|
+  Default: `0`
+
+  Detect whether the file is inside a pipenv, and set the executable to
+  `pipenv` if true. This is overridden by a manually-set executable.
+
+                                     *ale-options.markdown_mdformat_auto_poetry*
+                                           *g:ale_markdown_mdformat_auto_poetry*
+                                           *b:ale_markdown_mdformat_auto_poetry*
+markdown_mdformat_auto_poetry
+g:ale_markdown_mdformat_auto_poetry
+  Type: |Number|
+  Default: `0`
+
+  Detect whether the file is inside a Poetry project, and set the executable
+  to `poetry` if true. This is overridden by a manually-set executable.
+
+                                         *ale-options.markdown_mdformat_auto_uv*
+                                               *g:ale_markdown_mdformat_auto_uv*
+                                               *b:ale_markdown_mdformat_auto_uv*
+markdown_mdformat_auto_uv
+g:ale_markdown_mdformat_auto_uv
+  Type: |Number|
+  Default: `0`
+
+  Detect whether the file is inside a uv project, and set the executable to
+  `uv` if true. This is overridden by a manually-set executable.
+
+
+===============================================================================
+mdl                                                          *ale-markdown-mdl*
+
+                                          *ale-options.markdown_mdl_executable*
+                                                *g:ale_markdown_mdl_executable*
+                                                *b:ale_markdown_mdl_executable*
+markdown_mdl_executable
+g:ale_markdown_mdl_executable
+  Type: |String|
+  Default: `'mdl'`
+
+  Override the invoked mdl binary. This is useful for running mdl from
+  binstubs or a bundle.
+
+                                             *ale-options.markdown_mdl_options*
+                                                   *g:ale_markdown_mdl_options*
+                                                   *b:ale_markdown_mdl_options*
+markdown_mdl_options
+g:ale_markdown_mdl_options
+  Type: |String|
+  Default: `''`
+
+  This variable can be set to pass additional options to mdl.
+
+
+===============================================================================
+pandoc                                                    *ale-markdown-pandoc*
+
+                                       *ale-options.markdown_pandoc_executable*
+                                             *g:ale_markdown_pandoc_executable*
+                                             *b:ale_markdown_pandoc_executable*
+markdown_pandoc_executable
+g:ale_markdown_pandoc_executable
+  Type: |String|
+  Default: `'pandoc'`
+
+  This variable can be set to specify where to find the pandoc executable
+
+                                          *ale-options.markdown_pandoc_options*
+                                                *g:ale_markdown_pandoc_options*
+                                                *b:ale_markdown_pandoc_options*
+markdown_pandoc_options
+g:ale_markdown_pandoc_options
+  Type: |String|
+  Default: `'-f gfm -t gfm -s -'`
+
+  This variable can be set to change the default options passed to pandoc
+
+
+===============================================================================
+prettier                                                *ale-markdown-prettier*
+
+See |ale-javascript-prettier| for information about the available options.
+
+
+===============================================================================
+pymarkdown                                            *ale-markdown-pymarkdown*
+
+pymarkdown can be used both as a linter and a fixer for Markdown files.
+
+                                   *ale-options.markdown_pymarkdown_executable*
+                                         *g:ale_markdown_pymarkdown_executable*
+                                         *b:ale_markdown_pymarkdown_executable*
+markdown_pymarkdown_executable
+g:ale_markdown_pymarkdown_executable
+  Type: |String|
+  Default: `'pymarkdown'`
+
+  See |ale-integrations-local-executables|
+
+  Set this to `'pipenv'` to invoke `'pipenv` `run` `pymarkdown'`.
+  Set this to `'poetry'` to invoke `'poetry` `run` `pymarkdown'`.
+
+                                      *ale-options.markdown_pymarkdown_options*
+                                            *g:ale_markdown_pymarkdown_options*
+                                            *b:ale_markdown_pymarkdown_options*
+markdown_pymarkdown_options
+g:ale_markdown_pymarkdown_options
+  Type: |String|
+  Default: `''`
+
+  This variable can be changed to add command-line arguments to the
+  pymarkdown invocation.
+
+                                   *ale-options.markdown_pymarkdown_use_global*
+                                         *g:ale_markdown_pymarkdown_use_global*
+                                         *b:ale_markdown_pymarkdown_use_global*
+markdown_pymarkdown_use_global
+g:ale_markdown_pymarkdown_use_global
+  Type: |Number|
+  Default: `get(g:, 'ale_use_global_executables', 0)`
+
+  See |ale-integrations-local-executables|
+
+                                  *ale-options.markdown_pymarkdown_auto_pipenv*
+                                        *g:ale_markdown_pymarkdown_auto_pipenv*
+                                        *b:ale_markdown_pymarkdown_auto_pipenv*
+markdown_pymarkdown_auto_pipenv
+g:ale_markdown_pymarkdown_auto_pipenv
+  Type: |Number|
+  Default: `0`
+
+  Detect whether the file is inside a pipenv, and set the executable to `pipenv`
+  if true. This is overridden by a manually-set executable.
+
+                                  *ale-options.markdown_pymarkdown_auto_poetry*
+                                        *g:ale_markdown_pymarkdown_auto_poetry*
+                                        *b:ale_markdown_pymarkdown_auto_poetry*
+markdown_pymarkdown_auto_poetry
+g:ale_markdown_pymarkdown_auto_poetry
+  Type: |Number|
+  Default: `0`
+
+  Detect whether the file is inside a poetry, and set the executable to `poetry`
+  if true. This is overridden by a manually-set executable.
+
+                                      *ale-options.markdown_pymarkdown_auto_uv*
+                                            *g:ale_markdown_pymarkdown_auto_uv*
+                                            *b:ale_markdown_pymarkdown_auto_uv*
+markdown_pymarkdown_auto_uv
+g:ale_markdown_pymarkdown_auto_uv
+  Type: |Number|
+  Default: `0`
+
+  Set the executable to `uv` if true. This is overridden by a manually-set
+  executable.
+
+
+===============================================================================
+remark-lint                                          *ale-markdown-remark-lint*
+
+                                  *ale-options.markdown_remark_lint_executable*
+                                        *g:ale_markdown_remark_lint_executable*
+                                        *b:ale_markdown_remark_lint_executable*
+markdown_remark_lint_executable
+g:ale_markdown_remark_lint_executable
+  Type: |String|
+  Default: `'remark'`
+
+  See |ale-integrations-local-executables|
+
+                                     *ale-options.markdown_remark_lint_options*
+                                           *g:ale_markdown_remark_lint_options*
+                                           *b:ale_markdown_remark_lint_options*
+markdown_remark_lint_options
+g:ale_markdown_remark_lint_options
+  Type: |String|
+  Default: `''`
+
+  This variable can be set to pass additional options to remark-lint.
+
+                                  *ale-options.markdown_remark_lint_use_global*
+                                        *g:ale_markdown_remark_lint_use_global*
+                                        *b:ale_markdown_remark_lint_use_global*
+markdown_remark_lint_use_global
+g:ale_markdown_remark_lint_use_global
+  Type: |Number|
+  Default: `get(g:, 'ale_use_global_executables', 0)`
+
+  See |ale-integrations-local-executables|
+
+
+===============================================================================
+rumdl                                                      *ale-markdown-rumdl*
+
+                                        *ale-options.markdown_rumdl_executable*
+                                              *g:ale_markdown_rumdl_executable*
+                                              *b:ale_markdown_rumdl_executable*
+markdown_rumdl_executable
+g:ale_markdown_rumdl_executable
+  Type: |String|
+  Default: `'rumdl'`
+
+  Override the invoked `rumdl` binary.
+
+                                           *ale-options.markdown_rumdl_options*
+                                                 *g:ale_markdown_rumdl_options*
+                                                 *b:ale_markdown_rumdl_options*
+markdown_rumdl_options
+g:ale_markdown_rumdl_options
+  Type: |String|
+  Default: `''`
+
+  This variable can be set to pass additional options to `rumdl server`.
+
+                                       *ale-options.markdown_rumdl_fmt_options*
+                                             *g:ale_markdown_rumdl_fmt_options*
+                                             *b:ale_markdown_rumdl_fmt_options*
+markdown_rumdl_fmt_options
+g:ale_markdown_rumdl_fmt_options
+  Type: |String|
+  Default: `'--silent'`
+
+  This variable can be set to pass additional options to `rumdl fmt`.
+
+
+===============================================================================
+textlint                                                *ale-markdown-textlint*
+
+See |ale-text-textlint|
+
+
+===============================================================================
+write-good                                            *ale-markdown-write-good*
+
+See |ale-write-good-options|
+
+
+===============================================================================
+redpen                                                    *ale-markdown-redpen*
+
+See |ale-redpen-options|
+
+
+===============================================================================
+  vim:tw=78:ts=2:sts=2:sw=2:ft=help:norl:

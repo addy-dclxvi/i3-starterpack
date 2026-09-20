@@ -18,7 +18,7 @@ set $white #858585
 font pango: Space Grotesk Regular 8
 
 ### autostart
-exec --no-startup-id xsetroot -solid '#7f00ff'
+exec --no-startup-id xsetroot -solid '$magenta'
 exec --no-startup-id /usr/libexec/polkit-mate-authentication-agent-1 &
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=pkcs11 &
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets &
@@ -31,8 +31,8 @@ bindsym $super+Return exec --no-startup-id i3-sensible-terminal
 
 ### start dmenu (a program launcher)
 bindsym $super+d exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i \
--fn 'Space Grotesk:size=9' -nb '$background' -nf '$foreground' \
--sb '$blue' -sf '$foreground'"
+-fn 'Space Grotesk Regular:size=8' -nb '$background' -nf '$foreground' \
+-sb '$magenta' -sf '$foreground'"
 
 ### use mouse + super to drag floating windows to their wanted position
 ### use mouse + super + right click to resize the window
@@ -40,7 +40,7 @@ floating_modifier $super
 
 ### common apps keybinds
 bindsym Print exec --no-startup-id mate-screenshot
-bindsym $super+l exec --no-startup-id i3lock -c '#7f00ff'
+bindsym $super+l exec --no-startup-id i3lock -c '$magenta'
 bindsym $super+w exec --no-startup-id xdg-open about:home
 bindsym $super+e exec --no-startup-id xdg-open ~
 
@@ -75,7 +75,7 @@ bindsym $super+f fullscreen toggle
 
 ### toggle tiling / floating
 bindsym $super+space floating toggle;\
-[floating] border normal 0; [tiling] border pixel 8
+[floating] border normal 4; [tiling] border pixel 8
 
 ### switch to workspace
 bindsym $super+Control+Right workspace next
@@ -155,12 +155,13 @@ client.background $background
 
 ### window rules, you can find the window class using xprop
 for_window [class=Eog|eog|Eom|eom|Sxiv|sxiv|Nsxiv|nsxiv|Feh|feh|\
-Mpv|mpv|Vlc|vlc|File-roller|Xarchiver|Engrampa] floating enable\
-[floating] border normal 0
+Mpv|mpv|Vlc|vlc|File-roller|Xarchiver|Engrampa] floating enable
 for_window [class=Eog|eog|Eom|eom|Sxiv|sxiv|Nsxiv|nsxiv|Feh|feh|\
 Mpv|mpv|Vlc|vlc|File-roller|Xarchiver|Engrampa] focus
+#for_window [class=".*"] border pixel 8
 default_border pixel 8
-default_floating_border normal 0
+default_floating_border normal 4
 hide_edge_borders smart
-gaps inner 8
+gaps inner 16
 smart_gaps on
+

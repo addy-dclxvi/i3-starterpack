@@ -1,0 +1,193 @@
+===============================================================================
+ALE Perl Integration                                         *ale-perl-options*
+
+ALE offers a few ways to check Perl code. Checking code with `perl` is
+disabled by default, as `perl` code cannot be checked without executing it.
+Specifically, we use the `-c` flag to see if `perl` code compiles. This does
+not execute all of the code in a file, but it does run `BEGIN` and `CHECK`
+blocks. See `perl --help` and https://stackoverflow.com/a/12908487/406224
+
+See |g:ale_linters|.
+
+
+===============================================================================
+perl                                                            *ale-perl-perl*
+
+                                             *ale-options.perl_perl_executable*
+                                                   *g:ale_perl_perl_executable*
+                                                   *b:ale_perl_perl_executable*
+perl_perl_executable
+g:ale_perl_perl_executable
+  Type: |String|
+  Default: `'perl'`
+
+  This variable can be changed to modify the executable used for linting perl.
+
+                                                *ale-options.perl_perl_options*
+                                                      *g:ale_perl_perl_options*
+                                                      *b:ale_perl_perl_options*
+perl_perl_options
+g:ale_perl_perl_options
+  Type: |String|
+  Default: `'-c -Mwarnings -Ilib'`
+
+  This variable can be changed to alter the command-line arguments to the perl
+  invocation.
+
+
+===============================================================================
+perl language server                                  *ale-perl-languageserver*
+
+perl_perl_executable
+g:ale_perl_perl_executable
+  Type: |String|
+  Default: `'perl'`
+
+  The language server will use the same variable as |ale-perl-perl| to launch
+  the perl executable with the Perl::LanguageServer module.
+
+                                       *ale-options.perl_languageserver_config*
+                                             *g:ale_perl_languageserver_config*
+                                             *b:ale_perl_languageserver_config*
+perl_languageserver_config
+g:ale_perl_languageserver_config
+  Type: |Dictionary|
+  Default: `'{}'`
+
+  This variable can be changed to customize the lsp_config (sent as a
+  workspace/didChangeConfiguration command).
+  For example: >
+
+  let g:ale_perl_languageserver_config = {
+  \   'perl': {
+  \       'fileFilter': [''],
+  \       'logLevel': 2,
+  \       'logFile': '/tmp/plls-log.txt',
+  \       'perlInc': ['/usr/share/perl5/', '/usr/local/share/perl5/' ],
+  \   },
+  \}
+<
+  For all available options and explanations, visit
+  https://metacpan.org/pod/Perl::LanguageServer#Extension-Settings
+
+===============================================================================
+perlcritic                                                *ale-perl-perlcritic*
+
+                                       *ale-options.perl_perlcritic_executable*
+                                             *g:ale_perl_perlcritic_executable*
+                                             *b:ale_perl_perlcritic_executable*
+perl_perlcritic_executable
+g:ale_perl_perlcritic_executable
+  Type: |String|
+  Default: `'perlcritic'`
+
+  This variable can be changed to modify the perlcritic executable used for
+  linting perl.
+
+                                          *ale-options.perl_perlcritic_profile*
+                                                *g:ale_perl_perlcritic_profile*
+                                                *b:ale_perl_perlcritic_profile*
+perl_perlcritic_profile
+g:ale_perl_perlcritic_profile
+  Type: |String|
+  Default: `'.perlcriticrc'`
+
+  This variable can be changed to modify the perlcritic profile used for
+  linting perl.  The current directory is checked for the file, then the
+  parent directory, etc, until it finds one.  If no matching file is found, no
+  profile is passed to perlcritic.
+
+  Set to an empty string to disable passing a specific profile to perlcritic
+  with the `'--profile'` option.
+
+  To prevent perlcritic from using any profile, set this variable to an empty
+  string and pass `'--no-profile'`to perlcritic via the
+  |g:ale_perl_perlcritic_options| variable.
+
+                                          *ale-options.perl_perlcritic_options*
+                                                *g:ale_perl_perlcritic_options*
+                                                *b:ale_perl_perlcritic_options*
+perl_perlcritic_options
+g:ale_perl_perlcritic_options
+  Type: |String|
+  Default: `''`
+
+  This variable can be changed to supply additional command-line arguments to
+  the perlcritic invocation.
+
+                                        *ale-options.perl_perlcritic_showrules*
+                                              *g:ale_perl_perlcritic_showrules*
+perl_perlcritic_showrules
+g:ale_perl_perlcritic_showrules
+  Type: |Number|
+  Default: `0`
+
+  Controls whether perlcritic rule names are shown after the error message.
+  Defaults to off to reduce length of message.
+
+
+
+===============================================================================
+perlnavigator                                          *ale-perl-perlnavigator*
+
+                                    *ale-options.perl_perlnavigator_executable*
+                                          *g:ale_perl_perlnavigator_executable*
+                                          *b:ale_perl_perlnavigator_executable*
+perl_perlnavigator_executable
+g:ale_perl_perlnavigator_executable
+  Type: |String|
+  Default: `'perlnavigator'`
+
+  This variable can be changed to modify the perlnavigator executable used for
+  linting perl.
+
+                                        *ale-options.perl_perlnavigator_config*
+                                              *g:ale_perl_perlnavigator_config*
+                                              *b:ale_perl_perlnavigator_config*
+perl_perlnavigator_config
+g:ale_perl_perlnavigator_config
+  Type: |Dictionary|
+  Default: `'{}'`
+
+  This variable can be changed to customize the lsp_config (sent as a
+  workspace/didChangeConfiguration command) for perlnavigator.
+  For example: >
+
+  let g:ale_perl_perlnavigator_config = {
+  \   'perlnavigator': {
+  \       'enableWarnings': 1,
+  \       'includePaths': [ $HOME . '/MyPerlStuff/lib', '/tmp/tmp.7qSgUo34e' ],
+  \       'perlEnvAdd': 1,
+  \       'perlEnv': {
+  \           'PERL_DL_NONLAZY': 1,
+  \       },
+  \       'perlPath': substitute(g:ale_perl_perl_executable, '/perl$', '', ''),
+  \       'perlcriticEnabled': 1,
+  \       'perlcriticProfile': '$workspaceFolder/.perlcriticrc',
+  \       'perltidyProfile': '$workspaceFolder/.perltidyrc',
+  \       'perlcriticSeverity': 2,
+  \   },
+  \ }
+  \}
+
+<
+  For all available options and explanations, visit
+  https://github.com/bscan/PerlNavigator?tab=readme-ov-file
+
+===============================================================================
+perltidy                                                    *ale-perl-perltidy*
+
+                                            *ale-options.perl_perltidy_options*
+                                                  *g:ale_perl_perltidy_options*
+                                                  *b:ale_perl_perltidy_options*
+perl_perltidy_options
+g:ale_perl_perltidy_options
+  Type: |String|
+  Default: `''`
+
+  This variable can be changed to alter the command-line arguments to
+  the perltidy invocation.
+
+
+===============================================================================
+  vim:tw=78:ts=2:sts=2:sw=2:ft=help:norl:

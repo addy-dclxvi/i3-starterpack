@@ -61,8 +61,10 @@ set fish_pager_color_prefix cyan
 set fish_pager_color_progress cyan
 
 ## Aliases
-alias ls "ls --group-directories-first"
-alias lsl "ls --group-directories-first -lh"
+alias ls "ls --group-directories-first --color \
+--human-readable --size --sort=name -v"
+alias lsl "ls --group-directories-first --color \
+--human-readable --size --sort=name -l -v"
 alias clone "git clone --depth 1"
 alias merge "xrdb ~/.Xresources"
 alias search "zypper search"
@@ -79,3 +81,6 @@ alias font_refresh "fc-cache -fv"
 
 ## Keybinding
 set fish_key_bindings fish_default_key_bindings
+
+## Make sure the prompt do not appear in the middle
+clear

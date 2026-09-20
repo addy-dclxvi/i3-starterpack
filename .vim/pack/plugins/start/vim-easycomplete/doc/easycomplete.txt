@@ -1,0 +1,353 @@
+*easycomplete.txt*		Vim-EasyComplete Plugin
+
+			Copyright (c) 2020-2026 @Jayli
+	More Info: https://github.com/jayli/vim-easycomplete
+
+EasyComplete                                                     *easycomplete*
+
+===============================================================================
+
+Introduction
+
+Vim-easycomplete is a fast and minimalism style completion plugin for vim/nvim.
+The goal is to work everywhere out of the box. It requires pure VimScript. It's
+also super simple to configure. Especially, You don’t have to install Node and
+a bunch of Node modules unless you’re a js/ts programmer.
+
+Vim-Easycomplete is easy to install and use. It contains these features:
+
+- Keywords/path support
+- Implemented based on pure vimscript
+- Snippet support.
+- Fast performance
+- AI coding assistant via [tabnine](#TabNine-Support).
+- cmdline completion support
+
+==============================================================================
+
+Requirements
+
+Neovim >= 0.7.0 or Vim >= 8.2
+
+===============================================================================
+
+Installation
+
+Easycomplete requires Vim 8.2 and higher version with MacOS/Linux/FreeBSD.
+For neovim users, 0.7.0 and upper version is required (Of course, latest is
+recommended).
+
+Sample Useages
+
+Lua config with Packer.nvim:>
+
+  -- lua
+  use { 'jayli/vim-easycomplete', requires = {'L3MON4D3/LuaSnip'}}
+  -- For snippet support, 'SirVer/ultisnips' is an alternative option
+  -- Tabnine aicoding support, default is 1
+  -- You should install tabnine first by ":InstallLspServer tabnine"
+  vim.g.easycomplete_tabnine_enable = 1
+  -- Tabnine coding suggestion, default is 0
+  vim.g.easycomplete_tabnine_suggestion = 0
+  -- Using nerdfont for lsp icons, default is 0
+  vim.g.easycomplete_nerd_font = 1
+  -- Add window border for pum, default is 1 (for nvim 0.11 or higher)
+  vim.g.easycomplete_winborder = 1
+  -- Pmenu format, default is {"abbr", "kind", "menu"}
+  vim.g.easycomplete_pum_format = {"kind", "abbr", "menu"}
+  -- Useful keymap
+  vim.keymap.set('n', 'gr', ':EasyCompleteReference<CR>')
+  vim.keymap.set('n', 'gd', ':EasyCompleteGotoDefinition<CR>')
+  vim.keymap.set('n', 'rn', ':EasyCompleteRename<CR>')
+  -- Plugin has already bind shift-k to `:EasyCompleteHover`
+  -- vim.keymap.set('n', 'gh', ':EasyCompleteHover<CR>')
+  vim.keymap.set('n', 'gb', ':BackToOriginalBuffer<CR>')
+
+  -- cmdline completion
+  vim.g.easycomplete_cmdline = 1
+
+  -- close pum keymap
+  -- vim.keymap.set('i', '<C-M>', '<Plug>EasycompleteClosePum')
+
+  -- Select next/previous pum items Keymap
+  -- vim.g.easycomplete_tab_trigger = "<C-J>"
+  -- vim.g.easycomplete_shift_tab_trigger = "<C-K>"
+
+  -- Redefine CR action
+  -- vim.g.easycomplete_use_default_cr = 0
+  -- vim.keymap.set('i', '<C-L>', '<Plug>EasycompleteCR')
+<
+
+Run `:PackerInstall`
+
+Lua style setup with `require("easycomplete").setup()`:>
+
+  -- lua style setup
+  -- `tabnine_enable = 0` alias `vim.g.easycomplete_tabnine_enable = 0`
+  require("easycomplete").setup({
+      cmdline = 1,
+      pum_noselect = 0,
+      tabnine_enable = 0,
+      nerd_font = 1,
+      enable = 1,
+      winborder = 1,
+      ghost_text = 1,
+      menu_abbr = 0,
+      pum_format = {"abbr", "kind", "menu"}
+    })
+<
+
+Configuration
+
+- `Tab`/`S-Tab`: select next/previous matched items.
+- `Ctrl-]`: definition jumping
+- `Ctrl-t`: jumping back (Same as tags jumping).
+- `Ctrl-N`/`Shift-Ctrl-N`: jump to the next/previous diagnostic position.
+- `Ctrl-E`: close complete menu.
+
+Other optional configurations:
+
+- `set updatetime=150` (lua: `vim.opt.updatetime = 150`) is highly recommended.
+- Menu noselected by default: `setlocal completeopt+=noselect`
+(lua: `vim.cmd('setlocal completeopt+=noselect')`)
+
+===============================================================================
+
+Configuration
+
+The plugin is out of box and config nothing. Use `Tab` to trigger the completion
+suggestions and select matched items. By default use `Ctrl-]` for definition
+jumping, `Ctrl-t` for jumping back (Same as tags jumping).
+
+Example configuration with lua: >
+
+  -- Highlight the symbol when holding the cursor if you need it
+  vim.g.easycomplete_cursor_word_hl = 1
+  -- Using nerdfont is highly recommended
+  vim.g.easycomplete_nerd_font = 1
+
+  -- GoTo code navigation
+  vim.keymap.set('n', 'gr', ':EasyCompleteReference<CR>')
+  vim.keymap.set('n', 'gd', ':EasyCompleteGotoDefinition<CR>')
+  vim.keymap.set('n', 'rn', ':EasyCompleteRename<CR>')
+  vim.keymap.set('n', 'gb', ':BackToOriginalBuffer<CR>')
+<
+Typing `:h easycomplete` for help.
+
+All commands:
+
+| Command                           | Description                                         |
+|-----------------------------------|-----------------------------------------------------|
+| `:EasyCompleteInstallServer`      | Install LSP server for current fileytpe             |
+| `:InstallLspServer`               | Same as `EasyCompleteInstallServer`                 |
+| `:EasyCompleteDisable`            | Disable EasyComplete                                |
+| `:EasyCompleteEnable`             | Enable EasyComplete                                 |
+| `:EasyCompleteGotoDefinition`     | Goto definition position                            |
+| `:EasyCompleteReference`          | Find references                                     |
+| `:EasyCompleteRename`             | Rename                                              |
+| `:EasyCompleteHover`              | Hover to get more information                       |
+| `:EasyCompleteCheck`              | Checking LSP server                                 |
+| `:EasyCompletePreviousDiagnostic` | Goto Previous diagnostic                            |
+| `:EasyCompleteNextDiagnostic`     | Goto Next diagnostic                                |
+| `:EasyCompleteProfileStart`       | Start record diagnostics message                    |
+| `:EasyCompleteProfileStop`        | Stop record diagnostics  message                    |
+| `:EasyCompleteLint`               | Do diagnostic                                       |
+| `:LintEasyComplete`               | Do diagnostic                                       |
+| `:BackToOriginalBuffer`           | Return to the position before the reference jump    |
+| `:DenoCache`                      | Do Deno Cache for downloading modules               |
+| `:CleanLog`                       | close quickfix window                               |
+
+Global configurations:
+
+| Global Configure                     | Default       | Description                                                   |
+|--------------------------------------|---------------|---------------------------------------------------------------|
+| `g:easycomplete_nerd_font`           | 0             | Using nerdfont for lsp icons                                  |
+| `g:easycomplete_menu_skin`           | `{}`          | Menu skin.                                                    |
+| `g:easycomplete_sign_text`           | `{}`          | Sign icons.                                                   |
+| `g:easycomplete_lsp_type_font`       | ...           | lsp icons configuration                                       |
+| `g:easycomplete_tabnine_suggestion`  | 0             | Tabnine inline suggestion(for nvim only)                      |
+| `g:easycomplete_lsp_checking`        | 1             | Check whether the lsp is installed while opening a file       |
+| `g:easycomplete_tabnine_enable`      | 1             | Enable Tabnine                                                |
+| `g:easycomplete_path_enable`         | 1             | Path complete                                                 |
+| `g:easycomplete_tabnine_config`      | `{}`          | [TabNine Configuration](#ai-coding-via-tabnine-support)       |
+| `g:easycomplete_filetypes`           | `{}`          | [Custom filetyps configuration](#language-support)            |
+| `g:easycomplete_enable`              | 1             | Enable this plugin                                            |
+| `g:easycomplete_tab_trigger`         | `<Tab>`       | Use tab to trigger completion and select next item            |
+| `g:easycomplete_shift_tab_trigger`   | `<S-Tab>`     | Use s-tab to select previous item                             |
+| `g:easycomplete_cursor_word_hl`      | 0             | Highlight the symbol when holding the cursor                  |
+| `g:easycomplete_signature_offset`    | 0             | Signature offset                                              |
+| `g:easycomplete_diagnostics_next`    | `<C-N>`       | Goto next diagnostic position                                 |
+| `g:easycomplete_diagnostics_prev`    | `<S-C-n>`     | Goto previous diagnostic position                             |
+| `g:easycomplete_diagnostics_enable`  | 1             | Enable diagnostics                                            |
+| `g:easycomplete_signature_enable`    | 1             | Enable signature                                              |
+| `g:easycomplete_diagnostics_hover`   | 1             | Gives a diagnostic prompt when the cursor holds               |
+| `g:easycomplete_winborder`           | 1             | Add window border for pum (for nvim 0.11 or higher)           |
+| `g:easycomplete_ghost_text`          | 1             | Ghost text                                                    |
+| `g:easycomplete_pum_maxheight`       | 20            | Pum window max height                                         |
+| `g:easycomplete_pum_format`          | `["abbr", "kind", "menu"]`| Pmenu format                                      |
+| `g:easycomplete_menu_abbr`           | 0             | Show abbr(shortname) at pum `menu` position, or show fullname |
+| `g:easycomplete_custom_snippet`      | `""`          | Custom snippets path                                          |
+| `g:easycomplete_use_default_cr`      | 1             | enable or disable default cr action                           |
+| `g:easycomplete_pum_pretty_style`    | 1             | Adjust the pum style with border automatically                |
+| `g:easycomplete_cmdline`             | 1             | Commandline complete                                          |
+| `g:easycomplete_pum_maxlength`       | 35            | Max length of mathing word in pum list                        |
+| `g:easycomplete_pum_noselect`        | `&cot =~ "noselect"` | Autoselect first matched item or not. Same as `set &completeopt+=noselect` |
+
+===============================================================================
+
+Language Support
+
+There are tow ways to install lsp server.
+
+1. vim/nvim: Via command`:InstallLspServer`.
+2. nvim: Via [mason.nvim](https://github.com/mason-org/mason.nvim), Do>
+
+  :MasonInstall {lsp-server-name}
+<
+
+LSP Server will all be installed in local path: `~/.config/vim-easycomplete/servers`.
+
+`InstallLspServer` command: Both of the following useage are ok:
+
+- `:InstallLspServer`
+- `:InstallLspServer lua`
+
+All supported languages:
+
+| Plugin Name | Languages | Language Server          | Installer          | Requirements | URL |
+|-------------|-----------|:------------------------:|:------------------:|:------------:|:---:|
+| path        | path      | No Need                  | Integrated         | None         |     |
+| buf         | buf & dict| No Need                  | Integrated         | None         |     |
+| snips       | Snippets  | ultisnips/LuaSnip        | Integrated         | python3/lua  |     |
+| ts          | js/ts     | tsserver                 | Yes                | node/npm     |     |
+| deno        | js/ts     | denols                   | Yes                | deno         |     |
+| tn          | TabNine   | TabNine                  | Yes                | None         |     |
+| vim         | Vim       | vimls                    | Yes                | node/npm     |     |
+| cpp         | C/C++/OC  | clangd                   | Yes                | None         |     |
+| css         | CSS       | cssls                    | Yes                | node/npm     |     |
+| html        | HTML      | html                     | Yes                | node/npm     |     |
+| yml         | YAML      | yamlls                   | Yes                | node/npm     |     |
+| xml         | Xml       | lemminx                  | Yes                | java/jdk     |     |
+| sh          | Bash      | bashls                   | Yes                | node/npm     |     |
+| json        | JSON      | json-languageserver      | Yes                | node/npm     |     |
+| php         | php       | intelephense             | Yes                | node/npm     |     |
+| dart        | dart      | dartls                   | Yes                | None         |     |
+| py          | Python    | pylsp                    | Yes                | python3/pip3 |     |
+| java        | Java      | jdtls                    | Yes                | java11/jdk   |     |
+| go          | Go        | gopls                    | Yes                | go           |     |
+| r           | R         | r-languageserver         | Yes                | R            |     |
+| rb          | Ruby      | solargraph               | Yes                | ruby/bundle  |     |
+| lua         | Lua       | `sumneko_lua`            | Yes                | Lua          |     |
+| nim         | Nim       | nimls                    | Yes                | nim/nimble   |     |
+| rust        | Rust      | `rust_analyzer`          | Yes                | None         |     |
+| kt          | Kotlin    | `kotlin_language_server` | Yes                | java/jdk     |     |
+| grvy        | Groovy    | groovyls                 | Yes                | java/jdk     |     |
+| cmake       | cmake     | cmake                    | Yes                | python3/pip3 |     |
+| c#          | C#        | omnisharp-lsp            | Yes                | None         |     |
+| zig         | zig       | zls                      | Yes                | zig          |     |
+| docker      | docker    |dockerfile-language-server| Mason              | node/npm     |[easycomplete-docker](https://github.com/jayli/easycomplete-docker) |
+
+
+
+===============================================================================
+
+Language Support
+
+EasyComplete support keywords/dictionary/directory completion by default.
+
+Most Language require LSP Server. Install missing LSP Server with
+`:EasyCompleteInstallServer` for current filetype (recommended). LSP Server
+will be installed in `~/.config/vim-easycomplete/servers`. >
+
+  :InstallLspServer
+<
+Or you can install a lsp server with specified plugin name (not recommended).
+
+Take typescript/javascript for example: >
+
+  :InstallLspServer ts
+<
+All supported languages:
+
+| Plugin Name | Languages             | Language Server        | Installer |
+| ----------- | --------------------- | ---------------------- | --------- |
+| path        | path      suggestion  | No Need                | No Need   |
+| buf         | keywords & dictionary | No Need                | No Need   |
+| snips       | Snippets Support      | ultisnips/vim-snippets | No        |
+| ts          | JavaScript/TypeScript | tsserver               | Yes       |
+| deno        | JavaScript/TypeScript | deno                   | Yes       |
+| tn          | TabNine               | TabNine                | Yes       |
+| vim         | Vim                   | vim-language-server    | Yes       |
+| cpp         | C/C++                 | ccls                   | Yes       |
+| css         | CSS                   | css-languageserver     | Yes       |
+| html        | HTML                  | html-languageserver    | Yes       |
+| yml         | YAML                  | yaml-language-server   | Yes       |
+| xml         | Xml                   | lemminx                | Yes       |
+| sh          | Bash                  | bash-language-server   | Yes       |
+| json        | JSON                  | json-languageserver    | Yes       |
+| py          | Python                | pyls                   | Yes       |
+| java        | Java                  | eclipse-jdt-ls         | Yes       |
+| go          | Go                    | gopls                  | Yes       |
+| rb          | Ruby                  | solargraph             | Yes       |
+| lua         | Lua                   | emmylua-ls             | Yes       |
+| nim         | Nim                   | nimlsp                 | Yes       |
+| rust        | Rust                  | rust-analyzer          | Yes       |
+| kt          | Kotlin                | kotlin-language-server | Yes       |
+| grvy        | Groovy                | groovy-language-server | Yes       |
+| cmake       | cmake                 | cmake-language-server  | Yes       |
+| dart        | dart                  | analysis...-snapshot   | Yes       |
+| php         | php                   | intelephense           | Yes       |
+| cs          | C#                    | omnisharp-lsp          | Yes       |
+
+The snippet completion of Vim-EasyComplete relies on ultisnip or luasnip.
+They are both compatible with Vim-EasyComplete by simply place it in the dependent
+field. UltiSnips required python3 installed. You can use your own snippets path
+to replace the default snippets.
+
+vimscript>
+
+  " vim
+  let g:easycomplete_custom_snippet = "./path/to/your/snippets"
+<
+
+luascript>
+
+  -- lua
+  vim.g.easycomplete_custom_snippet = "./path/to/your/snippets"
+<
+
+You can alse add your own snippet directory to `&runtimepath`.
+
+[LuaSnip](https://github.com/L3MON4D3/LuaSnip) is better choice for nvim.
+
+Install TabNine language server: `InstallLspServer tabnine` or `InstallLspServer tn`
+
+Set `let g:easycomplete_tabnine_enable = 0` to disable TabNine. Config TabNine via
+`g:easycomplete_tabnine_config`, For example: >
+
+  let g:easycomplete_tabnine_config = {
+      \ 'line_limit': 1000,
+      \ 'max_num_result' : 3
+      \ }
+<
+
+- |line_limit|: The number of lines before and after the cursor to send to TabNine.
+  If the option is smaller, the performance may be improved. (default: 1000)
+- |max_num_result|: Max results from TabNine. (default: 10)
+
+By default, an API key is not required to use TabNine in vim-easycomplete. If you
+have a Tabnine's Pro API key or purchased a subscription license. To configure, you'll
+need to use the TabNine' magic string (https://www.tabnine.com/faq#special_commands).
+Type `Tabnine::config` in insert mode to open the configuration panel.
+
+===============================================================================
+
+	Get More Info: https://github.com/jayli/vim-easycomplete
+
+Help
+
+[WIP] If you have bug reports or feature suggestions, please use the issue tracker
+
+  https://github.com/jayli/vim-easycomplete/issues/new
+
+-EOF-

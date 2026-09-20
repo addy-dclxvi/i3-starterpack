@@ -1,33 +1,11 @@
-search rif
-rename rifle.conf__
-rename rifle.conf
-search pix
-search gt
-search usr
-search share
-search app
-search vi
-search vim
-
-search 
-search doc
-search ru
-search me
-search vimr
-cd /
-search sy
-search pow
 rename color_bar.fish
 rename color_blocks.fish
 rename color_panes.fish
 rename font_test.fish
 rename lower_case.fish
 rename screen_record.fish
-search fish
 rename git_push_file_to_all.fish
 touch git_push_folder_to_all.fish
-open_with vim
-search i3
 search vimrc
 search ra
 search ri
@@ -36,7 +14,6 @@ rename .profile
 rename .xprofile
 search .vimrc
 search .co
-search fis
 touch git_commit
 rename git_commit.fish
 search lo
@@ -48,3 +25,26 @@ rename urxvt.desktop
 delete
 rename uxterm.desktop
 search rc
+search re
+search fis
+search pr
+search fish
+touch init.lua
+search ini
+mkdir nvim
+open_with vim
+find nv
+rename init.vim_
+rename i3_bitmap
+rename i3status_bitmap
+search desk
+search .loca
+find sh
+find fo
+
+mkdir M+ 1p
+find .vimrc
+open_with nvim
+find fis
+find .xp
+search i3

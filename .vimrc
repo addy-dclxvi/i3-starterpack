@@ -1,7 +1,63 @@
+"shared plugin between vim and nvim
+set runtimepath^=~/.vim
+set runtimepath+=~/.vim/after
+set notermguicolors
+let &packpath = &runtimepath
+
+"ale
+let g:ale_fixers = {
+\'*': ['remove_trailing_lines', 'trim_whitespace'],
+\'fish': ['fish_indent'],
+\}
+
+"easycomplete
+let g:easycomplete_tabnine_enable = 0
+let g:easycomplete_tabnine_suggestion = 0
+let g:easycomplete_nerd_font = 0
+let g:easycomplete_winborder = 1
+let g:easycomplete_pum_format = ["kind", "abbr", "menu"]
+noremap gr :EasyCompleteReference<CR>
+noremap gd :EasyCompleteGotoDefinition<CR>
+noremap rn :EasyCompleteRename<CR>
+noremap gb :BackToOriginalBuffer<CR>
+let g:easycomplete_cmdline = 1
+set completeopt+=menuone,noselect,fuzzy
+set shortmess+=c
+set belloff+=ctrlg
+
+"ctrlp
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+"wilder.nvim
+call wilder#setup({'modes': [':', '/', '?']})
+let g:popup_renderer = wilder#popupmenu_renderer({
+\'highlighter': wilder#basic_highlighter(),
+\'left': [
+\' ', wilder#popupmenu_devicons(),
+\],
+\'right': [
+\' ', wilder#popupmenu_scrollbar(),
+\],
+\})
+call wilder#set_option('renderer', wilder#renderer_mux({
+\':': g:popup_renderer,
+\'/': g:popup_renderer,
+\}))
+
+"colorizer
+if !exists('g:current_t_co')
+let g:current_t_co = 16
+endif
+let &t_Co = g:current_t_co
+command! EnableColorizer let g:current_t_co = 256 |
+\let &t_Co = 256 | source $MYVIMRC | execute 'ColorHighlight'
+command! DisableColorizer execute 'ColorClear' |
+\let g:current_t_co = 16 | let &t_Co = 16 | source $MYVIMRC
+
 "display"
 noh
 syntax on
-set t_Co=16
 set background=dark
 set lazyredraw
 set encoding=utf-8
@@ -21,6 +77,7 @@ set showtabline=1
 set scrolloff=8
 set ruler
 set number
+set spelllang=en_us
 
 "behavior"
 filetype on
@@ -46,7 +103,6 @@ set ignorecase
 set smartcase
 
 "shortcut in normal mode"
-let mapleader = " "
 nmap <C-S> :w<CR>
 nmap <C-_> :noh<CR>
 nmap <S-Left> v<Left>
@@ -88,13 +144,6 @@ imap <F4> <Esc>:q<CR>
 "shortcut in visual mode"
 vmap <C-Up> 8k
 vmap <C-Down> 8j
-
-"autopair without autopair plugin"
-inoremap ( ()<Left>
-inoremap { {}<Left>
-inoremap [ []<Left>
-inoremap " ""<Left>
-inoremap ' ''<Left>
 
 "some useful command in command mode"
 command DeleteAllComment :g/^\(#\|$\)/d
@@ -214,72 +263,63 @@ hi type ctermbg=NONE ctermfg=11 cterm=NONE
 
 "change to relative numbering when on visual mode
 augroup VisualRelNumber
-  autocmd!
-  autocmd ModeChanged *:[vV\x16]* setlocal relativenumber
-  autocmd ModeChanged [vV\x16]*:* setlocal norelativenumber
+autocmd!
+autocmd ModeChanged *:[vV\x16]* setlocal relativenumber
+autocmd ModeChanged [vV\x16]*:* setlocal norelativenumber
 augroup END
 
-"tab autocomplete without autocomplete plugin"
-inoremap <expr> <Tab> TabComplete()
-fun! TabComplete()
-if getline('.')[col('.') - 2] =~ '\K' || pumvisible()
-return "\<C-P>"
-else
-return "\<Tab>"
-endif
-endfun
-set completeopt=menu,menuone,noinsert
-inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
-autocmd InsertCharPre * call AutoComplete()
-fun! AutoComplete()
-if v:char =~ '\K'
-\ && getline('.')[col('.') - 4] !~ '\K'
-\ && getline('.')[col('.') - 3] =~ '\K'
-\ && getline('.')[col('.') - 2] =~ '\K'
-\ && getline('.')[col('.') - 1] !~ '\K'
-call feedkeys("\<C-P>", 'n')
-end
-endfun
+"set linear (absolute) line numbers by default
+set norelativenumber
 
-set completeopt+=menuone
-set completeopt+=noselect
-set shortmess+=c
-set belloff+=ctrlg
+"function to turn on relative numbers safely
+function! StartOperator(op)
+set relativenumber
+augroup ToggleLineNumbers
+autocmd!
+"restore linear numbers as soon as the operator finishes or is canceled
+autocmd SafeState * set norelativenumber | autocmd! ToggleLineNumbers
+augroup END
+return a:op
+endfunction
+
+"map d and y cleanly
+nnoremap <expr> d StartOperator('d')
+nnoremap <expr> y StartOperator('y')
 
 "statusline without statusline plugin"
 let g:currentmode={
-\ 'n'  : 'Normal ',
-\ 'no' : 'N·Operator Pending ',
-\ 'v'  : 'Visual ',
-\ 'V'  : 'V·Line ',
-\ 'x22' : 'V·Block ',
-\ 's'  : 'Select ',
-\ 'S'  : 'S·Line ',
-\ 'x19' : 'S·Block ',
-\ 'i'  : 'Insert ',
-\ 'R'  : 'Replace ',
-\ 'Rv' : 'V·Replace ',
-\ 'c'  : 'Command ',
-\ 'cv' : 'Vim Ex ',
-\ 'ce' : 'Ex ',
-\ 'r'  : 'Prompt ',
-\ 'rm' : 'More ',
-\ 'r?' : 'Confirm ',
-\ '!'  : 'Shell ',
-\ 't'  : 'Terminal '
+\'n'  : 'Normal ',
+\'no' : 'N·Operator Pending ',
+\'v'  : 'Visual ',
+\'V'  : 'V·Line ',
+\"\<C-V>" : 'V·Block ',
+\'s'  : 'Select ',
+\'S'  : 'S·Line ',
+\"\<C-S>" : 'S·Block ',
+\'i'  : 'Insert ',
+\'R'  : 'Replace ',
+\'Rv' : 'V·Replace ',
+\'c'  : 'Command ',
+\'cv' : 'Vim Ex ',
+\'ce' : 'Ex ',
+\'r'  : 'Prompt ',
+\'rm' : 'More ',
+\'r?' : 'Confirm ',
+\'!'  : 'Shell ',
+\'t'  : 'Terminal '
 \}
 
 hi user1 ctermbg=1 ctermfg=0
-hi user2 ctermbg=4 ctermfg=0
+hi user2 ctermbg=4 ctermfg=NONE
 hi user3 ctermbg=0 ctermfg=NONE
 hi user4 ctermbg=NONE ctermfg=NONE
 hi statusline ctermbg=0 ctermfg=NONE
-hi statuslinenc ctermbg=0 ctermfg=8
+hi statuslinenc ctermbg=0 ctermfg=0
 
 function! Changestatuslinecolor()
 if (mode() =~# '\v(n|no)')
-exe 'hi! user1 ctermbg=1 ctermfg=0'
-elseif (mode() =~# '\v(v|V)' || g:currentmode[mode()] ==# 'Visual Block' || get(g:currentmode, mode(), '') ==# 't')
+exe 'hi! user1 ctermbg=1 ctermfg=NONE'
+elseif (mode() =~# '\v(v|V)' || mode() ==# "\<C-V>" || mode() ==# 't')
 exe 'hi! user1 ctermbg=5 ctermfg=0'
 elseif (mode() ==# 'i')
 exe 'hi! user1 ctermbg=2 ctermfg=0'
@@ -291,11 +331,18 @@ endif
 return ''
 endfunction
 
+augroup StatuslineUpdate
+autocmd!
+silent! autocmd InsertEnter,InsertLeave,CursorMoved,ModeChanged * 
+\call Changestatuslinecolor() | redrawstatus
+augroup END
+
 set statusline=
 set statusline+=%{Changestatuslinecolor()}
-set statusline+=%1*\ %{g:currentmode[mode()]}
+set statusline+=%1*\ %{get(g:currentmode,mode(),mode())}
 set statusline+=%3*\ %f\ %4*\ 
 set statusline+=%=\ 
 set statusline+=%3*\ %l\ of\ %L\ %2*\ 
 set statusline+=%2*%{&filetype}\ 
 set noshowmode
+

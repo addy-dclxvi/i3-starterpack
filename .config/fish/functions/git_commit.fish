@@ -24,27 +24,32 @@ function git_commit --description 'Check unpulled changes, stage, commit, and pu
 		return 1
 	end
 
-	# 4. Handle commit message fallback
-	set -l MSG "$argv"
-	if test -z "$MSG"
-		set MSG "Some updates"
+	# 4. Check if there are actually staged changes to commit
+	if not git diff --cached --quiet
+		# 5. Handle commit message fallback
+		set -l MSG "$argv"
+		if test -z "$MSG"
+			set MSG "Some updates"
+		end
+
+		# 6. Commit changes
+		git commit -m "$MSG"
+		if test $status -ne 0
+			echo "Error: 'git commit' failed."
+			return 1
+		end
+	else
+		echo (set_color yellow)"No new changes to commit (they may already be committed). Proceeding to push..."(set_color normal)
 	end
 
-	# 5. Commit changes
-	git commit -m "$MSG"
-	if test $status -ne 0
-		echo "Error: 'git commit' failed."
-		return 1
-	end
-
-	# 6. Get current branch name
+	# 7. Get current branch name
 	set -l CURRENT_BRANCH (git branch --show-current)
 
-	# 7. Interactive confirmation prompt
+	# 8. Interactive confirmation prompt
 	read -l -P "Do you want to push to origin/$CURRENT_BRANCH? [y/N]: " CONFIRM
 	switch $CONFIRM
 		case Y y yes YES
-			# 8. Push to remote with upstream fallback
+			# 9. Push to remote with upstream fallback
 			if test $HAS_UPSTREAM -ne 0
 				echo "No upstream branch found. Creating remote branch and tracking..."
 				git push --set-upstream origin "$CURRENT_BRANCH"
@@ -57,4 +62,3 @@ function git_commit --description 'Check unpulled changes, stage, commit, and pu
 			return 0
 	end
 end
-

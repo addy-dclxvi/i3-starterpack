@@ -1,0 +1,843 @@
+*ale-supported-languages-and-tools.txt*  For Vim version 8.0.
+*ale-supported-list*
+
+ALE Supported Languages and Tools
+
+===============================================================================
+
+The following languages and tools are supported by ALE.
+
+Notes:
+
+`^` No linters for text or Vim help filetypes are enabled by default.
+`!!` These linters check only files on disk. See |ale-lint-file-linters|
+
+* Ada
+  * `ada_language_server`
+  * `cspell`
+  * `gcc`
+  * `gnatpp`
+* Ansible
+  * `ansible-language-server`
+  * `ansible-lint`!!
+* API Blueprint
+  * `drafter`
+* APKBUILD
+  * `apkbuild-fixer`
+  * `apkbuild-lint`
+  * `secfixes-check`
+* AsciiDoc
+  * `alex`
+  * `cspell`
+  * `languagetool`!!
+  * `proselint`
+  * `redpen`
+  * `textlint`
+  * `vale`
+  * `write-good`
+* ASM
+  * `gcc`
+  * `llvm-mc`
+* Astro
+  * dprint
+  * `eslint`
+  * `prettier`
+* Autopkgtest (filetype autopkgtest)
+  * `debian-lsp`
+* AVRA
+  * `avra`
+* Awk
+  * `gawk`
+* Bash
+  * `bashate`
+  * `cspell`
+  * `language-server`
+  * `shell` (-n flag)
+  * `shellcheck`
+  * `shfmt`
+* Bats
+  * `shellcheck`
+* Bazel
+  * `buildifier`
+* BibTeX
+  * `bibclean`
+* Bicep
+  * `bicep`
+* Bindzone
+  * `checkzone` (named-checkzone)
+* BitBake
+  * `oelint-adv`
+* Bourne Shell
+  * `shell` (-n flag)
+  * `shellcheck`
+  * `shfmt`
+* C
+  * `astyle`
+  * `ccls`
+  * `clang` (`cc`)
+  * `clang-format`
+  * `clangcheck`!!
+  * `clangd`
+  * `clangtidy`!!
+  * `cppcheck`
+  * `cpplint`!!
+  * `cquery`
+  * `cspell`
+  * `flawfinder`
+  * `gcc` (`cc`)
+  * `uncrustify`
+* C#
+  * `clang-format`
+  * `csc`!!
+  * `cspell`
+  * `dotnet-format`
+  * dprint
+  * `mcs`
+  * `mcsc`!!
+  * `uncrustify`
+* C++ (filetype cpp)
+  * `astyle`
+  * `ccls`
+  * `clang` (`cc`)
+  * `clang-format`
+  * `clangcheck`!!
+  * `clangd`
+  * `clangtidy`!!
+  * `clazy`!!
+  * `cppcheck`
+  * `cpplint`!!
+  * `cquery`
+  * `cspell`
+  * `flawfinder`
+  * `gcc` (`cc`)
+  * `uncrustify`
+* C3
+  * `c3lsp`
+* Cairo
+  * `scarb`!!
+  * `starknet`
+* Chef
+  * `cookstyle`
+  * `foodcritic`!!
+* Clojure
+  * `clj-kondo`
+  * `cljfmt`
+  * `joker`
+* CloudFormation
+  * `cfn-python-lint`
+  * `checkov`
+* CMake
+  * `cmake-format`
+  * `cmake-lint`
+  * `cmakelint`
+* CoffeeScript
+  * `coffee`
+  * `coffeelint`
+* Crystal
+  * `ameba`!!
+  * `crystal`!!
+* CSS
+  * `VSCode CSS language server`
+  * `cspell`
+  * `css-beautify`
+  * `csslint`
+  * dprint
+  * `fecs`
+  * `prettier`
+  * `stylelint`
+* Cucumber
+  * `cucumber`
+* CUDA
+  * `clang-format`
+  * `clangd`
+  * `nvcc`!!
+* Cypher
+  * `cypher-lint`
+* Cython (pyrex filetype)
+  * `cython`
+* D
+  * `dfmt`
+  * `dls`
+  * `dmd`
+  * `uncrustify`
+* Dafny
+  * `dafny`!!
+* Dart
+  * `analysis_server`
+  * `dart-analyze`!!
+  * `dart-format`!!
+  * `dartfmt`!!
+  * `language_server`
+* Debian Changelog (filetype debchangelog)
+  * `debian-lsp`
+* Debian Control (filetype debcontrol)
+  * `debian-lsp`
+* Debian Copyright (filetype debcopyright)
+  * `debian-lsp`
+* Debian Sources (filetype debsources)
+  * `debian-lsp`
+* Debian Upstream Metadata (filetype debupstream)
+  * `debian-lsp`
+* Debian Watch (filetype debwatch)
+  * `debian-lsp`
+* desktop
+  * `desktop-file-validate`
+* Dhall
+  * `dhall-format`
+  * `dhall-freeze`
+  * `dhall-lint`
+* Dockerfile
+  * `dockerfile_lint`
+  * `dockerlinter`
+  * `dprint`
+  * `hadolint`
+* Elixir
+  * `credo`
+  * `cspell`
+  * `dialyxir`
+  * `dogma`!!
+  * `elixir-ls`
+  * `expert`
+  * `lexical`
+  * `mix`!!
+* Elm
+  * `elm-format`
+  * `elm-ls`
+  * `elm-make`
+* Erb
+  * `erb`
+  * `erb-formatter`
+  * `erblint`
+  * `erubi`
+  * `erubis`
+  * `htmlbeautifier`
+  * `ruumba`
+* Erlang
+  * `SyntaxErl`
+  * `dialyzer`!!
+  * `elvis`!!
+  * `erlang-mode` (The Erlang mode for Emacs)
+  * `erlang_ls`
+  * `erlc`
+  * `erlfmt`
+* Fish
+  * `fish` (-n flag)
+  * `fish_indent`
+* Fortran
+  * `fortitude`
+  * `gcc`
+  * `language_server`
+* Fountain
+  * `proselint`
+* FusionScript
+  * `fusion-lint`
+* Generic
+  * `ast-grep`
+* Git Commit Messages
+  * `gitlint`
+* Gleam
+  * `gleam_format`
+  * `gleamlsp`
+* GLSL
+  * `glslang`
+  * `glslls`
+* Go
+  * `bingo`
+  * `cspell`
+  * dprint
+  * `go build`!!
+  * `go mod`!!
+  * `go vet`!!
+  * `gofmt`
+  * `gofumpt`
+  * `goimports`
+  * `golangci-lint`!!
+  * `golangserver`
+  * `golines`
+  * `gopls`
+  * `gosimple`!!
+  * `gotype`!!
+  * `revive`!!
+  * `staticcheck`!!
+* Go HTML Templates
+  * djlint
+* GraphQL
+  * dprint
+  * `eslint`
+  * `gqlint`
+  * `prettier`
+* Groovy
+  * `npm-groovy-lint`
+* Hack
+  * `hack`
+  * `hackfmt`
+  * `hhast`
+* Haml
+  * `haml-lint`
+* Handlebars
+  * djlint
+  * `ember-template-lint`
+* Haskell
+  * `brittany`
+  * `cabal-ghc`
+  * `cspell`
+  * `floskell`
+  * `fourmolu`
+  * `ghc`
+  * `ghc-mod`
+  * `hdevtools`
+  * `hfmt`
+  * `hie`
+  * `hindent`
+  * `hlint`
+  * `hls`
+  * `ormolu`
+  * `stack-build`!!
+  * `stack-ghc`
+  * `stylish-haskell`
+* HCL
+  * `packer-fmt`
+  * `terraform-fmt`
+* HTML
+  * `VSCode HTML language server`
+  * `alex`
+  * `angular`
+  * `cspell`
+  * djlint
+  * dprint
+  * `eslint`
+  * `fecs`
+  * `html-beautify`
+  * `htmlhint`
+  * `prettier`
+  * `proselint`
+  * `rustywind`
+  * `superhtml`
+  * `tidy`
+  * `write-good`
+* HTML Angular
+  * djlint
+* HTML Django
+  * djlint
+* HTTP
+  * kulala_fmt
+* Hurl
+  * `hurlfmt`
+* Idris
+  * `idris`
+* Ink
+  * `ink-language-server`
+* Inko
+  * `inko` !!
+* ISPC
+  * `ispc`!!
+* Janet
+  * `janet-format`
+* Java
+  * `PMD`
+  * `checkstyle`!!
+  * `clang-format`
+  * `cspell`
+  * `eclipselsp`
+  * `google-java-format`
+  * `javac`
+  * `javalsp`
+  * `uncrustify`
+* JavaScript
+  * `biome`
+  * `clang-format`
+  * `cspell`
+  * `deno`
+  * `dprint`
+  * `eslint`
+  * `fecs`
+  * `flow`
+  * `jscs`
+  * `jshint`
+  * `prettier`
+  * `prettier-eslint`
+  * `prettier-standard`
+  * `standard`
+  * `tsserver`
+  * `xo`
+* Jinja
+  * djlint
+  * dprint
+  * j2lint
+* JSON
+  * `VSCode JSON language server`
+  * `biome`
+  * `clang-format`
+  * `cspell`
+  * `dprint`
+  * `eslint`
+  * `fixjson`
+  * `jq`
+  * `json.tool`
+  * `jsonlint`
+  * `prettier`
+  * `spectral`
+* JSON5
+  * `eslint`
+* JSONC
+  * `biome`
+  * `eslint`
+* Jsonnet
+  * `jsonnet-lint`
+  * `jsonnetfmt`
+* Julia
+  * `fatou`
+  * `languageserver`
+* Kotlin
+  * `kotlinc`!!
+  * `ktlint`
+  * `languageserver`
+* LaTeX (tex)
+  * `alex`
+  * `chktex`
+  * `cspell`
+  * `lacheck`
+  * `proselint`
+  * `redpen`
+  * `tex-fmt`
+  * `texlab`
+  * `textlint`
+  * `vale`
+  * `write-good`
+* Lean 4
+  * `lake`
+* Less
+  * dprint
+  * `lessc`
+  * `prettier`
+  * `stylelint`
+* LilyPond
+  * `lilypond`
+* LLVM
+  * `llc`
+* Lua
+  * `cspell`
+  * `lua-format`
+  * `lua-language-server`
+  * `luac`
+  * `luacheck`
+  * `luafmt`
+  * `selene`
+  * `stylua`
+* Mail
+  * `alex`
+  * `languagetool`!!
+  * `proselint`
+  * `vale`
+* Make
+  * `checkmake`
+* Markdown
+  * `alex`
+  * `cspell`
+  * dprint
+  * `harper`
+  * `languagetool`!!
+  * `markdownlint-cli`!!
+  * `markdownlint-cli2`!!
+  * `marksman`
+  * `mdformat`
+  * `mdl`
+  * `pandoc`
+  * `prettier`
+  * `proselint`
+  * `pymarkdown`
+  * `redpen`
+  * `remark-lint`
+  * `rumdl`
+  * `textlint`
+  * `vale`
+  * `write-good`
+* MATLAB
+  * `mlint`
+* Mercury
+  * `mmc`!!
+* Mustache
+  * dprint
+* NASM
+  * `nasm`!!
+* Nickel
+  * `nickel_format`
+* Nim
+  * `nim check`!!
+  * `nimlsp`
+  * `nimpretty`
+* nix
+  * `alejandra`
+  * `deadnix`
+  * `nix-instantiate`
+  * `nixfmt`
+  * `nixpkgs-fmt`
+  * `rnix-lsp`
+  * `statix`
+* nroff
+  * `alex`
+  * `proselint`
+  * `write-good`
+* Nunjucks
+  * djlint
+  * dprint
+* Objective-C
+  * `ccls`
+  * `clang`
+  * `clang-format`
+  * `clangd`
+  * `uncrustify`
+* Objective-C++
+  * `clang`
+  * `clangd`
+  * `uncrustify`
+* OCaml
+  * `dune`
+  * `merlin` (see |ale-ocaml-merlin|)
+  * `ocamlformat`
+  * `ocamllsp`
+  * `ocp-indent`
+  * `ols`
+* Odin
+  * `ols`
+* OpenApi
+  * `ibm_validator`
+  * `prettier`
+  * `yamllint`
+* OpenSCAD
+  * `SCA2D`
+  * `openscad-lsp`
+  * `scadformat`
+* Packer
+  * `packer-fmt-fixer`
+* Pascal
+  * `ptop`
+* Pawn
+  * `uncrustify`
+* Perl
+  * `languageserver`
+  * `perl -c`
+  * `perl-critic`
+  * `perlnavigator`
+  * `perltidy`
+* Perl6
+  * `perl6 -c`
+* PHP
+  * `cspell`
+  * dprint
+  * `intelephense`
+  * `langserver`
+  * `phan`
+  * `php -l`
+  * `php-cs-fixer`
+  * `phpactor`
+  * `phpcbf`
+  * `phpcs`
+  * `phpmd`
+  * `phpstan`
+  * `pint`
+  * `psalm`!!
+  * `tlint`
+* PO
+  * `alex`
+  * `msgfmt`
+  * `proselint`
+  * `write-good`
+* Pod
+  * `alex`
+  * `proselint`
+  * `write-good`
+* Pony
+  * `ponyc`
+* PowerShell
+  * `cspell`
+  * `powershell`
+  * `psscriptanalyzer`
+* Prolog
+  * `swipl`
+* proto
+  * `buf-format`!!
+  * `buf-lint`!!
+  * `clang-format`
+  * `protoc-gen-lint`!!
+  * `protolint`!!
+* Pug
+  * `pug-lint`
+* Puppet
+  * `languageserver`
+  * `puppet`
+  * `puppet-lint`
+* PureScript
+  * `purescript-language-server`
+  * `purs-tidy`
+  * `purty`
+* Python
+  * `autoflake`!!
+  * `autoimport`
+  * `autopep8`
+  * `bandit`
+  * `black`
+  * `cspell`
+  * dprint
+  * `flake8`
+  * `flakehell`
+  * `isort`
+  * `mypy`
+  * `prospector`!!
+  * `pycln`
+  * `pycodestyle`
+  * `pydocstyle`
+  * `pyflakes`
+  * `pyflyby`
+  * `pylama`!!
+  * `pylint`!!
+  * `pylsp`
+  * `pyre`
+  * `pyrefly`
+  * `pyright`
+  * `refurb`
+  * `reorder-python-imports`
+  * ruff
+  * ruff-format
+  * `ty`
+  * `unimport`
+  * `vulture`!!
+  * `yapf`
+* QML
+  * `qmlfmt`
+  * `qmllint`
+* R
+  * `languageserver`
+  * `lintr`
+  * `styler`
+* Racket
+  * `racket-langserver`
+  * `raco`
+  * `raco_fmt`
+* Re:VIEW
+  * `redpen`
+* ReasonML
+  * `merlin`
+  * `ols`
+  * `reason-language-server`
+  * `refmt`
+* Rego
+  * `cspell`
+  * `opacheck`
+  * `opafmt`
+* ReScript
+  * `rescript-language-server`
+  * `rescript_format`
+* REST
+  * kulala_fmt
+* reStructuredText
+  * `alex`
+  * `cspell`
+  * `proselint`
+  * `redpen`
+  * `rstcheck`
+  * `textlint`
+  * `vale`
+  * `write-good`
+* Robot
+  * `rflint`
+* Roc
+  * roc_annotate
+  * roc_format
+  * roc_language_server
+* RPM spec
+  * `rpmlint`
+* Ruby
+  * `brakeman`!!
+  * `cspell`
+  * `debride`
+  * `packwerk`!!
+  * `prettier`
+  * `rails_best_practices`!!
+  * `reek`
+  * `rubocop`
+  * `ruby`
+  * `rubyfmt`
+  * `rufo`
+  * `solargraph`
+  * `sorbet`
+  * `standardrb`
+  * `steep`
+  * `syntax_tree`
+* Rust
+  * `cargo`!!
+  * `cspell`
+  * `rls`
+  * `rust-analyzer`
+  * `rustc` (see |ale-integration-rust|)
+  * `rustfmt`
+* Salt
+  * `salt-lint`
+* Sass
+  * dprint
+  * `sass-lint`
+  * `stylelint`
+* Scala
+  * `cspell`
+  * `fsc`
+  * `metals`
+  * `sbtserver`
+  * `scalac`
+  * `scalafmt`
+  * `scalastyle`
+* SCSS
+  * dprint
+  * `prettier`
+  * `sass-lint`
+  * `scss-lint`
+  * `stylelint`
+* Slim
+  * `slim-lint`
+* SML
+  * `smlnj`
+* Solidity
+  * `forge`
+  * `solc`
+  * `solhint`
+  * `solium`
+* SQL
+  * `dprint`
+  * `pgformatter`
+  * `sql-lint`
+  * `sqlfluff`
+  * `sqlfmt`
+  * `sqlformat`
+  * `sqlint`
+* Stylus
+  * `stylelint`
+* SugarSS
+  * `stylelint`
+* Svelte
+  * dprint
+  * `prettier`
+  * `svelteserver`
+* Swift
+  * Apple `swift-format`
+  * `cspell`
+  * `sourcekit-lsp`
+  * `swiftformat`
+  * `swiftlint`
+* systemd
+  * `systemd-analyze`!!
+* Tcl
+  * `nagelfar`!!
+* Terraform
+  * `checkov`
+  * `terraform`
+  * `terraform-fmt-fixer`
+  * `terraform-ls`
+  * `terraform-lsp`
+  * `tflint`
+  * `tfsec`
+  * `trivy`
+* Texinfo
+  * `alex`
+  * `cspell`
+  * `proselint`
+  * `write-good`
+* Text^
+  * `alex`
+  * `cspell`
+  * `languagetool`!!
+  * `proselint`
+  * `redpen`
+  * `textlint`
+  * `vale`
+  * `write-good`
+* Thrift
+  * `thrift`
+  * `thriftcheck`
+* TOML
+  * `dprint`
+  * `tombi`
+* Twig
+  * `dprint`
+* TypeScript
+  * `biome`
+  * `cspell`
+  * `deno`
+  * `dprint`
+  * `eslint`
+  * `fecs`
+  * `prettier`
+  * `standard`
+  * `tslint`
+  * `tsserver`
+  * `typecheck`
+* Typst
+  * `typstyle`
+* V
+  * `v`!!
+  * `vfmt`
+* VALA
+  * `uncrustify`
+  * `vala_lint`!!
+* Vento
+  * `dprint`
+* Verilog
+  * `hdl-checker`
+  * `iverilog`
+  * slang
+  * `verible`
+  * `verilator`
+  * `vlog`
+  * `xvlog`
+  * `yosys`!!
+* VHDL
+  * `ghdl`
+  * `vcom`
+  * `xvhdl`
+* Vim
+  * `vimls`
+  * `vint`
+* Vim help^
+  * `alex`
+  * `proselint`
+  * `write-good`
+* Vue
+  * `cspell`
+  * `dprint`
+  * `prettier`
+  * `vls`
+  * `volar`
+* WGSL
+  * `naga`
+* XHTML
+  * `alex`
+  * `cspell`
+  * `proselint`
+  * `write-good`
+* XML
+  * `dprint`
+  * `xmllint`
+* YAML
+  * `actionlint`
+  * `circleci`!!
+  * `dprint`
+  * `gitlablint`
+  * `prettier`
+  * `spectral`
+  * `swaglint`
+  * `yaml-language-server`
+  * `yamlfix`
+  * `yamlfmt`
+  * `yamllint`
+  * `yq`
+* YANG
+  * `yang-lsp`
+* Yara
+  * `yls`
+* Zeek
+  * `zeek`!!
+* Zig
+  * `zigfmt`
+  * `zlint`
+  * `zls`
+
+===============================================================================
+  vim:tw=78:ts=2:sts=2:sw=2:ft=help:norl:
