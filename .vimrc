@@ -61,7 +61,7 @@ let g:clever_f_mark_direct = 0
 let g:clever_f_show_prompt = 1
 nmap <Esc> <Plug>(clever-f-reset)
 
-"display"
+"display
 noh
 syntax on
 set background=dark
@@ -85,7 +85,7 @@ set ruler
 set number
 set spelllang=en_us
 
-"behavior"
+"behavior
 filetype on
 filetype plugin on
 set nocompatible
@@ -93,7 +93,7 @@ set backspace=indent,eol,start
 set formatoptions=tqn1
 set magic
 
-"tabulation"
+"tabulation
 set copyindent
 set preserveindent
 set softtabstop=0
@@ -102,13 +102,13 @@ set tabstop=4
 set noexpandtab
 set noshiftround
 
-"searching"
+"searching
 set incsearch
 set hlsearch
 set ignorecase
 set smartcase
 
-"shortcut in normal mode"
+"shortcut in normal mode
 nmap <C-S> :w<CR>
 nmap <C-_> :noh<CR>
 nmap <S-Left> v<Left>
@@ -127,7 +127,7 @@ nmap <A-Up> :bnext<CR>
 nmap <A-Down> :bprevious<CR>
 nmap <F4> :q<CR>
 
-"shortcut in insert mode"
+"shortcut in insert mode
 imap <C-S> <Esc>:w<CR>a
 imap <C-_> <Esc>:noh<CR>a
 imap <S-Left> <Esc>lv<Left>
@@ -147,11 +147,11 @@ imap <A-Up> <Esc>:bnext<CR>a
 imap <A-Down> <Esc>:bprevious<CR>a
 imap <F4> <Esc>:q<CR>
 
-"shortcut in visual mode"
+"shortcut in visual mode
 vmap <C-Up> 8k
 vmap <C-Down> 8j
 
-"some useful command in command mode"
+"some useful command in command mode
 command DeleteAllComment :g/^\(#\|$\)/d
 command ReplaceWithTab :%s/    /\t/g
 command ReduceSpace :%s/  / /g
@@ -165,11 +165,11 @@ command NumberOn :set number
 command NumberOff :set nonumber
 command Reload :source $MYVIMRC
 
-"colorscheme without colorscheme plugin"
+"colorscheme without colorscheme plugin
 
-"warning"
+"warning
 "color 0 8 7 15 (black, lightgray, darkgray, white)
-"in the terminal colorscheme have to be different
+"have to be different in the terminal colorscheme
 
 "main editor elements
 hi linenr ctermbg=NONE ctermfg=0 cterm=NONE
@@ -292,7 +292,7 @@ endfunction
 nnoremap <expr> d StartOperator('d')
 nnoremap <expr> y StartOperator('y')
 
-"statusline without statusline plugin"
+"statusline without statusline plugin
 let g:currentmode={
 \'n'  : 'Normal ',
 \'no' : 'N·Operator Pending ',
