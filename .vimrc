@@ -55,6 +55,12 @@ command! EnableColorizer let g:current_t_co = 256 |
 command! DisableColorizer execute 'ColorClear' |
 \let g:current_t_co = 16 | let &t_Co = 16 | source $MYVIMRC
 
+"clever-f.vim
+let g:clever_f_ignore_case = 1
+let g:clever_f_mark_direct = 0
+let g:clever_f_show_prompt = 1
+nmap <Esc> <Plug>(clever-f-reset)
+
 "display"
 noh
 syntax on
