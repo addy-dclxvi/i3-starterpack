@@ -1,0 +1,18 @@
+# settings
+
+(saturation 1)
+(contrast 1.1000000000000001)
+(wideAngle 25)
+(lensBlur 3)
+(edgeBlur 12)
+(grain yes)
+(sharpness yes)
+(overExposure yes)
+(colorScheme "Neutral")
+(inversion "None")
+(vignetteSize 1.417)
+(dblVignette yes)
+(blackVignette yes)
+(blkVignette 1.417)
+
+# end of settings

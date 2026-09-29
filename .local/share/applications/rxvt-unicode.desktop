@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Rxvt Color Unicode Terminal
+Exec=urxvt
+NoDisplay=true
+Icon=urxvt_48x48.xpm

@@ -1,7 +1,6 @@
-':/run/media/user
+':/home/user/.config/fish/functions
 c:/home/user/.config
-i:/home/user/.config/i3
-a:/run/media/user/Toshiba/anime
-m:/run/media/user/Toshiba/movie
-t:/run/media/user/Toshiba/tv-series
-s:/run/media/user/Toshiba/music
+a:/media/user/Toshiba/anime
+m:/media/user/Toshiba/movie
+t:/media/user/Toshiba/tv-series
+s:/media/user/Toshiba/music

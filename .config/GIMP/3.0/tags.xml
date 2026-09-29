@@ -1,0 +1,1479 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<tags>
+
+  <resource identifier="${gimp_data_dir}/brushes/Round.vbr" checksum="a7f02530d3bc7484c8f9240cbe9c65b1">
+    <tag>round</tag>
+  </resource>
+
+  <resource identifier="${gimp_data_dir}/brushes/Round-Fuzzy.vbr" checksum="f8cb2466841104a55e42afce4568d103">
+    <tag>fuzzy</tag>
+    <tag>round</tag>
+  </resource>
+
+  <resource identifier="internal:gimp-brush-clipboard-image//Clipboard Image" checksum="157dcef48665ab465439cfaf10d6feeb">
+  </resource>
+
+  <resource identifier="internal:gimp-brush-clipboard-mask//Clipboard Mask" checksum="157dcef48665ab465439cfaf10d6feeb">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Basic/1-pixel.vbr//1. Pixel" checksum="c84494b4a904a7c1a3548e564b073ca3">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Basic/Block-01.vbr//2. Block 01" checksum="11dc53930c1fb124f5502d3e2dba4c8e">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Basic/Block-02.vbr//2. Block 02" checksum="23b547a4b3ac156c4efba20bbb91a662">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Basic/Block-03.vbr//2. Block 03" checksum="678860176ea362c2d3db787b8b0710fa">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Basic/Hardness-025.vbr//2. Hardness 025" checksum="24f599a94c72395b1733a8cf64bf4527">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Basic/Hardness-050.vbr//2. Hardness 050" checksum="22550538bb856626930902cb0c398f74">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Basic/Hardness-075.vbr//2. Hardness 075" checksum="c196ef1b139d8f2744e6519c7a220cf1">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Basic/Hardness-100.vbr//2. Hardness 100" checksum="22b8f688f7cd7d6139c56dfc33b14bfd">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Basic/Star.vbr//2. Star" checksum="fdd1163d5fdf7371df2dd7896e79231a">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Media/Acrylic-01.gih//Acrylic 01" checksum="9ec0779f4c84fb3d0844bcdb069c8e0a">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Media/Acrylic-02.gih//Acrylic 02" checksum="da0b21c73078882a59430ce68e8860b9">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Media/Acrylic-03.gih//Acrylic 03" checksum="46c0656093b556418dbcd24de48a2596">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Media/Acrylic-04.gih//Acrylic 04" checksum="11311bde958533f3b7ada598af5c6d46">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Media/Acrylic-05.gih//Acrylic 05 #2" checksum="50cfa85464d38b04c719770e045f4e3c">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Legacy/confetti.gih//Animated Confetti" checksum="d136b60fdd9cf41693a485a329b32e95">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Media/Bristles-01.gbr//Bristles 01" checksum="fdb59dabc3b9fc9716bd87cfe225ba3b">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Media/Bristles-02.gbr//Bristles 02" checksum="6432476cb5cb5b5642433465e23f7402">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Media/Bristles-03.gbr//Bristles 03" checksum="6162ce91b1218ec8f0f98bfab930d5bf">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Texture/Cell-01.gbr//Cell 01" checksum="4814485c0f5974fa193eb15f710c3d1c">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Texture/Cell-02.gbr//Cell 02" checksum="e5ce74dd25bdd3fc05ab8d930c6f9e44">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Sketch/Chalk-01.gih//Chalk 01" checksum="832186dc1b71adbcb2f1a6ba08ce302f">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Sketch/Chalk-02.gih//Chalk 02" checksum="27729bcad9c20129add5833bfcba2da8">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Sketch/Chalk-03.gih//Chalk 03" checksum="6d195118ceb4102d508eb3faedcf6dcc">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Sketch/Charcoal-01.gbr//Charcoal 01" checksum="1cd3f9664c688103f0b230299dcf6987">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Sketch/Charcoal-02.gbr//Charcoal 02" checksum="e77611c1661ab0d3bf4503d3238a5644">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Sketch/Charcoal-03.gih//Charcoal 03" checksum="2be01e62b00a1c1fdc13aa92a7a91a6a">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Legacy/confetti.gbr//Confetti" checksum="ba5a4759cb321b81e232bba3f33dce76">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Fun/GEGL-goat.gih//GEGL goat" checksum="7a80114d08663b04b3825b92db7e98c4">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Texture/Grass.gih//Grass" checksum="81d3c86640806e7ad40f5e0c93d941ef">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Splatters/Grunge-01.gih//Grunge 01" checksum="c9997d3cd91fccddfac507856b7dc17b">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Texture/Hatch-Pen-01.gbr//Hatch Pen 01" checksum="97bc16ea1390946dc8f2c626294af921">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Media/Oils-01.gbr//Oils 01" checksum="31ae0d62365e54402dcfe80784c6d691">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Media/Oils-02.gbr//Oils 02" checksum="21f2ec5f7d414a2f3fffa97752675f55">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Media/Oils-03.gbr//Oils 03" checksum="0128fe2fd4bdf5894c52c787f742b587">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Sketch/Pencil-01.gih//Pencil 01" checksum="775f1ee9e24fd5b71433472a5bf168ef">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Sketch/Pencil-02.gih//Pencil 02" checksum="1f5cae22c8f8d30e027ade099c69d34c">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Sketch/Pencil-03.gih//Pencil 03" checksum="60089770c393b8f84c0b1238b2d818cc">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Sketch/Pencil-Scratch.gbr//Pencil Scratch" checksum="4213a17b290fd39a5c6c72d75b1aa4ac">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Basic/pixel.gbr//Pixel (1x1 square)" checksum="ce0705096e61dc0645b2c13a122d8e8f">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Texture/Smoke.gbr//Smoke" checksum="eb1577def9f3a209b3457a9c99333dd9">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Splatters/Sparks-Hose.gih//Sparks" checksum="50faf43769ea9c6986fa38839e348b77">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Splatters/Splats-01.gih//Splats 01" checksum="5ce135cbb844ce745db15150c15acde9">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Splatters/Splats-02.gih//Splats 02" checksum="e2352e2b26137b13161a859209e89b95">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Splatters/Sponge-01.gbr//Sponge 01" checksum="355cc39ffe2d0fb382a51eb0a806f2bb">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Splatters/Sponge-02.gbr//Sponge 02" checksum="4c0798a6621eef155dc86a79fe5df810">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Texture/Stone-Work-01.gih//Stone Work 01" checksum="8f1a964051f81e166def5b00fce15e27">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Texture/Texture-01.gbr//Texture 01" checksum="6c41a55e3cfaf5dc03988f05be6106f8">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Texture/Texture-02.gbr//Texture 02" checksum="a2459f434c81d8eefeb063c005db9d80">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Texture/Texture-Hose-01.gih//Texture Hose 01" checksum="c36845a56879e601fbfeada31f5b414b">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Texture/Texture-Hose-02.gih//Texture Hose 02" checksum="bfd5be7b42a28d038930f1aef897320d">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Texture/Texture-Hose-03.gih//Texture Hose 03" checksum="d2818e2a9346edf7c76aeea5a215f5ca">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Texture/Vegetation-01.gbr//Vegetation 01" checksum="5f180b3d17ee11a9367489f2a597a451">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Texture/Vegetation-02.gih//Vegetation 02" checksum="6ce358a6a63479e729469f64bc77e361">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Legacy/vine.gih//Vine" checksum="3963e1de9cf5ead1f8cb6332b9351c6f">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Fun/Wilber.gih//Wilber" checksum="1525d51a45fc9c0fea1cc1a0bf4d5b2a">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/brushes/Fun/pepper.gbr//z Pepper" checksum="de818baf36685bdd260055a3e0204d57">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/dynamics/Basic-Dynamics.gdyn//Basic Dynamics" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/dynamics/Basic/Basic-Simple.gdyn//Basic Simple" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/dynamics/Color-From-Gradient.gdyn//Color From Gradient" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/dynamics/FX/Confetti.gdyn//Confetti" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/dynamics/Basic/Dynamics-Random.gdyn//Dynamics Random" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/dynamics/Fade-Tapering.gdyn//Fade Tapering" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/dynamics/Basic/Negative-Size-Pressure.gdyn//Negative Size Pressure" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/dynamics/Basic/Pen-Generic.gdyn//Pen Generic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/dynamics/Basic/Pencil-Generic.gdyn//Pencil Generic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/dynamics/Basic/Pencil-Shader.gdyn//Pencil Shader" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/dynamics/FX/Perspective.gdyn//Perspective" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/dynamics/Basic/Pressure-Opacity.gdyn//Pressure Opacity" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/dynamics/Basic/Pressure-Size.gdyn//Pressure Size" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/dynamics/Random-Color.gdyn//Random Color" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/dynamics/FX/Speed_Size_Opacity.gdyn//Speed Size Opacity" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/dynamics/Tilt-Angle.gdyn//Tilt Angle" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/dynamics/Track-Direction.gdyn//Track Direction" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/dynamics/Velocity-Tapering.gdyn//Velocity Tapering" checksum="(null)">
+  </resource>
+
+  <resource identifier="internal:gimp-pattern-clipboard-image//Clipboard Image" checksum="eff9598f9f61c1dc78d842f1798c2ab8">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Legacy/3dgreen.pat//3D Green" checksum="00052731f14a5bc614daece969b368bc">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Stone/amethyst.pat//Amethyst" checksum="ac004a0215ba837c01964226611635c0">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Legacy/blue.pat//Big Blue" checksum="9505c5e2df62d486dfd110eb08d9c022">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Legacy/bluegrid.pat//Blue Grid" checksum="3ae3c2b4b499381174ccf8a49b8c205f">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Legacy/bluesquares.pat//Blue Squares" checksum="6ae618f4f9833a1030fbf58c149c7241">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Legacy/blueweb.pat//Blue Web" checksum="b737ccf05a59c87cd120cc7a017224e7">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Stone/brick.pat//Bricks" checksum="1f241d71810da697b596525c50054ee7">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Fabric/burlap.pat//Burlap" checksum="6046ce5617773e56cbc602842cd55124">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Wood/burlwood.pat//Burlwood" checksum="3362a830595ec24c532d25fca6e82841">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Food/choc_swirl.pat//Chocolate Swirl" checksum="8f00b531d09279a0f7aa0c3208e26206">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Wood/corkboard.pat//Cork board" checksum="e0e344790d5425d5afe695b9b67b9a51">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Stone/cracked.pat//Crack" checksum="31e59d7417cb4ef2dddd53cf2e136b2d">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Stone/Craters.pat//Craters" checksum="6286edd005a095e1d20209bd8c63c130">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Paper/crinklepaper.pat//Crinkled Paper" checksum="b53d9e73d9c352e6cc4c94be921ba4d2">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Stone/ground1.pat//Dried mud" checksum="00f690561e89d65d4b1257f0823b9977">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Water/electric.pat//Electric Blue" checksum="c81aa3894d24289215497524598da855">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Legacy/fibers.pat//Fibers" checksum="2830a6fc5f66e85493efedb4d4c6a84c">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Stone/granite1.pat//Granite #1" checksum="c6220b4ee84951282053d96da7c0df91">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Water/ice.pat//Ice" checksum="3248a69c033c15e46356a9ecb996c652">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Food/java.pat//Java" checksum="e66740db4790b501508b84b780a4158b">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Animal/leather.pat//Leather" checksum="18fae1b0cb726162fda4c8a850ce6665">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Animal/leopard.pat//Leopard" checksum="e8518a613d2df2bfa1ce16c6f19380c0">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Sky/lightning.pat//Lightning" checksum="e53b923bdeccd742866cc836127b53cb">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Plant/leaves.pat//Maple Leaves" checksum="991d0263a630f7d9379f3181cc5cf4dd">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Stone/marble1.pat//Marble #1" checksum="7cca1d947b97e995440affa1a70e7afb">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Stone/marble2.pat//Marble #2" checksum="b703250ff7bf9a13e0bf1cc7b951e8b4">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Stone/marble3.pat//Marble #3" checksum="188e4483a8ad8d7adad18cb7475f2d4c">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Legacy/nops.pat//Nops" checksum="8e398be1aaa1b1ac6392ebb5a8dd5831">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Stone/Moonfoot.pat//One Small Step..." checksum="690271aaafee910dfc7b3fe2888c65cd">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Paper/paper.pat//Paper" checksum="460447543ed49484ecf388d14d123eb8">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Wood/parque1.pat//Parque #1" checksum="f7d5acd98b59f7830ea3b1afe92d29e6">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Wood/parque2.pat//Parque #2" checksum="0b6e61665a81c96478faa1e4fe0af354">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Wood/parque3.pat//Parque #3" checksum="a99fdcc9bc2814e7d51e05faeb07ec85">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Legacy/pastel.pat//Pastel Stuff" checksum="9173341213573b8c87467733c34078ba">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Wood/pine.pat//Pine" checksum="52fc540af9e485c532b96f3b2724ad74">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Wood/wood2.pat//Pine?" checksum="615a4ea243b717b73605569459aed362">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Stone/pink_marble.pat//Pink Marble" checksum="51a9ca43d2baf5243cb79d8a2f4db20f">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Water/pool.pat//Pool Bottom" checksum="b4f48469ab59632276d2b4d9af9dbde8">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Legacy/qube1.pat//Qbert" checksum="3b96b82e490bea730e17dd752ffb7bc9">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Water/rain.pat//Rain" checksum="8babfb520276b39f918aa059ca1594be">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Legacy/redcube.pat//Red Cubes" checksum="f64dee0efbc2fa301d7b4f3903a68308">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Stone/rock.pat//Rocks" checksum="93bc028e503811f0908f4de70681b733">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Sky/sky.pat//Sky" checksum="78ffe7ed45f4cd89859a653debebc84c">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Stone/slate.pat//Slate" checksum="fb10d3127362b61330e77ced0edddd7e">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Legacy/sm_squares.pat//Small Squares" checksum="4ba7d3135d74ec48bca8ee42c9645866">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Sky/starfield.pat//Starfield" checksum="b21a6bc688e62e02d16150fd5c2a3afe">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Stone/stone33.pat//Stone" checksum="002ee5669bd46d09a642853bfd3a543f">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Legacy/Stripes2px.pat//Stripes" checksum="7a5292735452fc15bf789fa3ea064ad2">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Legacy/Stripes1px.pat//Stripes Fine" checksum="7343d6b31434a2e736de3c5ab5197424">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Stone/terra.pat//Terra" checksum="45c52055d10cc53a7a280777e6b76382">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Wood/bark.pat//Tree Bark" checksum="3d9dffc8833fe742b90c1a1f2f87e76c">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Wood/walnut.pat//Walnut" checksum="56b154ad68b400a4b62c62f314e278d4">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Legacy/warning.pat//Warning!" checksum="bacf4a9e22fb7e97d705739ebf1aa205">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Wood/wood5.pat//Wood" checksum="9a3b13cfc2d4a3b18bd7754506fe9ac6">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Wood/wood3.pat//Wood #1" checksum="08109cffa79e14773e39e2390af5bc40">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Wood/wood4.pat//Wood #2" checksum="2040255fdf70572e7d79395a7b191dd6">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Wood/wood1.pat//Wood of some sort" checksum="0c055f250ddbccc1b32d05f8c0ad7012">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/patterns/Legacy/recessed.pat//recessed" checksum="2743a836d39c547e0d83de27bffb45c1">
+  </resource>
+
+  <resource identifier="internal:gimp-gradient-custom//Custom" checksum="9eedd2d45ef48d61ad5ecc9b85729c00">
+  </resource>
+
+  <resource identifier="internal:gimp-gradient-fg-bg-hsv-ccw//FG to BG (HSV Counter-Clockwise)" checksum="3172a6059d6a03413a22b5228e3ee0d5">
+  </resource>
+
+  <resource identifier="internal:gimp-gradient-fg-bg-hsv-cw//FG to BG (HSV Clockwise Hue)" checksum="5e4e38df5d2fd2e004f5cad181dca4ee">
+  </resource>
+
+  <resource identifier="internal:gimp-gradient-fg-bg-rgb//FG to BG (RGB)" checksum="885c2d63e957cf7fc63fc5312fa84346">
+  </resource>
+
+  <resource identifier="internal:gimp-gradient-fg-bg-rgb-hardedge//FG to BG (Hard Edge)" checksum="b48050f9bf83a918f04735ae5a6497eb">
+  </resource>
+
+  <resource identifier="internal:gimp-gradient-fg-transparent//FG to Transparent" checksum="f3d0f8a64d4d9a9c16c7acc86bb58a30">
+  </resource>
+
+  <resource identifier="internal:gimp-gradient-fg-transparent-hardedge//FG to Transparent (Hard Edge)" checksum="593f8e23ba6f9d0ddda44f2e94c83c21">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Abstract_1.ggr//Abstract 1" checksum="37f6c3b6886fcbd6d7068d97088b3d1b">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Abstract_2.ggr//Abstract 2" checksum="6bc92aebefbdf9b48ad53de69af9f3be">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Abstract_3.ggr//Abstract 3" checksum="c4fed8acbfeaa8195d88e6639be42019">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Aneurism.ggr//Aneurism" checksum="c673d4ac70eb6b86d8108063517e531d">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Blinds.ggr//Blinds" checksum="3771f55218949353c3c5b31d5024979c">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Blue_Green.ggr//Blue Green" checksum="921bfc681490bc05269412f2bd8ab916">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Browns.ggr//Browns" checksum="7b13aff6d451b3e1ab663a7b77b9bcee">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Brushed_Aluminium.ggr//Brushed Aluminium" checksum="ddb116cb93ab426ad8023243c7b173a0">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Burning_Paper.ggr//Burning Paper" checksum="bbdee58c25519232b985516518f84a77">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Burning_Transparency.ggr//Burning Transparency" checksum="fb4fc8ea87273b5e229035770b518121">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/CD.ggr//CD" checksum="323b34116c0727d61024619b864e48cf">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/CD_Half.ggr//CD Half" checksum="7f43fa0babcd95918e1cb27cd40b6cd4">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Caribbean_Blues.ggr//Caribbean Blues" checksum="b0b6591db703061ca1a61680ce00222e">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Coffee.ggr//Coffee" checksum="9449771edbcbaee6fe8d3dd7bb165de0">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Cold_Steel.ggr//Cold Steel" checksum="7a8bd4899ef8f883d10ad9a48fd805dd">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Cold_Steel_2.ggr//Cold Steel 2" checksum="1967d770cd03fb54e07969dd52244f93">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Crown_molding.ggr//Crown Molding" checksum="90b4de4d7aace60e5bcd2fd07876a176">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Dark_1.ggr//Dark 1" checksum="c8d0e28a59b778a0ff381df64cb33846">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Deep_Sea.ggr//Deep Sea" checksum="f7d78a6ff8412942e090b80eee55130f">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Default.ggr//Default" checksum="8aabd3a747c938ebdb9e72fba5d1bfe7">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Flare_Glow_Angular_1.ggr//Flare Glow Angular 1" checksum="2520989cbdc7edf024b7048002933f83">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Flare_Glow_Radial_1.ggr//Flare Glow Radial 1" checksum="55109f3539d019006f93b117a292f663">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Flare_Glow_Radial_2.ggr//Flare Glow Radial 2" checksum="77ed4511877fcf943d4a228158d5c3b3">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Flare_Glow_Radial_3.ggr//Flare Glow Radial 3" checksum="8e768aa0291c7618e15b460f6c013e1f">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Flare_Glow_Radial_4.ggr//Flare Glow Radial 4" checksum="24692923a8cd6a4d26f1c0e7eb32aef3">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Flare_Radial_101.ggr//Flare Radial 101" checksum="f89e289222d4634fbc85adf0b5e89165">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Flare_Radial_102.ggr//Flare Radial 102" checksum="c2ce01249992731fda531fd9f1e0ae2a">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Flare_Radial_103.ggr//Flare Radial 103" checksum="89b54d2d0b9484cb3e6d5fe9db1ce8bd">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Flare_Rays_Radial_1.ggr//Flare Rays Radial 1" checksum="ce69d1bb82ebd011978c063ef7066fcb">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Flare_Rays_Radial_2.ggr//Flare Rays Radial 2" checksum="c2d490780fbb201535cecc98307057eb">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Flare_Rays_Size_1.ggr//Flare Rays Size 1" checksum="c005982fc526a6314bb299540839e6a5">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Flare_Sizefac_101.ggr//Flare Sizefac 101" checksum="ccb12631ef7ec10b961a561531633035">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Four_bars.ggr//Four Bars" checksum="a5864471f47d4c08591c6f31d270d905">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Full_saturation_spectrum_CCW.ggr//Full Saturation Spectrum CCW" checksum="d03feed5d1aa8bac751cc514c9714172">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Full_saturation_spectrum_CW.ggr//Full Saturation Spectrum CW" checksum="5c33486108a4d119cfe5a532e207cc22">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Golden.ggr//Golden" checksum="b9e1389c424667747f25c7619d2bc9a9">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Greens.ggr//Greens" checksum="f4bdc063159bd5f9f88a491d65f48f76">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Horizon_1.ggr//Horizon 1" checksum="45daca86669b3cbbff7641149e076647">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Horizon_2.ggr//Horizon 2" checksum="6f4e9648f025618e7ff869ed6856e28d">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Incandescent.ggr//Incandescent" checksum="8b24614a2cc71e2b83101236d97fd21f">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Land_1.ggr//Land 1" checksum="e8031d5323708fdeb871e8e896159e4c">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Land_and_Sea.ggr//Land and Sea" checksum="7f7c214c93387d41b0ac5e8971f106e8">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Metallic_Something.ggr//Metallic Something" checksum="14833e3479d14857750e607e31945ebb">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Nauseating_Headache.ggr//Nauseating Headache" checksum="63068d541b811f031d4f1f9982f256a4">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Neon_Cyan.ggr//Neon Cyan" checksum="ff8364f9f04ce3dcddbd766140e983f9">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Neon_Green.ggr//Neon Green" checksum="14d651cb4dfd85b7a3a9c02e1541ed9a">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Neon_Yellow.ggr//Neon Yellow" checksum="1d153d5453370d1cde5358e55d7d99c3">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Pastel_Rainbow.ggr//Pastel Rainbow" checksum="02b2fda0ccbe4b57cf99db1fe9fe29c9">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Pastels.ggr//Pastels" checksum="17b4383f50fa04d8cb1ab1495bc53dc8">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Purples.ggr//Purples" checksum="114f9bdbb15b32d50d2bd92f7e9702fb">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Radial_Eyeball_Blue.ggr//Radial Eyeball Blue" checksum="fca7a4ed79a916d02d7bccb3855043c2">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Radial_Eyeball_Brown.ggr//Radial Eyeball Brown" checksum="d29f115fd760b3f9ee5c0aa7a904fef6">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Radial_Eyeball_Green.ggr//Radial Eyeball Green" checksum="1b6c05b770ef94e0b89dd7de40bbca18">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Radial_Glow_1.ggr//Radial Glow 1" checksum="b3d8b9fcaa8ee26e63cb02d070b7455e">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Radial_Rainbow_Hoop.ggr//Radial Rainbow Hoop" checksum="8ad11b4427dd2fed829c1e43f075a7ba">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Rounded_edge.ggr//Rounded Edge" checksum="70dd4b135eb8b86be7c802b2d79ccfaa">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Shadows_1.ggr//Shadows 1" checksum="46c63e0cf4337ed6155c9ea1c402ed38">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Shadows_2.ggr//Shadows 2" checksum="1b7f10de2dec907ffc3868b2b74b4206">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Shadows_3.ggr//Shadows 3" checksum="cf795773249dc4cab0f55eaba867a338">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Skyline.ggr//Skyline" checksum="6024412abf20c290d03661334ac9f0f8">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Skyline_polluted.ggr//Skyline Polluted" checksum="33abef51da23c83f4777c9dcddc29b2c">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Square_Wood_Frame.ggr//Square Wood Frame" checksum="2457614e065cac81d7457fb187ffecb4">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Sunrise.ggr//Sunrise" checksum="5f6477daf1cc7e037f88ea3d536b09b7">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Three_bars_sin.ggr//Three Bars Sin" checksum="d1847cde35878cc86bf83a745edf0041">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Tropical_Colors.ggr//Tropical Colors" checksum="d7e98c3058022ba666b426a113f03d7a">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Tube_Red.ggr//Tube Red" checksum="247e5ceb0d84aeeeb10dda45f2e857e2">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Wood_1.ggr//Wood 1" checksum="ee870b438eeb4803fe3149480d83a7a0">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Wood_2.ggr//Wood 2" checksum="5d64ee9ea06acf800c54d80982ddcf28">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Yellow_Contrast.ggr//Yellow Contrast" checksum="48ab2edc531dae7fd9398abb75ce2391">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/gradients/Yellow_Orange.ggr//Yellow Orange" checksum="c7f332150f1c1d8cb8100add34b0ef55">
+  </resource>
+
+  <resource identifier="internal:gimp-palette-color-history//Color History" checksum="cad81af600b48ed86a2d9fddcef6745e">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Bears.gpl//Bears" checksum="0da49c5bab5be65ce1c5a017ebb3e50a">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Bgold.gpl//Bgold" checksum="d4dedf3d1c219e55d1275bb0d2a0482d">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Blues.gpl//Blues" checksum="97db0a4cd895ae1d68f98ad9f9cf01d7">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Borders.gpl//Borders" checksum="1525d6dbf700b04eefd7fc3ba116ac33">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Browns_And_Yellows.gpl//Browns And Yellows" checksum="b9abed850ca9b95f43aa9be20ca3033c">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Caramel.gpl//Caramel" checksum="27fffb8028baaddefa255f5c59747e46">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Cascade.gpl//Cascade" checksum="9d2f39922c7b3524737e0c197ddadcb6">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/China.gpl//China" checksum="21861b560cd1a6a443a93e6f488292b7">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Coldfire.gpl//Coldfire" checksum="523c4fe32168bc8f494643e0da5369be">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Cool_Colors.gpl//Cool Colors" checksum="c62ee19b5d4e32d8b26a0c228a279f44">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Cranes.gpl//Cranes" checksum="f3a704ea4bd9d4bb9d1ae460635709bb">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Dark_pastels.gpl//Dark pastels" checksum="7dee61007aff04dcae82b2b4bc512255">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Default.gpl//Default" checksum="332a70c9742301c2a95daccd5587ae31">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Ega.gpl//Ega" checksum="c80393c0b1cacc8dd15c85f879e57fd9">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Firecode.gpl//Firecode" checksum="80f830de3056c7dfcee2c6471948647a">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Gold.gpl//Gold" checksum="5060ba89df05f4e36220a46db37c2c5d">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/GrayViolet.gpl//GrayViolet" checksum="9b898111a0bb537574db0dc918c427ff">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Grayblue.gpl//Grayblue" checksum="2edafa9f0353f299a88a146b9c912bca">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Grays.gpl//Grays" checksum="9637522851daa9387105c7338165929d">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Greens.gpl//Greens" checksum="9d82b7eafc3f10cb7405435be2fbff8f">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Hilite.gpl//Hilite" checksum="6f2799eab744f8fdb294b8cb9706e8cd">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Khaki.gpl//Khaki" checksum="cfef187bea2db379f05c2ed3c616535e">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Lights.gpl//Lights" checksum="2faf851c922083f3795e383b27acb21d">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Muted.gpl//Muted" checksum="67b8d0ef4a61ac15a98b65fcf56f138b">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Named_Colors.gpl//Named Colors" checksum="db9672dbeccc7170d99a8f534578c342">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/News3.gpl//News3" checksum="b07a346d9c58ef8d641a03373b19dee2">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Op2.gpl//Op2" checksum="441d39653acacaaf3382756c41b5e439">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Paintjet.gpl//Paintjet" checksum="29e1334ae99f428bc55369638828d64f">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Pastels.gpl//Pastels" checksum="c80d69487527488f0a954e37a22f8c8a">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Plasma.gpl//Plasma" checksum="0c7fbde43d60aa81494b0661939b9900">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Reds.gpl//Reds" checksum="ecf031a4bae1e00443b8965bf87d5d3e">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Reds_And_Purples.gpl//Reds And Purples" checksum="321809c438b73a70119a2b5420f30b53">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Royal.gpl//Royal" checksum="c0a820e75829f5742ea725b831a1a8a3">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Tango.gpl//Tango Icon Theme" checksum="792175778e2087cda4992cc900d0a96d">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Topographic.gpl//Topographic" checksum="35206a88a63f15c3410d60ced15476b1">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Visibone.gpl//Visibone" checksum="926f10d0da64c3208bc7100c1db47f37">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Visibone_2.gpl//Visibone 2" checksum="4fabac801c2c078a75e34e25947b7e06">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Volcano.gpl//Volcano" checksum="c8eff211b181b6add1bd6447007eaaac">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Warm_Colors.gpl//Warm Colors" checksum="27b068947621c7aa10cbe94382668226">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/palettes/Web.gpl//Web" checksum="a27a3f22c6e2016121bf74a272d9c9b3">
+  </resource>
+
+  <resource identifier="internal:gimp-font-standard-alias: Monospace//Monospace" checksum="(null)">
+  </resource>
+
+  <resource identifier="internal:gimp-font-standard-alias: Monospace Bold//Monospace Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="internal:gimp-font-standard-alias: Monospace Bold Italic//Monospace Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="internal:gimp-font-standard-alias: Monospace Italic//Monospace Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="internal:gimp-font-standard-alias: Sans-serif//Sans-serif" checksum="(null)">
+  </resource>
+
+  <resource identifier="internal:gimp-font-standard-alias: Sans-serif Bold//Sans-serif Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="internal:gimp-font-standard-alias: Sans-serif Bold Italic//Sans-serif Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="internal:gimp-font-standard-alias: Sans-serif Italic//Sans-serif Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="internal:gimp-font-standard-alias: Serif//Serif" checksum="(null)">
+  </resource>
+
+  <resource identifier="internal:gimp-font-standard-alias: Serif Bold//Serif Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="internal:gimp-font-standard-alias: Serif Bold Italic//Serif Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="internal:gimp-font-standard-alias: Serif Italic//Serif Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/arial/ariblk.ttf//Arial Black" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/arial/arialbd.ttf//Arial Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/arial/arialbi.ttf//Arial Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/arial/ariali.ttf//Arial Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/arial/ARIALN.TTF//Arial Narrow" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/arial/ARIALNB.TTF//Arial Narrow Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/arial/ARIALNBI.TTF//Arial Narrow Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/arial/ARIALNI.TTF//Arial Narrow Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/arial/arial.ttf//Arial Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/C059-Bold.otf//C059 Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/C059-BdIta.otf//C059 Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/C059-Italic.otf//C059 Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/C059-Roman.otf//C059 Roman" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/calibri/calibrib.ttf//Calibri Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/calibri/calibriz.ttf//Calibri Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/calibri/calibrii.ttf//Calibri Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/calibri/calibri.ttf//Calibri Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/cambria/cambriab.ttf//Cambria Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/cambria/cambriaz.ttf//Cambria Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/cambria/cambriai.ttf//Cambria Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/cambria/cambria.ttc//Cambria Math Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/cambria/cambria.ttc//Cambria Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/candara/candarab.ttf//Candara Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/candara/candaraz.ttf//Candara Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/candara/candarai.ttf//Candara Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/candara/candara.ttf//Candara Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/cantarell/Cantarell-VF.otf//Cantarell Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/cantarell/Cantarell-VF.otf//Cantarell Extra Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/cantarell/Cantarell-VF.otf//Cantarell Light" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/cantarell/Cantarell-VF.otf//Cantarell Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/cantarell/Cantarell-VF.otf//Cantarell Thin" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/consola/consolab.ttf//Consolas Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/consola/consolaz.ttf//Consolas Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/consola/consolai.ttf//Consolas Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/consola/consola.ttf//Consolas Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/courier/courbd.ttf//Courier New Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/courier/courbi.ttf//Courier New Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/courier/cour.ttf//Courier New Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/D050000L.otf//D050000L Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/dejavu/DejaVuMathTeXGyre.ttf//DejaVu Math TeX Gyre Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf//DejaVu Sans Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/dejavu/DejaVuSans-BoldOblique.ttf//DejaVu Sans Bold Oblique" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf//DejaVu Sans Book" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed.ttf//DejaVu Sans Condensed" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed-Bold.ttf//DejaVu Sans Condensed Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed-BoldOblique.ttf//DejaVu Sans Condensed Bold Oblique" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/dejavu/DejaVuSansCondensed-Oblique.ttf//DejaVu Sans Condensed Oblique" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/dejavu/DejaVuSans-ExtraLight.ttf//DejaVu Sans ExtraLight" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf//DejaVu Sans Mono Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/dejavu/DejaVuSansMono-BoldOblique.ttf//DejaVu Sans Mono Bold Oblique" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf//DejaVu Sans Mono Book" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Oblique.ttf//DejaVu Sans Mono Oblique" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/dejavu/DejaVuSans-Oblique.ttf//DejaVu Sans Oblique" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/dejavu/DejaVuSerif-Bold.ttf//DejaVu Serif Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/dejavu/DejaVuSerif-BoldItalic.ttf//DejaVu Serif Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf//DejaVu Serif Book" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/dejavu/DejaVuSerifCondensed.ttf//DejaVu Serif Condensed" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/dejavu/DejaVuSerifCondensed-Bold.ttf//DejaVu Serif Condensed Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/dejavu/DejaVuSerifCondensed-BoldItalic.ttf//DejaVu Serif Condensed Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/dejavu/DejaVuSerifCondensed-Italic.ttf//DejaVu Serif Condensed Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/dejavu/DejaVuSerif-Italic.ttf//DejaVu Serif Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf//Droid Sans Fallback Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/georgia/georgiab.ttf//Georgia Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/georgia/georgiaz.ttf//Georgia Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/georgia/georgiai.ttf//Georgia Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/georgia/georgia.ttf//Georgia Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/helvetica/helvetica-regular.ttf//Helvetica Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/impact/impact.ttf//Impact Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/liberation/LiberationMono-Bold.ttf//Liberation Mono Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/liberation/LiberationMono-BoldItalic.ttf//Liberation Mono Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/liberation/LiberationMono-Italic.ttf//Liberation Mono Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/liberation/LiberationMono-Regular.ttf//Liberation Mono Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf//Liberation Sans Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/liberation/LiberationSans-BoldItalic.ttf//Liberation Sans Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/liberation/LiberationSans-Italic.ttf//Liberation Sans Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/liberation/LiberationSansNarrow-Bold.ttf//Liberation Sans Narrow Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/liberation/LiberationSansNarrow-BoldItalic.ttf//Liberation Sans Narrow Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/liberation/LiberationSansNarrow-Italic.ttf//Liberation Sans Narrow Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/liberation/LiberationSansNarrow-Regular.ttf//Liberation Sans Narrow Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf//Liberation Sans Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/liberation/LiberationSerif-Bold.ttf//Liberation Serif Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/liberation/LiberationSerif-BoldItalic.ttf//Liberation Serif Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/liberation/LiberationSerif-Italic.ttf//Liberation Serif Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf//Liberation Serif Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/mathjax/MathJax_AMS-Regular.otf//MathJax_AMS Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/mathjax/MathJax_Caligraphic-Bold.otf//MathJax_Caligraphic Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/mathjax/MathJax_Caligraphic-Regular.otf//MathJax_Caligraphic Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/mathjax/MathJax_Fraktur-Bold.otf//MathJax_Fraktur Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/mathjax/MathJax_Fraktur-Regular.otf//MathJax_Fraktur Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/mathjax/MathJax_Main-Bold.otf//MathJax_Main Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/mathjax/MathJax_Main-Italic.otf//MathJax_Main Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/mathjax/MathJax_Main-Regular.otf//MathJax_Main Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/mathjax/MathJax_Math-BoldItalic.otf//MathJax_Math BoldItalic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/mathjax/MathJax_Math-Italic.otf//MathJax_Math Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/mathjax/MathJax_Math-Regular.otf//MathJax_Math Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/mathjax/MathJax_SansSerif-Bold.otf//MathJax_SansSerif Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/mathjax/MathJax_SansSerif-Italic.otf//MathJax_SansSerif Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/mathjax/MathJax_SansSerif-Regular.otf//MathJax_SansSerif Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/mathjax/MathJax_Script-Regular.otf//MathJax_Script Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/mathjax/MathJax_Size1-Regular.otf//MathJax_Size1 Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/mathjax/MathJax_Size2-Regular.otf//MathJax_Size2 Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/mathjax/MathJax_Size3-Regular.otf//MathJax_Size3 Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/mathjax/MathJax_Size4-Regular.otf//MathJax_Size4 Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/mathjax/MathJax_Typewriter-Regular.otf//MathJax_Typewriter Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/mathjax/MathJax_Vector-Regular.otf//MathJax_Vector Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/mathjax/MathJax_Vector-Bold.otf//MathJax_Vector-Bold Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/mathjax/MathJax_WinChrome-Regular.otf//MathJax_WinChrome Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/mathjax/MathJax_WinIE6-Regular.otf//MathJax_WinIE6 Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/NimbusMonoPS-Bold.otf//Nimbus Mono PS Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/NimbusMonoPS-BoldItalic.otf//Nimbus Mono PS Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/NimbusMonoPS-Italic.otf//Nimbus Mono PS Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/NimbusMonoPS-Regular.otf//Nimbus Mono PS Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/NimbusRoman-Bold.otf//Nimbus Roman Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/NimbusRoman-BoldItalic.otf//Nimbus Roman Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/NimbusRoman-Italic.otf//Nimbus Roman Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/NimbusRoman-Regular.otf//Nimbus Roman Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/NimbusSans-Bold.otf//Nimbus Sans Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/NimbusSans-BoldItalic.otf//Nimbus Sans Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/NimbusSans-Italic.otf//Nimbus Sans Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/NimbusSansNarrow-Bold.otf//Nimbus Sans Narrow Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/NimbusSansNarrow-BoldOblique.otf//Nimbus Sans Narrow Bold Oblique" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/NimbusSansNarrow-Oblique.otf//Nimbus Sans Narrow Oblique" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/NimbusSansNarrow-Regular.otf//Nimbus Sans Narrow Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/NimbusSans-Regular.otf//Nimbus Sans Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/noto/NotoMono-Regular.ttf//Noto Mono Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/noto/NotoSansMono-Bold.ttf//Noto Sans Mono Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/noto/NotoSansMono-Regular.ttf//Noto Sans Mono Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/libreoffice/opens___.ttf//OpenSymbol Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/P052-Bold.otf//P052 Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/P052-BoldItalic.otf//P052 Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/P052-Italic.otf//P052 Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/P052-Roman.otf//P052 Roman" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/segoe/segoeprb.ttf//Segoe Print Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/segoe/segoepr.ttf//Segoe Print Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/segoe/segoescb.ttf//Segoe Script Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/segoe/segoesc.ttf//Segoe Script Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/segoe/segoeuib.ttf//Segoe UI Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/segoe/segoeuiz.ttf//Segoe UI Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/segoe/segoeuii.ttf//Segoe UI Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/segoe/segoeuil.ttf//Segoe UI Light" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/segoe/segoeui.ttf//Segoe UI Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Space Grotesk/static/SpaceGrotesk-Bold.ttf//Space Grotesk Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Space Grotesk/SpaceGrotesk-VariableFont_wght.ttf//Space Grotesk Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Space Grotesk/static/SpaceGrotesk-Light.ttf//Space Grotesk Light" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Space Grotesk/SpaceGrotesk-VariableFont_wght.ttf//Space Grotesk Light" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Space Grotesk/SpaceGrotesk-VariableFont_wght.ttf//Space Grotesk Medium" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Space Grotesk/static/SpaceGrotesk-Medium.ttf//Space Grotesk Medium" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Space Grotesk/static/SpaceGrotesk-Regular.ttf//Space Grotesk Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Space Grotesk/SpaceGrotesk-VariableFont_wght.ttf//Space Grotesk Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Space Grotesk/static/SpaceGrotesk-SemiBold.ttf//Space Grotesk SemiBold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Space Mono/SpaceMono-Bold.ttf//Space Mono Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Space Mono/SpaceMono-BoldItalic.ttf//Space Mono Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Space Mono/SpaceMono-Italic.ttf//Space Mono Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Space Mono/SpaceMono-Regular.ttf//Space Mono Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/StandardSymbolsPS.otf//Standard Symbols PS Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/ancient-scripts/Symbola_hint.ttf//Symbola Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/tahoma/tahomabd.ttf//Tahoma Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/tahoma/tahoma.ttf//Tahoma Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/times/timesbd.ttf//Times New Roman Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/times/timesbi.ttf//Times New Roman Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/times/timesi.ttf//Times New Roman Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/times/times.ttf//Times New Roman Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/trebuchet/trebucbd.ttf//Trebuchet MS Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/trebuchet/trebucbi.ttf//Trebuchet MS Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/trebuchet/trebucit.ttf//Trebuchet MS Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/trebuchet/trebuc.ttf//Trebuchet MS Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/URWBookman-Demi.otf//URW Bookman Demi" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/URWBookman-DemiItalic.otf//URW Bookman Demi Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/URWBookman-Light.otf//URW Bookman Light" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/URWBookman-LightItalic.otf//URW Bookman Light Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/URWGothic-Book.otf//URW Gothic Book" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/URWGothic-BookOblique.otf//URW Gothic Book Oblique" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/URWGothic-Demi.otf//URW Gothic Demi" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/URWGothic-DemiOblique.otf//URW Gothic Demi Oblique" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/fonts-japanese-gothic.ttf//VL Gothic regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/vlgothic/VL-Gothic-Regular.ttf//VL Gothic regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/truetype/vlgothic/VL-PGothic-Regular.ttf//VL PGothic regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/verdana/verdanab.ttf//Verdana Bold" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/verdana/verdanaz.ttf//Verdana Bold Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/verdana/verdanai.ttf//Verdana Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Windows/verdana/verdana.ttf//Verdana Regular" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/usr/share/fonts/opentype/urw-base35/Z003-MediumItalic.otf//Z003 Medium Italic" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Misc/cinnamonroll-medium.otb//cinnamonroll medium" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Misc/rissole-medium.otb//rissole medium" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:/home/user/.local/share/fonts/Misc/wafflemedium.otb//waffle medium" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Crop/16_10.gtp//16×10" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Crop/16_9.gtp//16×9" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Crop/3_2-Landscape.gtp//3×2 Landscape" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Crop/3_2-Portrait.gtp//3×2 Portrait" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Crop/4_3-Landscape.gtp//4×3 Landscape" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Crop/4_3-Portrait.gtp//4×3 Portrait" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Paint/Airbrush.gtp//Airbrush" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Paint/Airbrush-Color-From-Gradient.gtp//Airbrush (Color From Gradient)" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Paint/Basic-Knife.gtp//Basic Knife" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Paint/Basic-Round.gtp//Basic Round" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Paint/Basic-Round-Detail.gtp//Basic Round Detail" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Sketch/Blue-Pen.gtp//Blue Pen (Multiply)" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Paint/Bristles.gtp//Bristles" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Selection/Circle-200px.gtp//Circle 200px" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/FX/Crop-16-9.gtp//Crop 16:9" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/FX/Crop-Composition.gtp//Crop Composition" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Paint/Eraser-Hard.gtp//Eraser Hard" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Sketch/Eraser-Soft.gtp//Eraser Soft" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/FX/FX-Confetti.gtp//FX Confetti" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/FX/FX-Radial-Softlight.gtp//FX Radial Softlight" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Selection/Feathered-Selection.gtp//Feathered Selection" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/FX/Fill-Paper.gtp//Fill Paper (Multiply ! Sel.Pattern)" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/FX/Glow-Lights.gtp//Glow Lights (Addition !)" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Sketch/Ink-Smooth.gtp//Ink Smooth" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Sketch/Ink-Thin.gtp//Ink Thin" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Paint/Noise.gtp//Noise" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Paint/Paintbrush-Color-From-Gradient.gtp//Paintbrush (Color From Gradient)" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Sketch/Pencil.gtp//Pencil" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Paint/Pencil-Color-From-Gradient.gtp//Pencil (Color From Gradient)" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Sketch/Pencil-Soft.gtp//Pencil Soft" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/FX/Smooth-Clone.gtp//Smooth Clone (Press.Ctrl)" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Paint/Smudge-Rough.gtp//Smudge Rough" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Paint/Smudge-Soft.gtp//Smudge Soft" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Paint/Soft-Oil.gtp//Soft Oil Brush" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Paint/Splatters.gtp//Splatters" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Crop/Square.gtp//Square" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Paint/Structure.gtp//Structure" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/Paint/Vegetal.gtp//Vegetation" checksum="(null)">
+  </resource>
+
+  <resource identifier="external:${gimp_data_dir}/tool-presets/FX/Vignette.gtp//Vignette" checksum="(null)">
+  </resource>
+</tags>

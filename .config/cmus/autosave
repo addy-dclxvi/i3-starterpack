@@ -1,6 +1,6 @@
 set aaa_mode=all
 set altformat_current= %F 
-set altformat_playlist= %f%= %d 
+set altformat_playlist= %f%= %d %{?X!=0?%3X ?    }
 set altformat_title=%f
 set altformat_trackwin= %f%= %d 
 set auto_expand_albums_follow=true
@@ -20,6 +20,9 @@ set color_separator=black
 set color_statusline_attr=default
 set color_statusline_bg=default
 set color_statusline_fg=default
+set color_statusline_progress_attr=default
+set color_statusline_progress_bg=blue
+set color_statusline_progress_fg=white
 set color_titleline_attr=default
 set color_titleline_bg=default
 set color_titleline_fg=blue
@@ -28,7 +31,7 @@ set color_trackwin_album_bg=default
 set color_trackwin_album_fg=default
 set color_win_attr=default
 set color_win_bg=default
-set color_win_cur=magenta
+set color_win_cur=blue
 set color_win_cur_attr=default
 set color_win_cur_sel_attr=default
 set color_win_cur_sel_bg=black
@@ -46,7 +49,7 @@ set color_win_sel_bg=black
 set color_win_sel_fg=default
 set color_win_title_attr=default
 set color_win_title_bg=default
-set color_win_title_fg=white
+set color_win_title_fg=gray
 set confirm_run=true
 set continue=true
 set continue_album=true
@@ -57,11 +60,16 @@ set dsp.ao.buffer_size=16384
 set dsp.ao.device_interface=
 set dsp.ao.driver=
 set dsp.ao.wav_counter=1
-set dsp.ao.wav_dir=/home/addy
+set dsp.ao.wav_dir=/home/user
+set dsp.jack.resampling_quality=2
+set dsp.jack.server_name=
 set follow=false
 set format_clipped_text=…
 set format_current= %{?a?%a - }%t
-set format_playlist= %a - %t %= %d 
+set format_heading_album=%a - %l%= %y %{duration}
+set format_heading_artist=%a%= %{duration}
+set format_heading_playlist=%{?!panel?Playlist - }%{title}%= %{duration}    
+set format_playlist= %a - %t %= %d
 set format_playlist_va= %-21%A %3n. %t (%a)%= %y %d %{?X!=0?%3X ?    }
 set format_statusline= %{status} %{?show_playback_position?%{position} %{?duration?• %{duration} }?%{?duration?%{duration} }}• %{?volume>=0?vol %{?lvolume!=rvolume?%{lvolume},%{rvolume} ?%{volume} }}%{?stream?• buf %{buffer} }%{?show_current_bitrate & bitrate>=0?• %{bitrate} kbps }%=%{?repeat_current?repeat current?%{?play_library?%{playlist_mode} from %{?play_sorted?sorted }library?playlist}} • %1{continue}%1{follow}%1{repeat}%1{shuffle} 
 set format_title=%{?a?%a - }%t
@@ -74,6 +82,8 @@ set icecast_default_charset=ISO-8859-1
 set id3_default_charset=ISO-8859-1
 set ignore_duplicates=false
 set input.aac.priority=50
+set input.cdio.cddb_url=freedb.freedb.org:8880
+set input.cdio.priority=50
 set input.cue.priority=50
 set input.ffmpeg.priority=30
 set input.flac.priority=50
@@ -98,6 +108,7 @@ set pl_env_vars=
 set pl_sort=
 set play_library=true
 set play_sorted=false
+set progress_bar=line
 set repeat=false
 set repeat_current=false
 set replaygain=disabled
@@ -106,6 +117,7 @@ set replaygain_preamp=0.000000
 set resume=true
 set rewind_offset=5
 set scroll_offset=2
+set search_resets_position=true
 set set_term_title=true
 set show_all_tracks=true
 set show_current_bitrate=false

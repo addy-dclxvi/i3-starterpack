@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=mpv Media Player
+Exec=mpv --player-operation-mode=pseudo-gui -- %U
+NoDisplay=true
+Icon=mpv

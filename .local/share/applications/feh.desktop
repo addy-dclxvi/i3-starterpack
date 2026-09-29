@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Feh
+Exec=feh --geometry 640x480 --scale-down --zoom fill
+NoDisplay=true
+Icon=image-viewer

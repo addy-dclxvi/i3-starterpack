@@ -4,15 +4,26 @@ function fish_prompt
 	set fish_greeting
 	set -l last_status $status
 	# Show the current working directory
-	set_color black
+	set_color normal
 	if test (id -u) -eq 0
-		set_color --background=yellow
+		set_color --background=red
 	else
-		set_color --background=green
+		set_color --background=blue
 	end
 	echo -n ' '
 	echo -n (prompt_pwd)
 	echo -n ' '
+	# Check if the is Git project in current directory
+	if git rev-parse --is-inside-work-tree >/dev/null 2>&1
+		set -l branch (git branch --show-current 2>/dev/null)
+		if test -n "$branch"
+			set_color --background=black
+			set_color white
+			echo -n ' '
+			echo -n "$branch"
+			echo -n ' '
+		end
+	end
 	set_color normal
 	echo -n ' '
 end
@@ -50,25 +61,24 @@ set fish_pager_color_prefix cyan
 set fish_pager_color_progress cyan
 
 ## Aliases
-alias ls "ls --group-directories-first"
-alias lsl "ls --group-directories-first -lh"
-alias version "apt-cache show"
-alias font-refresh "fc-cache -fv"
+alias ls "ls --group-directories-first --color \
+--human-readable --size --sort=name -v"
+alias lsl "ls --group-directories-first --color \
+--human-readable --size --sort=name -l -v"
 alias clone "git clone --depth 1"
 alias merge "xrdb ~/.Xresources"
-alias search "apt-cache search"
-alias install "sudo apt-get install --no-install-recommends"
-alias upgrade "sudo apt-get upgrade"
+alias search "apt list"
+alias install "sudo apt-get install"
 alias update "sudo apt-get update"
-alias remove "sudo apt-get remove"
-alias purge "sudo apt-get remove --purge"
-alias clean "sudo apt-get clean"
-alias autoclean "sudo apt-get autoclean"
-alias autoremove "sudo apt-get autoremove"
-alias reconfigure "sudo dpkg-reconfigure"
-alias pkguser "apt-mark showmanual | sed 's#/.*##' | tr '\n' ' '"
-alias pkglist "dpkg --get-selections | grep -v deinstall |\
-sed s/\tinstall//g | sed s/\t//g | sed s/:amd64//g | tr '\n' ' '"
+alias upgrade "sudo apt-get upgrade"
+alias remove "sudo apt-get purge --autoremove"
+alias poweroff "systemctl poweroff"
+alias reboot "systemctl reboot"
+alias local_time "sudo timedatectl set-local-rtc 1"
+alias font_refresh "fc-cache -fv"
 
 ## Keybinding
 set fish_key_bindings fish_default_key_bindings
+
+## Make sure the prompt do not appear in the middle
+clear

@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+# to make typing command can be done without writing the full path
+export PATH="${PATH}:/sbin"
+export PATH="${PATH}:/usr/libexec"
+export PATH="${PATH}:$HOME/.local/bin"
+
+# load my bitmap fonts
+xset +fp ~/.local/share/fonts/Misc/
+
+# some default apps
+export TERMINAL=urxvt
+export EDITOR=vim
+export RANGER_LOAD_DEFAULT_RC=FALSE
+export SHELL=/usr/bin/fish
+
+# i prefer to use english for language
+export LC_COLLATE=C
+export LANG=en_US.utf8
+export LC_TIME=en_US.utf8
+export LC_CTYPE=en_US.utf8
+export LC_IDENTIFICATION=en_US.utf8
+export LC_MESSAGES=en_US.utf8
+
+# but still using indonesian for numbers
+export LC_NUMERIC=id_ID.utf8
+export LC_MONETARY=id_ID.utf8
+export LC_NAME=id_ID.utf8
+export LC_ADDRESS=id_ID.utf8
+export LC_TELEPHONE=id_ID.utf8
+export LC_MEASUREMENT=id_ID.utf8
+export LC_PAPER=id_ID.utf8
+
+# load urxvt colorscheme
+xrdb -merge ~/.Xresources

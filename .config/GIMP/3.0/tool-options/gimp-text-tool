@@ -1,0 +1,8 @@
+# GIMP gimp-text-tool options
+
+(foreground
+    (color "R'G'B'A double" 32 "\0\0\0\140\2\376\355\77\0\0\0\0\77\76\356\77\0\0\0\100\277\276\356\77\0\0\0\0\0\0\360\77" 0))
+(palette "Color History")
+(font "Monospace")
+
+# end of gimp-text-tool options

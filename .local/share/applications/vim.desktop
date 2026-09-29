@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Vim
+Exec=vim %F
+NoDisplay=true
+Icon=gvim

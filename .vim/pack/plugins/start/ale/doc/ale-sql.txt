@@ -1,0 +1,108 @@
+===============================================================================
+ALE SQL Integration                                           *ale-sql-options*
+
+
+===============================================================================
+dprint                                                         *ale-sql-dprint*
+
+See |ale-dprint-options| and https://github.com/dprint/dprint-plugin-sql.
+
+
+===============================================================================
+pgformatter                                               *ale-sql-pgformatter*
+
+                                       *ale-options.sql_pgformatter_executable*
+                                             *g:ale_sql_pgformatter_executable*
+                                             *b:ale_sql_pgformatter_executable*
+sql_pgformatter_executable
+g:ale_sql_pgformatter_executable
+  Type: |String|
+  Default: `'pg_format'`
+
+  This variable sets executable used for pgformatter.
+
+                                          *ale-options.sql_pgformatter_options*
+                                                *g:ale_sql_pgformatter_options*
+                                                *b:ale_sql_pgformatter_options*
+sql_pgformatter_options
+g:ale_sql_pgformatter_options
+  Type: |String|
+  Default: `''`
+
+  This variable can be set to pass additional options to the pgformatter fixer.
+
+
+===============================================================================
+sqlfluff                                                     *ale-sql-sqlfluff*
+
+                                          *ale-options.sql_sqlfluff_executable*
+                                                *g:ale_sql_sqlfluff_executable*
+                                                *b:ale_sql_sqlfluff_executable*
+sql_sqlfluff_executable
+g:ale_sql_sqlfluff_executable
+  Type: |String|
+  Default: `'sqlfluff'`
+
+  This variable sets executable used for sqlfluff.
+
+                                             *ale-options.sql_sqlfluff_options*
+                                                   *g:ale_sql_sqlfluff_options*
+                                                   *b:ale_sql_sqlfluff_options*
+sql_sqlfluff_options
+g:ale_sql_sqlfluff_options
+  Type: |String|
+  Default: `''`
+
+  This variable can be set to pass additional options to the sqlfluff linter.
+
+===============================================================================
+sqlfmt                                                         *ale-sql-sqlfmt*
+
+                                            *ale-options.sql_sqlfmt_executable*
+                                                  *g:ale_sql_sqlfmt_executable*
+                                                  *b:ale_sql_sqlfmt_executable*
+sql_sqlfmt_executable
+g:ale_sql_sqlfmt_executable
+  Type: |String|
+  Default: `'sqlfmt'`
+
+  This variable sets executable used for sqlfmt.
+
+                                               *ale-options.sql_sqlfmt_options*
+                                                     *g:ale_sql_sqlfmt_options*
+                                                     *b:ale_sql_sqlfmt_options*
+sql_sqlfmt_options
+g:ale_sql_sqlfmt_options
+  Type: |String|
+  Default: `''`
+
+  This variable can be set to pass additional options to the sqlfmt fixer.
+  At this time only the -u flag is available to format with upper-case.
+
+
+===============================================================================
+sqlformat                                                   *ale-sql-sqlformat*
+
+                                         *ale-options.sql_sqlformat_executable*
+                                               *g:ale_sql_sqlformat_executable*
+                                               *b:ale_sql_sqlformat_executable*
+sql_sqlformat_executable
+g:ale_sql_sqlformat_executable
+  Type: |String|
+  Default: `'sqlformat'`
+
+  This variable sets executable used for sqlformat.
+
+                                            *ale-options.sql_sqlformat_options*
+                                                  *g:ale_sql_sqlformat_options*
+                                                  *b:ale_sql_sqlformat_options*
+sql_sqlformat_options
+g:ale_sql_sqlformat_options
+  Type: |String|
+  Default: `''`
+
+  This variable can be set to pass additional options to the sqlformat fixer.
+
+
+===============================================================================
+  vim:tw=78:ts=2:sts=2:sw=2:ft=help:norl:

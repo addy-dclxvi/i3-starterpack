@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=ranger
+Exec=ranger
+NoDisplay=true
+Icon=utilities-terminal

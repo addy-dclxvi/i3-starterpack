@@ -1,70 +1,83 @@
-# set modifier
+### set modifier
 set $super Mod4
 set $alt Mod1
 
-# set font
-font pango:Ionicons 9, Poppins Regular 9
+### set colors
+set $background #1a1a1a
+set $foreground #cccccc
+set $black #3d3d3d
+set $red #d12f2c
+set $green #819400
+set $yellow #b08500
+set $blue #2587cc
+set $magenta #696ebf
+set $cyan #289c93
+set $white #858585
 
-# use mouse+$super to drag floating windows to their wanted position
+### set font
+font pango: cinnamonroll, waffle 8
+
+### autostart
+exec --no-startup-id feh --bg-fill ~/.wallpaper.png
+exec --no-startup-id /usr/libexec/polkit-mate-authentication-agent-1 &
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=pkcs11 &
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets &
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=ssh &
+exec --no-startup-id sleep 2 && /usr/libexec/mate-settings-daemon &
+exec --no-startup-id sleep 2 && /usr/bin/mate-power-manager &
+
+### start any available terminal
+bindsym $super+Return exec --no-startup-id i3-sensible-terminal
+
+### start dmenu (a program launcher)
+bindsym $super+d exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i \
+-fn 'cinnamonroll:size=8' -nb '$background' -nf '$foreground' \
+-sb '$blue' -sf '$foreground'"
+
+### use mouse + super to drag floating windows to their wanted position
+### use mouse + super + right click to resize the window
 floating_modifier $super
 
-# autostart
-exec --no-startup-id hsetroot -center ~/.wallpaper.png
+### common apps keybinds
+bindsym Print exec --no-startup-id mate-screenshot
+bindsym $super+l exec --no-startup-id i3lock -i ~/.lock.png
+bindsym $super+w exec --no-startup-id xdg-open about:home
+bindsym $super+e exec --no-startup-id xdg-open ~
 
-# start a terminal
-bindsym $super+Return exec i3-sensible-terminal
-
-# start dmenu (a program launcher)
-bindsym $super+d exec i3-dmenu-desktop --dmenu="dmenu -i -b \
--fn 'Poppins:size=9' -nb '#141c21' -nf '#93a1a1' \
--sb '#289c93' -sf '#141c21'"
-
-# common apps keybinds
-bindsym Print exec scrot 'Cheese_%a-%d%b%y_%H.%M.png' -e 'xdg-open ~/$f'
-bindsym $super+l exec i3lock -i ~/.lock.png
-bindsym $super+w exec firefox
-bindsym $super+e exec thunar
-
-# change volume and brightness
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
-bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
-bindsym XF86AudioMute exec amixer set Master toggle
-bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
-bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
-
-# kill focused window
+### kill focused window
 bindsym $super+c kill
 bindsym $alt+F4 kill
 
-# change focus
+### change focus
 bindsym $super+Left focus left
 bindsym $super+Down focus down
 bindsym $super+Up focus up
 bindsym $super+Right focus right
 
-# move focused window
+### change focus between tiling and floating
+bindsym $alt+Tab focus mode_toggle
+
+### move focused window
 bindsym $super+Shift+Left move left
 bindsym $super+Shift+Down move down
 bindsym $super+Shift+Up move up
 bindsym $super+Shift+Right move right
 
-# split in horizontal or vertical orientation
+### split in horizontal or vertical orientation
 bindsym $super+h split h
 bindsym $super+v split v
 
-# change split direction for already opened windows
+### change split direction for already opened windows
 bindsym $super+s layout toggle split
 
-# enter fullscreen mode for the focused container
+### enter fullscreen mode for the focused container
 bindsym $super+f fullscreen toggle
 
-# toggle tiling / floating
-bindsym $super+space floating toggle
+### toggle tiling / floating
+bindsym $super+space floating toggle;\
+[floating] border normal 0; [tiling] border pixel 8
 
-# change focus between tiling / floating windows
-bindsym $super+Shift+space focus mode_toggle
-
-# switch to workspace
+### switch to workspace
 bindsym $super+Control+Right workspace next
 bindsym $super+Control+Left workspace prev
 bindsym $super+1 workspace 1:I
@@ -74,7 +87,7 @@ bindsym $super+4 workspace 4:IV
 bindsym $super+5 workspace 5:V
 bindsym $super+6 workspace 6:VI
 
-# move focused container to workspace
+### move focused container to workspace
 bindsym $super+Shift+1 move container to workspace 1:I
 bindsym $super+Shift+2 move container to workspace 2:II
 bindsym $super+Shift+3 move container to workspace 3:III
@@ -82,56 +95,75 @@ bindsym $super+Shift+4 move container to workspace 4:IV
 bindsym $super+Shift+5 move container to workspace 5:V
 bindsym $super+Shift+6 move container to workspace 6:VI
 
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $super+BackSpace exec "i3-msg restart"
+### restart i3 inplace (preserves your layout, can be used to upgrade i3)
+bindsym $super+BackSpace exec --no-startup-id "i3-msg restart"
 
-# exit i3
-bindsym $super+q exec "i3-nagbar -t warning -m 'Really, exit?' \
+### exit i3
+bindsym $super+q exec --no-startup-id "i3-nagbar -t warning -m 'Really, exit?' \
 -b 'Yes' 'i3-msg exit'"
 
-# resize window (you can also use the mouse for that)
-mode "resize" {
+### resize window (you can also use the mouse for that)
+mode "Resize" {
 	bindsym Left resize shrink width 5 px or 5 ppt
 	bindsym Down resize grow height 5 px or 5 ppt
 	bindsym Up resize shrink height 5 px or 5 ppt
 	bindsym Right resize grow width 5 px or 5 ppt
 	bindsym Return mode "default"
+	bindsym Escape mode "default"
 	}
-bindsym $super+r mode "resize"
+bindsym $super+r mode "Resize"
 
-# panel
+### move floating windows with keys
+mode "Move" {
+	bindsym Left move left
+	bindsym Down move down
+	bindsym Up move up
+	bindsym Right move right
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+bindsym $super+m mode "Move"
+
+### panel
 bar {
 	status_command i3status
-	position top
+	position bottom
 	workspace_min_width 24
-	padding 2px 8px 2px 8px
+	padding 4px 8px 4px 8px
 	strip_workspace_numbers yes
 
 	colors {
-	background #141c21
-	statusline #141c21
-	separator #141c21
+	background $background
+	statusline $foreground
+	separator $background
 
-	# colour of border, background, and text
-	focused_workspace #141c21 #d12f2c #93a1a1
-	active_workspace #141c21 #141c21 #93a1a1
-	inactive_workspace #141c21 #141c21 #93a1a1
-	urgent_workspace #141c21 #b08500 #93a1a1
+	### colour of border, background, and text
+	focused_workspace $background $blue $foreground
+	active_workspace $background $background $foreground
+	inactive_workspace $background $background $foreground
+	urgent_workspace $background $red $foreground
 	}
 }
 
-# colour of border, background, text, indicator, and child_border
-client.focused #d12f2c #263640 #93a1a1 #696ebf #2587cc1
-client.focused_inactive #263640 #b08500 #93a1a1 #263640 #263640
-client.unfocused #263640 #b08500 #93a1a1 #263640 #263640
-client.urgent #263640 #b08500 #93a1a1 #263640 #263640
-client.placeholder #263640 #b08500 #93a1a1 #263640 #263640
-client.background #263640
+### colour of border, background, text, indicator, and child_border
+client.focused $foreground $foreground $background $magenta $foreground
+client.focused_inactive $black $black $foreground $black $black
+client.unfocused $black $black $foreground $black $black
+client.urgent $red $red $foreground $magenta $red
+client.placeholder $black $black $foreground $black $black
+client.background $background
 
-# window rules, you can find the window class using xprop
-for_window [class=Eog|Sxiv|feh|mpv|Vlc|File-roller|Xarchiver] floating enable
-for_window [class=Eog|Sxiv|feh|mpv|Vlc|File-roller|Xarchiver] focus
-for_window [class=".*"] border pixel 8
+### window rules, you can find the window class using xprop
+for_window [class=Eog|eog|Eom|eom|Sxiv|sxiv|Nsxiv|nsxiv|Feh|feh|\
+Mpv|mpv|Vlc|vlc|File-roller|Xarchiver|Engrampa] floating enable
+for_window [class=Eog|eog|Eom|eom|Sxiv|sxiv|Nsxiv|nsxiv|Feh|feh|\
+Mpv|mpv|Vlc|vlc|File-roller|Xarchiver|Engrampa] focus;\
+[floating] border normal 0; [tiling] border pixel 8
+
+#for_window [class=".*"] border pixel 8
+default_border pixel 8
+default_floating_border normal 0
 hide_edge_borders smart
-gaps inner 12
+gaps inner 16
 smart_gaps on
+

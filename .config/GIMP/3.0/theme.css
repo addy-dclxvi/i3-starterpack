@@ -1,0 +1,15 @@
+/* GIMP theme.css
+ *
+ * This file is written on GIMP startup and on every theme change.
+ * It is NOT supposed to be edited manually. Edit your personal
+ * gimp.css file instead (/home/user/.config/GIMP/3.0/gimp.css).
+ */
+
+@import url("file:///usr/share/gimp/3.0/themes/System/gimp-light.css");
+@import url("file:///etc/gimp/3.0/gimp.css");
+
+* { -gtk-icon-style: symbolic; }
+
+
+
+/* end of theme.css */

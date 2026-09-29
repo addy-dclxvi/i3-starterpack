@@ -1,48 +1,9 @@
-!! Colorscheme
-
-! special
-*.foreground: #93a1a1
-*.background: #141c21
-*.cursorColor: #afbfbf
-
-! black
-*.color0: #263640
-*.color8: #4a697d
-
-! red
-*.color1: #d12f2c
-*.color9: #fa3935
-
-! green
-*.color2: #819400
-*.color10: #a4bd00
-
-! yellow
-*.color3: #b08500
-*.color11: #d9a400
-
-! blue
-*.color4: #2587cc
-*.color12: #2ca2f5
-
-! magenta
-*.color5: #696ebf
-*.color13: #8086e8
-
-! cyan
-*.color6: #289c93
-*.color14: #33c5ba
-
-! white
-*.color7: #bfbaac
-*.color15: #fdf6e3
-
 !! URxvt Appearance
-URxvt.font: xft:SpaceMono:style=Regular:size=9
-URxvt.boldFont: xft:SpaceMono:style=Bold:size=9
-URxvt.italicFont:  xft:SpaceMono:style=Italic:size=9
-URxvt.boldItalicfont: xft:SpaceMono:style=Bold Italic:size=9
-URxvt.letterSpace: -1
+URxvt.font: -addy-rissole-medium-r-normal--12-120-75-75-m-60-iso8859-1
+URxvt.boldFont: -addy-rissole-medium-r-normal--12-120-75-75-m-60-iso8859-1
+URxvt.italicFont: -addy-rissole-medium-r-normal--12-120-75-75-m-60-iso8859-1
+URxvt.boldItalicfont: -addy-rissole-medium-r-normal--12-120-75-75-m-60-iso8859-1
+URxvt.letterSpace: 0
 URxvt.lineSpace: 0
 URxvt.geometry: 92x24
 URxvt.internalBorder: 24
@@ -76,3 +37,42 @@ URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.urlLauncher: firefox
 URxvt.underlineURLs: true
 URxvt.urlButton: 1
+
+!! colorscheme
+
+! special
+*.foreground: #cccccc
+*.background: #1a1a1a
+*.cursorcolor: #f5f5f5
+
+! black
+*.color0: #3d3d3d
+*.color8: #616161
+
+! red
+*.color1: #d12f2c
+*.color9: #d12f2c
+
+! green
+*.color2: #819400
+*.color10: #819400
+
+! yellow
+*.color3: #b08500
+*.color11: #b08500
+
+! blue
+*.color4: #2587cc
+*.color12: #2587cc
+
+! magenta
+*.color5: #696ebf
+*.color13: #696ebf
+
+! cyan
+*.color6: #289c93
+*.color14: #289c93
+
+! white
+*.color7: #858585
+*.color15: #a8a8a8
