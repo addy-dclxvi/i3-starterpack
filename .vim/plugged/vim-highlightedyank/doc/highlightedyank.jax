@@ -1,0 +1,132 @@
+*highlightedyank.txt*	ヤンクした場所をわかりやすくする。
+						Last change:03-May-2022.
+
+書いた人   : machakann <mckn{at}outlook.jp>
+ライセンス : NYSL ライセンス
+          日本語版 <http://www.kmonos.net/nysl/>
+          英語版 (非公式) <http://www.kmonos.net/nysl/index.en.html>
+
+必要要件:	Vim 7.4 かそれ以降の Vim エディタであること
+		|+reltime| オプション
+		|+float| オプション
+		|+timers| オプション (任意)
+
+==============================================================================
+INDEX					*highlightedyank-index*
+
+INTRODUCTION				|highlightedyank-introduction|
+OPTIONS					|highlightedyank-options|
+HIGHLIGHT GROUPS			|highlightedyank-highlight-groups|
+KNOWN ISSUES				|highlightedyank-known-issues|
+
+==============================================================================
+INTRODUCTION				*highlightedyank-introduction*
+
+*highlightedyank.vim* はユーザーのヤンクした箇所をハイライトするだけのプラグイ
+ンです。あなたのコーディング作業にほんの少しの彩りを加えます。
+
+もし、neovim <https://neovim.io/> を使用している場合はこのプラグインは必要あり
+ません。|lua-highlight| を参照してください。
+
+Vim 8.0.1934 かそれよりも新しいバージョンを使用している場合はインストールする
+だけで使えます。ハイライト処理は |TextYankPost| イベントにより実行されます。
+
+|TextYankPost| イベントが使えない場合も次の行を vimrc に書き加えると使えます。
+|TextYankPost| が存在するか確認するようにするとよいでしょう。
+>
+	if !exists('##TextYankPost')
+	  nmap y <Plug>(highlightedyank)
+	  xmap y <Plug>(highlightedyank)
+	  omap y <Plug>(highlightedyank)
+	endif
+<
+
+==============================================================================
+OPTIONS					*highlightedyank-options*
+
+ハイライトの持続時間は次の変数を通して変更できます。
+*g:highlightedyank_highlight_duration*
+*b:highlightedyank_highlight_duration*
+ミリセカンド単位の数値を設定してください。
+>
+	let g:highlightedyank_highlight_duration = 1000
+<
+負数が与えられるとハイライトは時間によって消えなくなります。
+>
+	let g:highlightedyank_highlight_duration = -1
+<
+ただしいずれの場合も、ハイライト位置がずれるのを防ぐためにより前方が編集された
+場合はハイライトが消去されます。また、新しい位置がヤンクされると古い位置のハイ
+ライトは消えます。
+
+------------------------------------------------------------------------------
+
+ハイライト処理はしばしば、特に多くの行をヤンクした場合に遅くなります。これを避
+けるために次の安全策が設けられています。
+
+					*g:highlightedyank_max_lines*
+					*b:highlightedyank_max_lines*
+|g:highlightedyank_max_lines| と |b:highlightedyank_max_lines| を使い、ハイラ
+イトを実行する上限行数を設定することができます。下記の行を vimrc に追加するこ
+とで 1000 行以上をヤンクしようとしたときハイライトしないようにできます。
+>
+	let g:highlightedyank_max_lines = 1000
+<
+これらが明示的に指定されていない場合は、 10000 行を超える場合にハイライトをし
+ません。
+
+------------------------------------------------------------------------------
+
+					*g:highlightedyank_highlight_in_visual*
+					*b:highlightedyank_highlight_in_visual*
+ヴィジュアル選択範囲をヤンクした場合のハイライトはあまり必要でないかもしれませ
+ん。そんな場合にはこのオプションに偽値を設定してください。
+>
+	let g:highlightedyank_highlight_in_visual = 0
+<
+
+==============================================================================
+HIGHLIGHT GROUPS			*highlightedyank-highlight-groups*
+
+ハイライトの色を変更したければ次のハイライトグループが使えます。
+
+HighlightedyankRegion				*hl-HighlightedyankRegion*
+	ヤンクした箇所のハイライトを定義するためのハイライトグループです。
+	デフォルトでは IncSearch |hl-IncSearch| にリンクされています。
+>
+	highlight link HighlightedyankRegion IncSearch
+<
+	直接色を指定する場合は次のように書きます。
+>
+	highlight HighlightedyankRegion ctermbg=237 guibg=#404040
+<
+	より詳しくは |:highlight| を参照してください。
+
+	ただし、再定義は vimrc の中の |:colorscheme| 以降で行われる必要があり
+	ます。
+
+==============================================================================
+COMMANDS				*highlightedyank-commands*
+
+:HighlightedyankOff				*:HighlightedyankOff*
+	ハイライト機能を一時停止します。
+
+:HighlightedyankOn				*:HighlightedyankOn*
+	|:HighlightedyankOff| コマンドによって停止していたハイライト機能を再開
+	します。
+
+:HighlightedyankToggle				*:HighlightedyankToggle*
+	ハイライト機能のオン・オフを切り替えます。
+	|:HighlightedyankOff| および |:HighlightedyankOn| の項も参照してくださ
+	い。
+
+==============================================================================
+KNOWN ISSUES				*highlightedyank-known-issues*
+
+ - 'clipboard' に "unnamed" が設定されているとき `"*yiw` は "0 |quote0|
+   レジスタを更新してしまいます。
+ - 'clipboard' に "unnamedplus" が設定されているとき `"+yiw` は "0 |quote0|
+   レジスタを更新してしまいます。
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:noet:

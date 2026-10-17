@@ -1,0 +1,56 @@
+Before:
+  Save g:ale_xml_xmllint_executable
+  Save g:ale_xml_xmllint_indentsize
+  Save g:ale_xml_xmllint_options
+
+  let g:ale_xml_xmllint_executable = '/path/to/xmllint'
+  let g:ale_xml_xmllint_indentsize = ''
+  let g:ale_xml_xmllint_options = ''
+
+  call ale#test#SetDirectory('/testplugin/test/fixers')
+
+After:
+  Restore
+
+Execute(The xmllint callback should return the correct default command with unpersisted buffer):
+  new
+
+  AssertEqual
+  \ {
+  \   'command': ale#Escape('/path/to/xmllint')
+  \     . ' --format -'
+  \ },
+  \ ale#fixers#xmllint#Fix(bufnr(''))
+
+Execute(The xmllint callback should return the correct default command):
+  call ale#test#SetFilename('../test-files/xml/dummy.xml')
+
+  AssertEqual
+  \ {
+  \   'command': ale#Escape('/path/to/xmllint')
+  \     . ' --format -'
+  \ },
+  \ ale#fixers#xmllint#Fix(bufnr(''))
+
+Execute(The xmllint callback should include the XMLLINT_INDENT variable):
+  call ale#test#SetFilename('../test-files/xml/dummy.xml')
+  let g:ale_xml_xmllint_indentsize = 2
+
+  AssertEqual
+  \ {
+  \   'command': ale#Env('XMLLINT_INDENT', '  ')
+  \     . ale#Escape('/path/to/xmllint')
+  \     . ' --format -'
+  \ },
+  \ ale#fixers#xmllint#Fix(bufnr(''))
+
+Execute(The xmllint callback should include additional options):
+  call ale#test#SetFilename('../test-files/xml/dummy.xml')
+  let g:ale_xml_xmllint_options = '--nonet --custom-opt 2'
+
+  AssertEqual
+  \ {
+  \   'command': ale#Escape('/path/to/xmllint')
+  \     . ' --format --nonet --custom-opt 2 -'
+  \ },
+  \ ale#fixers#xmllint#Fix(bufnr(''))

@@ -1,0 +1,27 @@
+Before:
+  Save g:ale_sh_shfmt_executable
+  Save g:ale_sh_shfmt_options
+  Save &l:expandtab
+  Save &l:shiftwidth
+  Save &l:tabstop
+
+After:
+  Restore
+
+Execute(The shfmt callback should return 'shfmt' as default command):
+  setlocal noexpandtab
+  Assert
+  \ ale#fixers#shfmt#Fix(bufnr('')).command =~# '^' . ale#Escape('shfmt'),
+  \ "Default command name is expected to be 'shfmt'"
+
+Execute(The shfmt executable and options should be configurable):
+  let g:ale_sh_shfmt_executable = 'foobar'
+  let g:ale_sh_shfmt_options = '--some-option'
+
+  AssertEqual
+  \ {
+  \   'command': ale#Escape('foobar')
+  \     . ' -filename=%s'
+  \     . ' --some-option',
+  \ },
+  \ ale#fixers#shfmt#Fix(bufnr(''))

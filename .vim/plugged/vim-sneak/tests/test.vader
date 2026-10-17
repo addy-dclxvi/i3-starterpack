@@ -1,0 +1,1485 @@
+# vim -N -u NONE -c "set rtp+=~/.vim/bundle/vim-sneak,~/.vim/bundle/vader.vim,~/.vim/bundle/vim-repeat" -c "runtime! plugin/sneak.vim plugin/vader.vim plugin/repeat.vim" -c "Vader ~/.vim/bundle/vim-sneak/tests/test.vader"
+#
+# BUG: highlight targets are bogus if &iminsert=1
+# BUG: sneak cannot find ёе: in this text
+# BUG: sneak cannot find е:а in this text
+# 
+# ёе:а
+# ёе:а
+# ёе:а
+# ёе:а
+# ёе:а
+# ёе:ёе:ёе:ёе:ёе:ёе:ёе:аааааааёе:а
+# ёе:ёе:ёе:ёе:ёе:ёе:ёе:аааааааёе:а
+# ёе:ёе:ёе:ёе:ёе:ёе:ёе:аааааааёе:а
+# ёе:ёе:ёе:ёе:ёе:ёе:ёе:аааааааёе:а
+# ёе:ёе:ёе:ёе:ёе:ёе:ёе:аааааааёе:а
+# ёе:ёе:ёе:ёе:ёе:ёе:ёе:аааааааёе:а
+
+Execute (Clean up test environment):
+  if !has('nvim')
+    set encoding=utf8
+    scriptencoding utf8
+  endif
+  nmap ; <Plug>Sneak_;
+  nmap \ <Plug>Sneak_,
+  omap \ <Plug>Sneak_,
+  xmap \ <Plug>Sneak_,
+  silent! unmap f
+  silent! unmap t
+  let mapleader = ','
+  let g:sneak#label = 0
+  let g:sneak#use_ic_scs = 0
+  func! SneakReset() abort
+    unlet g:loaded_sneak_plugin
+    runtime! plugin/sneak.vim
+  endfunc
+  call SneakReset()
+
+###########################################################
+Execute (autoloaded functions should not exist):
+  Assert !exists("*sneak#label#to")
+  Assert !exists("*sneak#search#new")
+  Assert !exists("*sneak#util#strlen")
+
+# this must be the first test, because it tests built-in f-repeat
+# for the case where s has not ever been invoked.
+Given:
+  ababAbABababaB
+Do (f-repeat without having ever invoked s. #31):
+  fa;ix
+Expect:
+  ababAbABxababaB
+
+###########################################################
+# unit tests
+
+Do (tickle the autoloads):
+  sab
+
+Execute ('label' functions should not exist after vanilla-sneak):
+  Assert !exists("*sneak#label#to")
+
+Execute (hl#links_to() returns linked-to highlight group):
+  hi! link Conceal SneakConceal
+  Assert 'SneakConceal' ==# sneak#util#links_to('Conceal')
+
+Execute (hl#links_to() returns NONE if not linked):
+  hi! link Conceal NONE
+  Assert "NONE" ==# sneak#util#links_to('Conceal')
+
+Execute (sneak#is_sneaking() returns 1 when activated):
+  norm sab
+  Assert sneak#is_sneaking()
+
+Execute (sneak#cancel() cancels sneak#is_sneaking()):
+  norm sab
+  Assert sneak#is_sneaking()
+  call sneak#cancel()
+  Assert !sneak#is_sneaking()
+
+Execute (label#sanitize_target_labels()):
+  runtime autoload/sneak/label.vim
+  let orig = g:sneak#target_labels
+  let g:sneak#target_labels = " \\ as  d\<Esc>fo\<Tab>ob\<Space>a;\\rASD"
+  call sneak#label#sanitize_target_labels()
+  Assert g:sneak#target_labels ==#  ";asdfoobarASD"
+  "cleanup
+  let g:sneak#target_labels = orig
+
+Given:
+  abab
+  abab
+
+Execute (s.hasmatches()):
+  norm! jll
+  let s = g:sneak#search#instance
+  call s.init("ab", 0, 0)
+  Assert !s.hasmatches(2)
+  Assert !s.hasmatches(1)
+  norm! k
+  Assert s.hasmatches(1)
+  Assert s.hasmatches(2)
+  Assert !s.hasmatches(3)
+
+Execute (autoloaded functions should exist):
+  Assert exists("*sneak#label#to")
+  Assert exists("*sneak#search#new")
+  Assert exists("*sneak#util#strlen")
+
+###########################################################
+
+Given:
+  1 22222 33 444 555 6666 7 888
+  11 222 3333 4 55 6666 77 888
+  111 22 333 444 42555 6666 7 88888
+  1111 2 33 444 555 66 77a 8
+
+Do (move to 22):
+  s22x
+Expect:
+  1 2222 33 444 555 6666 7 888
+  11 222 3333 4 55 6666 77 888
+  111 22 333 444 42555 6666 7 88888
+  1111 2 33 444 555 66 77a 8
+
+Do (next match):
+  s22;x
+Expect:
+  1 2222 33 444 555 6666 7 888
+  11 222 3333 4 55 6666 77 888
+  111 22 333 444 42555 6666 7 88888
+  1111 2 33 444 555 66 77a 8
+
+Do (skip to third match):
+  s\<Space>43;x
+Expect:
+  1 22222 33 444 555 6666 7 888
+  11 222 3333 4 55 6666 77 888
+  111 22 333 44442555 6666 7 88888
+  1111 2 33 444 555 66 77a 8
+
+# CursorMoved is not triggered in scripts/macros, so we must force it.
+#   https://github.com/junegunn/vader.vim/issues/2
+Do (visual mode forwards):
+  vwjs42lo
+  :\<C-U>doautocmd CursorMoved\<CR>
+  :\<C-U>doautocmd CursorMoved\<CR>
+  gvs55;d
+Expect:
+  1 22222 33 444 555 6666 7 888
+  11 222 3333 4 555 6666 7 88888
+  1111 2 33 444 555 66 77a 8
+
+Do (visual mode backwards):
+  jjjvwwoZ33;;\d
+Expect:
+  1 22222 33 444 555 6666 7 888
+  11 222 333 444 555 66 77a 8
+
+Given:
+  a,,bbb
+  aa,,bb
+  aaa,,b
+  aaaa,,
+  aaa,b,
+  aa,bb,
+  a,bbb,
+
+Do (search backwards):
+  jjSbbx
+Expect:
+  a,,bbb
+  aa,,b
+  aaa,,b
+  aaaa,,
+  aaa,b,
+  aa,bb,
+  a,bbb,
+
+###########################################################
+# delete, change, yank
+
+Given:
+  Paul McCartney 1942
+  George Harrison 1943mmdd
+  Ringo Starr 1940mm
+  Pete Best 1941
+
+Do (delete):
+  dzar
+Expect:
+  artney 1942
+  George Harrison 1943mmdd
+  Ringo Starr 1940mm
+  Pete Best 1941
+
+Do (delete backwards):
+  jwdZar
+Expect:
+  Paul McCHarrison 1943mmdd
+  Ringo Starr 1940mm
+  Pete Best 1941
+
+Do (delete [count]):
+  d3zar
+Expect:
+  arr 1940mm
+  Pete Best 1941
+
+Do (delete ;):
+  dzar
+  :\<C-U>doautocmd CursorMoved\<CR>
+  d;
+Expect:
+  arrison 1943mmdd
+  Ringo Starr 1940mm
+  Pete Best 1941
+
+Do (change):
+  llczar
+Expect:
+  Paartney 1942
+  George Harrison 1943mmdd
+  Ringo Starr 1940mm
+  Pete Best 1941
+
+Do (change backwards):
+  jjllcZar
+Expect:
+  Paul McCartney 1942
+  George Hngo Starr 1940mm
+  Pete Best 1941
+
+Do (change [count]):
+  c3zar
+Expect:
+  arr 1940mm
+  Pete Best 1941
+
+Do (change ;):
+  czarfoo\<Esc>l
+  :\<C-U>doautocmd CursorMoved\<CR>
+  c;bar
+Expect:
+  foobararrison 1943mmdd
+  Ringo Starr 1940mm
+  Pete Best 1941
+
+Do (yank):
+  jlyzarp
+Expect:
+  Paul McCartney 1942
+  Geeorge Horge Harrison 1943mmdd
+  Ringo Starr 1940mm
+  Pete Best 1941
+
+Do (yank backwards):
+  jjllyZarp
+Expect:
+  Paul McCartney 1942
+  George Haarrison 1943mmdd
+  Rirrison 1943mmdd
+  Ringo Starr 1940mm
+  Pete Best 1941
+
+Do (yank [count]):
+  y3zarP
+Expect:
+  Paul McCartney 1942
+  George Harrison 1943mmdd
+  Ringo StPaul McCartney 1942
+  George Harrison 1943mmdd
+  Ringo Starr 1940mm
+  Pete Best 1941
+
+###########################################################
+# repeat-operation (.)
+
+Given:
+  Paul McCartney 1942
+  George Harrison 1943mmdd
+  Ringo Starr 1940mm
+  Pete Best 1941
+
+Do (search for H):
+  sH\<Enter>x
+Expect:
+  Paul McCartney 1942
+  George arrison 1943mmdd
+  Ringo Starr 1940mm
+  Pete Best 1941
+
+Do (repeat change):
+  jlczarfoo\<Esc>l
+  :\<C-U>doautocmd CursorMoved\<CR>
+  .
+Expect:
+  Paul McCartney 1942
+  Gfoofooarr 1940mm
+  Pete Best 1941
+
+Do (repeat backwards change):
+  jjllcZarfoo\<Esc>hh
+  :\<C-U>doautocmd CursorMoved\<CR>
+  .
+Expect:
+  Paul McCfoofoongo Starr 1940mm
+  Pete Best 1941
+
+Do (repeat delete operation):
+  dzar
+  :\<C-U>doautocmd CursorMoved\<CR>
+  .
+Expect:
+  arrison 1943mmdd
+  Ringo Starr 1940mm
+  Pete Best 1941
+
+Do (repeat delete operation twice):
+  dzar
+  :\<C-U>doautocmd CursorMoved\<CR>
+  .
+  :\<C-U>doautocmd CursorMoved\<CR>
+  .
+Expect:
+  arr 1940mm
+  Pete Best 1941
+
+Do (repeat backwards delete operation. #7):
+  3jdZar
+  :\<C-U>doautocmd CursorMoved\<CR>
+  .
+Expect:
+  Paul McCartney 1942
+  George Ht
+  Pete Best 1941
+
+Do (repeat backwards delete operation twice. #7):
+  3jdZar
+  :\<C-U>doautocmd CursorMoved\<CR>
+  .
+  :\<C-U>doautocmd CursorMoved\<CR>
+  .
+Expect:
+  Paul McCt
+  Pete Best 1941
+
+###########################################################
+# [count]repeat and repeat [count]op
+
+Given:
+  Paul McCartney 1942
+  George Harrison 1943mmdd
+  Ringo Starr 1940mm
+  Pete Babbar 1941
+
+Do (repeat [count] delete operation):
+  2dzar
+  :\<C-U>doautocmd CursorMoved\<CR>
+  .
+Expect:
+  ar 1941
+
+Do (repeat [count] delete operation):
+  2czarfoo\<Esc>l
+  :\<C-U>doautocmd CursorMoved\<CR>
+  .
+Expect:
+  foofooar 1941
+
+Do ([count]repeat delete):
+  dzar
+  :\<C-U>doautocmd CursorMoved\<CR>
+  2.
+Expect:
+  arr 1940mm
+  Pete Babbar 1941
+
+Do ([count]repeat change):
+  czarfoo\<Esc>l
+  :\<C-U>doautocmd CursorMoved\<CR>
+  2.
+Expect:
+  foofooarr 1940mm
+  Pete Babbar 1941
+
+###########################################################
+
+Given:
+  xyz="abc=def"
+  a=b#=c
+  \\\\  \ \ ? !--``.ago_		*$&()[]{}
+
+
+Do (search for backticks, then backslashes):
+  llls``
+  :\<C-U>doautocmd CursorMoved\<CR>
+  :\<C-U>doautocmd CursorMoved\<CR>
+  S\\i:)
+Expect:
+  xyz="abc=def"
+  a=b#=c
+  \\:)\\  \ \ ? !--``.ago_		*$&()[]{}
+
+###########################################################
+
+Given:
+  var jdbc = {
+    // JDBC driver for MySQL database:
+    driver: "com.mysql.jdbc.Driver",
+    /* JDBC URL for the connection (jdbc:mysql://HOSTNAME/DATABASE) */
+    url: 'jdbc:mysql://localhost/test',
+    abpa: "pass",
+    "pass:pass":"r00t:pa55"
+  };
+
+Do (vertical scope and count-prefixed repeat-motion):
+  wwjl3spa2;i:
+Expect:
+  var jdbc = {
+    // JDBC driver for MySQL database:
+    driver: "com.mysql.jdbc.Driver",
+    /* JDBC URL for the connection (jdbc:mysql://HOSTNAME/DATABASE) */
+    url: 'jdbc:mysql://localhost/test',
+    abpa: "pass",
+    "pass::pass":"r00t:pa55"
+  };
+
+###########################################################
+
+Given:
+  | Option     | Type    | Default | Description                                    |
+  | --         | --      | --      | --                                             |
+  | threads    | Fixnum  | 1       | number of threads in the thread pool           |
+  | queues     | Fixnum  | 1       | number of concurrent queues                    |
+  | queue_size | Fixnum  | 1000    | size of each queue                             |
+  | interval   | Numeric | 0       | dispatcher interval for batch processing       |
+  | batch      | Boolean | false   | enables batch processing mode                  |
+  | batch_size | Fixnum  | nil     | number of maximum items to be assigned at once |
+  | logger     | Logger  | nil     | logger instance for debug logs                 |
+
+Do (crazy sequence with s, f, counts, and repeats):
+  fDs1\<Space>;\2fe2;3j4Ti\~
+Expect:
+  | Option     | Type    | Default | Description                                    |
+  | --         | --      | --      | --                                             |
+  | threads    | Fixnum  | 1       | number of threads in the thread pool           |
+  | queues     | Fixnum  | 1       | number of concurrent queues                    |
+  | queue_size | Fixnum  | 1000    | size of each queue                             |
+  | interval   | NumeRic | 0       | dispatcher interval for batch processing       |
+  | batch      | Boolean | false   | enables batch processing mode                  |
+  | batch_size | Fixnum  | nil     | number of maximum items to be assigned at once |
+  | logger     | Logger  | nil     | logger instance for debug logs                 |
+
+###########################################################
+# clever-s _not_ in label-mode
+
+Execute (init clever-s):
+  let g:sneak#s_next = 1
+  call SneakReset()
+
+Given:
+  abcdef abcdef abcdef
+  abcdef abcdef abcdef
+  abcdef abcdef abcdef
+
+Do (dummy step to work around Vim (or Vader) macro bug):
+  sab\<esc>u
+
+Do (clever-s):
+  sabsax
+Expect:
+  abcdef abcdef axbcdef
+  abcdef abcdef abcdef
+  abcdef abcdef abcdef
+
+Do (clever-s):
+  sab3sax
+Expect:
+  abcdef abcdef abcdef
+  abcdef axbcdef abcdef
+  abcdef abcdef abcdef
+
+Do (clever-s):
+  sabsssssssSSax
+Expect:
+  abcdef abcdef abcdef
+  abcdef abcdef abcdef
+  axbcdef abcdef abcdef
+
+Do (clever-s with input truncated by <Enter> should still clever-repeat):
+  se\<Enter>sssix
+Expect:
+  abcdef abcdef abcdef
+  abcdxef abcdef abcdef
+  abcdef abcdef abcdef
+
+Execute (unset clever-s):
+  let g:sneak#s_next = 0
+  call SneakReset()
+
+###########################################################
+# No match found, but reverse direction has matches
+
+Given:
+  abcabc abcabc abcabc
+  defdef defdef defdef
+  ghighi ghighi ghighi
+
+Do (forward no match but reverse with ,):
+  Gsab,r_
+Expect:
+  abcabc abcabc abc_bc
+  defdef defdef defdef
+  ghighi ghighi ghighi
+
+Do (backwards no match but reverse with ,):
+  WSef,r_
+Expect:
+  abcabc abcabc abcabc
+  d_fdef defdef defdef
+  ghighi ghighi ghighi
+
+Execute (init clever-s):
+  let g:sneak#s_next = 1
+  call SneakReset()
+
+Do (dummy step to work around Vim (or Vader) macro bug):
+  sab\<esc>u
+
+Do (forward no match but reverse with S):
+  GsabSr_
+Expect:
+  abcabc abcabc abc_bc
+  defdef defdef defdef
+  ghighi ghighi ghighi
+
+Do (dummy step to work around Vim (or Vader) macro bug):
+  sab\<esc>u
+
+Do (backwards no match but reverse with S):
+  WSefSr_
+Expect:
+  abcabc abcabc abcabc
+  d_fdef defdef defdef
+  ghighi ghighi ghighi
+
+Execute (unset clever-s):
+  let g:sneak#s_next = 0
+  call SneakReset()
+
+###########################################################
+# g:sneak#absolute_dir
+
+Given:
+  abcdef abcdef abcdef
+  abcdef abcdef abcdef
+  abcdef abcdef abcdef
+
+Execute (absolute_dir = 0):
+  let g:sneak#absolute_dir = 0
+  call SneakReset()
+
+  norm sab
+  Assert sneak#state()['reverse']    == 0
+  Assert sneak#state()['rptreverse'] == 0
+  norm ;
+  Assert sneak#state()['reverse']    == 0
+  Assert sneak#state()['rptreverse'] == 0
+  norm ,
+  Assert sneak#state()['reverse']    == 0
+  Assert sneak#state()['rptreverse'] == 1
+  norm Sab
+  Assert sneak#state()['reverse']    == 1
+  Assert sneak#state()['rptreverse'] == 1
+  norm ;
+  Assert sneak#state()['reverse']    == 1
+  Assert sneak#state()['rptreverse'] == 1
+  norm ,
+  Assert sneak#state()['reverse']    == 1
+  Assert sneak#state()['rptreverse'] == 0
+
+Execute (absolute_dir = 1):
+  let g:sneak#absolute_dir = 1
+  call SneakReset()
+
+  norm sab
+  Assert sneak#state()['reverse']    == 0
+  Assert sneak#state()['rptreverse'] == 0
+  norm ;
+  Assert sneak#state()['reverse']    == 0
+  Assert sneak#state()['rptreverse'] == 0
+  norm ,
+  Assert sneak#state()['reverse']    == 0
+  Assert sneak#state()['rptreverse'] == 1
+  norm Sab
+  Assert sneak#state()['reverse']    == 1
+  Assert sneak#state()['rptreverse'] == 1
+  norm ;
+  Assert sneak#state()['reverse']    == 1
+  Assert sneak#state()['rptreverse'] == 0
+  norm ,
+  Assert sneak#state()['reverse']    == 1
+  Assert sneak#state()['rptreverse'] == 1
+
+Execute (restore g:sneak#absolute_dir default):
+  let g:sneak#absolute_dir = 0
+  call SneakReset()
+
+###########################################################
+
+Given:
+  abcdef abcdef abcdef
+  abcdef abcdef abcdef
+  abcdef abcdef abcdef
+
+Execute (create mapping with f as a prefix / do s ; fe):
+  nnoremap foobar :echo 'hi'<cr>
+  normal sbc2;;fe;iX
+  nunmap foobar
+Expect:
+  abcdef abcdef abcdef
+  abcdef abcdXef abcdef
+  abcdef abcdef abcdef
+
+###########################################################
+# label-mode
+
+Execute (label-mode):
+  let g:sneak#label = 1
+  call SneakReset()
+
+Given:
+  abcdef ``=2Bd-a3/+ abCDef ``=2Bd-a3/+
+  `=QWEOIJ/+     ~~~!!! ! { } abc AAaab
+  abcdef ``=2Bd-a3/+ abCDef ``=2Bd-a3/+
+
+Do (basic label motion):
+  sabsD
+Expect:
+  abcdef ``=2Bd-a3/+ abCDef ``=2Bd-a3/+
+  `=QWEOIJ/+     ~~~!!! ! { } abc AAa
+  abcdef ``=2Bd-a3/+ abCDef ``=2Bd-a3/+
+
+Do (backwards label motion):
+  jj$Seffix
+Expect:
+  abcdxef ``=2Bd-a3/+ abCDef ``=2Bd-a3/+
+  `=QWEOIJ/+     ~~~!!! ! { } abc AAaab
+  abcdef ``=2Bd-a3/+ abCDef ``=2Bd-a3/+
+
+#TODO: feedkeys() in do_label() breaks macros/Vader
+#Do (Sneak_; in label-mode):
+#  sab;x
+#Expect:
+#  abcdef ``=2Bd-a3/+ abCDef ``=2Bd-a3/+
+#  `=QWEOIJ/+     ~~~!!! ! { } bc AAaab
+#  abcdef ``=2Bd-a3/+ abCDef ``=2Bd-a3/+
+#Do (Sneak_, in label-mode):
+#  jsab\x
+#Expect:
+#  abcdef ``=2Bd-a3/+ bCDef ``=2Bd-a3/+
+#  `=QWEOIJ/+     ~~~!!! ! { } abc AAaab
+#  abcdef ``=2Bd-a3/+ abCDef ``=2Bd-a3/+
+#Do (Sneak_; in visual-mode + label-mode):
+#  vsab;x
+#Expect:
+#  bc AAaab
+#  abcdef ``=2Bd-a3/+ abCDef ``=2Bd-a3/+
+#Do (Sneak_, in visual-mode + label-mode):
+#  jvsab\x
+#Expect:
+#  abcdef ``=2Bd-a3/+ =QWEOIJ/+     ~~~!!! ! { } abc AAaab
+#  abcdef ``=2Bd-a3/+ abCDef ``=2Bd-a3/+
+
+Given:
+  | Option     | Type    | Default | Description                                    |
+  | --         | --      | --      | --                                             |
+  | threads    | Fixnum  | 1       | number of threads in the thread pool           |
+  | queues     | Fixnum  | 1       | number of concurrent queues                    |
+  | queue_size | Fixnum  | 1000    | size of each queue                             |
+  | interval   | Numeric | 0       | dispatcher interval for batch processing       |
+  | batch      | Boolean | false   | enables batch processing mode                  |
+  | batch_size | Fixnum  | nil     | number of maximum items to be assigned at once |
+  | logger     | Logger  | nil     | logger instance for debug logs                 |
+
+Do (delete + label):
+  dznun
+Expect:
+  number of maximum items to be assigned at once |
+  | logger     | Logger  | nil     | logger instance for debug logs                 |
+
+Given:
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+  ab7cdef ab8cdef ab9cdef ab0cdef ab1cdef ab2cdef
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+
+Do (label + delete):
+  dzab;
+Expect:
+  ab3cdef ab4cdef ab5cdef ab6cdef
+  ab7cdef ab8cdef ab9cdef ab0cdef ab1cdef ab2cdef
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+
+Do (label + delete + repeat):
+  dzabs
+  :\<C-U>doautocmd CursorMoved\<CR>
+  .
+Expect:
+  ab7cdef ab8cdef ab9cdef ab0cdef ab1cdef ab2cdef
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+
+Do (label + 2-delete + repeat):
+  2dzab\<Esc>
+  :\<C-U>doautocmd CursorMoved\<CR>
+  .
+Expect:
+  ab5cdef ab6cdef
+  ab7cdef ab8cdef ab9cdef ab0cdef ab1cdef ab2cdef
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+
+Do (label/target/backwards/delete/repeat):
+  2j2wdZeff
+  :\<C-U>doautocmd CursorMoved\<CR>
+  .
+Expect:
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+  ab7cdab3cdef ab4cdef ab5cdef ab6cdef
+
+Do (label/target/change/repeat):
+  jwczefsFOO\<Esc>
+  :\<C-U>doautocmd CursorMoved\<CR>
+  jb.
+Expect:
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+  ab7cdef FOOef ab1cdef ab2cdef
+  ab1cdef FOOef ab5cdef ab6cdef
+
+###########################################################
+# Label-mode with exclusive (t-like) sneak
+
+Execute (mappings for exclusive streak mode):
+  nnoremap <silent> t :<c-u>call sneak#wrap('', 1, 0, 0, 2)<cr>
+  nnoremap <silent> T :<c-u>call sneak#wrap('', 1, 1, 0, 2)<cr>
+  onoremap <silent> t :<c-u>call sneak#wrap(v:operator, 1, 0, 0, 2)<cr>
+  onoremap <silent> T :<c-u>call sneak#wrap(v:operator, 1, 1, 0, 2)<cr>
+
+Do (label-mode, t-like sneak, forwards, normal [issue #176]):
+  tcsx
+Expect:
+  ab1cdef ab2cdef abcdef ab4cdef ab5cdef ab6cdef
+  ab7cdef ab8cdef ab9cdef ab0cdef ab1cdef ab2cdef
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+
+Do (label-mode, t-like sneak, backwards, normal [issue #176]):
+  $Tcfx
+Expect:
+  ab1cdef ab2cdef ab3cef ab4cdef ab5cdef ab6cdef
+  ab7cdef ab8cdef ab9cdef ab0cdef ab1cdef ab2cdef
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+
+Do (label-mode, t-like sneak, forwards, op-pending [issue #176]):
+  wwdtfs
+Expect:
+  ab1cdef ab2cdef f ab6cdef
+  ab7cdef ab8cdef ab9cdef ab0cdef ab1cdef ab2cdef
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+
+Do (label-mode, t-like sneak, backwards, op-pending [issue #176]):
+  5wcTb;X
+Expect:
+  ab1cdef ab2cdef ab3cdef abXab6cdef
+  ab7cdef ab8cdef ab9cdef ab0cdef ab1cdef ab2cdef
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+
+Execute (cleanup):
+  silent! unmap f
+  silent! unmap F
+  silent! unmap t
+  silent! unmap T
+  silent! xunmap f
+  silent! xunmap F
+  silent! xunmap t
+  silent! xunmap T
+
+############################################################
+# Label-mode <Tab>/<BS> when running out of labels
+
+Given:
+  A11111111111111111111111111111111111111111111111111111K
+  B22222222222222222222222222222222222222222222222222222L
+  C11111111111111111111111111111111111111111111111111111M
+  D22222222222222222222222222222222222222222222222222222N
+  E11111111111111111111111111111111111111111111111111111O
+  F22222222222222222222222222222222222222222222222222222P
+  G11111111111111111111111111111111111111111111111111111Q
+  H22222222222222222222222222222222222222222222222222222R
+  I11111111111111111111111111111111111111111111111111111S
+  J22222222222222222222222222222222222222222222222222222T
+
+Do (next labels):
+  4j9ls22\<Tab>\<Tab>fr-
+Expect:
+  A11111111111111111111111111111111111111111111111111111K
+  B22222222222222222222222222222222222222222222222222222L
+  C11111111111111111111111111111111111111111111111111111M
+  D22222222222222222222222222222222222222222222222222222N
+  E11111111111111111111111111111111111111111111111111111O
+  F22222222222222222222222222222222222222222222222222222P
+  G11111111111111111111111111111111111111111111111111111Q
+  H2222222222222222222222222222222222222222222222-222222R
+  I11111111111111111111111111111111111111111111111111111S
+  J22222222222222222222222222222222222222222222222222222T
+
+Do (next labels, change direction):
+  4j9ls22\<Tab>\<Tab>\<BS>\<BS>\<BS>\<BS>Rr-
+Expect:
+  A11111111111111111111111111111111111111111111111111111K
+  B222222222222222222222222-2222222222222222222222222222L
+  C11111111111111111111111111111111111111111111111111111M
+  D22222222222222222222222222222222222222222222222222222N
+  E11111111111111111111111111111111111111111111111111111O
+  F22222222222222222222222222222222222222222222222222222P
+  G11111111111111111111111111111111111111111111111111111Q
+  H22222222222222222222222222222222222222222222222222222R
+  I11111111111111111111111111111111111111111111111111111S
+  J22222222222222222222222222222222222222222222222222222T
+
+Do (next labels, change direction, repeat):
+  4j9ldz22\<Tab>\<BS>\<BS>N
+  :\<C-U>doautocmd CursorMoved\<CR>
+  .
+Expect:
+  A11111111111111111111111111111111111111111111111111111K
+  B2222222222222222222222222222222222222222111111111111111111111111111111111111111111111O
+  F22222222222222222222222222222222222222222222222222222P
+  G11111111111111111111111111111111111111111111111111111Q
+  H22222222222222222222222222222222222222222222222222222R
+  I11111111111111111111111111111111111111111111111111111S
+  J22222222222222222222222222222222222222222222222222222T
+
+Do (next labels backwards):
+  4j9lS22\<Tab>\<Tab>fr-
+Expect:
+  A11111111111111111111111111111111111111111111111111111K
+  B2222-222222222222222222222222222222222222222222222222L
+  C11111111111111111111111111111111111111111111111111111M
+  D22222222222222222222222222222222222222222222222222222N
+  E11111111111111111111111111111111111111111111111111111O
+  F22222222222222222222222222222222222222222222222222222P
+  G11111111111111111111111111111111111111111111111111111Q
+  H22222222222222222222222222222222222222222222222222222R
+  I11111111111111111111111111111111111111111111111111111S
+  J22222222222222222222222222222222222222222222222222222T
+
+Do (next labels backwards, change direction):
+  4j9lS22\<Tab>\<Tab>\<BS>\<BS>\<BS>\<BS>Rr-
+Expect:
+  A11111111111111111111111111111111111111111111111111111K
+  B22222222222222222222222222222222222222222222222222222L
+  C11111111111111111111111111111111111111111111111111111M
+  D22222222222222222222222222222222222222222222222222222N
+  E11111111111111111111111111111111111111111111111111111O
+  F22222222222222222222222222222222222222222222222222222P
+  G11111111111111111111111111111111111111111111111111111Q
+  H22222222222222222222222222-22222222222222222222222222R
+  I11111111111111111111111111111111111111111111111111111S
+  J22222222222222222222222222222222222222222222222222222T
+
+Do (next labels backwards, change direction, repeat):
+  4j9ldZ22\<Tab>\<BS>\<BS>N
+  :\<C-U>doautocmd CursorMoved\<CR>
+  .
+Expect:
+  A11111111111111111111111111111111111111111111111111111K
+  B22222222222222222222222222222222222222222222222222222L
+  C11111111111111111111111111111111111111111111111111111M
+  D22222222222222222222222222222222222222222222222222222N
+  E11111111222222222222222222222222222222222222222222222R
+  I11111111111111111111111111111111111111111111111111111S
+  J22222222222222222222222222222222222222222222222222222T
+
+Execute (turn on g:sneak#absolute_dir):
+  let g:sneak#absolute_dir = 1
+  call SneakReset()
+
+Do (next labels absolute_dir):
+  4j9ls22\<Tab>\<Tab>fr-
+Expect:
+  A11111111111111111111111111111111111111111111111111111K
+  B22222222222222222222222222222222222222222222222222222L
+  C11111111111111111111111111111111111111111111111111111M
+  D22222222222222222222222222222222222222222222222222222N
+  E11111111111111111111111111111111111111111111111111111O
+  F22222222222222222222222222222222222222222222222222222P
+  G11111111111111111111111111111111111111111111111111111Q
+  H2222222222222222222222222222222222222222222222-222222R
+  I11111111111111111111111111111111111111111111111111111S
+  J22222222222222222222222222222222222222222222222222222T
+
+Do (next labels absolute_dir, change direction):
+  4j9ls22\<Tab>\<Tab>\<BS>\<BS>\<BS>\<BS>Rr-
+Expect:
+  A11111111111111111111111111111111111111111111111111111K
+  B222222222222222222222222-2222222222222222222222222222L
+  C11111111111111111111111111111111111111111111111111111M
+  D22222222222222222222222222222222222222222222222222222N
+  E11111111111111111111111111111111111111111111111111111O
+  F22222222222222222222222222222222222222222222222222222P
+  G11111111111111111111111111111111111111111111111111111Q
+  H22222222222222222222222222222222222222222222222222222R
+  I11111111111111111111111111111111111111111111111111111S
+  J22222222222222222222222222222222222222222222222222222T
+
+Do (next labels absolute_dir, change direction, repeat):
+  4j9ldz22\<Tab>\<BS>\<BS>N
+  :\<C-U>doautocmd CursorMoved\<CR>
+  .
+Expect:
+  A11111111111111111111111111111111111111111111111111111K
+  B2222222222222222222222222222222222222222111111111111111111111111111111111111111111111O
+  F22222222222222222222222222222222222222222222222222222P
+  G11111111111111111111111111111111111111111111111111111Q
+  H22222222222222222222222222222222222222222222222222222R
+  I11111111111111111111111111111111111111111111111111111S
+  J22222222222222222222222222222222222222222222222222222T
+
+Do (next labels absolute_dir backwards):
+  4j9lS22\<Tab>\<Tab>fr-
+Expect:
+  A11111111111111111111111111111111111111111111111111111K
+  B22222222222222222222222222222222222222222222222222222L
+  C11111111111111111111111111111111111111111111111111111M
+  D22222222222222222222222222222222222222222222222222222N
+  E11111111111111111111111111111111111111111111111111111O
+  F22222222222222222222222222222222222222222222222222-22P
+  G11111111111111111111111111111111111111111111111111111Q
+  H22222222222222222222222222222222222222222222222222222R
+  I11111111111111111111111111111111111111111111111111111S
+  J22222222222222222222222222222222222222222222222222222T
+
+Do (next labels absolute_dir backwards, change direction):
+  4j9lS22\<Tab>\<Tab>\<BS>\<BS>\<BS>Rr-
+Expect:
+  A11111111111111111111111111111111111111111111111111111K
+  B2222222222222222222222-222222222222222222222222222222L
+  C11111111111111111111111111111111111111111111111111111M
+  D22222222222222222222222222222222222222222222222222222N
+  E11111111111111111111111111111111111111111111111111111O
+  F22222222222222222222222222222222222222222222222222222P
+  G11111111111111111111111111111111111111111111111111111Q
+  H22222222222222222222222222222222222222222222222222222R
+  I11111111111111111111111111111111111111111111111111111S
+  J22222222222222222222222222222222222222222222222222222T
+
+Do (next labels absolute_dir backwards, change direction, repeat):
+  4j9ldZ22\<Tab>\<BS>N
+  :\<C-U>doautocmd CursorMoved\<CR>
+  .
+Expect:
+  A11111111111111111111111111111111111111111111111111111K
+  B222222222222222222222222222222222222111111111111111111111111111111111111111111111O
+  F22222222222222222222222222222222222222222222222222222P
+  G11111111111111111111111111111111111111111111111111111Q
+  H22222222222222222222222222222222222222222222222222222R
+  I11111111111111111111111111111111111111111111111111111S
+  J22222222222222222222222222222222222222222222222222222T
+
+Execute (cleanup):
+  let g:sneak#absolute_dir = 0
+  let g:sneak#label = 0
+  call SneakReset()
+
+###########################################################
+# unicode, multibyte
+
+Execute (ASCII has_upper):
+  Assert sneak#util#has_upper("Ab")
+
+Execute (ASCII !has_upper):
+  Assert !sneak#util#has_upper("ab")
+
+Execute (cyrillic has_upper):
+  Assert sneak#util#has_upper("АБРАЗиЯ")
+
+Execute (cyrillic !has_upper):
+  Assert !sneak#util#has_upper("абразия")
+
+Execute (set ignorecase):
+  set ignorecase
+  set nosmartcase
+  let g:sneak#use_ic_scs = 1
+  call SneakReset()
+
+Execute (sneak#search#get_cs):
+  Assert '\c' == sneak#search#get_cs('AB', 1)
+
+Given (ASCII):
+  fooabAB
+Do (ASCII + ignorecase):
+  sABix
+Expect:
+  fooxabAB
+Do (ASCII + ignorecase + repeat):
+  sAB;ix
+Expect:
+  fooabxAB
+
+Given (cyrillic):
+  fooабАБаб
+Do:
+  sабix
+Expect:
+  fooxабАБаб
+Do:
+  sАБix
+Expect:
+  fooxабАБаб
+Do (cyrillic + ignorecase + repeat):
+  sАБ;ix
+Expect:
+  fooабxАБаб
+Do (cyrillic + ignorecase + repeat x2):
+  sАБ;;ix
+Expect:
+  fooабАБxаб
+
+Execute (set smartcase):
+  set smartcase
+  call SneakReset()
+
+Given (ASCII):
+  fooabABaB
+Do:
+  sABix
+Expect:
+  fooabxABaB
+Given (cyrillic):
+  fooабАБаБ
+Do:
+  sабix
+Expect:
+  fooxабАБаБ
+Do:
+  sАБix
+Expect:
+  fooабxАБаБ
+Do:
+  sаБix
+Expect:
+  fooабАБxаБ
+
+Execute (set case-sensitive):
+  let g:sneak#use_ic_scs = 0
+  call SneakReset()
+
+Given (ASCII):
+  fooAbabaB
+Do:
+  sabix
+Expect:
+  fooAbxabaB
+Given (cyrillic):
+  fooаБАБаб
+Do:
+  sабix
+Expect:
+  fooаБАБxаб
+Do:
+  sАБix
+Expect:
+  fooаБxАБаб
+Do:
+  sаБix
+Expect:
+  fooxаБАБаб
+Do:
+  sабix
+Expect:
+  fooаБАБxаб
+
+Given (kanji):
+  この機能を使用する場合、コマンfooド
+  ラインではなくてコマンドラインウィンドウから
+Do:
+  s機能ix
+Expect:
+  このx機能を使用する場合、コマンfooド
+  ラインではなくてコマンドラインウィンドウから
+Do:
+  sooix
+Expect:
+  この機能を使用する場合、コマンfxooド
+  ラインではなくてコマンドラインウィンドウから
+Do:
+  sド\<cr>ix
+Expect:
+  この機能を使用する場合、コマンfooxド
+  ラインではなくてコマンドラインウィンドウから
+
+# https://github.com/Lokaltog/vim-easymotion/issues/28
+# "If a word starts with æ, ø or å the highlighting is disturbed."
+Given (Norwegian):
+  foo æfooæ æfooø øfoo
+Do:
+  søfix
+Expect:
+  foo æfooæ æfooø xøfoo
+
+Given (random unicode):
+  ´µµ¶·¸¹°°¡À£¨ª¦©¨ª¦¦Þ¨¦©ß©¨
+  foo æfïooææ ïoòôõïo ïofoo fooïo ïoïo
+Do:
+  sææix
+Expect:
+  ´µµ¶·¸¹°°¡À£¨ª¦©¨ª¦¦Þ¨¦©ß©¨
+  foo æfïooxææ ïoòôõïo ïofoo fooïo ïoïo
+
+Given (multibyte chars in various arrangements):
+  foo æfïooæ ïoòôõïo ïofoo fooïo ïoïo
+Do:
+  sïo;;;;ix
+Expect:
+  foo æfïooæ ïoòôõïo ïofoo fooxïo ïoïo
+
+Given (adjacent multibyte chars):
+  foo æfïïooæ ïoòôõïo ïïofoo fïïooïo
+Do:
+  sïï;;ax
+Expect:
+  foo æfïïooæ ïoòôõïo ïïofoo fïxïooïo
+
+###########################################################
+# 'keymap'
+
+Execute (SETUP):
+  set keymap=bulgarian-phonetic
+
+Given:
+  abcdef abcdef abcdef
+  абцдеф АБЦДЕФ абцдеф
+  абцдёё еёееёП ЯВЕРПО
+  абцдёё еёееёП ЯВЕРПО
+
+Do (search for multi-keymap):
+  se::e::x
+Expect:
+  abcdef abcdef abcdef
+  абцдеф АБЦДЕФ абцдеф
+  абцдё еёееёП ЯВЕРПО
+  абцдёё еёееёП ЯВЕРПО
+
+Do:
+  se::e::;x
+Expect (repeat search for multi-keymap):
+  abcdef abcdef abcdef
+  абцдеф АБЦДЕФ абцдеф
+  абцдёё еёееёП ЯВЕРПО
+  абцдё еёееёП ЯВЕРПО
+
+Execute (SETUP):
+  let g:sneak#target_labels = 'адсфгхйкл;'
+  let g:sneak#label = 1
+  call SneakReset()
+  call sneak#label#sanitize_target_labels()
+  Assert ';адсфгхйкл' ==# g:sneak#target_labels
+Given:
+  яверуипоо пасдфкййл;
+  яверуипоо пасдфкййл;
+  яверуипоо пасдфкййл;
+  яверуипоо пасдфкййл;
+  яверуипоо пасдфкййл;
+Do:
+  dzсдд
+Expect (keymap + label-mode + multibyte labels):
+  сдфкййл;
+  яверуипоо пасдфкййл;
+
+Execute (TEARDOWN):
+  set iminsert=0
+  set keymap=
+  let g:sneak#label = 0
+  call SneakReset()
+
+###########################################################
+# Sneak_f and Sneak_t
+
+Execute (map to Sneak_f):
+  silent! unmap t
+  silent! unmap T
+  silent! unmap f
+  silent! unmap F
+  silent! xunmap t
+  silent! xunmap T
+  silent! xunmap f
+  silent! xunmap F
+
+  nmap f <Plug>Sneak_f
+  nmap F <Plug>Sneak_F
+  nmap t <Plug>Sneak_t
+  nmap T <Plug>Sneak_T
+
+  xmap f <Plug>Sneak_f
+  xmap F <Plug>Sneak_F
+  xmap t <Plug>Sneak_t
+  xmap T <Plug>Sneak_T
+
+  omap f <Plug>Sneak_f
+  omap F <Plug>Sneak_F
+  omap t <Plug>Sneak_t
+  omap T <Plug>Sneak_T
+
+  let g:sneak#f_reset = 0
+
+  call SneakReset()
+
+Given:
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+  ab7cdef ab8cdef ab9cdef ab0cdef ab1cdef ab2cdef
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+
+Do ([count]f):
+  3feix
+Expect ([count]f should NOT invoke vertical-scope):
+  ab1cdef ab2cdef ab3cdxef ab4cdef ab5cdef ab6cdef
+  ab7cdef ab8cdef ab9cdef ab0cdef ab1cdef ab2cdef
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+
+Do ([count]F):
+  jj3Feix
+Expect ([count]F should NOT invoke vertical-scope):
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+  ab7cdef ab8cdef ab9cdef ab0cdxef ab1cdef ab2cdef
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+
+Do ([count]s):
+  3sab;ax
+Expect ([count]s SHOULD invoke vertical-scope):
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+  ab7cdef ab8cdef ab9cdef ab0cdef ab1cdef ab2cdef
+  axb1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+
+Do (f-delete forward):
+  dfe
+Expect:
+  f ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+  ab7cdef ab8cdef ab9cdef ab0cdef ab1cdef ab2cdef
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+
+Do (f-delete invalid target):
+  dfZ
+Expect (should not delete current char. #177):
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+  ab7cdef ab8cdef ab9cdef ab0cdef ab1cdef ab2cdef
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+
+Do (f-delete canceled with <Esc>):
+  df\<Esc>
+Expect (should not delete current char. #177):
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+  ab7cdef ab8cdef ab9cdef ab0cdef ab1cdef ab2cdef
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+
+Do (FIXME f-delete invalid target with o_v):
+  dvfZ
+Expect (should not delete current char. #177):
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+  ab7cdef ab8cdef ab9cdef ab0cdef ab1cdef ab2cdef
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+
+Do (FIXME f-delete canceled with <Esc> with o_v):
+  dvf\<Esc>
+Expect (should not delete current char. #177):
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+  ab7cdef ab8cdef ab9cdef ab0cdef ab1cdef ab2cdef
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+
+Do (t-delete forward):
+  dte
+Expect:
+  ef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+  ab7cdef ab8cdef ab9cdef ab0cdef ab1cdef ab2cdef
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+
+Do (f-delete-3 forward):
+  3dfe
+Expect:
+  f ab4cdef ab5cdef ab6cdef
+  ab7cdef ab8cdef ab9cdef ab0cdef ab1cdef ab2cdef
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+
+Do (t-delete-3 forward):
+  3dte
+Expect:
+  ef ab4cdef ab5cdef ab6cdef
+  ab7cdef ab8cdef ab9cdef ab0cdef ab1cdef ab2cdef
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+
+Do (exclusive f-delete forward):
+  dvfe
+Expect:
+  ef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+  ab7cdef ab8cdef ab9cdef ab0cdef ab1cdef ab2cdef
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+
+Do (exclusive t-delete forward):
+  dvte
+Expect:
+  def ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+  ab7cdef ab8cdef ab9cdef ab0cdef ab1cdef ab2cdef
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+
+# Note: o_v doesn't work in dot repeats in general
+Do (exclusive f-delete forward, dot repeat):
+  dvfe
+  :\<C-U>doautocmd CursorMoved\<CR>
+  .
+Expect (FIXME dot repeat retains v flip to exclusive):
+  ef ab3cdef ab4cdef ab5cdef ab6cdef
+  ab7cdef ab8cdef ab9cdef ab0cdef ab1cdef ab2cdef
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+
+Do (exclusive t-delete forward, dot repeat):
+  dvte
+  :\<C-U>doautocmd CursorMoved\<CR>
+  l.
+Expect (FIXME dot repeat retains v flip to exclusive):
+  ddef ab3cdef ab4cdef ab5cdef ab6cdef
+  ab7cdef ab8cdef ab9cdef ab0cdef ab1cdef ab2cdef
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+
+Do (exclusive f-delete backward. #121):
+  eedFa
+Expect:
+  ab1cdef f ab3cdef ab4cdef ab5cdef ab6cdef
+  ab7cdef ab8cdef ab9cdef ab0cdef ab1cdef ab2cdef
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+
+Do (exclusive t-delete backward. #121):
+  eedTa
+Expect:
+  ab1cdef af ab3cdef ab4cdef ab5cdef ab6cdef
+  ab7cdef ab8cdef ab9cdef ab0cdef ab1cdef ab2cdef
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+
+Do (inclusive f-delete backward. #121):
+  eedvFa
+Expect:
+  ab1cdef  ab3cdef ab4cdef ab5cdef ab6cdef
+  ab7cdef ab8cdef ab9cdef ab0cdef ab1cdef ab2cdef
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+
+Do (inclusive t-delete backward. #121):
+  eedvTa
+Expect:
+  ab1cdef a ab3cdef ab4cdef ab5cdef ab6cdef
+  ab7cdef ab8cdef ab9cdef ab0cdef ab1cdef ab2cdef
+  ab1cdef ab2cdef ab3cdef ab4cdef ab5cdef ab6cdef
+
+Given:
+  1abc 1def
+  1ghi 1jkl
+  1mno 1pqr
+  2abc 2def
+  2ghi 2jkl
+  2mno 2pqr
+
+Do (df til last character in the line. #291 #228):
+  dff
+Expect:
+  
+  1ghi 1jkl
+  1mno 1pqr
+  2abc 2def
+  2ghi 2jkl
+  2mno 2pqr
+
+Do (df til last character in the last buffer line. #291 #228):
+  Gdfr
+Expect:
+  1abc 1def
+  1ghi 1jkl
+  1mno 1pqr
+  2abc 2def
+  2ghi 2jkl
+  
+
+# Here it deletes as linewise because of :h d-special
+# https://github.com/vim/vim/commit/22105fd1fe0dcfe993b5c04c6ebe017a626116e3
+Do (df til last character in another line. #291 #228):
+  jdff
+Expect:
+  1abc 1def
+  2ghi 2jkl
+  2mno 2pqr
+
+Do (df til EOB from another line. #291 #228):
+  3jldfr
+Expect:
+  1abc 1def
+  1ghi 1jkl
+  1mno 1pqr
+  2
+
+Do (df til last character in the line, ;-repeat. #291 #228):
+  Wdff
+  :sleep 1m\<cr>
+  d;
+Expect:
+  1abc
+  2ghi 2jkl
+  2mno 2pqr
+
+Do (df til last character in the line, Enter-repeat. #291 #228):
+  Wdff
+  :sleep 1m\<cr>
+  df\<Enter>
+Expect:
+  1abc
+  2ghi 2jkl
+  2mno 2pqr
+
+Do (df til last character in the line, dot repeat. #291 #228):
+  Wdff
+  :\<C-U>doautocmd CursorMoved\<CR>
+  :sleep 1m\<cr>
+  .
+Expect:
+  1abc
+  2ghi 2jkl
+  2mno 2pqr
+
+Do (df ;-repeat reaching EOB. #291 #228):
+  Wdfr
+  :sleep 1m\<cr>
+  d;
+Expect:
+  1abc
+
+Do (df Enter-repeat reaching EOB. #291 #228):
+  Wdfr
+  :sleep 1m\<cr>
+  df\<Enter>
+Expect:
+  1abc
+
+Do (df dot repeat reaching EOB. #291 #228):
+  Wdfr
+  :\<C-U>doautocmd CursorMoved\<CR>
+  :sleep 1m\<cr>
+  .
+Expect:
+  1abc
+
+###########################################################
+# test sneak mapped to 'f' (instead of default 's')
+
+Execute (map to f):
+  unmap s
+  unmap S
+  nmap f <Plug>Sneak_s
+  nmap F <Plug>Sneak_S
+  let g:sneak#f_reset = 1
+  call SneakReset()
+
+Given:
+  abcdef abcdef abcdef
+
+# issue #35
+Do (sneak f, then Vim default t, then sneak f):
+  fderxtcrx
+  :\<C-U>doautocmd CursorMoved\<CR>
+  :\<C-U>doautocmd CursorMoved\<CR>
+  fderx;rx
+Expect:
+  abcxef axcxef abcxef
+
+###########################################################
+Execute (cleanup):
+  unmap f
+  unmap F
+  nmap s <Plug>Sneak_s
+  nmap S <Plug>Sneak_S
+  call SneakReset()
+

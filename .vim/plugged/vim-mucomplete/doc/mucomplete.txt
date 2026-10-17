@@ -1,0 +1,1419 @@
+*mucomplete.txt*	For Vim version 7.2	Last change: 2020 Nov 15
+
+			|\/|| | _ _ ._ _ ._ | __|_ _                      ~
+			|  ||_|(_(_)| | ||_)|(/_|_(/_                     ~
+			                 |                                ~
+
+Welcome to the world of fallback completion!
+
+Author:  Lifepillar <https://github.com/lifepillar>
+License: MIT
+
+==============================================================================
+CONTENTS				*mucomplete-contents*
+
+	1.  Introduction .............. |mucomplete-introduction|
+	2.  Requirements .............. |mucomplete-requirements|
+	3.  Getting started ........... |mucomplete-howto|
+	4.  Completion methods ........ |mucomplete-methods|
+	5.  Completion chains ......... |mucomplete-chains|
+	6.  Path completion ........... |mucomplete-path-complete|
+	7.  Spelling suggestions ...... |mucomplete-spel-complete|
+	8.  Extending completions ..... |mucomplete-extend-compl|
+	9.  Commands .................. |mucomplete-commands|
+	10. Mappings .................. |mucomplete-mappings|
+	11. Plugs ..................... |mucomplete-plugs|
+	12. Customization ............. |mucomplete-customization|
+	13. Tips & tricks ............. |mucomplete-tips|
+	14. Compatibility ............. |mucomplete-compatibility|
+	15. Troubleshooting ........... |mucomplete-troubleshooting|
+	16. Providing feedback ........ |mucomplete-feedback|
+	17. Implementation details .... |mucomplete-internals|
+
+==============================================================================
+1. Introduction				*mucomplete-introduction*
+
+MUcomplete is a minimalist autocompletion plugin.
+
+MUcomplete does nothing more than typing some completion mappings for you,
+either when you press <tab>/<s-tab> or automatically while you are typing. You
+choose which completion methods to use and in which order, and MUcomplete does
+the rest. It does no caching, no asynchronous computation, no intelligent
+guessing. It just makes use of built-in Vim features.
+
+==============================================================================
+2. Requirements				*mucomplete-requirements*
+
+MUcomplete requires Vim 7.2 compiled with |+insert_expand| and |+menu|.
+Automatic completion is available in Vim 7.4.143 or later, although Vim
+8.0.0283 or later is recommended.
+
+MUcomplete is developed and tested on Vim 8.
+
+==============================================================================
+3. Getting started			*mucomplete-howto*
+
+Mandatory Vim settings:
+>
+	set completeopt+=menuone
+<
+For automatic completion, if you use Vim 7.4.775 or later you also need one of
+the following:
+>
+	set completeopt+=noselect
+<
+or
+>
+	set completeopt+=noinsert
+<
+Other recommended settings:
+>
+	set shortmess+=c    " Shut off completion messages
+	set belloff+=ctrlg  " If Vim beeps during completion
+<
+Press <tab> in Insert mode to complete a word. This will sequentially trigger
+the methods specified in |g:mucomplete#chains| until some results are found
+(if any). You may use <s-tab> to try the same list of methods in reverse
+order. For example, if the current completion chain is ["omni", "keyn"] (see
+|mucomplete-methods| and |mucomplete-chains|), then pressing <tab> will cause
+omni completion to be attempted first, provided that 'omnifunc' is defined. If
+'omnifunc' is not defined or the omni completion function returns no results
+then MUcomplete will fallback to local keyword completion ("keyn"). Pressing
+<s-tab> will trigger keyword completion first and fallback to omni completion
+if necessary. You may define arbitrarily long completion chains, and even
+filetype-specific or buffer-specific completion chains.
+
+Sometimes, the first method returning results is not the one you want. With
+the pop-up menu visible, you may type <c-h> and <c-j> to cycle back and forth,
+respectively, through the current completion chain. In other words, <c-h> and
+<c-j> mean: "cancel the current menu and try completing the text I originally
+typed in a different way".
+
+If you want completion to be triggered automatically, set
+|g:mucomplete#enable_auto_at_startup|.
+
+Note: completion is disabled when 'paste' is on.
+
+In detail, this is the algorithm used by MUcomplete:
+
+1. Retrieve the current completion chain from |b:mucomplete_chain|, if
+   defined, otherwise from |g:mucomplete#chains|.
+
+2. For each method listed in the given completion chain:
+
+	 2(a). Check whether the method can be applied by invoking the
+	       corresponding function in |g:mucomplete#can_complete|.
+
+	 2(b). If the method can be applied, invoke the corresponding mapping
+	       and go to 2(c); otherwise, try the next method.
+
+	 2(c). If some results are returned, show them in a pop-up menu and
+	       stop; otherwise, try the next method.
+
+==============================================================================
+4. Completion methods			*mucomplete-methods*
+
+MUcomplete supports all the completion methods described in |ins-completion|
+(but not all of them are enabled by default; see |g:mucomplete#chains|). Each
+method is identified by a string:
+
+"c-n" : keywords in 'complete' (search forwards);        |i_CTRL-N|
+"c-p" : keywords in 'complete' (search backwards);       |i_CTRL-P|
+"cmd" : Vim command line;                                |i_CTRL-X_CTRL-V|
+"defs": definitions or macros;                           |i_CTRL-X_CTRL-D|
+"dict": keywords in 'dictionary';                        |i_CTRL-X_CTRL-K|
+"file": file names;                                      |i_CTRL-X_CTRL-F|
+"incl": keywords in the current and included files;      |i_CTRL-X_CTRL-I|
+"keyn": keywords in the current file (search forwards);  |i_CTRL-X_CTRL-N|
+"keyp": keywords in the current file (search backwards); |i_CTRL-X_CTRL-P|
+"line": whole lines;                                     |i_CTRL-X_CTRL-L|
+"omni": omni completion ('omnifunc');                    |i_CTRL-X_CTRL-O|
+"spel": spelling suggestions;                            |i_CTRL-X_s|
+"tags": tags;                                            |i_CTRL-X_CTRL-]|
+"thes": keywords in 'thesaurus';                         |i_CTRL-X_CTRL-T|
+"user": user defined completion ('completefunc').        |i_CTRL-X_CTRL-U|
+
+Besides, MUcomplete implements its own alternative file completion and
+spelling suggestions:
+
+"path": file names (MUcomplete's implementation).
+"uspl": spelling suggestions (MUcomplete's implementation).
+
+You may also use your own list of words:
+
+"list": complete words from |b:mucomplete_wordlist| or |g:mucomplete#wordlist|.
+
+MUcomplete also supports Neosnippet, SnipMate and UltiSnips:
+
+"nsnp": Neosnippet snippets.
+"snip": SnipMate snippets.
+"ulti": UltiSnips snippets.
+
+If you use snippets, please refer to |mucomplete-compatibility| for the
+recommended configuration.
+
+Finally, arbitrary additional completion methods may be defined by the user
+with |g:mucomplete#user_mappings|.
+
+==============================================================================
+5. Completion chains			*mucomplete-chains*
+
+A (standard) "completion chain" is a List of completion methods. MUcomplete
+allows you to define a global completion chain and filetype-specific
+completion chains using |g:mucomplete#chains|. For example:
+>
+	let g:mucomplete#chains = {
+	    \ 'default' : ['path', 'omni', 'keyn', 'dict', 'uspl'],
+	    \ 'vim'     : ['path', 'cmd', 'keyn']
+	    \ }
+<
+The definition above sets the default completion chain to a List of five
+completion methods. Such completion chain is used in all buffers except Vim
+buffers, because in Vim buffers the default chain is overridden by
+a filetype-specific chain consisting of path completion, Vim commands
+completion and keyword completion.
+
+A completion chain may also be a Dictionary defining the chains that must be
+active inside certain syntax items in specified filetypes. These are called
+"scoped (completion) chains" and are used in the same places where standard
+chains may be used. For example:
+>
+	let g:mucomplete#chains = {
+	    \ 'vim'  : { 'vimString': [],
+	    \            'vimLineComment': ['uspl'],
+	    \            'default': ['path', 'cmd', 'keyn'] },
+	    \ 'rust' : {
+	    \           'default' : ['omni', 'nsnp'],
+	    \           'rustString.*' : [],
+	    \           'rustComment.*' : ['spel'] }
+	    \ }
+<
+The assignment above defines the following behaviour in Vim buffers: no
+completion inside strings; only spelling suggestions inside comments; path
+completion, Vim commands completion and keyword completion in all other
+places. It also define the following in rust buffers: a default chain using
+omni completion and neosnippets, no completion inside strings, and spelling
+completion inside comments (either line or block). For all other filetypes,
+the global default chain is used (a global default chain is automatically
+defined by MUcomplete if it is not provided by the user).
+
+The global default chain may also be "scoped". This allows you to tweak your
+completion strategy in some nice ways. For instance:
+>
+	let g:mucomplete#chains = {
+	    \ 'default': { 'default': ['keyn'],
+	    \              '.*string.*': [],
+	    \              '.*comment.*': ['uspl']
+	    \            }
+	    \ }
+<
+The above setting will suppress completion inside any region matching a string
+highlight group and will enable only spell checking inside comments. Note that
+the `default` key in the `default` dictionary is mandatory!
+
+The keys of a scoped chain can be:
+
+  - names of filetype-specific highlight groups,
+  - regular expressions matching highlight groups,
+  - the `'default'` key.
+
+The associated values are standard completion chains (i.e., Lists of
+completion methods). If the `'default'` key is not present in a scoped chain,
+MUcomplete falls back to using the global completion chain if necessary.
+
+Note: if a highlight group is matched by multiple keys, one is chosen
+non-deterministically. If you use regular expressions as keys for scoped
+chains, make sure that they match disjoint sets of strings!
+
+==============================================================================
+6. Path completion			*mucomplete-path-complete*
+
+MUcomplete provides two different methods to complete file paths: "file" and
+"path". The "file" completion method is based on Vim's built-in file
+completion and works exactly as |i_CTRL-X_CTRL-F|. A limitation of the
+"file" method is that it does not expand paths containing spaces (in
+principle, one could add a space to 'isfname', but that is not recommended:
+see 'isfname' for the details). Another limitation is that relative paths are
+always completed with respect to the current working directory.
+
+MUcomplete also implements its own path completion method, called "path",
+which is enabled by default. It differs from "file" because no slash (or
+backslash in Windows) is appended when completing a path, and paths with
+spaces are expanded correctly. Apart from that, the "path" method still uses
+'isfname' to decide which characters define path names. Besides, with the
+"path" method it is possible to complete paths relative to the directory of
+the current buffer (see |g:mucomplete#buffer_relative_paths|). The "path"
+method also honours 'suffixes' and 'wildignore'.
+
+To adjust the case sensitivity of path matching, see 'fileignorecase' and
+'wildignorecase'.
+
+See also |mucomplete-tips|.
+
+==============================================================================
+7. Spelling suggestions			*mucomplete-spel-complete*
+
+The "spel" method invokes |i_CTRL-X_s| to perform the completion. Such
+mapping causes Vim to search for a badly spelled word in the current line
+anywhere before the cursor. This is especially puzzling when automatic
+completion is on, because Vim's behaviour may make the cursor jump to
+a previous, possibly distant, column.
+
+For this reason, MUcomplete implements an alternative completion method,
+called "uspl". This still uses Vim's built-in spelling features (see
+|spellbadword()| and |spellsuggest()|), but it looks only at the word in front
+of the cursor. It also has a couple of options (see
+|mucomplete-customization|). This is the recommended spelling method to use,
+especially if you enable automatic completion. It is in the default completion
+chain, although it is actively used only when 'spell' is on and 'spelllang' is
+defined.
+
+==============================================================================
+8. Extending completions		*mucomplete-extend-compl*
+
+Vim has a very nice, though possibly not very well known, feature allowing you
+to extend the current completion by copying the words following the previous
+expansion in other contexts using the current completion method. This works
+for |i_CTRL-X_CTRL-N|, |i_CTRL-X_CTRL-P|, |i_CTRL-X_CTRL-D|, |i_CTRL-X_CTRL-I|
+and |i_CTRL-X_CTRL-L| (for line completion, whole lines are copied).
+
+MUcomplete streamlines such feature with the help of two functions:
+>
+	mucomplete#extend_fwd(keys)
+	mucomplete#extend_bwd(keys)
+<
+MUcomplete does not provide mappings by default, though, so you will have to
+map those functions in your `vimrc` to enable this feature. The `keys`
+argument is the key sequence to use when expanding the mapping in a context
+different from completion.
+
+All this is more easily understood with examples rather than words. Try this:
+>
+	:imap <expr> <right> mucomplete#extend_fwd("\<right>")
+	:set completeopt=menuone,noselect
+<
+	Now type:
+>
+	Shall I compare thee to a summer’s day?
+	S<tab><right><right><right><right><right><right>
+<
+	Another example:
+>
+	New Zealand
+	New York Times
+	Ne<tab><right><tab><right>
+<
+==============================================================================
+9. Commands				*mucomplete-commands*
+
+					*:MUcompleteAutoOn*
+Enable automatic completion.
+
+					*:MUcompleteAutoOff*
+Disable automatic completion.
+
+					*:MUcompleteAutoToggle*
+Toggle automatic completion.
+
+					*:MUcompleteNotify*
+Set the notification level. When set to 0 (which is the default):
+>
+	:MUcompleteNotify 0
+<
+no notifications are enabled. When set to 1 or 2, a short (1) or long (2)
+description of the current completion method is displayed in the command line.
+This works best when |showmode| is off (or |cmdheight| is greater than 1) and
+|shortmess| contains the `c` flag.
+
+When set to 3, support for notifications in the status line is activated: in
+this case, |g:mucomplete_current_method| can be used in the definition of the
+status line, typically to print the current completion method. See
+|mucomplete-tips| for an example.
+
+The default notification messages can be customized via
+|g:mucomplete#msg#methods| and |g:mucomplete#msg#short_methods|.
+
+==============================================================================
+10. Mappings				*mucomplete-mappings*
+
+By default, MUcomplete maps the keys below in Insert mode. If you do not want
+MUcomplete to define any mapping, set |g:mucomplete#no_mappings| or
+|no_plugin_maps|. For the definition of each mapping, see |mucomplete-plugs|.
+
+<tab>
+	Trigger forward chained completion. When the pop-up menu is visible,
+	select the next menu entry or try the next completion method depending
+	on the value of |g:mucomplete#cycle_with_trigger|.
+
+<s-tab>
+	Trigger backward chained completion. When the pop-up menu is visible,
+	select the previous menu entry or try the previous completion method
+	depending on the value of |g:mucomplete#cycle_with_trigger|.
+
+<c-j>
+	When the pop-up menu is visible, try the next completion method that
+	can be applied.
+
+<c-h>
+	When the pop-up menu is visible, try the previous completion method
+	that can be applied.
+
+The mappings above may be overridden in your |vimrc|. For example, to use
+<c-j> and <c-k> instead of <tab> and <s-tab>, use:
+>
+	imap <c-j> <plug>(MUcompleteFwd)
+	imap <c-k> <plug>(MUcompleteBwd)
+<
+To use <left> and <right> as cycling keys, use:
+>
+	inoremap <silent> <plug>(MUcompleteFwdKey) <right>
+	imap <right> <plug>(MUcompleteCycFwd)
+	inoremap <silent> <plug>(MUcompleteBwdKey) <left>
+	imap <left> <plug>(MUcompleteCycBwd)
+<
+Note: if you decide to use your own cycling keys, please be aware that the
+keys that are valid in CTRL-X mode are not mapped (see |ins-completion|). This
+means, for example, that if you use <c-k> as a cycling key, such mapping will
+be shadowed when the pop-up menu is offering dictionary suggestions, because
+CTRL-K is already used by Vim during dictionary completion to search for the
+next matching keyword (see |i_CTRL-X_CTRL-K|).
+
+The following mappings are defined only in Vim 8.0.0282 or older.
+
+<c-e>
+<c-y>
+<cr>
+	MUcomplete defines a thin wrapper around these keys in Vim 8.0.0282 or
+	older, without changing their function. If you want to prevent
+	MUcomplete from defining these three mappings, set
+	|g:mucomplete#no_popup_mappings|. See also |mucomplete-compatibility|
+	for suggestions on fixing conflicts with some popular plugins.
+
+==============================================================================
+11. Plugs				*mucomplete-plugs*
+
+<plug>(MUcompleteFwd)
+<plug>(MUcompleteBwd)
+	These are the plugs that trigger manual forward and backward
+	completion, respectively. They are ultimately mapped to the (possibly
+	empty) text that completes the current word.
+>
+	imap <unique> <tab> <plug>(MUcompleteFwd)
+	imap <unique> <s-tab> <plug>(MUcompleteBwd)
+<
+<plug>(MUcompleteCycFwd)
+<plug>(MUcompleteCycBwd)
+	These are the plugs that trigger forward and backward cycling through
+	the completion chain. They are ultimately mapped to the (possibly
+	empty) text that completes the current word.
+>
+	imap <unique> <c-j> <plug>(MUcompleteCycFwd)
+	imap <unique> <c-h> <plug>(MUcompleteCycBwd)
+<
+<plug>(MUcompleteFwdKey)
+<plug>(MUcompleteBwdKey)
+	These are used to preserve the functionality of the cycling keys in
+	contexts different from completion. They must be redefined when
+	<plug>(MUcompleteCycFwd) and <plug>(MUcompleteCycBwd) are remapped by
+	the user. See |mucomplete-mappings| for an example.
+
+The following plugs are defined only in Vim 8.0.0282 or older.
+
+<plug>(MUcompletePopupCancel)
+<plug>(MUcompletePopupAccept)
+<plug>(MUcompleteCR)
+	These are used to detect when the pop-up menu is closed with <c-e>,
+	<c-y> or <cr>, respectively. They are ultimately mapped to the
+	corresponding key (<c-e>, <c-y> and <cr>, respectively).
+>
+	imap <unique> <c-e> <plug>(MUcompletePopupCancel)
+	imap <unique> <c-y> <plug>(MUcompletePopupAccept)
+	imap <unique> <cr> <plug>(MUcompleteCR)
+<
+==============================================================================
+12. Customization			*mucomplete-customization*
+
+					*'mucomplete#add_user_mapping()'*
+Use this function to add a new user-defined completion method. For example:
+>
+	call mucomplete#add_user_mapping("sqla", "\<c-c>a")
+<
+The first argument of the function is the name of the completion method and
+the second argument is the mapping to be invoked.
+
+See also |g:mucomplete#user_mappings|.
+
+Note: you cannot override existing methods. Calling this function with an
+existing key is a no-op.
+
+					*'g:mucomplete#always_use_completeopt'*
+By default, 'completeopt' does not affect manual completion (when pressing
+<tab> to complete a word, the first match is always automatically selected and
+inserted). Set this to 1 if you want manual completion to behave as specified
+by the value of 'completeopt'.
+>
+	let g:mucomplete#always_use_completeopt = 0
+<
+With this set to 1, you may want to use different values of 'completeopt' for
+manual and automatic completion. See |mucomplete-tips| for a possible way to
+achieve that.
+
+					*'g:mucomplete#buffer_relative_paths'*
+Set to 1 if you want MUcomplete to interpret relative paths as being relative
+to the directory of the current buffer. By default, paths are interpreted as
+relative to the current working directory (see `:pwd`).
+>
+	let g:mucomplete#buffer_relative_paths = 0
+<
+Note: this setting affects only the "path" method, not the "file" method.
+
+					*'g:mucomplete#can_complete'*
+A Dictionary defining the conditions that must be satisfied for a given method
+to be tried. Each condition is a |lambda|, |function()| or |funcref()| with
+one argument (the text to be completed), which returns either 1 or 0,
+according to whether the corresponding method should be tried or not. The
+argument of such functions consists of |g:mucomplete#look_behind|
+characters before the cursor.
+
+When auto-completion is on, by default most completion methods are enabled
+when there are at least two keyword characters in front of the cursor (see
+'iskeyword'). The exceptions are file and path completions, which look at
+a longer portion of the text (whose length is determined by
+|g:mucomplete#look_behind|) and "linguistic" methods (dictionary, spelling,
+synonyms), which require two (for dictionary) or three (for spelling and
+synonyms) alphabetic characters in front of the cursor. By default,
+autocompletion is never triggered after white space, no matter how this option
+is set. If you want to allow autocompletion after any printable character (as
+defined by |isprint|), set |g:mucomplete#empty_text_auto| to 1. The enabling
+patterns defined inside |g:mucomplete#can_complete| should also be adjusted
+accordingly (e.g., they should be changed to match white space).
+
+Note: If you only want to adjust the number of characters before the cursor
+needed to trigger auto-completion, see |g:mucomplete#minimum_prefix_length|.
+
+When completion is triggered manually, one non-whitespace character in front
+of the cursor is enough to enable all the methods in the current completion
+chain, except for spelling and synonyms, which still require three characters.
+When |g:mucomplete#empty_text| is set, completion can be triggered with <tab>
+even when the cursor is preceded by a space or is located at the start of the
+line (this is useful in very limited circumstances).
+
+If no key is found in |g:mucomplete#can_complete| for the current completion
+method, such method is tried unconditionally.
+
+The default behaviour described above may be changed for each completion
+method or overridden based on the filetype. For example, if you put this in
+your |vimrc|:
+>
+	let s:spl_cond = { t -> &l:spelllang == 'en' && t =~# '\a\{4}$' }
+	let s:cpp_cond = { t -> t =~# '\%(->\|::\)$' }
+	let g:mucomplete#can_complete = {}
+	let g:mucomplete#can_complete.default = { 'uspl': s:spl_cond }
+	let g:mucomplete#can_complete.cpp     = { 'omni': s:cpp_cond }
+<
+then MUcomplete will perform a custom check for "uspl" completion in all
+buffers (enabling spelling completion only when the language is English and
+there are at least four alphabetic characters in front of the cursor), and
+a custom check for "omni" completion in cpp buffers (enabling omni-completion
+only after -> and ::). In all the other cases, the default conditions will be
+checked.
+
+					*'b:mucomplete_chain'*
+A List specifying a completion chain, or a Dictionary specifying a scoped
+chain, for the current buffer only. When this variable is defined, the value
+of |g:mucomplete#chains| is ignored (with one exception: if a scoped chain
+without a `'default'` key is used as the value of this variable, then
+MUcomplete may fall back to using |g:mucomplete#chains|`['default']`).
+
+					*'g:mucomplete#chains'*
+A Dictionary defining the global default chain and filetype-specific
+completion chains. Each completion chain may be a standard chain or a scoped
+chain. See |mucomplete-chains| for more details.
+>
+	let g:mucomplete#chains = {
+	    \ 'default' : ['path', 'omni', 'keyn', 'dict', 'uspl'],
+	    \ 'vim'     : ['path', 'cmd', 'keyn']
+	    \ }
+<
+In your |vimrc|, you may override the default or add filetype-specific
+completion chains. For example:
+>
+	let g:mucomplete#chains = {}
+	let g:mucomplete#chains.default  = ['omni', 'c-p']
+	let g:mucomplete#chains.markdown = ['keyn', 'dict', 'uspl']
+<
+					*'g:mucomplete#completion_delay'*
+Set to a positive value if you want autocompletion to be triggered only when
+you pause typing (autocompletion must be on for this to work). When set to 0,
+no delay occurs. If this is set to 1, or it is set to a positive integer value
+but Vim does not have the |+timers| feature, then |'updatetime'| is used for
+the delay (see also |CursorHoldI|). If Vim is built with |+timers| and this is
+set to an integer value greater than 1 then the value is interpreted as the
+number of milliseconds to wait before triggering auto-completion.
+>
+	let g:mucomplete#completion_delay = 0
+<
+See also |g:mucomplete#reopen_immediately|.
+
+Note: auto-completion must be turned off and on again for this setting to take
+effect.
+
+					*'g:mucomplete_current_method'*
+The name of the last successful completion method. This variable is typically
+used in functions invoked after a |MUcompletePmenu| event is triggered. See
+|mucomplete-tips| for some examples.
+
+					*'g:mucomplete#cycle_all'*
+MUcomplete allows you to use specific completion methods only when the trigger
+keys are pressed (<tab>/<s-tab> by default), even when auto-completion is on.
+This is achieved by testing |g:mucomplete_with_key| in the enabling conditions
+of such methods (see |mucomplete-tips| for an example).
+
+When the pop-up menu appears automatically, cycling through the completion
+methods with <c-h> and <c-j> ignores manually activated methods by default.
+Set this option to 1 to cycle through all the methods in the current
+completion chain regardless of whether they are defined to be activated only
+manually or not.
+>
+	let g:mucomplete#cycle_all = 0
+<
+					*'g:mucomplete#cycle_with_trigger'*
+Set to 1 to use <s-tab> and <tab> to move back and forth, respectively,
+through the current completion chain when the pop-up menu is visible.
+>
+	let g:mucomplete#cycle_with_trigger = 0
+<
+Note: if you set this to 1, you have to use the standard CTRL-N and CTRL-P to
+select the entries in the pop-up menu.
+
+					*'b:mucomplete_empty_text'*
+					*'g:mucomplete#empty_text'*
+By default, when you press <tab> to complete a word, MUcomplete inserts
+a literal Tab character if there is no non-space character before the cursor.
+Set this to 1 if you want manual completion to be triggered no matter what the
+character in front of the cursor is (|g:mucomplete#can_complete| will still be
+applied):
+>
+	let g:mucomplete#empty_text = 0
+<
+Setting this variable to 1 is useful in very limited circumstances, e.g., to
+trigger omni-completion at the start of a line in some buffer types.
+
+					*'b:mucomplete_empty_text_auto'*
+					*'g:mucomplete#empty_text_auto'*
+By default, autocompletion is never activated if the character in front of the
+cursor is a space, no matter how |g:mucomplete#can_complete| is defined. Set
+this to 1 if you want autocompletion to be triggered no matter what the
+character in front of the cursor is (|g:mucomplete#can_complete| will still be
+applied):
+>
+	let g:mucomplete#empty_text_auto = 0
+<
+Setting this variable to 1 is useful in very limited circumstances, e.g., to
+trigger omni-completion for tag attributes in HTML buffers. For instance, with
+this option set, typing `<table` followed by a space in a HTML buffer will
+offer completions for table attributes.
+
+					*'g:mucomplete#enable_auto_at_startup'*
+Set to 1 to enable automatic completion at startup.
+>
+	let g:mucomplete#enable_auto_at_startup = 0
+<
+					*'g:mucomplete#force_manual'*
+When set to 1, force each completion method in your completion chain to be
+tried only when completion is triggered manually (e.g., by pressing <tab>)
+even if auto-completion is on. This is useful only if you override
+|g:mucomplete#can_complete| for at least one completion method. See
+|mucomplete-tips| for an example.
+>
+	let g:mucomplete#force_manual = 0
+<
+					*'g:mucomplete#look_behind'*
+This is the maximum number of characters before the cursor that are considered
+when deciding which completion methods can be applied.
+>
+	let g:mucomplete#look_behind = 30
+<
+Most completion methods require a look-behind no greater than three. The
+exception is path completion: to determine whether the text before the cursor
+may be a path, MUcomplete needs to find a path separator (or a tilde), which
+may occur anywhere before the cursor. This option sets a bound on the time
+required for the search, but it also means that, if a path component is very
+long, MUcomplete may not trigger path completion. If you are dealing with
+paths having path components longer than 30 characters, you may need to
+increase the value of this option.
+
+					*'g:mucomplete#minimum_prefix_length'*
+The minimum number of (keyword) characters that must be present before the
+cursor for automatic completion to be triggered.
+>
+	let g:mucomplete#minimum_prefix_length = 2
+<
+Note: this setting does not affect all completion methods. In particular, it
+does not change the behaviour of `'dict'`, `'file'`, `'path'`, `'spel'`,
+`'thes'`, and `'uspl'`.
+
+Note: this setting is ignored for completion method whose activation condition
+(see |g:mucomplete#can_complete|) has been overridden by the user.
+
+					*'g:mucomplete#msg#methods'*
+A Dictionary mapping each completion method's string to a description.
+Descriptions can be overridden and additional entries can be added by the
+user. For example:
+>
+	let g:mucomplete#msg#methods = {
+	    \ 'keyn': 'Mots-clés dans le fichier courant',
+	    \ 'xywz: 'Description of my custom xywz method'
+	    \ }
+<
+Such descriptions are used in notifications (see |MUcompleteNotify|).
+
+					*'g:mucomplete#msg#short_methods'*
+Similar to |g:mucomplete#msg#methods|, but contains shorter descriptions,
+suitable for small screens or for displaying messages in the status line.
+
+					*'g:mucomplete#no_mappings'*
+When set to 1, MUcomplete does not define any mapping.
+>
+	let g:mucomplete#no_mappings = 0
+<
+Note: MUcomplete also honours |no_plugin_maps|.
+
+					*'g:mucomplete#no_popup_mappings'*
+Set to 1 to prevent MUcomplete from mapping <c-e>, <c-y> and <cr>.
+
+>
+	let g:mucomplete#no_popup_mappings = 0
+<
+You may safely set this variable to 1 if you use manual completion
+exclusively. These mappings, however, are necessary for automatic completion
+in Vim versions older than v8.0.0283, so if you disable them (likely because
+they conflict with some other plugin or with your own mappings), you will need
+to provide alternative definitions in your |vimrc|. This is how they are
+defined by MUcomplete:
+>
+	imap <c-e> <plug>(MUcompletePopupCancel)
+	imap <c-y> <plug>(MUcompletePopupAccept)
+	imap <cr> <plug>(MUcompleteCR)
+<
+Note: Only for Vim 8.0.0282 or older. MUcomplete does not map <c-e>, <c-y> and
+<cr> in recent Vim versions, so this option does nothing in Vim 8.0.0283 or
+later.
+
+					*'g:mucomplete#popup_direction'*
+>
+	let g:mucomplete#popup_direction = {'c-p': -1, 'keyp': -1, 'line': -1}
+<
+MUcomplete by default follows the "natural" direction of each completion
+method. Except for |i_CTRL-X_CTRL-L|, |i_CTRL-P| and |i_CTRL-X_CTRL-P|, Vim
+always starts by selecting the first (topmost) entry in the pop-up menu; for
+|i_CTRL-X_CTRL-L|, |i_CTRL-P| and |i_CTRL-X_CTRL-P|, though, Vim highlights
+the last (bottomost) entry instead. Therefore, when you press <tab> to select
+the "next" entry in the pop-up menu, MUcomplete moves downwards in most cases;
+for the exceptions mentioned above, though, <tab> moves from bottom to top. In
+all cases, you may use <s-tab> to move in the opposite direction.
+
+The default behaviour may be overridden for each completion type by setting
+|g:mucomplete#popup_direction| in your |vimrc|. The value of this variable is
+a Dictionary mapping completion methods to 1 or -1, where 1 means "select from
+top to bottom" and -1 means "select from bottom to top". For instance, if you
+want "path" completion to be bottom-to-top, you need to put this in your
+|vimrc|:
+>
+	let g:mucomplete#popup_direction = { 'path' : -1 }
+<
+If you also want to invert the direction of "c-p" completion, you may write:
+>
+	let g:mucomplete#popup_direction = { 'path' : -1, 'c-p': 1 }
+<
+For the completion methods not explicitly mentioned in the value of
+|g:mucomplete#popup_direction|, the natural value is assumed, i.e., -1 for
+"c-p", "keyp" and "line", and 1 for all the other methods.
+
+					*'g:mucomplete#reopen_immediately'*
+With autocompletion on and the pop-up menu open, if the user keeps typing
+until the pop-up menu eventually closes, MUcomplete immediately attemps to
+complete the current text again. Set this to 0 if you want MUcomplete to wait
+for the time specified by |g:mucomplete#completion_delay|.
+>
+	let g:mucomplete#reopen_immediately = 1
+<
+To appreciate the effect of this option, open a new buffer and set:
+>
+	set spell spelllang=en
+	let g:mucomplete#completion_delay=1000
+<
+Now type:
+>
+	sure
+	su
+<
+and wait one second. If you are using the default completion chain, Vim will
+offer you to complete with `sure`. With the pop-up menu open, keep typing:
+>
+	sure
+	surel
+<
+As soon as you type `l` the pop-up menu closes and reopens again, offering
+spelling suggestions. Now set this options to 0:
+>
+	let g:mucomplete#reopen_immediately = 0
+<
+and repeat the experiment. You should see that after typing `l` the pop-up
+menu is reopened with a delay.
+
+Note: this option affects the behaviour of delayed completion only when timers
+are used. It has no effect if Vim is compiled without |+timers| or if
+|g:mucomplete#completion_delay| is set to 0. Do NOT set this option to 0 if
+|g:mucomplete#completion_delay| is set to 1.
+
+Note: This option requires Vim 8.0.0283 or later.
+
+					*'g:mucomplete#spel#good_words'*
+Set to 1 if you want spelling suggestions (similar words) even for words that
+are spelled correctly. By default, no suggestions are returned for good words
+by the "uspl" method.
+>
+	let g:mucomplete#spel#good_words = 0
+<
+Note: this setting does not affect the "spel" method.
+
+					*'g:mucomplete#spel#max'*
+The maximum number of spelling suggestions offered by the "uspl" method.
+>
+	let g:mucomplete#spel#max = 25
+<
+Note: this setting does not affect the "spel" method.
+
+					*'g:mucomplete#spel#regex'*
+The regular expression used to search for matches during spell checking. The
+default matches the Latin alphabetic characters plus a wide range of UTF
+symbols with diacriticals.
+>
+	let g:mucomplete#spel#regex =
+	    \ '[A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u00FF]'
+<
+					*'g:mucomplete#tab_when_no_results'*
+Set to 1 if you want a literal Tab character to be inserted when manually
+triggered completion does not produce any completion.
+>
+	let g:mucomplete#tab_when_no_results = 0
+<
+					*'g:mucomplete#ultisnips#match_at_start'*
+By default, the "ulti" method returns the snippets whose name starts with
+the word in front of the cursor. Set this to 0 to return all the snippets that
+contain the word in front of the cursor.
+>
+	let g:mucomplete#ultisnips#match_at_start = 1
+<
+					*'g:mucomplete#use_only_windows_paths'*
+When this option is set, path completion in Windows uses only backslashes.
+By default, paths with forward slashes are completed as well.
+>
+	let g:mucomplete#use_only_windows_paths = 0
+<
+Note: if 'shellslash' is set, only paths with forward slashes are used, no
+matter what the value of this option is.
+
+Note: this option is relevant only for Windows users.
+
+					*'g:mucomplete#user_mappings'*
+A Dictionary of user-defined completion methods. For example:
+>
+	let g:mucomplete#user_mappings = {
+	    \ 'sqla' : "\<c-c>a",
+	    \ 'xyz'  : "\<c-r>=MyCustomComplete()\<cr>"
+	    \ }
+<
+Each key in the dictionary is an arbitrary string providing the name of the
+completion method (but you cannot override the predefined names) and the
+corresponding value is the mapping that triggers the desired completion.
+
+User-defined completion methods are used exactly as predefined methods. For
+example:
+>
+	let g:mucomplete#chains = {}
+	let g:mucomplete#chains.default = ['keyp', 'xyz']
+	let g:mucomplete#chains.sql = ['sqla', 'keyp', 'tags']
+<
+Note: this variable is read only once when MUcomplete is loaded. If you want
+to define completion methods later (for example, in some ftplugin file), use
+|mucomplete#add_user_mapping()| instead.
+
+					*'g:mucomplete_with_key'*
+Read-only flag that tells whether completion was initiated manually by the
+user or it was triggered automatically. See |mucomplete-tips| for an example.
+
+Note: do not change the value of this variable!
+
+					*'b:mucomplete_wordlist'*
+A sorted List of words to be used with the "list" method. When this variable
+is defined, |g:mucomplete#wordlist| is ignored.
+
+					*'g:mucomplete#wordlist'*
+A Dictionary of sorted lists of words to be used with the "list" method. The
+keys of the dictionary are filetypes or the `'default'` keyword. A list keyed
+on a filetype is used if the buffer is set to that filetype; otherwise, the
+`'default'` list is used, if defined. For instance:
+>
+	let g:mucomplete#wordlist = {
+	    \       'default': ['January', 'July', 'June'],
+	    \            'js': ['console.log()', 'console.trace()']
+	    \ }
+	let g:mucomplete#chains = { 'default': ['list', 'keyp'] }
+<
+Note: You may also use these lists in a user completion function by setting:
+>
+	set completefunc=mucomplete#list#completefunc
+	let g:mucomplete#chains = { 'default': ['user'] }
+<
+					*MUcompletePmenu*
+A |User| |autocmd| that is fired when the pop-up menu becomes visible. The
+user can hook to this to perform arbitrary operations upon successful
+completion. For example:
+>
+	autocmd User MUcompletePmenu call MyFunction()
+
+The name of the currently used completion method is available inside
+`MyFunction()` through |g:mucomplete_current_method|. See |mucomplete-tips|
+for an example.
+
+==============================================================================
+13. Tips & tricks			*mucomplete-tips*
+
+How to insert a literal tab character when <tab> is used by MUcomplete? ~
+Use CTRL-V <Tab> (or CTRL-Q <Tab> if CTRL-V is mapped). See |i_<Tab>|.
+Another possibility is to set |g:mucomplete#tab_when_no_results| to 1 to have
+a tab character inserted when there are no completions.
+
+I want to do something special with <tab> in some circumstances, ~
+but I also want to keep using it with MUcomplete. How may I achieve ~
+that? ~
+You may adapt the following snippet:
+>
+	fun! MyTabAction()
+	  if some_condition_is_verified
+	    " Do something
+	    return ""
+	  else
+	    return "\<plug>(MyFwd)"
+	  endif
+	endf
+
+	imap <plug>(MyFwd) <plug>(MUcompleteFwd)
+	imap <expr> <silent> <tab> MyTabAction()
+<
+MUcomplete does not always insert a new line when I press Enter… ~
+When the pop-up menu is closed by pressing <Enter>, sometimes Vim does not
+insert a new line. If you always want a new line to be inserted, proceed as
+follows. If you use Vim 8.0.0283 or later, put this in your `vimrc`:
+>
+	inoremap <expr> <cr> pumvisible() ? "<c-y><cr>" : "<cr>"
+<
+If you use a Vim version older than 8.0.0283, put this in your `vimrc`
+instead:
+>
+	imap <expr> <cr> pumvisible() ? "<c-y><plug>(MUcompleteCR)"
+	                              : "<plug>(MUcompleteCR)"
+<
+How to simulate ZSH behaviour for "file" completion? ~
+Some people like ZSH behaviour, whereby typing a slash enters the current
+directory. This can be easily achieved by defining the following mapping in
+your |vimrc|:
+>
+	function! IsBehindDir()
+	  return strpart(getline('.'), 0, col('.') - 1)  =~# '\f\+/$'
+	endfunction
+
+	imap <expr> / pumvisible() && IsBehindDir()
+	     \ ? "\<c-y>\<plug>(MUcompleteFwd)"
+	     \ : '/'
+<
+Use different values of completeopt ~
+If you want to use different values of 'completeopt' (or other settings) for
+manual and automatic completion, you may adapt the following snippet:
+>
+	fun! ToggleCompleteopt()
+	  MUcompleteAutoToggle
+	  if exists('#MUcompleteAuto')
+	    " Settings for automatic completion
+	    set completeopt+=noinsert,noselect
+	  else
+	    " Settings for manual completion
+	    set completeopt-=noinsert,noselect
+	  endif
+	endf
+
+	command! MyMUcompleteToggle call ToggleCompleteopt()
+<
+Put the code above in your |vimrc|. Please keep in mind that the value of
+'completeopt' is ignored for manual completion (except for spelling
+suggestions), unless |'g:mucomplete#always_use_completeopt'| is set to 1.
+
+Enable a completion method only when typing <tab> ~
+Some completion methods are inherently slow, and it doesn't make much sense to
+trigger them automatically, because they would be called too frequently. Yet,
+you might want to trigger them manually by pressing <tab>. This can be
+achieved by testing the value of |g:mucomplete_with_key| in a custom check.
+
+For instance, suppose that you are using automatic completion and you want to
+use thesaurus completion. Searching for synonyms after each key press would be
+too slow (and pointless). To work around this problem, in your |vimrc| you may
+define:
+>
+	let g:mucomplete#can_complete = {}
+	let g:mucomplete#can_complete.default = {
+	    \  'thes': {
+	    \     t -> g:mucomplete_with_key && strlen(&l:thesaurus) > 0
+	    \   }
+	    \ }
+	" Add "thes" to your completion chains, e.g.:
+	let g:mucomplete#chains = { 'default': ['keyn', 'thes'] }
+<
+Then, searching for synonyms will happen only when you press <tab> and keyword
+completion returns no results, or when you press <s-tab>. During normal
+typing, only keyword completion will be active.
+
+If you find yourself adding checks of the form `g:mucomplete_with_key && ...`
+to all your completion methods except one or two, you may find it more
+convenient to set |g:mucomplete#force_manual| to 1 and redefine only the
+methods that should be enabled for automatic completion. In other words, the
+configuration above might be rewritten as follows:
+>
+	let g:mucomplete#force_manual = 1  " All methods enabled only manually
+	let g:mucomplete#can_complete = {}
+	let g:mucomplete#can_complete.default = {
+	    \  'keyn': { t -> { t -> t =~# '\m\k\k$' } }
+	    \ }
+	let g:mucomplete#chains = { 'default': ['keyn', 'thes'] }
+<
+With these settings, all the methods in your completion chain, except for
+`'keyn'`, will be tried only with manual completion: but keyword completion
+will be triggered automatically.
+
+Optimize your completion chains ~
+The "c-n", "c-p" and "line" methods allow you to aggregate completion
+suggestions from several sources (see 'complete'), including dictionaries and
+tags. While this is handy, it may have a couple of drawbacks: first, you may
+get too many suggestions, making completion less useful; second, you may incur
+an efficiency penalty, especially if you have big tag files or dictionaries or
+many included files. This may slows you down noticeably, in particular when
+automatic completion is on.
+
+You may then optimize your work flow by using longer completion chains and
+reducing the options in 'complete' accordingly. For example, instead of:
+>
+	set complete+=i
+	set complete+=t
+	let g:mucomplete#chains = { 'default' : ['c-p'] }
+<
+which would always scan tags and included files, you might use:
+>
+	set complete-=i
+	set complete-=t
+	let g:mucomplete#chains = { 'default' : ['c-p', 'incl', 'tags'] }
+<
+so that searching included files and/or tags will happen only when
+completion cannot be performed otherwise.
+
+If you use 'dictionary' completion and want to ensure that common words are
+suggested first when completing, then install
+https://github.com/Konfekt/complete-common-words.vim
+
+How to show the currently active completion method in the status line? ~
+Activate level 3 notifications:
+>
+	:MUcompleteNotify 3
+<
+Then use |g:mucomplete_current_method| inside the definition of your status
+line. A minimal example:
+>
+	set statusline=%{get(g:,'mucomplete_current_method','')}
+<
+A more realistic example:
+>
+	fun! MU()
+	  return get(g:mucomplete#msg#short_methods,
+	    \        get(g:, 'mucomplete_current_method', ''), '')
+	endf
+
+	set statusline=%<%f\ %h%m%r%=\%{MU()}\ %-14.(%l,%c%V%)\ %P
+<
+I want to customize/colorize/foofoofy the notification messages! ~
+You can hook to |MUcompletePmenu| directly instead of using
+|MUcompleteNotify|. For example, to display colorized messages:
+>
+	fun! ColorfulMessages()
+	  echohl Label
+	  unsilent echo "[MUcomplete] "
+	  echohl Special
+	  unsilent echon get(g:mucomplete#msg#methods,
+	      \ get(g:, 'mucomplete_current_method', ''))
+	  echohl None
+	  let &ro=&ro  " Force updating the cursor
+	endfun
+
+	autocmd User MUcompletePmenu call ColorfulMessages()
+	" Clear the command line when the menu is dismissed
+	autocmd CompleteDone * echo "\r"
+<
+==============================================================================
+14. Compatibility			*mucomplete-compatibility*
+
+MUcomplete tries to be a responsible citizen in Vimland. This section
+describes how to make it peacefully coexist with other Vim citizens.
+
+Auto Pairs ~
+This plugin maps <space> in Insert mode in ways that conflict with
+MUcomplete's operation. To resolve the conflict, put this in your |vimrc|:
+>
+	let g:AutoPairsMapSpace = 0
+	imap <silent> <expr> <space> pumvisible()
+	    \ ? "<space>"
+	    \ : "<c-r>=AutoPairsSpace()<cr>"
+<
+If you use Vim 8.0.0282 or older, you must also remap <cr>:
+>
+	let g:AutoPairsMapCR = 0
+	imap <Plug>MyCR <Plug>(MUcompleteCR)<Plug>AutoPairsReturn
+	imap <cr> <Plug>MyCR
+<
+Mapping things this way will also make MUcomplete and auto-pairs work well
+together with endwise.vim (see below).
+
+Auto Pairs + SnipMate ~
+See SnipMate + Auto Pairs configuration below.
+
+Auto Pairs + UltiSnips ~
+See UltiSnips + Auto Pairs configuration below.
+
+endwise.vim ~
+If you use Vim 8.0.0283 or later, MUcomplete works just fine with endwise.
+
+With older versions of Vim, both MUcomplete and endwise map <cr> in Insert
+mode, so you must resolve the conflict. The simplest way is to override
+MUcomplete's definition of <cr> in your |vimrc|, as follows:
+>
+	imap <Plug>MyCR <Plug>(MUcompleteCR)
+	imap <cr> <Plug>MyCR
+<
+If you use endwise.vim together with auto-pairs, see the section above
+instead.
+
+LanguageClient-neovim ~
+MUcomplete works fine with this plugin and its satellite server plugins, but
+for the best results you should enable a short delay (this requires Vim
+8.0.0283 or later compiled with |+timers|):
+>
+	let g:mucomplete#completion_delay = 50
+	let g:mucomplete#reopen_immediately = 0
+<
+You might need or want to adjust the delay. You need to increase the delay if
+you notice that MUcomplete triggers completion "too early", as if the last
+typed character is ignored.
+
+If you have other issues with LanguageClient-neovim, first of all make sure
+that omni-completion works without MUcomplete (i.e., by typing CTRL-X CTRL-O).
+See also |mucomplete-troubleshooting|. If that works, but MUcomplete does not
+offers the same completions, consider providing some |mucomplete-feedback|.
+
+Neosnippet ~
+MUcomplete works out of the box with Neosnippet. Just add the `'nsnp'` method
+to your completion chain. For example:
+>
+	let g:mucomplete#chains = {}
+	let g:mucomplete#chains.default = ['path', 'nsnp', 'keyn']
+<
+If you want snippets to be expanded automatically when you accept a menu entry
+with Enter, add the following code to your `vimrc`:
+>
+	inoremap <silent> <expr> <plug><MyCR>
+	    \ mucomplete#neosnippet#expand_snippet("\<cr>")
+	imap <cr> <plug><MyCR>
+<
+The argument of the function is the expansion to be used when <cr> is typed in
+a context different from completion (typically, it's <cr> itself). Using
+a plug improves compatibility with some plugins that map <cr> in Insert mode
+(e.g., endwise.vim).
+
+If you need more flexibility and you know what you are doing, you may call
+`mucomplete#neosnippet#do_expand()` directly.
+
+Neovim ~
+Starting with version 0.11, Neovim maps Tab and Shift-Tab by default.
+MUcomplete will not remap those keys. If you want to use manual completion,
+you have to map <plug>(MUcompleteFwd) and <plug>(MUcompleteBwd) as explained
+in |mucomplete-mappings|.
+
+SnipMate ~
+In your |vimrc|, set:
+>
+	let g:snipMate = {}
+	let g:snipMate['no_match_completion_feedkeys_chars'] = ''
+<
+Then, add the `'snip'` method to your completion chain(s). For example:
+>
+	let g:mucomplete#chains = { 'default': ['snip', 'keyn'] }
+<
+If you want snippets to be expanded automatically when you accept a menu entry
+with Enter, also add the following code to your `vimrc`:
+>
+	inoremap <plug>MyEnter <cr>
+	imap <silent> <expr> <plug>MyCR (pumvisible()
+	    \ ? "\<c-y>\<plug>snipMateTrigger"
+	    \ : "\<plug>MyEnter")
+	imap <cr> <plug>MyCR
+<
+Using a plug improves compatibility with some plugins that map <cr> in Insert
+mode (e.g., endwise.vim).
+
+SnipMate + Auto Pairs ~
+If you want snippets to be expanded automatically when you accept a menu entry
+with Enter and you are also using Auto Pairs, use the following snippet
+instead of the snippet above:
+>
+	let g:AutoPairsMapCR = 0
+
+	inoremap <plug>MyEnter <cr>
+	imap <silent> <expr> <plug>MyCR (pumvisible()
+	    \ ? "\<c-y>\<plug>snipMateTrigger"
+	    \ : "\<plug>MyEnter<plug>AutoPairsReturn")
+	imap <cr> <plug>MyCR
+
+UltiSnips ~
+UltiSnips maps <tab> and <c-j> in a way that conflicts with MUcomplete. The
+recommended way to resolve the conflict is to redefine UltiSnips's mappings.
+For example:
+>
+	let g:UltiSnipsExpandTrigger = "<f5>"        " Do not use <tab>
+	let g:UltiSnipsJumpForwardTrigger = "<c-b>"  " Do not use <c-j>
+<
+If you want snippets to be expanded automatically when you accept a menu entry
+with Enter, also add the following code to your `vimrc`:
+>
+	inoremap <silent> <expr> <plug>MyCR
+	    \ mucomplete#ultisnips#expand_snippet("\<cr>")
+	imap <cr> <plug>MyCR
+<
+Using a plug improves compatibility with some plugins that map <cr> in Insert
+mode (e.g., endwise.vim).
+
+The argument of the function is the expansion to be used when <cr> is typed in
+a context different from completion (typically, it's <cr> itself).
+
+If you need more flexibility and you know what you are doing, you may call
+`mucomplete#ultisnips#do_expand()` directly.
+
+It is also possible to expand snippets or complete text using only <tab>. That
+is, when you press <tab>, if there is a snippet keyword before the cursor then
+the snippet is expanded (and you may use <tab> also to jump between the
+snippet triggers), otherwise MUcomplete kicks in. The following configuration
+achieves this kind of behaviour:
+>
+	let g:ulti_expand_or_jump_res = 0
+
+	fun! TryUltiSnips()
+	  if !pumvisible() " With the pop-up menu open, let Tab move down
+	    call UltiSnips#ExpandSnippetOrJump()
+	  endif
+	  return ''
+	endf
+
+	fun! TryMUcomplete()
+	  return g:ulti_expand_or_jump_res ? "" : "\<plug>(MUcompleteFwd)"
+	endf
+
+	inoremap <plug>(TryUlti) <c-r>=TryUltiSnips()<cr>
+	imap <expr> <silent> <plug>(TryMU) TryMUcomplete()
+	imap <expr> <silent> <tab> "\<plug>(TryUlti)\<plug>(TryMU)"
+<
+You still need to redefine UltiSnips's mappings as explained above.
+
+UltiSnips + Auto Pairs ~
+If you want snippets to be expanded as explained above and you are using Auto
+Pairs, you need to disable Auto Pairs's mappings and invoke them in custom
+mappings, as follows:
+>
+	let g:AutoPairsMapCR = 0
+	let g:AutoPairsMapSpace = 0
+	imap <silent> <expr> <space> pumvisible()
+	  \ ? "<space>"
+	  \ : "<c-r>=AutoPairsSpace()<cr>"
+
+	inoremap <silent> <expr> <plug>UltiExpand
+	      \ mucomplete#ultisnips#expand_snippet("\<cr>")
+	imap <plug>MyCR <plug>UltiExpand<plug>AutoPairsReturn
+	imap <cr> <plug>MyCR
+<
+UltiSnips + PHP ~
+In some versions of Vim, there is a (now solved) compatibility issue between
+PHP's 'omnifunc' function and UltiSnips. This bug is hit by MUcomplete when:
+
+- automatic completion is on;
+- the "omni" method is in your completion chain;
+- you try to move between the different parts of a snippet while expanding
+  a snippet (and you discover that you can't).
+
+There are two workarounds if you still want to use UltiSnips with PHP:
+
+- remove "omni" from PHP's completion chain;
+- disable automatic completion (and do not trigger completion during snippet
+  expansion).
+
+Note: this is not a bug in MUcomplete.
+
+vim-peekabo ~
+By default, vim-peekabo remaps <c-r> in Insert mode. Since MUcomplete relies
+on |i_CTRL-R| in an essential way, you have to change vim-peekabo's mapping:
+>
+	let g:peekaboo_ins_prefix = '<c-x>'
+<
+Note: now you need to press <c-x><c-r> to view the registers.
+
+==============================================================================
+15. Troubleshooting			*mucomplete-troubleshooting*
+
+Why am I getting the error: "E227: mapping already exists for..."? ~
+MUcomplete takes great care not to override an existing mapping defined in
+your |vimrc| or by another plugin. If you get this error, it means that
+MUcomplete cannot define one of its own mappings, because it is already
+defined elsewhere. For example, UltiSnips and Matchem map CTRL-J in Insert
+mode, which causes this error as soon as MUcomplete kicks in:
+>
+	E227: mapping already exists for ^@
+<
+(^@ is CTRL-J). To discover where the mapping was last defined, use:
+>
+	:verbose imap <c-j>
+<
+To fix the conflict, redefine one of the conflicting mappings. See
+|mucomplete-mappings| if you decide to override one of MUcomplete's mappings.
+
+I think I have found a bug. What should I do? ~
+Before reporting a bug, please do the following:
+
+- In order to rule out conflicts with other settings, please copy
+  troubleshooting_vimrc.vim from MUcomplete's directory into your .vim
+  directory, edit it, and run Vim with:
+>
+	vim -u troubleshooting_vimrc.vim
+<
+  Can you still reproduce your problem? If not, a conflict with another plugin
+  or a setting in your |vimrc| may be the culprit.
+
+- Double-check your completion chains: >
+
+	echo g:mucomplete#chains
+<
+  Also, check whether |b:mucomplete_chain| is defined, because its value
+  shadows the global dictionary. Are the methods you expect to be used defined
+  and in the correct order?
+
+- Some completion methods are enabled conditionally. For example, dictionary
+  completion may be triggered only if 'dictionary' is set in the current
+  buffer. If you have trouble with a conditionally enabled completion method,
+  please check whether the corresponding condition is satisfied (see
+  |g:mucomplete#can_complete|).
+
+- Make sure that <c-r> is not mapped in Insert mode. The following command
+  should return "No mapping found": >
+
+	:imap <c-r>
+<
+- Turn off automatic completion: >
+
+	:MUcompleteAutoOff
+<
+  and try to complete a word using the corresponding mapping (see
+  |ins-completion| for a list of available mappings). For example, for omni
+  completion, use |i_CTRL-X_CTRL-O|. Do you get a different output compared to
+  what MUcomplete provides? If not, then the problem is not MUcomplete.
+
+  If triggering completion manually results in the expected behaviour, but
+  MUcomplete behaves differently, please report the bug.
+
+==============================================================================
+16. Providing feedback			*mucomplete-feedback*
+
+For bug reports and feature requests please use:
+
+	https://github.com/lifepillar/vim-mucomplete/issues
+
+Pull requests are welcome, too!
+
+==============================================================================
+17. Implementation details		*mucomplete-internals*
+
+This section describes some technicalities of MUcomplete's implementation, and
+is not intended for the regular user: it is mostly a memo for myself and
+a reading for those interested in a few subtleties of the source code.
+
+What the hell is <plug>(MUcompleteOut) for? Why is it defined to be ~
+<c-g><c-g>? ~
+To be able to sequentially try different completion methods, MUcomplete needs
+to make sure that Vim is not in |i_CTRL-X| sub-mode before trying a completion
+mapping. Since recently, there was no way in Vim to check that. So, the idea
+was to use a key sequence that (1) exits CTRL-X sub-mode when Vim is in CTRL-X
+submode, and (2) does nothing when typed out of CTRL-X mode. There are a few
+such key sequences, and eventually MUcomplete settled to use <c-g><c-g>, as it
+is one of the simplest. A possible side effect of that sequence is that it may
+trigger a beep, but that can be suppressed by adding `ctrlg` to |belloff|.
+
+As of Vim 8.2.3389, Vim provides <c-x><c-z> to stop insert mode completion
+without side effects. MUcomplete uses <c-x><c-z> if possible.
+
+What's the purpose of computing an empty string in the value returned by ~
+s:next_method()? ~
+Well, if you remove that expression (<c-r><c-r>=''<cr>), the completion
+mechanism messes up. Honestly, I do not know why :) I suspect it has to do
+with type ahead or buffering, but if you can enlighten me, I'd appreciate that
+:)
+
+Why is there a double <c-r> in the expression returned by s:next_method()? ~
+In principle, one <c-r> should be enough. But using two makes MUcomplete more
+robust against interruptions.
+
+A completion mapping may start a long computation (e.g., thesaurus
+completion), which the user may want to interrupt by pressing CTRL-C. For some
+reason, pressing CTRL-C causes the next character fed to Vim to be eaten
+(<c-r>, in this case). I don't know exactly why that happens, but a workaround
+is to use <c-r><c-r> instead of just <c-r>. The first <c-r> is then eaten, but
+the second one allows the following expression to be evaluated correctly.
+
+Fortunately, although |i_CTRL-R_CTRL-R| and |i_CTRL-R| are not functionally
+equivalent, their differences do not matter in the context in which they are
+used by MUcomplete.
+
+See also https://github.com/vim/vim/issues/1260.
+
+Why is "cmd" treated specially by s:verify_completion()? ~
+Because of a Vim bug. See https://github.com/vim/vim/issues/1319.
+
+Does MUcomplete's implementation have any limitations? ~
+Of course! But very few :)
+Fuzzy completion is not supported and will likely never be. This doesn't
+bother me much, but it might be a showstopper for you.
+
+There is no room for asynchronous computation, given the way MUcomplete is
+implemented (how could the fallback mechanism work then?). If you think that
+auto-completion should be asynchronous, fortunately there is no lack of
+plugins. Do not take it for granted, though, that "asynchronous" means
+"faster": in general, the time Vim spends in MUcomplete's code is negligible
+compared to the time it takes to populate the pop-up menu. Asynchronous
+plugins typically minimize the impact of the latter task (by delegating it to
+an async job), but unless they are carefully implemented, Vim may spend
+a significant amount of time running their code. Profile your plugins!
+
+Finally, one thing that does bother me is that MUcomplete cannot exploit the
+optimization provided by |complete_add()| and |complete_check()| in user
+completion functions (see |E840| for an example). The reason is that
+MUcomplete sends a <c-r> immediately after each completion mapping,
+effectively preventing further keys to be passed along to the buffer. So,
+a user completion function cannot be interrupted by further key presses.
+Unfortunately, as discussed above, sending <c-r> is required for
+synchronization purposes: without <c-r>, s:verify_completion() may be called
+too early, i.e., when the pop-up menu has not appeared yet (but it is going to
+appear, because completion was successful).
+
+ vim:tw=78:ts=8:noet:ft=help:norl:
+

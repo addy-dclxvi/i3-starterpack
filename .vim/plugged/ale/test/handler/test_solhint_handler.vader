@@ -1,0 +1,83 @@
+Before:
+  runtime ale_linters/solidity/solhint.vim
+
+After:
+  call ale#linter#Reset()
+
+Execute(The solhint handler should parse linter error messages correctly):
+  AssertEqual
+  \ [
+  \   {
+  \     'lnum': 1,
+  \     'col': 17,
+  \     'text': 'Compiler version must be fixed',
+  \     'code': 'compiler-fixed',
+  \     'type': 'W',
+  \   },
+  \   {
+  \     'lnum': 4,
+  \     'col': 8,
+  \     'text': 'Use double quotes for string literals',
+  \     'code': 'quotes',
+  \     'type': 'E',
+  \   },
+  \   {
+  \     'lnum': 5,
+  \     'col': 8,
+  \     'text': 'Use double quotes for string literals',
+  \     'code': 'quotes',
+  \     'type': 'E',
+  \   },
+  \   {
+  \     'lnum': 13,
+  \     'col': 3,
+  \     'text': 'Expected indentation of 4 spaces but found 2',
+  \     'code': 'indent',
+  \     'type': 'E',
+  \   },
+  \   {
+  \     'lnum': 14,
+  \     'col': 3,
+  \     'text': 'Expected indentation of 4 spaces but found 2',
+  \     'code': 'indent',
+  \     'type': 'E',
+  \   },
+  \   {
+  \     'lnum': 47,
+  \     'col': 3,
+  \     'text': 'Function order is incorrect, public function can not go after internal function.',
+  \     'code': 'func-order',
+  \     'type': 'E',
+  \   },
+  \ ],
+  \ ale_linters#solidity#solhint#Handle(bufnr(''), [
+  \   'contracts/Bounty.sol:1:17: Compiler version must be fixed [Warning/compiler-fixed]',
+  \   'contracts/Bounty.sol:4:8: Use double quotes for string literals [Error/quotes]',
+  \   'contracts/Bounty.sol:5:8: Use double quotes for string literals [Error/quotes]',
+  \   'contracts/Bounty.sol:13:3: Expected indentation of 4 spaces but found 2 [Error/indent]',
+  \   'contracts/Bounty.sol:14:3: Expected indentation of 4 spaces but found 2 [Error/indent]',
+  \   'contracts/Bounty.sol:47:3: Function order is incorrect, public function can not go after internal function. [Error/func-order]',
+  \ ])
+
+Execute(The solhint handler should parse syntax error messages correctly):
+  AssertEqual
+  \ [
+  \   {
+  \     'lnum': 30,
+  \     'col': 4,
+  \     'text': "missing ';' at 'uint248'",
+  \     'code': 'Parse error',
+  \     'type': 'E',
+  \   },
+  \   {
+  \     'lnum': 203,
+  \     'col': 4,
+  \     'text': "no viable alternative at input '_loserStakeMultiplier}'",
+  \     'code': 'Parse error',
+  \     'type': 'E',
+  \   },
+  \ ],
+  \ ale_linters#solidity#solhint#Handle(bufnr(''), [
+  \   "contracts/Bounty.sol:30:4: Parse error: missing ';' at 'uint248' [Error]",
+  \   "contracts/Bounty.sol:203:4: Parse error: no viable alternative at input '_loserStakeMultiplier}' [Error]",
+  \ ])

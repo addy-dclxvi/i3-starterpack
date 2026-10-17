@@ -1,0 +1,126 @@
+*highlightedyank.txt*	Make the yanked region apparent!
+						Last change:03-May-2022.
+
+Author  : machakann <mckn{at}outlook.jp>
+License : NYSL license
+          Japanese <http://www.kmonos.net/nysl/>
+          English (Unofficial) <http://www.kmonos.net/nysl/index.en.html>
+
+Requirement:	Vim 7.4 or higher
+		|+reltime| feature
+		|+float| feature
+		|+timers| feature (optional)
+
+==============================================================================
+INDEX					*highlightedyank-index*
+
+INTRODUCTION				|highlightedyank-introduction|
+OPTIONS					|highlightedyank-options|
+HIGHLIGHT GROUPS			|highlightedyank-highlight-groups|
+COMMANDS				|highlightedyank-commands|
+KNOWN ISSUES				|highlightedyank-known-issues|
+
+==============================================================================
+INTRODUCTION				*highlightedyank-introduction*
+
+*highlightedyank.vim* is a plugin to highlight the yanked region.
+This is a pretty trick to make your coding more comfortable.
+
+Note that if you are using neovim <https://neovim.io/>, you don't need this
+plugin. Check out |lua-highlight|.
+
+If you are using Vim 8.0.1934 or later, there is no need for configuration,
+as the highlight event is automatically triggered by |TextYankPost| event.
+
+Otherwise, it is required to define a keymapping to `<Plug>(highlightedyank)`.
+It would be good to check the existence of |TextYankPost| event.
+>
+	if !exists('##TextYankPost')
+	  nmap y <Plug>(highlightedyank)
+	  xmap y <Plug>(highlightedyank)
+	  omap y <Plug>(highlightedyank)
+	endif
+<
+==============================================================================
+OPTIONS					*highlightedyank-options*
+
+					*g:highlightedyank_highlight_duration*
+					*b:highlightedyank_highlight_duration*
+This option changes the highlighting duration.
+Assign a number of time in milli seconds.
+>
+	let g:highlightedyank_highlight_duration = 1000
+<
+If a negative number is assigned, the highlight gets persistent.
+>
+	let g:highlightedyank_highlight_duration = -1
+<
+When another text is yanked or when the user starts editing, the old
+highlighting will be deleted.
+
+------------------------------------------------------------------------------
+
+The highlight process could be very slow when the user yanked a bunch of
+lines. This plugin has an option to avoid the problem.
+
+					*g:highlightedyank_max_lines*
+					*b:highlightedyank_max_lines*
+This plugin gives up highlighting if the yanked lines exceeds the number.
+Adding the following line into your vimrc to give up over one thousand lines.
+>
+	let g:highlightedyank_max_lines = 1000
+<
+The default value is 10000 lines.
+
+------------------------------------------------------------------------------
+
+					*g:highlightedyank_highlight_in_visual*
+					*b:highlightedyank_highlight_in_visual*
+The highlight may not be needed or even annoying in visual mode. In that case,
+set a falsy value to the option.
+>
+	let g:highlightedyank_highlight_in_visual = 0
+<
+
+==============================================================================
+HIGHLIGHT GROUPS			*highlightedyank-highlight-groups*
+
+In order to change the highlighting color, re-define the following highlight
+group.
+
+	The highlight group to make the yanked region noticeable.
+	It is linked to the highlight group IncSearch by default.
+	|hl-IncSearch|
+>
+	highlight link HighlightedyankRegion IncSearch
+<
+	In order to asign the color directly:
+>
+	highlight HighlightedyankRegion ctermbg=237 guibg=#404040
+<
+	See |:highlight| help for more details. NOTE that the line should be
+	located after |:colorscheme| command execution in your vimrc.
+
+==============================================================================
+COMMANDS				*highlightedyank-commands*
+
+:HighlightedyankOff				*:HighlightedyankOff*
+	This command stops highlighting temporarily.
+
+:HighlightedyankOn				*:HighlightedyankOn*
+	This command (re)starts highlighting stopped by |:HighlightedyankOff|.
+
+:HighlightedyankToggle				*:HighlightedyankToggle*
+	This command toggles on/off of highlighting feature.
+	See |:HighlightedyankOff| and |:HighlightedyankOn| also.
+
+==============================================================================
+KNOWN ISSUES				*highlightedyank-known-issues*
+
+ - When 'clipboard' is set as "unnamed", `"*yiw` updates "0 |quote0|
+   register.
+ - When 'clipboard' is set as "unnamedplus", `"+yiw` updates "0 |quote0|
+   register.
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:noet:

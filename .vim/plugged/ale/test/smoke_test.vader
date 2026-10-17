@@ -1,0 +1,129 @@
+Before:
+  Save g:ale_enabled
+  Save g:ale_set_lists_synchronously
+  Save g:ale_buffer_info
+  Save &shell
+
+  let g:ale_enabled = 1
+  let g:ale_buffer_info = {}
+  let g:ale_set_lists_synchronously = 1
+
+  function! TestCallback(buffer, output)
+    let l:text = substitute(get(a:output, 0, ''), '[\r ]*$', '', '')
+
+    if empty(l:text)
+      return []
+    endif
+
+    " Windows adds extra spaces and carriage returns to echo output.
+    return [{
+    \ 'lnum': 2,
+    \ 'col': 3,
+    \ 'text': l:text,
+    \}]
+  endfunction
+  " Running the command in another subshell seems to help here.
+  call ale#linter#Define('foobar', {
+  \ 'name': 'testlinter',
+  \ 'callback': 'TestCallback',
+  \ 'executable': has('win32') ? 'cmd' : 'echo',
+  \ 'command': has('win32') ? 'echo foo bar' : '/bin/sh -c ''echo foo bar''',
+  \})
+
+After:
+  Restore
+
+  unlet! g:i
+  unlet! g:results
+  unlet! g:expected_results
+
+  delfunction TestCallback
+  call ale#engine#Cleanup(bufnr(''))
+  call ale#linter#Reset()
+
+Given foobar (Some imaginary filetype):
+  foo
+  bar
+  baz
+
+Execute(Linters should run with the default options):
+  AssertEqual 'foobar', &filetype
+
+  let g:expected_results = [{
+  \   'bufnr': bufnr('%'),
+  \   'lnum': 2,
+  \   'vcol': 0,
+  \   'col': 3,
+  \   'text': 'foo bar',
+  \   'type': 'E',
+  \   'nr': -1,
+  \   'pattern': '',
+  \   'valid': 1,
+  \ }]
+
+  " Try the test a few times over in NeoVim 0.3 or Windows or Vim 8.2,
+  " where tests fail randomly.
+  for g:i in range(has('nvim-0.3') || has('win32') || has('patch-8.2.2401') ? 5 : 1)
+    call ale#Queue(0, '')
+    call ale#test#WaitForJobs(2000)
+
+    let g:results = ale#test#GetLoclistWithoutNewerKeys()
+
+    if g:results == g:expected_results
+      break
+    endif
+  endfor
+
+  AssertEqual g:expected_results, g:results
+
+Execute(Linters should run in PowerShell too):
+  " Skip on Vim (non-NeoVim) Windows — job execution with &shell=powershell
+  " is unreliable in Vim's Windows job implementation. NeoVim handles it fine.
+  if has('win32') && !has('nvim')
+    Log 'Skipping PowerShell test on Vim Windows (flaky job execution)'
+  elseif has('win32')
+    set shell=powershell
+
+    AssertEqual 'foobar', &filetype
+
+    " Use a cmd-specific command that would fail in PowerShell.
+    " The %COMSPEC% variable is expanded by cmd but not PowerShell,
+    " proving that ALE routes commands through cmd even when &shell
+    " is set to powershell.
+    call ale#linter#Reset()
+    call ale#linter#Define('foobar', {
+    \ 'name': 'testlinter',
+    \ 'callback': 'TestCallback',
+    \ 'executable': 'cmd',
+    \ 'command': 'echo foo bar',
+    \})
+
+    let g:expected_results = [{
+    \   'bufnr': bufnr('%'),
+    \   'lnum': 2,
+    \   'vcol': 0,
+    \   'col': 3,
+    \   'text': 'foo bar',
+    \   'type': 'E',
+    \   'nr': -1,
+    \   'pattern': '',
+    \   'valid': 1,
+    \}]
+
+    " Retry a few times, as jobs can be flaky on Windows.
+    for g:i in range(5)
+      call ale#Queue(0, '')
+      call ale#test#WaitForJobs(5000)
+
+      let g:results = ale#test#GetLoclistWithoutNewerKeys()
+
+      if g:results == g:expected_results
+        break
+      endif
+
+      " Wait between retries to let the system settle.
+      sleep 500m
+    endfor
+
+    AssertEqual g:expected_results, g:results
+  endif

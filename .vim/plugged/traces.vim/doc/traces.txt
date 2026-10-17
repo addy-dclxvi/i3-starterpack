@@ -1,0 +1,216 @@
+*traces.txt*	Range, pattern and substitute preview for Vim
+
+Version 1.1.0
+
+CONTENTS					*traces-contents*
+
+1. Introduction		|traces-introduction|
+2. Requirements		|traces-requirements|
+3. Options 		|traces-options|
+				|g:traces_enabled|
+				|g:traces_preserve_view_state|
+				|g:traces_substitute_preview|
+				|g:traces_skip_modifiers|
+				|g:traces_num_range_preview|
+				|g:traces_timeout|
+				|g:traces_search_timeout|
+				|g:traces_preview_window|
+				|g:traces_abolish_integration|
+				|g:traces_normal_preview|
+4. Highlights		|traces-highlights|
+				|hl-TracesSearch|
+				|hl-TracesReplace|
+5. Bugs			|traces-bugs|
+6. Changelog		|traces-changelog|
+
+==============================================================================
+INTRODUCTION					*traces-introduction*
+
+This plugin highlights |pattern|s and |:range|s for Ex commands in
+Command-line mode.
+
+Ranges composed of at least one pattern or mark specifier will be highlighted
+immediately.  Ranges that do not include any pattern or mark specifier will
+not be highlighted because they cannot be uniquely identified as ranges
+related to buffer lines (see |:command-addr|).
+
+To force immediate preview for ranges composed entirely of absolute specifiers
+({number}, ., $, %), first enter and delete '/' or some other pattern or mark
+specifier.  Also see |g:traces_num_range_preview|.
+
+Patterns for the following Ex commands will be highlighted immediately as
+typed:
+
+  |:substitute|
+  |:smagic|
+  |:snomagic|
+  |:global|
+  |:vglobal|
+  |:sort|
+
+Live preview is implemented for the following Ex commands:
+
+  |:substitute|
+  |:smagic|
+  |:snomagic|
+  |:normal|
+
+==============================================================================
+REQUIREMENTS					*traces-requirements*
+
+Vim 8.1
+
+or
+
+Neovim 0.2.3
+
+==============================================================================
+OPTIONS 					*traces-options*
+
+                                                *g:traces_enabled*
+g:traces_enabled	boolean (default 1)
+                If value is 0, this plugin will be disabled and no
+                highlighting will be done.
+
+                                                *g:traces_preserve_view_state*
+g:traces_preserve_view_state boolean (default 0)
+                If value is 1, view position  will not be changed when
+                highlighting ranges or patterns outside initial view position.
+
+                                                *g:traces_substitute_preview*
+g:traces_substitute_preview boolean (default 1)
+                If value is 1, |:substitute|, |:smagic| and |:snomagic| will
+                be previewed.
+
+                                                *g:traces_skip_modifiers*
+g:traces_skip_modifiers boolean (default 1)
+                If value is 1, |cdo|, |cfdo|, |ldo|, |lfdo|, |bufdo|, |tabdo|,
+                |argdo| and |windo| will be ignored when processing command
+                line.
+
+                                                *g:traces_num_range_preview*
+g:traces_num_range_preview boolean (default 0)
+                If value is 1, numerical ranges :N, and :N; will be
+                highlighted immediately.
+
+                Highlighted: >
+                  :10,
+                  :10;15
+<
+                Not highlighted: >
+                  :10
+<
+                                                *g:traces_timeout*
+g:traces_timeout	number (default 1000)
+                If preview is slower than the timeout (in milliseconds), it
+                gets disabled until Command-line mode is entered again.  Time
+                spent saving undo history is ignored.  Cannot be lower than
+                200.
+
+                                                *g:traces_search_timeout*
+g:traces_search_timeout number (default 500)
+                If searching is slower than the timeout (in milliseconds), it
+                gets disabled until new character is passed to Command-line.
+                Cannot be higher than |g:traces_timeout|.
+
+                                                *g:traces_preview_window*
+g:traces_preview_window string (default empty)
+                Window used to show off-screen matches.
+
+                Set the option to Ex command which will be used to open a new
+                window.  Use a combination of Ex commands |:new| or |:vnew| and
+                command modifiers |vertical|, |leftabove|, |aboveleft|,
+                |rightbelow|, |belowright|, |topleft| and |botright|.  Prepend
+                "new" or "vnew" with a number to specify height or width of the
+                window.  Preview window is opened only when selected range
+                exceeds visible viewport.
+
+                Example: >
+                  let g:traces_preview_window = "botright 10new"
+                  let g:traces_preview_window = "vertical botright new"
+                  let g:traces_preview_window = "topleft 15new"
+<
+                As a fallback the string is evaluated with |eval()| which
+                permits the following:
+
+                Example: >
+                  " If window width is greater than 160 columns, open vertical
+                  " window or else open horizontal window
+                  let g:traces_preview_window =
+                        \ "winwidth('%') > 160 ? 'bot vnew' : 'bot 10new'"
+<
+                                                *g:traces_abolish_integration*
+g:traces_abolish_integration boolean (default 0)
+                If value is 1, |:Subvert| from abolish.vim will be previewed.
+
+                                                *g:traces_normal_preview*
+g:traces_normal_preview boolean (default 0)
+                WARNING: experimental, unstable
+                The following actions performed during the preview might break
+                the preview or lose the undo history.
+                  - opening, closing or switching buffers or windows
+
+                If value is 1, |:normal| will be previewed.
+                Requires patch 8.2.2961 on Vim.
+
+==============================================================================
+HIGHLIGHTS					*traces-highlights*
+
+                                                *hl-TracesSearch*
+TracesSearch	Search pattern highlighting.  Links to |hl-Search| by default.
+
+                                                *hl-TracesReplace*
+TracesReplace	Substitute string highlighting.  Links to |hl-TracesSearch| by
+                default.
+
+Example: >
+
+  highlight link TracesSearch Cursor
+  highlight link TracesReplace DiffAdd
+<
+==============================================================================
+BUGS						*traces-bugs*
+
+ - highlighting is disabled for |:terminal| windows because of redrawing
+   issues
+
+
+ - If you have any problems or suggestions, please let me know at:
+   https://github.com/markonm/traces.vim
+
+==============================================================================
+CHANGELOG					*traces-changelog*
+
+1.1.0   January 21, 2019                        *traces-changelog-1.1.0*
+        - New options
+          - |g:traces_num_range_preview|
+          - |g:traces_enabled|
+        - Pattern preview for |:sort|
+        - Various bugs fixed
+
+1.0.0   April 30, 2018                          *traces-changelog-1.0.0*
+        - Substitute preview
+        - Use |CmdlineChanged| event
+        - New options
+          - |g:traces_substitute_preview|
+          - |g:traces_skip_modifiers|
+        - Deprecated options
+          - |g:traces_whole_file_range|
+        - New highlight group |hl-TracesSearch|
+        - Various bugs fixed
+
+0.1.0   December 21, 2017                       *traces-changelog-0.1.0*
+        - Increased Vim/Neovim requirements
+        - Use |CmdlineEnter| and |CmdlineLeave| events
+        - Disable |hlsearch| when highlighting patterns
+        - Highlight all windows that contain current buffer
+        - New options
+          - |g:traces_whole_file_range|
+          - |g:traces_preserve_view_state|
+        - Various bugs fixed
+
+0.0.0	September 18, 2017			*traces-changelog-0.0.0*
+	- Initial version.
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:fen:fdl=0:fdm=marker:
